@@ -180,11 +180,11 @@ export const MAP_TYPES = [
   "Щит 3×6", "Сити-формат", "Indoor-пилон", "Остановка",
 ];
 
-export const NAV_LINKS = [
-  { label: "Услуги", href: "#services" },
-  { label: "Карта", href: "#map" },
-  { label: "Кейсы", href: "#cases" },
-  { label: "О компании", href: "#about" },
-  { label: "Новости", href: "#news" },
-  { label: "Контакты", href: "#contacts" },
+export const NAV_LINKS: { label: string; href: string; hasDropdown?: boolean }[] = [
+  { label: "Услуги", href: "/#services", hasDropdown: true },
+  { label: "Карта", href: "/#map" },
+  { label: "Кейсы", href: "/#cases" },
+  { label: "О компании", href: "/about" },
+  { label: "Новости", href: "/#news" },
+  { label: "Контакты", href: "/#contacts" },
 ];

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { COMPANY } from "@/lib/site-data";
 
 const SECTIONS = [
@@ -58,7 +59,7 @@ export default function Footer() {
               <ul className="space-y-2.5 text-sm">
                 {section.links.map((l) => (
                   <li key={l.href}>
-                    <a href={l.href} className="hover:text-white transition-colors">{l.label}</a>
+                    <Link href={l.href} className="hover:text-white transition-colors">{l.label}</Link>
                   </li>
                 ))}
               </ul>
