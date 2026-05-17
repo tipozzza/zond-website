@@ -21,7 +21,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-lg text-white/85 mb-9 max-w-[560px] font-light">
-              {STATS.area} м² собственной рекламной сети, {STATS.digital} цифровых экранов,
+              {STATS.area} м² собственной рекламной сети, {STATS.digital} цифровых сторон,
               производство любых вывесок и металлоконструкций. Размещение, печать,
               монтаж и обслуживание — под ключ.
             </p>
@@ -33,8 +33,8 @@ export default function Hero() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-9 border-t border-white/10">
               <StatItem num="1992" label="Год основания" />
-              <StatItem num={STATS.surfaces.toString()} label="Поверхностей" />
-              <StatItem num={STATS.digital.toString()} label="Цифровых экранов" />
+              <StatItem num={STATS.constructions.toString()} label="Конструкций" />
+              <StatItem num={STATS.digital.toString()} label="Цифровых сторон" />
               <StatItem num={STATS.area} label="м² сети" />
             </div>
           </div>

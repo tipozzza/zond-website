@@ -17,7 +17,9 @@ export const COMPANY = {
 
 export const STATS = {
   surfaces: 751,
+  constructions: 244,
   digital: 336,
+  digitalScreens: 27,
   area: "13 800",
   printingPerYear: "500 000",
 };
@@ -30,7 +32,7 @@ export const SERVICES = [
     color: "outdoor",
     description: "Размещение на собственной сети: digital-биллборды 3×6 и 5×15, статичные щиты, тривижны, суперсайты, сити-форматы, indoor-пилоны.",
     features: [
-      "656 поверхностей по Томску",
+      "244 конструкции, 751 сторона",
       "Единственная digital-сеть города",
       "Размещение от 1 дня",
     ],
@@ -146,7 +148,7 @@ export const TIMELINE = [
   { year: 2004, event: "Концепция оформления Томска к 400-летию." },
   { year: 2007, event: "Первый светодиодный экран в Томске." },
   { year: 2016, event: "Первый Digital-биллборд в городе." },
-  { year: 2026, event: "240 digital-экранов, единственная цифровая сеть." },
+  { year: 2026, event: "336 digital-сторон, единственная цифровая сеть." },
 ];
 
 export const NEWS = [

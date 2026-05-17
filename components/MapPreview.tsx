@@ -13,7 +13,7 @@ export default function MapPreview() {
               Лучшие места<br />в Томске и Северске
             </h2>
             <p className="text-lg text-gray-500 mb-7 leading-relaxed">
-              656 рекламных поверхностей на ключевых магистралях и в торговых центрах.
+              751 сторона на 244 конструкциях — ключевые магистрали и торговые центры.
               Выберите конструкцию на карте, посмотрите фото и трафик,
               забронируйте онлайн на 3 дня без оплаты.
             </p>
@@ -44,11 +44,11 @@ export default function MapPreview() {
               <div className="flex gap-4 text-xs">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-section-outdoor" />
-                  <span>Свободно (416)</span>
+                  <span>Статика (415)</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-section-design" />
-                  <span>Digital (240)</span>
+                  <span>Digital (336)</span>
                 </div>
               </div>
               <a href="#" className="text-white font-semibold text-xs">Подробнее →</a>

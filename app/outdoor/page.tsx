@@ -93,7 +93,7 @@ const ADVANTAGES = [
   {
     icon: "💡",
     title: "Единственная digital-сеть в Томске",
-    text: "336 цифровых экранов в одной сети",
+    text: "336 цифровых сторон в одной сети",
   },
   {
     icon: "📐",
@@ -195,7 +195,7 @@ export default function OutdoorPage() {
 
             <p className="text-lg text-white/85 mb-9 max-w-[760px] font-light leading-relaxed">
               Собственная сеть из 244 рекламных конструкций — 751 сторона размещения,
-              336 digital-экранов, более 13 800 м² рекламной площади.
+              336 digital-сторон, более 13 800 м² рекламной площади.
               Лидер по охвату в Томске с 1992 года.
             </p>
 
@@ -213,10 +213,10 @@ export default function OutdoorPage() {
               Сеть в цифрах
             </h2>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-              <NetStat num="751" label="сторон размещения" />
-              <NetStat num="244" label="рекламные конструкции" />
-              <NetStat num="336" label="digital-экранов" />
-              <NetStat num="88%" label="с подсветкой 24/7" />
+              <NetStat num="1992" label="год основания" />
+              <NetStat num="244" label="конструкций" />
+              <NetStat num="336" label="цифровых сторон" />
+              <NetStat num="13 800" label="м² сети" />
             </div>
           </div>
         </section>
