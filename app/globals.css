@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-text: #1f2530;
+    --color-text-muted: #6b7280;
+    --color-border: #e8e6f0;
+    --color-bg-section: #f6f5fa;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased text-[#1f2530] bg-white;
+  }
+}
+
+@layer components {
+  /* LED-пиксельная декоративная полоса */
+  .pixel-border {
+    height: 36px;
+    background-image: linear-gradient(90deg,
+      #E30613 0% 12%,
+      #3D2E91 12% 28%,
+      #00AEEF 28% 42%,
+      #5E4FB8 42% 55%,
+      #6F2E91 55% 70%,
+      #E30613 70% 82%,
+      #3D2E91 82% 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .pixel-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .pixel-border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 2px, transparent 3px);
+    background-size: 18px 18px;
+    background-position: 9px 9px;
+    mix-blend-mode: screen;
+  }
+
+  /* Hero фон с боке */
+  .hero-bg {
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255, 107, 180, 0.15) 0%, transparent 30%),
+      radial-gradient(circle at 85% 30%, rgba(0, 174, 239, 0.12) 0%, transparent 30%),
+      radial-gradient(circle at 30% 80%, rgba(111, 46, 145, 0.18) 0%, transparent 35%),
+      radial-gradient(circle at 90% 90%, rgba(255, 215, 0, 0.08) 0%, transparent 25%),
+      linear-gradient(135deg, #0a0820 0%, #1a0e3a 60%, #2a1655 100%);
+  }
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 28%, rgba(255, 255, 255, 0.6) 2px, transparent 3px),
+      radial-gradient(circle at 18% 45%, rgba(255, 215, 0, 0.4) 4px, transparent 6px),
+      radial-gradient(circle at 22% 70%, rgba(0, 174, 239, 0.5) 3px, transparent 5px),
+      radial-gradient(circle at 85% 25%, rgba(255, 107, 180, 0.5) 5px, transparent 8px),
+      radial-gradient(circle at 78% 55%, rgba(255, 255, 255, 0.4) 2px, transparent 4px),
+      radial-gradient(circle at 90% 75%, rgba(111, 46, 145, 0.5) 4px, transparent 7px),
+      radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.3) 2px, transparent 4px),
+      radial-gradient(circle at 8% 65%, rgba(0, 174, 239, 0.4) 3px, transparent 5px);
+    pointer-events: none;
+  }
+
+  /* Подвал с геометрическим узором */
+  .footer-bg {
+    background: linear-gradient(135deg, #2a1655 0%, #1a0e3a 50%, #4a1230 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.04) 49%, rgba(255, 255, 255, 0.04) 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.04) 49%, rgba(255, 255, 255, 0.04) 51%, transparent 52%);
+    background-size: 60px 60px;
+  }
+
+  /* Кнопки */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded font-semibold text-sm uppercase tracking-wide transition-all whitespace-nowrap;
+  }
+  .btn-lg {
+    @apply px-9 py-4;
+  }
+  .btn-primary {
+    @apply bg-brand text-white hover:bg-brand-dark hover:-translate-y-0.5;
+  }
+  .btn-outline-white {
+    @apply bg-transparent text-white border-2 border-white/40 hover:bg-white/10 hover:border-white;
+  }
+  .btn-outline-brand {
+    @apply bg-transparent text-brand border-2 border-brand hover:bg-brand hover:text-white;
+  }
+}
