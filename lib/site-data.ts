@@ -16,9 +16,9 @@ export const COMPANY = {
 };
 
 export const STATS = {
-  surfaces: 656,
-  digital: 240,
-  area: "11 570",
+  surfaces: 751,
+  digital: 336,
+  area: "13 800",
   printingPerYear: "500 000",
 };
 
