@@ -21,12 +21,12 @@ const ICONS: Record<string, LucideIcon> = {
 };
 
 const ACCENT_COLORS: Record<string, string> = {
-  outdoor: "#3D2E91",
-  print: "#EC4899",
-  production: "#3B82F6",
-  exhibition: "#10B981",
-  design: "#F59E0B",
-  led: "#EF4444",
+  outdoor: "#F57C28",
+  print: "#FFCC00",
+  production: "#7CB342",
+  exhibition: "#3FA3D9",
+  design: "#3949AB",
+  led: "#7B1FA2",
 };
 
 export default function Services() {
