@@ -8,6 +8,8 @@ import { TYPE_COLORS } from "@/lib/sides-data";
 declare global {
   interface Window {
     ymaps: any;
+    __zondSides: Record<string, Side>;
+    __zondOpenSide: (id: string) => void;
   }
 }
 
@@ -19,7 +21,12 @@ type Props = {
 export default function YandexMap({ sides, onSideClick }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
+  const onSideClickRef = useRef(onSideClick);
   const [scriptLoaded, setScriptLoaded] = useState(false);
+
+  useEffect(() => {
+    onSideClickRef.current = onSideClick;
+  });
 
   useEffect(() => {
     if (!scriptLoaded || !mapRef.current) return;
@@ -29,42 +36,51 @@ export default function YandexMap({ sides, onSideClick }: Props) {
         mapInstance.current.destroy();
       }
 
-      const map = new window.ymaps.Map(mapRef.current, {
+      const map = new window.ymaps.Map(mapRef.current!, {
         center: [56.4847, 84.9482],
         zoom: 12,
         controls: ["zoomControl", "geolocationControl", "fullscreenControl", "searchControl"],
       });
 
+      window.__zondSides = {};
+      sides.forEach((s) => {
+        window.__zondSides[s.id] = s;
+      });
+      window.__zondOpenSide = (id: string) => {
+        const side = window.__zondSides[id];
+        if (side) {
+          map.balloon.close();
+          onSideClickRef.current(side);
+        }
+      };
+
       const clusterer = new window.ymaps.Clusterer({
         preset: "islands#violetClusterIcons",
         groupByCoordinates: false,
         clusterDisableClickZoom: false,
-        hasBalloon: false,
         gridSize: 80,
+        clusterBalloonContentLayout: "cluster#balloonAccordion",
+        clusterBalloonPanelMaxMapArea: 0,
       });
 
       const placemarks = sides
         .filter((s) => s.lat !== null && s.lng !== null)
         .map((side) => {
           const color = TYPE_COLORS[side.type] || "#666";
-          const placemark = new window.ymaps.Placemark(
+          const price = side.priceFinal ? side.priceFinal.toLocaleString("ru-RU") + " ₽/мес" : "";
+          const button = `<button onclick="window.__zondOpenSide('${side.id}'); return false;" style="background:#3D2E91;color:white;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-weight:600;margin-top:8px;">Подробнее и забронировать</button>`;
+          return new window.ymaps.Placemark(
             [side.lat, side.lng],
             {
               hintContent: `${side.id} — ${side.type} ${side.format}`,
+              balloonContentHeader: `<strong>${side.id}</strong> · ${side.type} ${side.format}`,
+              balloonContentBody: `${side.address}<br/>${price}<br/>${button}`,
             },
             {
               preset: "islands#dotIcon",
               iconColor: color,
-              openBalloonOnClick: false,
-              hasBalloon: false,
             }
           );
-
-          placemark.events.add("click", () => {
-            onSideClick(side);
-          });
-
-          return placemark;
         });
 
       clusterer.add(placemarks);
@@ -79,7 +95,7 @@ export default function YandexMap({ sides, onSideClick }: Props) {
         mapInstance.current = null;
       }
     };
-  }, [scriptLoaded, sides, onSideClick]);
+  }, [scriptLoaded, sides]);
 
   const apiKey = process.env.NEXT_PUBLIC_YANDEX_MAPS_KEY;
 
