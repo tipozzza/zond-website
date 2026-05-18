@@ -87,19 +87,19 @@ export default function PortfolioGallery() {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
           {filtered.map((item) => (
             <button
               key={item.src}
               onClick={() => setLightbox(item)}
-              className="group relative aspect-square overflow-hidden rounded-2xl bg-slate-100"
+              className="group relative w-full overflow-hidden rounded-2xl bg-slate-100 break-inside-avoid mb-4 block"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={item.src}
                 alt={item.title}
                 loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-auto object-contain block group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
                 <div className="text-white font-bold leading-tight">{item.title}</div>
