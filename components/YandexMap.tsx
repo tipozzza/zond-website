@@ -75,7 +75,7 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
             ? `<img src="/images/constructions/${side.photo_filename}" alt="${side.id}" style="width:100%;max-width:280px;height:auto;border-radius:6px;margin-bottom:8px;display:block;" onerror="this.style.display='none'" />`
             : "";
           const price = side.priceFinal ? side.priceFinal.toLocaleString("ru-RU") + " ₽/мес" : "";
-          const button = `<button onclick="window.__zondOpenSide('${side.id}'); return false;" style="background:#3D2E91;color:white;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-weight:600;margin-top:8px;">Подробнее и забронировать</button>`;
+          const button = `<button onclick="window.__zondOpenSide('${side.id}'); return false;" style="background:#F57C28;color:white;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-weight:600;margin-top:8px;">Подробнее и забронировать</button>`;
           return new window.ymaps.Placemark(
             [side.lat, side.lng],
             {

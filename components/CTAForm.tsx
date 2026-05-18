@@ -1,6 +1,10 @@
 import { COMPANY, SERVICES } from "@/lib/site-data";
 
-export default function CTAForm() {
+type Props = {
+  accentColor?: string;
+};
+
+export default function CTAForm({ accentColor }: Props = {}) {
   return (
     <section id="contact-form" className="py-24 bg-gradient-to-br from-[#0a0820] to-[#1a0e3a] text-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(111,46,145,0.5)_0%,transparent_40%),radial-gradient(circle_at_80%_70%,rgba(0,174,239,0.3)_0%,transparent_40%)]" />
@@ -56,7 +60,11 @@ export default function CTAForm() {
                 <a href="#" className="text-brand">политикой конфиденциальности</a>{" "}
                 и даёте согласие на обработку персональных данных.
               </p>
-              <button type="submit" className="btn btn-primary w-full py-4 text-sm">
+              <button
+                type="submit"
+                className="btn w-full py-4 text-sm text-white hover:-translate-y-0.5 hover:brightness-90 transition-all"
+                style={{ backgroundColor: accentColor ?? "#3D2E91" }}
+              >
                 Отправить заявку →
               </button>
             </form>

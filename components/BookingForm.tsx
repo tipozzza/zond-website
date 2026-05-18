@@ -107,7 +107,7 @@ export default function BookingForm({ side, onClose, onSuccess }: Props) {
                   <label
                     key={m}
                     className={`flex items-center gap-2 p-2 border rounded-lg cursor-pointer ${
-                      months.includes(m) ? "bg-brand/10 border-brand" : ""
+                      months.includes(m) ? "bg-[#F57C28]/10 border-[#F57C28]" : ""
                     }`}
                   >
                     <input type="checkbox" checked={months.includes(m)} onChange={() => toggleMonth(m)} />
@@ -130,7 +130,7 @@ export default function BookingForm({ side, onClose, onSuccess }: Props) {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full bg-brand hover:bg-brand/90 text-white py-3 rounded-lg font-semibold disabled:opacity-50"
+            className="w-full bg-[#F57C28] hover:bg-[#E26A1F] text-white py-3 rounded-lg font-semibold disabled:opacity-50"
           >
             {submitting ? "Отправляем..." : "Отправить заявку"}
           </button>

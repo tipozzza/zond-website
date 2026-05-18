@@ -54,7 +54,7 @@ export default function SideFilters({ filters, setFilters, totalCount, filteredC
     <div className="bg-white p-6 rounded-2xl shadow-lg space-y-6">
       <div>
         <div className="text-sm text-slate-500">Найдено</div>
-        <div className="text-2xl font-bold text-brand">
+        <div className="text-2xl font-bold text-[#F57C28]">
           {filteredCount} из {totalCount} сторон
         </div>
       </div>

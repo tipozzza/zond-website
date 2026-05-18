@@ -19,7 +19,7 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
         <div className="flex justify-between items-start mb-4">
           <div>
             <div className="text-sm text-slate-500">Сторона</div>
-            <div className="text-3xl font-bold text-brand">{side.id}</div>
+            <div className="text-3xl font-bold text-[#F57C28]">{side.id}</div>
           </div>
           <button onClick={onClose} className="text-2xl text-slate-400 hover:text-slate-700">
             ✕
@@ -76,9 +76,9 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
           </div>
 
           {side.priceFinal && (
-            <div className="bg-brand/5 p-4 rounded-lg">
+            <div className="bg-[#F57C28]/5 p-4 rounded-lg">
               <div className="text-sm text-slate-500">Стоимость аренды</div>
-              <div className="text-3xl font-bold text-brand">{side.priceFinal.toLocaleString("ru-RU")} ₽/мес</div>
+              <div className="text-3xl font-bold text-[#F57C28]">{side.priceFinal.toLocaleString("ru-RU")} ₽/мес</div>
               {side.installCost && (
                 <div className="text-sm text-slate-600 mt-1">
                   + монтаж: {side.installCost.toLocaleString("ru-RU")} ₽
@@ -102,7 +102,7 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
 
           <button
             onClick={onBook}
-            className="w-full bg-brand hover:bg-brand/90 text-white py-4 rounded-lg font-semibold text-lg mt-4"
+            className="w-full bg-[#F57C28] hover:bg-[#E26A1F] text-white py-4 rounded-lg font-semibold text-lg mt-4"
           >
             Забронировать сторону
           </button>

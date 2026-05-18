@@ -80,7 +80,7 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
             setPage(1);
           }}
           placeholder="Поиск по адресу, номеру, типу..."
-          className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+          className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#F57C28] focus:border-transparent"
         />
         <div className="mt-2 text-sm text-slate-500">
           Показано {pageItems.length} из {filtered.length} (всего {sides.length})
@@ -107,7 +107,7 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
           </thead>
           <tbody>
             {pageItems.map((s) => (
-              <tr key={s.id} className="border-t border-slate-100 hover:bg-brand/5">
+              <tr key={s.id} className="border-t border-slate-100 hover:bg-[#F57C28]/5">
                 <td className="px-3 py-2 font-mono font-semibold">{s.id}</td>
                 <td className="px-3 py-2">{s.address}</td>
                 <td className="px-3 py-2">{s.type}</td>
@@ -121,13 +121,13 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
                   <div className="flex gap-3">
                     <button
                       onClick={() => onSideClick(s)}
-                      className="text-brand font-semibold hover:underline whitespace-nowrap"
+                      className="text-[#F57C28] font-semibold hover:underline whitespace-nowrap"
                     >
                       Подробнее
                     </button>
                     <button
                       onClick={() => onShowOnMap(s)}
-                      className="text-slate-600 hover:text-brand hover:underline whitespace-nowrap"
+                      className="text-slate-600 hover:text-[#F57C28] hover:underline whitespace-nowrap"
                       title="Показать на карте"
                     >
                       📍 На карте

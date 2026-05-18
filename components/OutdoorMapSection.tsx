@@ -66,7 +66,7 @@ export default function OutdoorMapSection() {
             onClick={() => setView("map")}
             className={`px-6 py-2 rounded-lg font-semibold transition ${
               view === "map"
-                ? "bg-brand text-white"
+                ? "bg-[#F57C28] text-white"
                 : "bg-white text-slate-700 border border-slate-300"
             }`}
           >
@@ -76,7 +76,7 @@ export default function OutdoorMapSection() {
             onClick={() => setView("list")}
             className={`px-6 py-2 rounded-lg font-semibold transition ${
               view === "list"
-                ? "bg-brand text-white"
+                ? "bg-[#F57C28] text-white"
                 : "bg-white text-slate-700 border border-slate-300"
             }`}
           >
@@ -150,7 +150,7 @@ export default function OutdoorMapSection() {
                   setBookingSide(null);
                   setSelectedSide(null);
                 }}
-                className="mt-6 bg-brand text-white px-8 py-3 rounded-lg"
+                className="mt-6 bg-[#F57C28] text-white px-8 py-3 rounded-lg"
               >
                 Закрыть
               </button>

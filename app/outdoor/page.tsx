@@ -132,8 +132,7 @@ export default function OutdoorPage() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/45 to-transparent" />
-          <div className="absolute inset-0 bg-black/15" />
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-900/70 via-orange-900/30 to-transparent" />
 
           <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 py-24">
             <div className="max-w-xl flex flex-col gap-6 text-white">
@@ -154,7 +153,7 @@ export default function OutdoorPage() {
               <div className="flex flex-wrap gap-3">
                 <a
                   href="#map"
-                  className="inline-flex items-center justify-center bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-xl font-semibold transition-colors"
+                  className="inline-flex items-center justify-center bg-[#F57C28] hover:bg-[#E26A1F] text-white px-8 py-4 rounded-xl font-semibold transition-colors"
                 >
                   Посмотреть карту
                 </a>
@@ -173,7 +172,7 @@ export default function OutdoorPage() {
               {BADGES.map((b) => (
                 <span
                   key={b}
-                  className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium text-white"
+                  className="inline-flex items-center px-4 py-2 rounded-full bg-[#F57C28]/20 backdrop-blur text-xs md:text-sm font-medium text-white"
                 >
                   {b}
                 </span>
@@ -192,7 +191,7 @@ export default function OutdoorPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {STATS.map((s) => (
                 <div key={s.label} className="bg-white rounded-2xl shadow-lg p-6 text-center">
-                  <div className="text-5xl md:text-6xl font-bold text-brand mb-2 leading-none">
+                  <div className="text-5xl md:text-6xl font-bold text-[#F57C28] mb-2 leading-none">
                     {s.num}
                   </div>
                   <div className="text-sm text-slate-600 uppercase tracking-wider">{s.label}</div>
@@ -221,12 +220,12 @@ export default function OutdoorPage() {
               {CONSTRUCTIONS.map((c) => (
                 <article
                   key={c.name}
-                  className="flex flex-col p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-brand transition-all"
+                  className="flex flex-col p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-[#F57C28] transition-all"
                 >
                   <h3 className="text-xl font-bold text-slate-900 mb-2 leading-tight">
                     {c.name}
                   </h3>
-                  <div className="text-brand font-bold mb-4">{c.price}</div>
+                  <div className="text-[#F57C28] font-bold mb-4">{c.price}</div>
                   <p className="text-slate-600 leading-relaxed flex-1">{c.description}</p>
                 </article>
               ))}
@@ -247,7 +246,7 @@ export default function OutdoorPage() {
                   key={title}
                   className="flex gap-4 p-6 rounded-2xl bg-white border border-slate-200"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-[#F57C28]/10 text-[#F57C28] flex items-center justify-center flex-shrink-0">
                     <Icon size={22} />
                   </div>
                   <div>
@@ -277,7 +276,7 @@ export default function OutdoorPage() {
               <div className="grid md:grid-cols-4 gap-y-10 gap-x-6 relative">
                 {STEPS.map((s) => (
                   <div key={s.num} className="text-center px-2">
-                    <div className="w-16 h-16 mx-auto rounded-full bg-brand text-white flex items-center justify-center text-2xl font-bold mb-4 relative z-10 ring-8 ring-white shadow-lg">
+                    <div className="w-16 h-16 mx-auto rounded-full bg-[#F57C28] text-white flex items-center justify-center text-2xl font-bold mb-4 relative z-10 ring-8 ring-white shadow-lg">
                       {s.num}
                     </div>
                     <h3 className="font-bold text-lg mb-2 text-slate-900">{s.title}</h3>
@@ -303,7 +302,7 @@ export default function OutdoorPage() {
                 >
                   <summary className="flex items-center justify-between gap-4 p-5 cursor-pointer font-semibold text-base list-none hover:bg-slate-50 transition-colors">
                     <span>{item.q}</span>
-                    <span className="w-8 h-8 rounded-full bg-brand/10 text-brand flex-shrink-0 flex items-center justify-center text-lg leading-none group-open:rotate-45 transition-transform">
+                    <span className="w-8 h-8 rounded-full bg-[#F57C28]/10 text-[#F57C28] flex-shrink-0 flex items-center justify-center text-lg leading-none group-open:rotate-45 transition-transform">
                       +
                     </span>
                   </summary>
@@ -316,7 +315,7 @@ export default function OutdoorPage() {
           </div>
         </section>
 
-        <CTAForm />
+        <CTAForm accentColor="#F57C28" />
       </main>
       <Footer />
       <PixelBorder />
