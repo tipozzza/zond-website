@@ -242,9 +242,15 @@ export default function ExhibitionPage() {
                     <ImageWithFallback
                       src={m.img}
                       alt={m.title}
-                      fallbackEmoji="🏗️"
-                      fallbackText="Фото скоро"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      fallbackNode={
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#3FA3D9] to-[#1E5F8C] flex flex-col items-center justify-center text-white p-6 text-center">
+                          <div className="text-2xl font-bold tracking-wider">MAXIBIT</div>
+                          <div className="text-xs opacity-80 uppercase tracking-widest mt-1">
+                            Премиум-сегмент
+                          </div>
+                        </div>
+                      }
                     />
                     <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#3FA3D9]">
                       {m.price}

@@ -7,7 +7,7 @@ type Item = { src: string; title: string };
 const ITEMS: Item[] = [
   { src: "/images/exhibition/portfolio-01-arenda.jpg", title: "Аренда выставочного оборудования" },
   { src: "/images/exhibition/portfolio-02-dizayn.jpeg", title: "Дизайн экспозиции" },
-  { src: "/images/exhibition/portfolio-03-vystavka.jpeg", title: "Выставочный стенд" },
+  { src: "/images/exhibition/portfolio-03-vystavka.jpeg", title: "Готовый стенд на выставке" },
   { src: "/images/exhibition/portfolio-04-proba.jpg", title: "Производство фотопанелей" },
 ];
 
@@ -47,14 +47,14 @@ export default function ExhibitionPortfolio() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {ITEMS.map((item) => {
             const isFailed = failedSrcs.has(item.src);
             return (
               <button
                 key={item.src}
                 onClick={() => !isFailed && setLightbox(item)}
-                className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100"
+                className="group relative aspect-[16/10] overflow-hidden rounded-2xl bg-slate-100"
               >
                 {isFailed ? (
                   <div className="w-full h-full flex flex-col items-center justify-center text-slate-400">
@@ -71,8 +71,8 @@ export default function ExhibitionPortfolio() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 text-left">
-                  <div className="text-white font-bold text-sm leading-tight">{item.title}</div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 text-left">
+                  <div className="text-white font-bold text-xl leading-tight">{item.title}</div>
                 </div>
               </button>
             );

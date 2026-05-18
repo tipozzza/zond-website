@@ -9,6 +9,7 @@ type Props = {
   fallbackEmoji?: string;
   fallbackText?: string;
   fallbackClassName?: string;
+  fallbackNode?: React.ReactNode;
 };
 
 export default function ImageWithFallback({
@@ -18,10 +19,12 @@ export default function ImageWithFallback({
   fallbackEmoji = "🖼️",
   fallbackText,
   fallbackClassName,
+  fallbackNode,
 }: Props) {
   const [failed, setFailed] = useState(false);
 
   if (failed) {
+    if (fallbackNode) return <>{fallbackNode}</>;
     return (
       <div
         className={`w-full h-full flex flex-col items-center justify-center text-slate-400 bg-slate-100 ${fallbackClassName ?? ""}`}
