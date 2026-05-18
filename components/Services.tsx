@@ -20,6 +20,15 @@ const ICONS: Record<string, LucideIcon> = {
   exhibition: Building2,
 };
 
+const ACCENT_COLORS: Record<string, string> = {
+  outdoor: "#3D2E91",
+  print: "#EC4899",
+  production: "#3B82F6",
+  exhibition: "#10B981",
+  design: "#F59E0B",
+  led: "#EF4444",
+};
+
 export default function Services() {
   return (
     <section id="services" className="py-12 md:py-20 bg-white">
@@ -35,19 +44,24 @@ export default function Services() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, index) => {
             const Icon = ICONS[service.id] ?? Megaphone;
+            const accent = ACCENT_COLORS[service.id] ?? "#3D2E91";
             return (
               <article
                 key={service.id}
-                className="group bg-white rounded-3xl p-8 relative overflow-hidden border border-slate-200 hover:border-brand shadow-sm hover:shadow-2xl hover:shadow-brand/20 hover:-translate-y-2 transition-all duration-500 flex flex-col"
+                style={{ "--accent": accent } as React.CSSProperties}
+                className="group bg-white rounded-3xl p-8 relative overflow-hidden border-2 border-slate-200 hover:border-[var(--accent)] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col"
               >
-                <span className="absolute top-4 right-6 text-7xl font-black text-slate-100 group-hover:text-brand/10 transition-colors duration-500 select-none pointer-events-none leading-none">
+                <span
+                  className="absolute top-4 right-6 text-7xl font-black text-slate-200 group-hover:text-[var(--accent)] transition-colors duration-500 select-none pointer-events-none leading-none"
+                  style={{ opacity: 0.15 }}
+                >
                   0{index + 1}
                 </span>
 
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand/10 to-brand/5 group-hover:from-brand group-hover:to-purple-600 flex items-center justify-center transition-all duration-500 mb-5 relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-slate-100 group-hover:bg-[var(--accent)] flex items-center justify-center transition-all duration-500 mb-6 relative z-10">
                   <Icon
-                    size={28}
-                    className="text-brand group-hover:text-white transition-colors duration-500"
+                    size={24}
+                    className="text-slate-700 group-hover:text-white transition-colors duration-500"
                   />
                 </div>
 
@@ -60,7 +74,8 @@ export default function Services() {
 
                 <Link
                   href={service.href}
-                  className="inline-flex items-center gap-2 text-brand font-semibold group/link relative z-10 self-start"
+                  style={{ color: accent }}
+                  className="inline-flex items-center gap-2 font-semibold group/link relative z-10 self-start transition-colors"
                 >
                   <span>Подробнее</span>
                   <ArrowRight
