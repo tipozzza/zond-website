@@ -182,9 +182,8 @@ export const MAP_TYPES = [
 
 export const NAV_LINKS: { label: string; href: string; hasDropdown?: boolean }[] = [
   { label: "Услуги", href: "/#services", hasDropdown: true },
-  { label: "Карта", href: "/#map" },
+  { label: "Карта", href: "/outdoor" },
   { label: "Кейсы", href: "/#cases" },
   { label: "О компании", href: "/about" },
-  { label: "Новости", href: "/#news" },
-  { label: "Контакты", href: "/#contacts" },
+  { label: "Контакты", href: "/contacts" },
 ];

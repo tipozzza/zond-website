@@ -18,11 +18,8 @@ const SECTIONS = [
     title: "Компания",
     links: [
       { label: "О нас", href: "/about" },
-      { label: "История", href: "/about/history" },
-      { label: "Команда", href: "/about/team" },
-      { label: "Кейсы", href: "/cases" },
-      { label: "Новости", href: "/news" },
-      { label: "Карьера", href: "/career" },
+      { label: "Кейсы", href: "/#cases" },
+      { label: "Контакты", href: "/contacts" },
     ],
   },
 ];
