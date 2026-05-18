@@ -7,6 +7,7 @@ type Props = {
   alt: string;
   className?: string;
   fallbackEmoji?: string;
+  fallbackText?: string;
   fallbackClassName?: string;
 };
 
@@ -15,6 +16,7 @@ export default function ImageWithFallback({
   alt,
   className,
   fallbackEmoji = "🖼️",
+  fallbackText,
   fallbackClassName,
 }: Props) {
   const [failed, setFailed] = useState(false);
@@ -22,9 +24,10 @@ export default function ImageWithFallback({
   if (failed) {
     return (
       <div
-        className={`w-full h-full flex items-center justify-center text-6xl text-slate-400 bg-slate-100 ${fallbackClassName ?? ""}`}
+        className={`w-full h-full flex flex-col items-center justify-center text-slate-400 bg-slate-100 ${fallbackClassName ?? ""}`}
       >
-        {fallbackEmoji}
+        <div className="text-6xl">{fallbackEmoji}</div>
+        {fallbackText && <div className="text-sm font-semibold mt-2">{fallbackText}</div>}
       </div>
     );
   }
