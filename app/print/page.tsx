@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Award, Zap, Settings, Shield, Printer, Image as ImageIcon, Scissors, FileText } from "lucide-react";
+import { Award, Zap, History, Activity, Printer, Image as ImageIcon, Scissors, FileText } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,26 +10,30 @@ import PrintCalculator from "@/components/PrintCalculator";
 import PrintPortfolio from "@/components/PrintPortfolio";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
-const ADVANTAGES: { icon: LucideIcon; title: string; text: string }[] = [
+const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string }[] = [
+  {
+    icon: History,
+    stat: "30+",
+    title: "Лет в Томске",
+    text: "Первый полноцвет 3×6 в городе напечатан нами в 1995 году.",
+  },
+  {
+    icon: Activity,
+    stat: "500 000",
+    title: "м² в год",
+    text: "Парк оборудования печатает полноцветные широкоформатные изображения объёмом полмиллиона квадратных метров ежегодно.",
+  },
   {
     icon: Award,
-    title: "Качество",
-    text: "Чернила не выцветают до 5 лет на улице. Разрешение до 1440 dpi для интерьера.",
+    stat: "5 лет",
+    title: "Без выцветания",
+    text: "Чернила сохраняют цвет минимум 5 лет под прямым солнцем.",
   },
   {
     icon: Zap,
-    title: "Скорость",
-    text: "Стандартный баннер 3×6 — менее 10 минут на печать. Срочный заказ в день обращения.",
-  },
-  {
-    icon: Settings,
-    title: "Оборудование",
-    text: "5 принтеров шириной до 3.2 м, контурная резка, ламинирование, постпечатка.",
-  },
-  {
-    icon: Shield,
-    title: "Безопасность",
-    text: "Эко-сольвентные чернила для интерьера. Гарантия на печать и монтаж.",
+    stat: "1440 dpi",
+    title: "Максимальное разрешение",
+    text: "Интерьерная печать с фото-качеством для постеров, выставок, оформления.",
   },
 ];
 
@@ -228,14 +232,22 @@ export default function PrintPage() {
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
               4 опоры, на которых стоит производство в Зонд-Реклама.
             </p>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-              {ADVANTAGES.map(({ icon: Icon, title, text }) => (
-                <div key={title} className="text-center p-6 rounded-2xl bg-white border border-slate-200">
-                  <div className="w-14 h-14 mx-auto rounded-2xl bg-[#FFCC00]/15 flex items-center justify-center mb-4">
-                    <Icon size={26} className="text-amber-600" />
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {ADVANTAGES.map(({ icon: Icon, stat, title, text }) => (
+                <div
+                  key={title}
+                  className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#FFCC00] hover:shadow-xl transition-all"
+                >
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-2xl bg-[#FFCC00]/20 flex items-center justify-center group-hover:bg-[#FFCC00] transition-colors flex-shrink-0">
+                      <Icon size={24} className="text-slate-900" />
+                    </div>
+                    <div className="text-3xl font-bold text-slate-900 leading-none mt-2">
+                      {stat}
+                    </div>
                   </div>
-                  <h3 className="font-bold text-slate-900 mb-2">{title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{text}</p>
+                  <h3 className="text-lg font-bold mb-2 text-slate-900 leading-tight">{title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{text}</p>
                 </div>
               ))}
             </div>
