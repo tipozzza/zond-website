@@ -32,15 +32,6 @@ export default function OutdoorMapSection() {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    if (!focusSide) return;
-    const t = setTimeout(() => {
-      setSelectedSide(focusSide);
-      setFocusSide(null);
-    }, 800);
-    return () => clearTimeout(t);
-  }, [focusSide]);
-
   const handleShowOnMap = (side: Side) => {
     setView("map");
     setFocusSide(side);
