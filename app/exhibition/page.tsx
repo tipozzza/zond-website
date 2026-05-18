@@ -350,23 +350,23 @@ export default function ExhibitionPage() {
                 32 года выставочной работы — от Лондона 1993 до «Город IT 2025».
               </p>
             </div>
-            <div className="relative">
-              <div
-                aria-hidden="true"
-                className="hidden lg:block absolute top-3 left-0 right-0 h-0.5 bg-slate-300"
-              />
-              <ol className="flex gap-6 overflow-x-auto lg:overflow-visible lg:grid lg:grid-cols-11 pb-4">
+
+            <div className="overflow-x-auto pb-6">
+              <div className="relative inline-flex gap-0 min-w-full px-4">
+                <div
+                  aria-hidden="true"
+                  className="absolute top-4 left-4 right-4 h-0.5 bg-slate-200"
+                />
                 {TIMELINE.map((t) => (
-                  <li
-                    key={t.year}
-                    className="relative flex-shrink-0 w-56 lg:w-auto text-center"
-                  >
-                    <div className="mx-auto mb-3 w-6 h-6 rounded-full bg-[#3FA3D9] ring-4 ring-white shadow-md relative z-10" />
-                    <div className="text-lg font-bold text-slate-900 mb-1">{t.year}</div>
-                    <p className="text-xs text-slate-600 leading-relaxed">{t.project}</p>
-                  </li>
+                  <div key={t.year} className="relative flex-shrink-0 w-[180px] text-center">
+                    <div className="relative z-10 w-8 h-8 rounded-full bg-[#3FA3D9] border-4 border-white shadow-md mx-auto" />
+                    <div className="mt-3 text-2xl font-bold text-slate-900">{t.year}</div>
+                    <div className="mt-2 text-sm text-slate-600 leading-relaxed px-2 break-words">
+                      {t.project}
+                    </div>
+                  </div>
                 ))}
-              </ol>
+              </div>
             </div>
           </div>
         </section>
