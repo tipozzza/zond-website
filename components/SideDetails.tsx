@@ -1,7 +1,7 @@
 "use client";
 
 import type { Side } from "@/lib/types";
-import { MONTH_LABELS, STATUS_LABELS, STATUS_COLORS } from "@/lib/sides-data";
+import { MONTH_LABELS, STATUS_LABELS, STATUS_COLORS, getSidePhotoUrl } from "@/lib/sides-data";
 
 type Props = {
   side: Side;
@@ -10,6 +10,8 @@ type Props = {
 };
 
 export default function SideDetails({ side, onClose, onBook }: Props) {
+  const photoUrl = getSidePhotoUrl(side);
+
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={onClose}>
       <div
@@ -25,6 +27,30 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
             ✕
           </button>
         </div>
+
+        {photoUrl ? (
+          <div className="relative w-full aspect-[4/3] mb-4 rounded-xl overflow-hidden bg-slate-100">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={photoUrl}
+              alt={`Конструкция ${side.id} — ${side.address}`}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.currentTarget as HTMLImageElement;
+                target.style.display = "none";
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.innerHTML =
+                    '<div class="w-full h-full flex items-center justify-center text-slate-400 text-sm">Фото отсутствует</div>';
+                }
+              }}
+            />
+          </div>
+        ) : (
+          <div className="w-full aspect-[4/3] mb-4 rounded-xl bg-slate-100 flex items-center justify-center text-slate-400 text-sm">
+            Фото в обработке
+          </div>
+        )}
 
         <div className="space-y-4">
           <div>
