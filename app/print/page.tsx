@@ -167,7 +167,7 @@ export default function PrintPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative min-h-[70vh] flex items-center bg-gradient-to-br from-amber-900 to-slate-900 overflow-hidden">
+        <section className="relative min-h-[80vh] flex items-center bg-gradient-to-br from-amber-900 to-slate-900 overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src="/images/production.jpg"
@@ -175,16 +175,16 @@ export default function PrintPage() {
               fill
               priority
               sizes="100vw"
-              className="object-cover opacity-40"
+              className="object-cover opacity-50"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
           </div>
           <div className="max-w-[1280px] mx-auto px-6 relative z-10 py-20">
-            <div className="max-w-2xl text-white">
+            <div className="max-w-2xl text-white text-left">
               <div className="inline-block bg-[#FFCC00] text-slate-900 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
                 ПЕЧАТАЕМ В ТОМСКЕ С 1995 ГОДА
               </div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.05] tracking-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.05] tracking-tight">
                 Широкоформатная и интерьерная печать
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
@@ -207,16 +207,16 @@ export default function PrintPage() {
               </div>
               <div className="flex gap-6 mt-12 text-sm">
                 <div>
-                  <strong className="block text-3xl text-[#FFCC00] leading-none">5</strong>
-                  <span>принтеров</span>
+                  <strong className="block text-3xl text-[#FFCC00]">5</strong>
+                  <span className="text-white/80">принтеров</span>
                 </div>
                 <div>
-                  <strong className="block text-3xl text-[#FFCC00] leading-none">9+</strong>
-                  <span>материалов</span>
+                  <strong className="block text-3xl text-[#FFCC00]">9+</strong>
+                  <span className="text-white/80">материалов</span>
                 </div>
                 <div>
-                  <strong className="block text-3xl text-[#FFCC00] leading-none">500 000</strong>
-                  <span>м²/год</span>
+                  <strong className="block text-3xl text-[#FFCC00]">500 000</strong>
+                  <span className="text-white/80">м²/год</span>
                 </div>
               </div>
             </div>
