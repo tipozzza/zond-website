@@ -3,7 +3,7 @@ import Image from "next/image";
 const TEAM_STATS = [
   { value: "55", label: "Человек в команде" },
   { value: "32", label: "Года опыта" },
-  { value: "7", label: "Городов присутствия" },
+  { value: "3", label: "Городов присутствия" },
   { value: "1000+", label: "Реализованных проектов" },
 ];
 
