@@ -147,13 +147,13 @@ export default function LedPage() {
                 <Image
                   src="/logo-horizontal-white.png"
                   alt="ZOND"
-                  width={170}
-                  height={56}
-                  className="h-14 w-auto"
+                  width={150}
+                  height={48}
+                  className="h-12 w-auto opacity-70"
                 />
                 <div className="h-12 w-px bg-white/40" />
                 <div>
-                  <div className="text-4xl font-black tracking-wider text-[#F4C430] leading-none">
+                  <div className="text-5xl font-black tracking-wider text-[#F4C430] leading-none">
                     LIGHTOVO
                   </div>
                   <div className="text-xs uppercase tracking-widest text-white/70 mt-1">
@@ -162,13 +162,13 @@ export default function LedPage() {
                 </div>
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
-                Светодиодная продукция и новогодняя иллюминация
+                Новогодняя иллюминация и световые конструкции
               </h1>
               <p className="text-xl md:text-2xl text-white/85 mb-8 leading-relaxed">
-                От гирлянды на коттедже до медиа-фасада торгового центра. Иллюминация под ключ
-                + собственное производство LED-экранов с 2006 года.
+                Под ключ: дизайн → производство → монтаж → демонтаж → хранение. Лайтово — бренд
+                ГК Зонд с 2008 года, более 500 объектов в год по всей России.
               </p>
-              <div className="flex gap-4 flex-wrap mb-12">
+              <div className="flex gap-4 flex-wrap">
                 <a
                   href="#calculator"
                   className="bg-[#F4C430] hover:bg-[#E8B86E] text-[#0B1E3F] px-8 py-4 rounded-xl font-bold transition shadow-xl"
@@ -184,18 +184,21 @@ export default function LedPage() {
                   Каталог на lightovo.ru →
                 </a>
               </div>
+              <p className="text-sm text-white/60 mt-6 mb-12">
+                + Собственное производство LED-экранов с 2006 года — подробнее ниже на странице ↓
+              </p>
               <div className="flex gap-8 flex-wrap text-white">
                 <div>
                   <div className="text-4xl font-bold text-[#F4C430] leading-none">500+</div>
-                  <div className="text-sm text-white/70 mt-1">объектов в год</div>
+                  <div className="text-sm text-white/70 mt-1">объектов в год по всей России</div>
                 </div>
                 <div>
                   <div className="text-4xl font-bold text-[#F4C430] leading-none">14+</div>
-                  <div className="text-sm text-white/70 mt-1">лет на рынке</div>
+                  <div className="text-sm text-white/70 mt-1">Лайтово на рынке</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-[#F4C430] leading-none">500 м²</div>
-                  <div className="text-sm text-white/70 mt-1">LED-экранов</div>
+                  <div className="text-4xl font-bold text-[#F4C430] leading-none">1000+</div>
+                  <div className="text-sm text-white/70 mt-1">товаров в каталоге</div>
                 </div>
                 <div>
                   <div className="text-4xl font-bold text-[#F4C430] leading-none">12 мес</div>
