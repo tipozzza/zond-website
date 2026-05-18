@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const CASES = [
   {
     href: "/outdoor",
-    image: "/images/outdoor-day.jpg",
+    image: "/images/outdoor-mix.jpg",
     title: "Наружная реклама",
     caption: "Билборды 6×3, цифровые LED-экраны, тривижн, сити-формат, супер-сайты. 726 рекламных сторон по Томску.",
   },
@@ -25,7 +25,7 @@ const CASES = [
   },
   {
     href: "/design",
-    image: "/images/design.jpg",
+    image: "/images/design-portfolio.jpg",
     title: "Дизайн и полиграфия",
     caption: "Креатив для наружной рекламы, фирменный стиль, логотипы. Визитки, листовки, буклеты, каталоги, плакаты.",
   },
