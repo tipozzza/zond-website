@@ -34,15 +34,15 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100">
+      <header className="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200">
         <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-[76px] gap-8">
           <Link href="/" className="flex items-center">
             <Image
-              src="/logo-purple.png"
+              src="/logo-horizontal-purple.png"
               alt={COMPANY.fullName}
               width={180}
-              height={44}
-              className="h-11 w-auto"
+              height={48}
+              className="h-10 md:h-12 w-auto"
               priority
             />
           </Link>
@@ -122,11 +122,11 @@ export default function Header() {
           <div className="absolute top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-white shadow-2xl overflow-y-auto">
             <div className="flex items-center justify-between p-4 border-b border-gray-100">
               <Image
-                src="/logo-purple.png"
+                src="/logo-horizontal-purple.png"
                 alt={COMPANY.fullName}
-                width={120}
-                height={32}
-                className="h-8 w-auto"
+                width={150}
+                height={40}
+                className="h-9 w-auto"
               />
               <button
                 onClick={close}

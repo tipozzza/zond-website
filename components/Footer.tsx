@@ -31,11 +31,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="lg:col-span-1">
             <Image
-              src="/logo-purple.png"
+              src="/logo-horizontal-white.png"
               alt={COMPANY.fullName}
               width={200}
-              height={50}
-              className="h-12 w-auto mb-4 brightness-0 invert"
+              height={53}
+              className="h-12 w-auto mb-4"
             />
             <p className="text-sm leading-relaxed mb-4">
               Лидер рекламно-производственной отрасли в Томске с 1992 года.
