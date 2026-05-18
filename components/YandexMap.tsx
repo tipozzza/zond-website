@@ -66,6 +66,7 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
         clusterBalloonContentLayout: "cluster#balloonAccordion",
         clusterBalloonPanelMaxMapArea: 0,
       });
+      (window as unknown as { __zondClusterer: unknown }).__zondClusterer = clusterer;
 
       const placemarks = sides
         .filter((s) => s.lat !== null && s.lng !== null)
@@ -110,7 +111,34 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
   useEffect(() => {
     if (!mapReady || !mapInstance.current) return;
     if (!focusSide || focusSide.lat == null || focusSide.lng == null) return;
-    mapInstance.current.setCenter([focusSide.lat, focusSide.lng], 17, { duration: 500 });
+
+    const map = mapInstance.current;
+    const lat = focusSide.lat;
+    const lng = focusSide.lng;
+
+    // 1. Центрируем и зумим до уличного уровня
+    map.setCenter([lat, lng], 18, { duration: 500 });
+
+    // 2. После анимации — найти placemark и открыть его балун
+    const t = setTimeout(() => {
+      const clusterer = (window as unknown as { __zondClusterer?: { getGeoObjects: () => unknown[] } })
+        .__zondClusterer;
+      if (!clusterer) return;
+
+      const objects = clusterer.getGeoObjects() as Array<{
+        geometry: { getCoordinates: () => [number, number] };
+        balloon: { open: () => void };
+      }>;
+
+      const target = objects.find((p) => {
+        const coords = p.geometry.getCoordinates();
+        return Math.abs(coords[0] - lat) < 0.0001 && Math.abs(coords[1] - lng) < 0.0001;
+      });
+
+      if (target) target.balloon.open();
+    }, 700);
+
+    return () => clearTimeout(t);
   }, [focusSide, mapReady]);
 
   const apiKey = process.env.NEXT_PUBLIC_YANDEX_MAPS_KEY;
