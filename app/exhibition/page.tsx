@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingWA from "@/components/FloatingWA";
-import ImageWithFallback from "@/components/ImageWithFallback";
 import ExhibitionCalculator from "@/components/ExhibitionCalculator";
 import ExhibitionPortfolio from "@/components/ExhibitionPortfolio";
 
@@ -90,58 +89,67 @@ const MAXIBIT_MODELS: {
 ];
 
 const JUST_MODELS: {
+  img: string;
   name: string;
-  subtitle: string;
-  description: string;
-  minPrice: number;
+  type: string;
+  price: string;
+  size: string;
 }[] = [
   {
+    img: "/images/exhibition/just-x-fast.jpg",
     name: "JUST X FAST",
-    subtitle: "Баннерный стенд",
-    description: "Голливудской устойчивости. Цвет — чёрный, оранжевый. Время монтажа — 30 секунд.",
-    minPrice: 600,
+    type: "БАННЕРНЫЙ",
+    price: "ОТ 1 800 ₽",
+    size: "180×80",
   },
   {
+    img: "/images/exhibition/just-x-large.jpg",
     name: "JUST X LARGE",
-    subtitle: "Баннерный стенд",
-    description: "Цвет — чёрный. Материал металлический сплав, пластик. Голливудская устойчивость.",
-    minPrice: 700,
+    type: "БАННЕРНЫЙ",
+    price: "ОТ 2 700 ₽",
+    size: "120×200",
   },
   {
+    img: "/images/exhibition/just-prism.jpg",
     name: "JUST PRISM",
-    subtitle: "Трёхсторонний баннерный стенд",
-    description: "Материал — алюминий, пластик. Поставляется в чехле для переноски. Монтаж 30 секунд.",
-    minPrice: 2200,
+    type: "ТРЁХСТОРОННИЙ",
+    price: "ОТ 4 450 ₽",
+    size: "90×210",
   },
   {
+    img: "/images/exhibition/just-up-3x3-magnet.jpg",
     name: "JUST UP 3×3 MAGNET",
-    subtitle: "Зонтичный (Pop Up) стенд",
-    description: "Pop Up стенд 3×3 секции. Поставляется в жёсткой бокс-трибуне на колёсиках.",
-    minPrice: 2750,
+    type: "POP-UP",
+    price: "ОТ 41 150 ₽",
+    size: "250×224",
   },
   {
+    img: "/images/exhibition/just-l-flex.jpg",
     name: "JUST L FLEX",
-    subtitle: "Баннерный стенд",
-    description: "Материал — алюминий, пластик. Защёлкивающийся профиль — соединяется в длину.",
-    minPrice: 1550,
+    type: "БАННЕРНЫЙ С ЗАЩЁЛКОЙ",
+    price: "ОТ 3 750 ₽",
+    size: "80–100×200",
   },
   {
+    img: "/images/exhibition/just-roll-tip-d.jpg",
     name: "JUST ROLL TIP D",
-    subtitle: "Роллерный стенд",
-    description: "Роллерный, алюминий. Постер хранится в основании, выкатывается. Монтаж 15 секунд.",
-    minPrice: 550,
+    type: "РОЛЛЕРНЫЙ",
+    price: "ОТ 3 600 ₽",
+    size: "85–120×200",
   },
   {
+    img: "/images/exhibition/just-counter-2x2.jpg",
     name: "JUST COUNTER 2×2",
-    subtitle: "Мобильный Pop Up ресепшен",
-    description: "Материал — трубки, металл. Pop Up ресепшен. Нейлоновый чехол в подарок.",
-    minPrice: 1000,
+    type: "POP-UP РЕСЕПШЕН",
+    price: "ОТ 13 900 ₽",
+    size: "119×91",
   },
   {
+    img: "/images/exhibition/just-swing-zigzag.jpg",
     name: "JUST SWING ZIGZAG",
-    subtitle: "Брошюрная стойка",
-    description: "Стойка на 6 карманов A4. Алюминий и оргстекло. Поставляется в чемодане.",
-    minPrice: 11400,
+    type: "БРОШЮРНАЯ СТОЙКА",
+    price: "11 400 ₽",
+    size: "A4×6",
   },
 ];
 
@@ -264,19 +272,14 @@ export default function ExhibitionPage() {
                   key={m.title}
                   className="group bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-[#3FA3D9] hover:shadow-2xl hover:shadow-[#3FA3D9]/20 transition-all"
                 >
-                  <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
-                    <ImageWithFallback
+                  <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
+                    <Image
                       src={m.img}
                       alt={m.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      fallbackNode={
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#3FA3D9] to-[#1E5F8C] flex flex-col items-center justify-center text-white p-6 text-center">
-                          <div className="text-2xl font-bold tracking-wider">MAXIBIT</div>
-                          <div className="text-xs opacity-80 uppercase tracking-widest mt-1">
-                            Премиум-сегмент
-                          </div>
-                        </div>
-                      }
+                      fill
+                      loading="lazy"
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#3FA3D9]">
                       {m.price}
@@ -311,23 +314,33 @@ export default function ExhibitionPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {JUST_MODELS.map((model) => (
                 <article
                   key={model.name}
-                  className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-[#3FA3D9] hover:shadow-xl transition-all"
+                  className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-[#3FA3D9] hover:shadow-xl transition-all"
                 >
-                  <div className="aspect-[4/3] bg-gradient-to-br from-slate-700 to-slate-900 flex flex-col items-center justify-center text-white p-4 text-center">
-                    <div className="text-xs uppercase tracking-widest opacity-60 mb-2">
-                      {model.subtitle}
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                    <Image
+                      src={model.img}
+                      alt={model.name}
+                      fill
+                      loading="lazy"
+                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-full text-xs font-bold text-[#3FA3D9]">
+                      {model.price}
                     </div>
-                    <div className="text-2xl font-bold tracking-tight">{model.name}</div>
                   </div>
-                  <div className="p-5">
-                    <div className="text-xl font-bold text-[#3FA3D9] mb-1">
-                      от {model.minPrice.toLocaleString("ru-RU")} ₽
+                  <div className="p-4">
+                    <div className="text-xs font-semibold text-[#3FA3D9] uppercase tracking-wider mb-1">
+                      {model.type}
                     </div>
-                    <p className="text-sm text-slate-600 leading-relaxed">{model.description}</p>
+                    <h3 className="text-lg font-bold mb-1 text-slate-900 leading-tight">
+                      {model.name}
+                    </h3>
+                    <div className="text-xs text-slate-500">Размер: {model.size}</div>
                   </div>
                 </article>
               ))}
