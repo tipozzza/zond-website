@@ -94,19 +94,20 @@ export default function OutdoorMapSection() {
             />
           </div>
           <div>
-            {view === "map" ? (
+            <div style={{ display: view === "map" ? "block" : "none" }}>
               <YandexMap
                 sides={filteredSides}
                 onSideClick={setSelectedSide}
                 focusSide={focusSide}
               />
-            ) : (
+            </div>
+            <div style={{ display: view === "list" ? "block" : "none" }}>
               <SidesListView
                 sides={filteredSides}
                 onSideClick={setSelectedSide}
                 onShowOnMap={handleShowOnMap}
               />
-            )}
+            </div>
           </div>
         </div>
 

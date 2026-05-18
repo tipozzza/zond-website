@@ -23,7 +23,9 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
   const onSideClickRef = useRef(onSideClick);
-  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState(
+    () => typeof window !== "undefined" && !!window.ymaps
+  );
   const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
