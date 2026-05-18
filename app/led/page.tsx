@@ -131,14 +131,14 @@ export default function LedPage() {
         <section className="relative min-h-[90vh] bg-[#0B1E3F] overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/led/led-night.jpg"
-              alt="Новогоднее оформление"
+              src="/images/led/hero-led-tomsk.jpg"
+              alt="Новогодняя иллюминация в Томске"
               fill
               priority
               sizes="100vw"
-              className="object-cover opacity-70"
+              className="object-cover opacity-90"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E3F]/90 via-[#0B1E3F]/60 to-[#0B1E3F]/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E3F]/85 via-[#0B1E3F]/50 to-[#0B1E3F]/10" />
           </div>
 
           <div className="max-w-[1280px] mx-auto px-6 py-20 relative z-10 w-full min-h-[90vh] flex items-center">
