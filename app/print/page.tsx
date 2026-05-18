@@ -184,40 +184,40 @@ export default function PrintPage() {
           {/* Контент */}
           <div className="max-w-[1280px] mx-auto px-6 py-20 relative z-10 w-full">
             <div className="max-w-2xl">
-              <div className="inline-block bg-[#FFCC00] text-slate-900 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
+              <div className="inline-block bg-[#FFCC00] text-slate-900 px-4 py-1.5 rounded-full text-sm font-bold mb-6 uppercase tracking-wider">
                 ПЕЧАТАЕМ В ТОМСКЕ С 1995 ГОДА
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white text-left">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white text-left tracking-tight leading-tight">
                 Широкоформатная и интерьерная печать
               </h1>
-              <p className="text-lg md:text-xl text-white/90 mb-8 text-left">
+              <p className="text-xl md:text-2xl text-white/90 mb-8 text-left leading-relaxed">
                 500 000 м² полноцветной печати в год. От баннеров 6×3 до интерьерных постеров с разрешением 1440 dpi.
               </p>
               <div className="flex gap-4 flex-wrap mb-12">
                 <a
                   href="#calculator"
-                  className="bg-[#FFCC00] hover:bg-[#E6B800] text-slate-900 px-8 py-4 rounded-xl font-bold transition"
+                  className="bg-[#FFCC00] hover:bg-[#E6B800] text-slate-900 px-8 py-4 rounded-xl text-base font-bold transition shadow-xl"
                 >
                   Рассчитать стоимость
                 </a>
                 <a
                   href="#equipment"
-                  className="bg-black/50 backdrop-blur border border-white/40 text-white px-8 py-4 rounded-xl font-semibold hover:bg-black/70 transition"
+                  className="bg-black/50 backdrop-blur border border-white/40 text-white px-8 py-4 rounded-xl text-base font-bold hover:bg-black/70 transition shadow-xl"
                 >
                   Наше оборудование
                 </a>
               </div>
               <div className="flex gap-8 text-left">
                 <div>
-                  <div className="text-3xl md:text-4xl font-bold text-[#FFCC00]">5</div>
+                  <div className="text-4xl md:text-5xl font-bold text-[#FFCC00] leading-none">5</div>
                   <div className="text-sm text-white/80 mt-1">принтеров</div>
                 </div>
                 <div>
-                  <div className="text-3xl md:text-4xl font-bold text-[#FFCC00]">9+</div>
+                  <div className="text-4xl md:text-5xl font-bold text-[#FFCC00] leading-none">9+</div>
                   <div className="text-sm text-white/80 mt-1">материалов</div>
                 </div>
                 <div>
-                  <div className="text-3xl md:text-4xl font-bold text-[#FFCC00]">500 000</div>
+                  <div className="text-4xl md:text-5xl font-bold text-[#FFCC00] leading-none">500 000</div>
                   <div className="text-sm text-white/80 mt-1">м²/год</div>
                 </div>
               </div>
