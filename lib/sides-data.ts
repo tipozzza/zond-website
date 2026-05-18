@@ -1,6 +1,10 @@
 import type { Side } from "./types";
 
 export const MONTH_LABELS: Record<string, string> = {
+  jan: "Январь",
+  feb: "Февраль",
+  mar: "Март",
+  apr: "Апрель",
   may: "Май",
   june: "Июнь",
   july: "Июль",
@@ -10,6 +14,15 @@ export const MONTH_LABELS: Record<string, string> = {
   nov: "Ноябрь",
   dec: "Декабрь",
 };
+
+export const MONTH_KEYS: Array<keyof Side["status"]> = [
+  "jan", "feb", "mar", "apr", "may", "june",
+  "july", "aug", "sep", "oct", "nov", "dec",
+];
+
+export function getCurrentMonthKey(): keyof Side["status"] {
+  return MONTH_KEYS[new Date().getMonth()];
+}
 
 export const STATUS_LABELS: Record<string, string> = {
   free: "Свободно",

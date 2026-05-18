@@ -1,6 +1,7 @@
 "use client";
 
 import type { Side } from "@/lib/types";
+import { getCurrentMonthKey } from "@/lib/sides-data";
 
 export type FilterState = {
   types: string[];
@@ -20,6 +21,10 @@ type Props = {
 const ALL_TYPES = ["Digital", "Щит", "Тривижн", "Сити-формат", "Супер-сайт"];
 const ALL_FORMATS = ["3х6", "1,2 х 1,8", "5х15", "6x4", "3х12 м", "5,5х2,5"];
 const MONTHS: { value: keyof Side["status"]; label: string }[] = [
+  { value: "jan", label: "Январь" },
+  { value: "feb", label: "Февраль" },
+  { value: "mar", label: "Март" },
+  { value: "apr", label: "Апрель" },
   { value: "may", label: "Май" },
   { value: "june", label: "Июнь" },
   { value: "july", label: "Июль" },
@@ -114,7 +119,13 @@ export default function SideFilters({ filters, setFilters, totalCount, filteredC
 
       <button
         onClick={() =>
-          setFilters({ types: [], formats: [], illuminatedOnly: false, freeOnly: false, selectedMonth: "june" })
+          setFilters({
+            types: [],
+            formats: [],
+            illuminatedOnly: false,
+            freeOnly: false,
+            selectedMonth: getCurrentMonthKey(),
+          })
         }
         className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-2 rounded-lg text-sm"
       >

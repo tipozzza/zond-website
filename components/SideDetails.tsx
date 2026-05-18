@@ -79,11 +79,6 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
             <div className="bg-brand/5 p-4 rounded-lg">
               <div className="text-sm text-slate-500">Стоимость аренды</div>
               <div className="text-3xl font-bold text-brand">{side.priceFinal.toLocaleString("ru-RU")} ₽/мес</div>
-              {side.priceFull && side.priceFull !== side.priceFinal && (
-                <div className="text-sm text-slate-500">
-                  Прайс: <s>{side.priceFull.toLocaleString("ru-RU")} ₽</s> · скидка {side.discountPct}%
-                </div>
-              )}
               {side.installCost && (
                 <div className="text-sm text-slate-600 mt-1">
                   + монтаж: {side.installCost.toLocaleString("ru-RU")} ₽
@@ -94,7 +89,7 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
 
           <div>
             <div className="text-sm text-slate-500 mb-2">Статус по месяцам (2026)</div>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-4 lg:grid-cols-6 gap-2">
               {(Object.keys(side.status) as Array<keyof Side["status"]>).map((m) => (
                 <div key={m} className="text-center">
                   <div className="text-xs text-slate-500">{MONTH_LABELS[m]}</div>

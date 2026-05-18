@@ -2,22 +2,24 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Side } from "@/lib/types";
-import { fetchSides } from "@/lib/sides-data";
+import { fetchSides, getCurrentMonthKey } from "@/lib/sides-data";
 import YandexMap from "./YandexMap";
 import SideFilters, { type FilterState } from "./SideFilters";
 import SideDetails from "./SideDetails";
 import BookingForm from "./BookingForm";
+import SidesListView from "./SidesListView";
 
 export default function OutdoorMapSection() {
   const [allSides, setAllSides] = useState<Side[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState<FilterState>({
+  const [filters, setFilters] = useState<FilterState>(() => ({
     types: [],
     formats: [],
     illuminatedOnly: false,
     freeOnly: false,
-    selectedMonth: "june",
-  });
+    selectedMonth: getCurrentMonthKey(),
+  }));
+  const [view, setView] = useState<"map" | "list">("map");
   const [selectedSide, setSelectedSide] = useState<Side | null>(null);
   const [bookingSide, setBookingSide] = useState<Side | null>(null);
   const [bookingSuccess, setBookingSuccess] = useState(false);
@@ -52,6 +54,30 @@ export default function OutdoorMapSection() {
             726 рекламных сторон по Томску · выберите площадку и забронируйте онлайн
           </p>
         </div>
+
+        <div className="flex justify-center mb-6 gap-2">
+          <button
+            onClick={() => setView("map")}
+            className={`px-6 py-2 rounded-lg font-semibold transition ${
+              view === "map"
+                ? "bg-brand text-white"
+                : "bg-white text-slate-700 border border-slate-300"
+            }`}
+          >
+            Карта
+          </button>
+          <button
+            onClick={() => setView("list")}
+            className={`px-6 py-2 rounded-lg font-semibold transition ${
+              view === "list"
+                ? "bg-brand text-white"
+                : "bg-white text-slate-700 border border-slate-300"
+            }`}
+          >
+            Список таблицей
+          </button>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6">
           <div>
             <SideFilters
@@ -62,7 +88,11 @@ export default function OutdoorMapSection() {
             />
           </div>
           <div>
-            <YandexMap sides={filteredSides} onSideClick={setSelectedSide} />
+            {view === "map" ? (
+              <YandexMap sides={filteredSides} onSideClick={setSelectedSide} />
+            ) : (
+              <SidesListView sides={filteredSides} onSideClick={setSelectedSide} />
+            )}
           </div>
         </div>
 

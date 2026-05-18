@@ -10,8 +10,6 @@ export type Side = {
   material: string;
   direction: string;
   installCost: number | null;
-  priceFull: number | null;
-  discountPct: number;
   priceFinal: number | null;
   grp: number | null;
   lat: number | null;
@@ -20,6 +18,10 @@ export type Side = {
   organization: string;
   photo_filename: string | null;
   status: {
+    jan: SideStatus;
+    feb: SideStatus;
+    mar: SideStatus;
+    apr: SideStatus;
     may: SideStatus;
     june: SideStatus;
     july: SideStatus;
