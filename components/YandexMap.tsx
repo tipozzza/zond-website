@@ -39,6 +39,7 @@ export default function YandexMap({ sides, onSideClick }: Props) {
         preset: "islands#violetClusterIcons",
         groupByCoordinates: false,
         clusterDisableClickZoom: false,
+        hasBalloon: false,
         gridSize: 80,
       });
 
@@ -50,12 +51,12 @@ export default function YandexMap({ sides, onSideClick }: Props) {
             [side.lat, side.lng],
             {
               hintContent: `${side.id} — ${side.type} ${side.format}`,
-              balloonContentHeader: `<strong>${side.id}</strong>`,
-              balloonContentBody: `${side.address}<br/>${side.type} • ${side.format}`,
             },
             {
               preset: "islands#dotIcon",
               iconColor: color,
+              openBalloonOnClick: false,
+              hasBalloon: false,
             }
           );
 
