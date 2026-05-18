@@ -9,7 +9,7 @@ const CASES = [
     href: "/outdoor",
     image: "/images/outdoor-day.jpg",
     title: "Наружная реклама",
-    caption: "Билборды 6×3, цифровые LED-экраны, тривижн, сити-формат, супер-сайты. 27 уникальных LED-экранов и 726 рекламных сторон по Томску под ключ.",
+    caption: "Билборды 6×3, цифровые LED-экраны, тривижн, сити-формат, супер-сайты. 726 рекламных сторон по Томску.",
   },
   {
     href: "/print",
@@ -81,9 +81,9 @@ export default function Cases() {
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="text-white font-bold text-lg leading-tight">{c.title}</div>
-                  <div className="text-white/70 text-sm mt-1">{c.caption}</div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col-reverse gap-2">
+                  <div className="text-white font-bold text-xl leading-tight">{c.title}</div>
+                  <div className="text-white/80 text-sm leading-snug">{c.caption}</div>
                 </div>
               </Link>
             </motion.div>
