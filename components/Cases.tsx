@@ -1,52 +1,71 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
-const CASES = [
+type Card = {
+  href: string;
+  img: string;
+  title: string;
+  description: string;
+  priceBadge: string;
+  badgeClass: string;
+};
+
+const CARDS: Card[] = [
   {
     href: "/outdoor",
-    image: "/images/outdoor-mix.jpg",
+    img: "/images/outdoor-mix.jpg",
     title: "Наружная реклама",
-    caption: "Билборды 6×3, цифровые LED-экраны, тривижн, сити-формат, супер-сайты. 726 рекламных сторон по Томску.",
+    description:
+      "Билборды 6×3, цифровые LED-экраны, тривижн, сити-формат, супер-сайты. 726 рекламных сторон по Томску.",
+    priceBadge: "ОТ 29 000 ₽/МЕС",
+    badgeClass: "bg-white/95 backdrop-blur text-[#F57C28]",
   },
   {
     href: "/print",
-    image: "/images/production.jpg",
+    img: "/images/production.jpg",
     title: "Широкоформатная печать",
-    caption: "Печать на баннере, плёнке, бэклите, сетке, холсте. Сольвентные принтеры Flora, Mimaki, Mustang шириной до 5 м. Качество для интерьера и улицы.",
+    description:
+      "Печать на баннере, плёнке, бэклите, сетке, холсте. Сольвентные принтеры Flora, Mimaki, Mustang шириной до 5 м.",
+    priceBadge: "ОТ 120 ₽/М²",
+    badgeClass: "bg-[#FFCC00] text-slate-900",
   },
   {
     href: "/production",
-    image: "/images/production-workshop.jpg",
+    img: "/images/production-workshop.jpg",
     title: "Производство",
-    caption: "Объёмные буквы, вывески, лайтбоксы, штендеры, металлоконструкции. Лазерная резка, фрезеровка, сварка. Монтаж с автовышкой.",
+    description:
+      "Объёмные буквы, вывески, лайтбоксы, штендеры, металлоконструкции. Лазерная резка, фрезеровка, сварка. Монтаж с автовышкой.",
+    priceBadge: "ОТ 95 ₽/ШТ",
+    badgeClass: "bg-white/95 backdrop-blur text-[#7CB342]",
   },
   {
     href: "/design",
-    image: "/images/design-portfolio.jpg",
+    img: "/images/design-portfolio.jpg",
     title: "Дизайн и полиграфия",
-    caption: "Креатив для наружной рекламы, фирменный стиль, логотипы. Визитки, листовки, буклеты, каталоги, плакаты.",
+    description:
+      "Креатив для наружной рекламы, фирменный стиль, логотипы. Визитки, листовки, буклеты, каталоги, плакаты.",
+    priceBadge: "ОТ 200 ₽",
+    badgeClass: "bg-white/95 backdrop-blur text-[#3949AB]",
   },
   {
     href: "/exhibition",
-    image: "/images/exhibition.jpg",
-    title: "Выставочные стенды",
-    caption: "Уникальный дизайн стенда, мобильные и стационарные конструкции. Проектирование, производство и монтаж по всей России.",
+    img: "/images/exhibition.jpg",
+    title: "Выставочные экспозиции",
+    description:
+      "Уникальный дизайн стенда, мобильные и стационарные конструкции. Проектирование, производство и монтаж по всей России.",
+    priceBadge: "ИНДИВИДУАЛЬНО",
+    badgeClass: "bg-white/95 backdrop-blur text-[#3FA3D9]",
   },
   {
     href: "/led",
-    image: "/images/led-illumination.jpg",
+    img: "/images/led-illumination.jpg",
     title: "LED и иллюминация",
-    caption: "Новогоднее оформление улиц, фасадов, ТЦ. Световые 3D-фигуры собственного производства, гирлянды, дюралайт. Бренд Лайтово.",
+    description:
+      "Новогоднее оформление улиц, фасадов, ТЦ. Световые 3D-фигуры собственного производства, гирлянды, дюралайт. Бренд Лайтово.",
+    priceBadge: "ПО ЗАПРОСУ",
+    badgeClass: "bg-white/95 backdrop-blur text-[#7B1FA2]",
   },
 ];
-
-const card = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-};
 
 export default function Cases() {
   return (
@@ -60,33 +79,34 @@ export default function Cases() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CASES.map((c, i) => (
-            <motion.div
+          {CARDS.map((c) => (
+            <Link
               key={c.href}
-              variants={card}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
+              href={c.href}
+              className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-brand hover:shadow-2xl hover:shadow-brand/20 transition-all duration-500 hover:-translate-y-2"
             >
-              <Link
-                href={c.href}
-                className="group block relative aspect-[4/3] rounded-2xl overflow-hidden hover:scale-[1.03] hover:shadow-2xl transition-all duration-300"
-              >
+              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                 <Image
-                  src={c.image}
+                  src={c.img}
                   alt={c.title}
                   fill
+                  loading="lazy"
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col-reverse gap-2">
-                  <div className="text-white font-bold text-xl leading-tight">{c.title}</div>
-                  <div className="text-white/80 text-sm leading-snug">{c.caption}</div>
+                <div
+                  className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold ${c.badgeClass}`}
+                >
+                  {c.priceBadge}
                 </div>
-              </Link>
-            </motion.div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 text-slate-900 leading-tight">
+                  {c.title}
+                </h3>
+                <p className="text-slate-600 leading-relaxed">{c.description}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
