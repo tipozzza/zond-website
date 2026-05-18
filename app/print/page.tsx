@@ -167,56 +167,58 @@ export default function PrintPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative min-h-[80vh] flex items-center bg-gradient-to-br from-amber-900 to-slate-900 overflow-hidden">
-          <div className="absolute inset-0">
+        <section className="relative min-h-[85vh] flex items-center bg-slate-900 overflow-hidden">
+          {/* Фон */}
+          <div className="absolute inset-0 z-0">
             <Image
               src="/images/production.jpg"
               alt="Цех широкоформатной печати"
               fill
               priority
               sizes="100vw"
-              className="object-cover opacity-50"
+              className="object-cover opacity-60"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
           </div>
-          <div className="max-w-[1280px] mx-auto px-6 relative z-10 py-20">
-            <div className="max-w-2xl text-white text-left">
+
+          {/* Контент */}
+          <div className="container mx-auto px-4 py-20 relative z-10">
+            <div className="max-w-2xl">
               <div className="inline-block bg-[#FFCC00] text-slate-900 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
                 ПЕЧАТАЕМ В ТОМСКЕ С 1995 ГОДА
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.05] tracking-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white text-left">
                 Широкоформатная и интерьерная печать
               </h1>
-              <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
-                500 000 м² полноцветной печати в год. От баннеров 6×3 до интерьерных постеров
-                с разрешением 1440 dpi.
+              <p className="text-lg md:text-xl text-white/90 mb-8 text-left">
+                500 000 м² полноцветной печати в год. От баннеров 6×3 до интерьерных постеров с разрешением 1440 dpi.
               </p>
-              <div className="flex gap-4 flex-wrap">
+              <div className="flex gap-4 flex-wrap mb-12">
                 <a
                   href="#calculator"
-                  className="bg-[#FFCC00] hover:bg-[#E6B800] text-slate-900 px-8 py-4 rounded-xl font-bold transition-colors"
+                  className="bg-[#FFCC00] hover:bg-[#E6B800] text-slate-900 px-8 py-4 rounded-xl font-bold transition"
                 >
                   Рассчитать стоимость
                 </a>
                 <a
                   href="#equipment"
-                  className="bg-black/40 backdrop-blur border border-white/40 text-white px-8 py-4 rounded-xl font-semibold hover:bg-black/60 transition-colors"
+                  className="bg-black/50 backdrop-blur border border-white/40 text-white px-8 py-4 rounded-xl font-semibold hover:bg-black/70 transition"
                 >
                   Наше оборудование
                 </a>
               </div>
-              <div className="flex gap-6 mt-12 text-sm">
+              <div className="flex gap-8 text-left">
                 <div>
-                  <strong className="block text-3xl text-[#FFCC00]">5</strong>
-                  <span className="text-white/80">принтеров</span>
+                  <div className="text-3xl md:text-4xl font-bold text-[#FFCC00]">5</div>
+                  <div className="text-sm text-white/80 mt-1">принтеров</div>
                 </div>
                 <div>
-                  <strong className="block text-3xl text-[#FFCC00]">9+</strong>
-                  <span className="text-white/80">материалов</span>
+                  <div className="text-3xl md:text-4xl font-bold text-[#FFCC00]">9+</div>
+                  <div className="text-sm text-white/80 mt-1">материалов</div>
                 </div>
                 <div>
-                  <strong className="block text-3xl text-[#FFCC00]">500 000</strong>
-                  <span className="text-white/80">м²/год</span>
+                  <div className="text-3xl md:text-4xl font-bold text-[#FFCC00]">500 000</div>
+                  <div className="text-sm text-white/80 mt-1">м²/год</div>
                 </div>
               </div>
             </div>
