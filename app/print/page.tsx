@@ -182,7 +182,7 @@ export default function PrintPage() {
           </div>
 
           {/* Контент */}
-          <div className="container mx-auto px-4 py-20 relative z-10">
+          <div className="max-w-[1280px] mx-auto px-6 py-20 relative z-10 w-full">
             <div className="max-w-2xl">
               <div className="inline-block bg-[#FFCC00] text-slate-900 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
                 ПЕЧАТАЕМ В ТОМСКЕ С 1995 ГОДА
