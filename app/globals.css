@@ -24,13 +24,12 @@
   .pixel-border {
     height: 36px;
     background-image: linear-gradient(90deg,
-      #E30613 0% 12%,
-      #3D2E91 12% 28%,
-      #00AEEF 28% 42%,
-      #5E4FB8 42% 55%,
-      #6F2E91 55% 70%,
-      #E30613 70% 82%,
-      #3D2E91 82% 100%);
+      #F57C28 0% 16.67%,
+      #FFCC00 16.67% 33.33%,
+      #7CB342 33.33% 50%,
+      #3FA3D9 50% 66.67%,
+      #3949AB 66.67% 83.33%,
+      #7B1FA2 83.33% 100%);
     position: relative;
     overflow: hidden;
   }
