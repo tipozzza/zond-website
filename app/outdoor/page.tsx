@@ -73,34 +73,40 @@ const CONSTRUCTIONS: {
   },
 ];
 
-const ADVANTAGES: { icon: LucideIcon; title: string; text: string }[] = [
+const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string }[] = [
   {
     icon: Trophy,
+    stat: "27",
     title: "Крупнейшая digital-сеть Томска",
     text: "27 уникальных цифровых экранов в проходных местах города.",
   },
   {
     icon: Map,
+    stat: "726",
     title: "726 сторон под управлением",
     text: "Лидер по охвату наружной рекламы в Томской области.",
   },
   {
     icon: Zap,
+    stat: "3",
     title: "Размещение от 3 дней",
     text: "Свой цех печати и бригады монтажа — без посредников и долгих согласований.",
   },
   {
     icon: Gift,
+    stat: "0₽",
     title: "Бесплатный подбор программы",
     text: "Менеджер составит план с учётом вашего бюджета, аудитории и целей.",
   },
   {
     icon: History,
+    stat: "32+",
     title: "Опыт 32+ года",
     text: "Работаем в Томске с 1992 года. Знаем что работает в этом городе.",
   },
   {
     icon: Camera,
+    stat: "100%",
     title: "Фотоотчёт после монтажа",
     text: "Документируем каждое размещение — вы видите свою рекламу на конструкции.",
   },
@@ -156,7 +162,8 @@ export default function OutdoorPage() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-900/70 via-orange-900/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent md:from-black/30" />
 
           <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 py-24">
             <div className="max-w-xl flex flex-col gap-6 text-white">
@@ -253,7 +260,9 @@ export default function OutdoorPage() {
                       fill
                       loading="lazy"
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className={`object-cover group-hover:scale-105 transition-transform duration-700 ${
+                        c.name.startsWith("Digital") ? "brightness-110 contrast-110" : ""
+                      }`}
                     />
                     <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#F57C28]">
                       {c.priceBadge}
@@ -283,18 +292,24 @@ export default function OutdoorPage() {
               Что реально получает клиент, размещая рекламу через нас.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {ADVANTAGES.map(({ icon: Icon, title, text }) => (
+              {ADVANTAGES.map(({ icon: Icon, stat, title, text }) => (
                 <div
                   key={title}
-                  className="flex gap-4 p-6 rounded-2xl bg-white border border-slate-200"
+                  className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#F57C28] hover:shadow-xl transition-all"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#F57C28]/10 text-[#F57C28] flex items-center justify-center flex-shrink-0">
-                    <Icon size={22} />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-2xl bg-[#F57C28]/10 flex items-center justify-center group-hover:bg-[#F57C28] transition-colors flex-shrink-0">
+                      <Icon
+                        size={24}
+                        className="text-[#F57C28] group-hover:text-white transition-colors"
+                      />
+                    </div>
+                    <div className="text-3xl font-bold text-[#F57C28] leading-none mt-2">
+                      {stat}
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-base mb-1.5 leading-tight">{title}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{text}</p>
-                  </div>
+                  <h3 className="text-lg font-bold mb-2 text-slate-900 leading-tight">{title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{text}</p>
                 </div>
               ))}
             </div>
