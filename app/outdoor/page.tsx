@@ -18,34 +18,58 @@ const STATS = [
   { num: "27", label: "уникальных LED-экранов" },
 ];
 
-const CONSTRUCTIONS = [
+const CONSTRUCTIONS: {
+  img: string;
+  name: string;
+  priceBadge: string;
+  typeBadge: string;
+  subtitle: string;
+  description: string;
+}[] = [
   {
+    img: "/images/outdoor-types/type-digital.jpg",
     name: "Digital 3×6",
-    price: "от 45 000 ₽/мес",
-    description: "Цифровой биллборд формата 3×6. Ролик 8 секунд, до 60 показов в час.",
-  },
-  {
-    name: "Щит 3×6",
-    price: "от 29 000 ₽/мес",
-    description: "Классический статичный билборд. Идеален для долгосрочных кампаний.",
-  },
-  {
-    name: "Тривижн 3×6",
-    price: "от 35 000 ₽/мес",
+    priceBadge: "ОТ 45 000 ₽/МЕС",
+    typeBadge: "ЦИФРОВОЙ",
+    subtitle: "Цифровой LED-экран",
     description:
-      "Вращающийся щит на 3 стороны — 1 поверхность показывает 3 разных рекламы.",
+      "Ролик 8 секунд, до 60 показов в час. 27 уникальных экранов в проходных местах Томска.",
   },
   {
-    name: "Сити-формат 1,2×1,8",
-    price: "от 9 000 ₽/мес",
+    img: "/images/outdoor-types/type-shchit.jpg",
+    name: "Щит 3×6",
+    priceBadge: "ОТ 29 000 ₽/МЕС",
+    typeBadge: "СТАТИЧНЫЙ",
+    subtitle: "Классический билборд",
+    description:
+      "Идеален для долгосрочных кампаний и брендирования. Самый распространённый формат наружной рекламы.",
+  },
+  {
+    img: "/images/outdoor-types/type-trivision.jpg",
+    name: "Тривижн 3×6",
+    priceBadge: "ОТ 35 000 ₽/МЕС",
+    typeBadge: "ВРАЩАЮЩИЙСЯ",
+    subtitle: "3 рекламы на одной стороне",
+    description:
+      "Вращающийся щит на 3 стороны — 1 поверхность показывает 3 разных рекламы поочерёдно.",
+  },
+  {
+    img: "/images/outdoor-types/type-city-format.jpg",
+    name: "Сити-формат 1.2×1.8",
+    priceBadge: "ОТ 9 000 ₽/МЕС",
+    typeBadge: "ПЕШЕХОДНЫЙ",
+    subtitle: "Компактный формат",
     description:
       "Компактные конструкции на остановках и у магазинов. Высокое внимание пешеходов.",
   },
   {
+    img: "/images/outdoor-types/type-supersite.jpg",
     name: "Супер-сайт 5×15",
-    price: "от 75 000 ₽/мес",
+    priceBadge: "ОТ 75 000 ₽/МЕС",
+    typeBadge: "ПРЕМИУМ",
+    subtitle: "Максимальный охват",
     description:
-      "Крупноформатные щиты на въездах в город и магистралях. Максимальный охват.",
+      "Крупноформатные щиты на въездах в город и магистралях. Видны издалека, привлекают максимум внимания.",
   },
 ];
 
@@ -216,17 +240,35 @@ export default function OutdoorPage() {
               5 форматов под любую задачу: от точечного локального охвата до массовых имиджевых кампаний.
             </p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {CONSTRUCTIONS.map((c) => (
                 <article
                   key={c.name}
-                  className="flex flex-col p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-[#F57C28] transition-all"
+                  className="group rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#F57C28] hover:shadow-2xl hover:shadow-[#F57C28]/20 transition-all duration-500 hover:-translate-y-2 flex flex-col"
                 >
-                  <h3 className="text-xl font-bold text-slate-900 mb-2 leading-tight">
-                    {c.name}
-                  </h3>
-                  <div className="text-[#F57C28] font-bold mb-4">{c.price}</div>
-                  <p className="text-slate-600 leading-relaxed flex-1">{c.description}</p>
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                    <Image
+                      src={c.img}
+                      alt={c.name}
+                      fill
+                      loading="lazy"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#F57C28]">
+                      {c.priceBadge}
+                    </div>
+                    <div className="absolute top-4 right-4 bg-[#F57C28] text-white px-3 py-1 rounded-full text-xs font-bold">
+                      {c.typeBadge}
+                    </div>
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-xl font-bold text-slate-900 mb-1 leading-tight">
+                      {c.name}
+                    </h3>
+                    <p className="text-sm text-[#F57C28] font-semibold mb-3">{c.subtitle}</p>
+                    <p className="text-slate-600 leading-relaxed">{c.description}</p>
+                  </div>
                 </article>
               ))}
             </div>
