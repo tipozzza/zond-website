@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingWA from "@/components/FloatingWA";
+import OutdoorMapSection from "@/components/OutdoorMapSection";
 import { COMPANY } from "@/lib/site-data";
 
 const CONSTRUCTIONS = [
@@ -220,6 +221,8 @@ export default function OutdoorPage() {
             </div>
           </div>
         </section>
+
+        <OutdoorMapSection />
 
         {/* Типы конструкций */}
         <section className="py-20 bg-white">
