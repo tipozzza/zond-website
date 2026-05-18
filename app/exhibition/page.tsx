@@ -1,18 +1,5 @@
 import Image from "next/image";
-import {
-  Palette,
-  Printer,
-  Box,
-  Layers,
-  Calendar,
-  Star,
-  Maximize,
-  Triangle,
-  Move,
-  RotateCcw,
-  Square,
-  Bookmark,
-} from "lucide-react";
+import { Palette, Printer, Box, Layers, Calendar, Star } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -103,20 +90,59 @@ const MAXIBIT_MODELS: {
 ];
 
 const JUST_MODELS: {
-  icon: LucideIcon;
-  title: string;
-  type: string;
-  price: string;
-  size: string;
+  name: string;
+  subtitle: string;
+  description: string;
+  minPrice: number;
 }[] = [
-  { icon: Layers, title: "JUST X FAST", type: "Баннерный", price: "от 1 800 ₽", size: "180×80" },
-  { icon: Maximize, title: "JUST X LARGE", type: "Баннерный", price: "от 2 700 ₽", size: "120×200" },
-  { icon: Triangle, title: "JUST PRISM", type: "Трёхсторонний", price: "от 4 450 ₽", size: "90×210" },
-  { icon: Box, title: "JUST UP 3×3 MAGNET", type: "Pop-up", price: "от 41 150 ₽", size: "250×224" },
-  { icon: Move, title: "JUST L FLEX", type: "Баннерный с защёлкой", price: "от 3 750 ₽", size: "80–100×200" },
-  { icon: RotateCcw, title: "JUST ROLL TIP D", type: "Роллерный", price: "от 3 600 ₽", size: "85–120×200" },
-  { icon: Square, title: "JUST COUNTER 2×2", type: "Pop-up ресепшен", price: "от 13 900 ₽", size: "119×91" },
-  { icon: Bookmark, title: "JUST SWING ZIGZAG", type: "Брошюрная стойка 6×A4", price: "11 400 ₽", size: "—" },
+  {
+    name: "JUST X FAST",
+    subtitle: "Баннерный стенд",
+    description: "Голливудской устойчивости. Цвет — чёрный, оранжевый. Время монтажа — 30 секунд.",
+    minPrice: 600,
+  },
+  {
+    name: "JUST X LARGE",
+    subtitle: "Баннерный стенд",
+    description: "Цвет — чёрный. Материал металлический сплав, пластик. Голливудская устойчивость.",
+    minPrice: 700,
+  },
+  {
+    name: "JUST PRISM",
+    subtitle: "Трёхсторонний баннерный стенд",
+    description: "Материал — алюминий, пластик. Поставляется в чехле для переноски. Монтаж 30 секунд.",
+    minPrice: 2200,
+  },
+  {
+    name: "JUST UP 3×3 MAGNET",
+    subtitle: "Зонтичный (Pop Up) стенд",
+    description: "Pop Up стенд 3×3 секции. Поставляется в жёсткой бокс-трибуне на колёсиках.",
+    minPrice: 2750,
+  },
+  {
+    name: "JUST L FLEX",
+    subtitle: "Баннерный стенд",
+    description: "Материал — алюминий, пластик. Защёлкивающийся профиль — соединяется в длину.",
+    minPrice: 1550,
+  },
+  {
+    name: "JUST ROLL TIP D",
+    subtitle: "Роллерный стенд",
+    description: "Роллерный, алюминий. Постер хранится в основании, выкатывается. Монтаж 15 секунд.",
+    minPrice: 550,
+  },
+  {
+    name: "JUST COUNTER 2×2",
+    subtitle: "Мобильный Pop Up ресепшен",
+    description: "Материал — трубки, металл. Pop Up ресепшен. Нейлоновый чехол в подарок.",
+    minPrice: 1000,
+  },
+  {
+    name: "JUST SWING ZIGZAG",
+    subtitle: "Брошюрная стойка",
+    description: "Стойка на 6 карманов A4. Алюминий и оргстекло. Поставляется в чемодане.",
+    minPrice: 11400,
+  },
 ];
 
 const TIMELINE: { year: number; project: string }[] = [
@@ -285,21 +311,24 @@ export default function ExhibitionPage() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {JUST_MODELS.map(({ icon: Icon, title, type, price, size }) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {JUST_MODELS.map((model) => (
                 <article
-                  key={title}
-                  className="bg-white rounded-2xl border border-slate-200 hover:border-[#3FA3D9] hover:shadow-lg transition-all p-5 flex flex-col"
+                  key={model.name}
+                  className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-[#3FA3D9] hover:shadow-xl transition-all"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#3FA3D9]/10 flex items-center justify-center mb-4">
-                    <Icon size={22} className="text-[#3FA3D9]" />
+                  <div className="aspect-[4/3] bg-gradient-to-br from-slate-700 to-slate-900 flex flex-col items-center justify-center text-white p-4 text-center">
+                    <div className="text-xs uppercase tracking-widest opacity-60 mb-2">
+                      {model.subtitle}
+                    </div>
+                    <div className="text-2xl font-bold tracking-tight">{model.name}</div>
                   </div>
-                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
-                    {type}
+                  <div className="p-5">
+                    <div className="text-xl font-bold text-[#3FA3D9] mb-1">
+                      от {model.minPrice.toLocaleString("ru-RU")} ₽
+                    </div>
+                    <p className="text-sm text-slate-600 leading-relaxed">{model.description}</p>
                   </div>
-                  <h3 className="text-base font-bold mb-2 text-slate-900 leading-tight">{title}</h3>
-                  <div className="text-[#3FA3D9] font-bold mb-2">{price}</div>
-                  <div className="text-xs text-slate-500 mt-auto">Размер: {size}</div>
                 </article>
               ))}
             </div>
