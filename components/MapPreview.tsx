@@ -1,72 +1,97 @@
-import { MAP_TYPES } from "@/lib/site-data";
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function MapPreview() {
   return (
-    <section id="map" className="py-24 bg-[#f6f5fa]">
-      <div className="max-w-[1280px] mx-auto px-6">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-14 items-center">
-          <div>
-            <span className="inline-block px-3.5 py-1.5 rounded bg-brand text-white text-xs font-bold uppercase tracking-wider mb-4">
-              Карта рекламоносителей
-            </span>
-            <h2 className="text-4xl font-extrabold tracking-tight leading-tight mb-4">
-              Лучшие места<br />в Томске и Северске
+    <section className="py-20 bg-gradient-to-br from-brand to-purple-900 text-white overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-block bg-white/10 backdrop-blur px-4 py-1 rounded-full text-sm font-semibold mb-4">
+              ИНТЕРАКТИВНАЯ КАРТА
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Найдите подходящую конструкцию за 30 секунд
             </h2>
-            <p className="text-lg text-gray-500 mb-7 leading-relaxed">
-              751 сторона на 244 конструкциях — ключевые магистрали и торговые центры.
-              Выберите конструкцию на карте, посмотрите фото и трафик,
-              забронируйте онлайн на 3 дня без оплаты.
+            <p className="text-lg text-white/80 mb-8">
+              Все 726 рекламных сторон по Томску на одной карте. Фильтры по типу, формату и доступности.
+              Кликаете на метку — видите фото, цену и статус по месяцам. Бронирование онлайн прямо с карты.
             </p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {MAP_TYPES.map((type) => (
-                <span key={type} className="bg-white border border-gray-200 px-3.5 py-1.5 rounded text-sm font-medium hover:border-brand hover:text-brand transition-colors">
-                  {type}
-                </span>
-              ))}
-            </div>
-            <a href="#" className="btn btn-primary btn-lg">Открыть карту →</a>
-          </div>
 
-          {/* Превью карты */}
-          <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#1a0e3a] to-[#2a1655] relative overflow-hidden shadow-2xl shadow-brand/25">
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:40px_40px]" />
-
-            {/* Маркеры */}
-            <Marker className="top-[28%] left-[22%]" color="red" />
-            <Marker className="top-[42%] left-[58%]" color="blue" />
-            <Marker className="top-[55%] left-[32%]" color="red" />
-            <Marker className="top-[22%] left-[68%]" color="blue" />
-            <Marker className="top-[65%] left-[48%]" color="purple" />
-            <Marker className="top-[38%] left-[18%]" color="red" />
-            <Marker className="top-[70%] left-[72%]" color="blue" />
-
-            <div className="absolute bottom-6 left-6 right-6 bg-[#140a28]/90 backdrop-blur-md text-white py-4 px-5 rounded-xl flex items-center justify-between gap-4">
-              <div className="flex gap-4 text-xs">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-section-outdoor" />
-                  <span>Статика (415)</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-section-design" />
-                  <span>Digital (336)</span>
-                </div>
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
+                <div className="text-4xl font-bold">726</div>
+                <div className="text-sm text-white/80">рекламных сторон</div>
               </div>
-              <a href="#" className="text-white font-semibold text-xs">Подробнее →</a>
+              <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
+                <div className="text-4xl font-bold">226</div>
+                <div className="text-sm text-white/80">конструкций</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
+                <div className="text-4xl font-bold">336</div>
+                <div className="text-sm text-white/80">цифровых сторон</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
+                <div className="text-4xl font-bold">87%</div>
+                <div className="text-sm text-white/80">с подсветкой</div>
+              </div>
             </div>
-          </div>
+
+            <Link
+              href="/outdoor"
+              className="inline-flex items-center gap-2 bg-white text-brand px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/90 transition shadow-xl"
+            >
+              Открыть карту конструкций
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="relative"
+          >
+            <div className="relative aspect-[4/3] bg-white/5 backdrop-blur rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+              <svg viewBox="0 0 400 300" className="w-full h-full">
+                <rect width="400" height="300" fill="rgba(255,255,255,0.05)" />
+                <path d="M 60 0 Q 80 80 120 160 Q 140 220 180 300" stroke="rgba(100,149,237,0.4)" strokeWidth="40" fill="none" />
+                <line x1="0" y1="100" x2="400" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="3" />
+                <line x1="0" y1="180" x2="400" y2="170" stroke="rgba(255,255,255,0.1)" strokeWidth="3" />
+                <line x1="150" y1="0" x2="170" y2="300" stroke="rgba(255,255,255,0.1)" strokeWidth="3" />
+                <line x1="280" y1="0" x2="260" y2="300" stroke="rgba(255,255,255,0.1)" strokeWidth="3" />
+                {[
+                  [180, 110], [220, 130], [195, 165], [230, 175], [165, 190],
+                  [205, 200], [240, 145], [265, 160], [285, 195], [255, 220],
+                  [180, 235], [215, 250], [310, 180], [330, 145], [290, 230],
+                  [245, 110], [275, 130], [300, 100], [340, 200], [320, 240],
+                  [155, 130], [135, 165], [185, 145], [225, 165], [275, 225],
+                ].map(([x, y], i) => (
+                  <g key={i}>
+                    <circle cx={x} cy={y} r="6" fill="white" opacity="0.95" />
+                    <circle cx={x} cy={y} r="6" fill="none" stroke="white" strokeWidth="1.5" opacity="0.5">
+                      <animate attributeName="r" from="6" to="14" dur="2s" begin={`${i * 0.1}s`} repeatCount="indefinite" />
+                      <animate attributeName="opacity" from="0.5" to="0" dur="2s" begin={`${i * 0.1}s`} repeatCount="indefinite" />
+                    </circle>
+                  </g>
+                ))}
+                <circle cx="220" cy="170" r="22" fill="white" opacity="0.95" />
+                <text x="220" y="176" textAnchor="middle" fill="#3D2E91" fontSize="14" fontWeight="bold">42</text>
+              </svg>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
-  );
-}
-
-function Marker({ className, color }: { className: string; color: "red" | "blue" | "purple" }) {
-  const colorMap = {
-    red: "bg-section-outdoor shadow-[0_0_16px_rgba(227,6,19,0.6)]",
-    blue: "bg-section-design shadow-[0_0_16px_rgba(0,174,239,0.6)]",
-    purple: "bg-section-led shadow-[0_0_16px_rgba(111,46,145,0.6)]",
-  };
-  return (
-    <div className={`absolute w-5 h-5 rounded-full border-[3px] border-white ${colorMap[color]} ${className}`} />
   );
 }
