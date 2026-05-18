@@ -7,6 +7,7 @@ import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingWA from "@/components/FloatingWA";
 import ProductionCalculator from "@/components/ProductionCalculator";
+import PortfolioGallery from "@/components/PortfolioGallery";
 
 const CATEGORIES: {
   img: string;
@@ -79,15 +80,6 @@ const STEPS = [
   { num: 4, title: "Договор", text: "Подписываем договор и принимаем предоплату." },
   { num: 5, title: "Производство", text: "От 3 до 21 дня в зависимости от изделия." },
   { num: 6, title: "Монтаж", text: "Монтаж и сдача объекта с фотоотчётом." },
-];
-
-const PORTFOLIO = [
-  "Объёмные буквы для ТЦ Лето",
-  "Лайтбокс PONSSE",
-  "Брендирование ВТБ",
-  "Остановочные комплексы",
-  "Таблички для университета",
-  "Световой короб для кофейни",
 ];
 
 const MATERIALS = [
@@ -247,29 +239,7 @@ export default function ProductionPage() {
         </section>
 
         {/* Портфолио */}
-        <section id="works" className="py-12 md:py-20 bg-slate-50">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Что мы уже сделали</h2>
-            <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              Реальные работы — от вывески для кофейни до брендирования банка. Фото загружаются.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {PORTFOLIO.map((title) => (
-                <article
-                  key={title}
-                  className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-slate-200 to-slate-300 border border-slate-200 overflow-hidden relative group"
-                >
-                  <div className="absolute inset-0 flex items-center justify-center text-slate-500 text-sm">
-                    Фото
-                  </div>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
-                    <div className="text-white font-semibold leading-tight">{title}</div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <PortfolioGallery />
 
         {/* Материалы */}
         <section className="py-12 md:py-20 bg-white">
