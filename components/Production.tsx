@@ -9,7 +9,7 @@ const FEATURES = [
 
 export default function Production() {
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-12 md:py-20 bg-slate-50">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
@@ -26,7 +26,7 @@ export default function Production() {
             <span className="block text-xs font-semibold text-brand uppercase tracking-wider mb-3">
               Производство
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-5 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-5 leading-tight">
               Все этапы — у нас в Томске
             </h2>
             <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-8">

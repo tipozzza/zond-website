@@ -1,23 +1,22 @@
-import Counter from "./Counter";
-
 const STATS = [
-  { num: 751, label: "сторон размещения" },
-  { num: 336, label: "цифровых сторон" },
-  { num: 27, label: "LED-экранов" },
-  { num: 244, label: "конструкции" },
+  { num: "726", label: "рекламных сторон" },
+  { num: "336", label: "цифровых сторон" },
+  { num: "27", label: "уникальных LED-экранов" },
+  { num: "226", label: "конструкций" },
 ];
 
 export default function Stats() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 md:py-20 bg-slate-50">
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {STATS.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="text-5xl md:text-7xl font-bold text-brand leading-none mb-3 tracking-tight">
-                <Counter to={s.num} />
-              </div>
-              <div className="text-sm md:text-base text-slate-600">{s.label}</div>
+            <div
+              key={s.label}
+              className="bg-white rounded-2xl shadow-lg p-6 text-center"
+            >
+              <div className="text-5xl font-bold text-brand mb-2 leading-none">{s.num}</div>
+              <div className="text-sm text-slate-600 uppercase tracking-wider">{s.label}</div>
             </div>
           ))}
         </div>

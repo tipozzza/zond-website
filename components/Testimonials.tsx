@@ -30,10 +30,10 @@ const card = {
 
 export default function Testimonials() {
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-12 md:py-20 bg-slate-50">
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="text-center mb-14 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+        <div className="text-center mb-12 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Что говорят клиенты
           </h2>
           <p className="text-lg text-slate-600">

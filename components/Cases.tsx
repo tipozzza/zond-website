@@ -43,10 +43,10 @@ const card = {
 
 export default function Cases() {
   return (
-    <section id="cases" className="py-24 bg-white">
+    <section id="cases" className="py-12 md:py-20 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold tracking-tight mb-4">Что мы делаем</h2>
+        <div className="text-center mb-12 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Что мы делаем</h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Полный цикл наружной рекламы: от концепции до монтажа.
           </p>

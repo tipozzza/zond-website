@@ -1,22 +1,18 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
-import Counter from "./Counter";
 
-const COUNTERS = [
-  { to: 55, suffix: "", label: "Человек в команде" },
-  { to: 32, suffix: "", label: "Года опыта" },
-  { to: 7, suffix: "", label: "Городов присутствия" },
-  { to: 1000, suffix: "+", label: "Реализованных проектов" },
+const TEAM_STATS = [
+  { value: "55", label: "Человек в команде" },
+  { value: "32", label: "Года опыта" },
+  { value: "7", label: "Городов присутствия" },
+  { value: "1000+", label: "Реализованных проектов" },
 ];
 
 export default function Team() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 md:py-20 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="text-center mb-12 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Команда, которая решает задачи
           </h2>
           <p className="text-lg text-slate-600">
@@ -24,13 +20,7 @@ export default function Team() {
           </p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7 }}
-          className="relative max-w-6xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden shadow-xl mb-16"
-        >
+        <div className="relative max-w-6xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden shadow-xl mb-16">
           <Image
             src="/images/team.jpg"
             alt="Команда Зонд-Реклама"
@@ -38,15 +28,15 @@ export default function Team() {
             sizes="(min-width: 1024px) 72rem, 100vw"
             className="object-cover"
           />
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-          {COUNTERS.map((c) => (
-            <div key={c.label} className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-brand leading-none mb-3 tracking-tight">
-                <Counter to={c.to} suffix={c.suffix} />
+          {TEAM_STATS.map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="text-5xl md:text-6xl font-bold text-brand mb-3 leading-none">
+                {s.value}
               </div>
-              <div className="text-sm text-slate-600">{c.label}</div>
+              <div className="text-sm text-slate-600">{s.label}</div>
             </div>
           ))}
         </div>
