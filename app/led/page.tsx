@@ -136,34 +136,30 @@ export default function LedPage() {
               fill
               priority
               sizes="100vw"
-              className="object-cover opacity-40"
+              className="object-cover opacity-70"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0B1E3F]/95 via-[#0E1A2B]/85 to-[#0B1E3F]/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E3F]/90 via-[#0B1E3F]/60 to-[#0B1E3F]/20" />
           </div>
 
           <div className="max-w-[1280px] mx-auto px-6 py-20 relative z-10 w-full min-h-[90vh] flex items-center">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-6 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-4 rounded-2xl mb-8">
+              <div className="inline-flex items-center gap-8 mb-10">
                 <Image
-                  src="/logo-horizontal-purple.png"
+                  src="/logo-horizontal-white.png"
                   alt="ZOND"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto brightness-0 invert opacity-90"
+                  width={170}
+                  height={56}
+                  className="h-14 w-auto"
                 />
-                <div className="h-10 w-px bg-white/30" />
-                <div className="flex flex-col items-center leading-none">
-                  <div className="text-2xl font-black tracking-wider text-[#F4C430]">
+                <div className="h-12 w-px bg-white/40" />
+                <div>
+                  <div className="text-4xl font-black tracking-wider text-[#F4C430] leading-none">
                     LIGHTOVO
                   </div>
-                  <div className="text-[10px] uppercase tracking-widest text-white/60 mt-1">
-                    бренд ГК с 2008
+                  <div className="text-xs uppercase tracking-widest text-white/70 mt-1">
+                    бренд ГК Зонд с 2008
                   </div>
                 </div>
-              </div>
-
-              <div className="inline-block bg-[#F4C430] text-[#0B1E3F] px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
-                ЛАЙТОВО — БРЕНД ГК ЗОНД С 2008
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
                 Светодиодная продукция и новогодняя иллюминация
