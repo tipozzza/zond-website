@@ -34,7 +34,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200">
+      <header className="sticky top-0 z-40 bg-white shadow-md border-b border-slate-200">
         <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-[76px] gap-8">
           <Link href="/" className="flex items-center">
             <Image

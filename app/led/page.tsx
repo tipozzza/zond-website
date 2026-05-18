@@ -26,7 +26,6 @@ import FloatingWA from "@/components/FloatingWA";
 import LedCalculator from "@/components/LedCalculator";
 import LedIllumination from "@/components/LedIllumination";
 import LedPortfolio from "@/components/LedPortfolio";
-import ImageWithFallback from "@/components/ImageWithFallback";
 
 const SOLUTION_ICONS: Record<string, LucideIcon> = {
   Building2,
@@ -144,28 +143,22 @@ export default function LedPage() {
 
           <div className="max-w-[1280px] mx-auto px-6 py-20 relative z-10 w-full min-h-[90vh] flex items-center">
             <div className="max-w-3xl">
-              <div className="flex items-center gap-4 mb-8 flex-wrap">
-                <div className="bg-white/95 backdrop-blur px-4 py-2 rounded-lg">
-                  <Image
-                    src="/logo-horizontal-purple.png"
-                    alt="ZOND"
-                    width={120}
-                    height={32}
-                    className="h-8 w-auto"
-                  />
-                </div>
-                <span className="text-2xl text-[#F4C430] font-light">+</span>
-                <div className="bg-white/95 backdrop-blur px-4 py-2 rounded-lg">
-                  <ImageWithFallback
-                    src="/images/led/lightovo-logo-white.png"
-                    alt="LIGHTOVO"
-                    className="h-8 w-auto"
-                    fallbackNode={
-                      <div className="font-black text-xl text-[#0B1E3F] tracking-widest">
-                        LIGHTOVO
-                      </div>
-                    }
-                  />
+              <div className="inline-flex items-center gap-6 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-4 rounded-2xl mb-8">
+                <Image
+                  src="/logo-horizontal-purple.png"
+                  alt="ZOND"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto brightness-0 invert opacity-90"
+                />
+                <div className="h-10 w-px bg-white/30" />
+                <div className="flex flex-col items-center leading-none">
+                  <div className="text-2xl font-black tracking-wider text-[#F4C430]">
+                    LIGHTOVO
+                  </div>
+                  <div className="text-[10px] uppercase tracking-widest text-white/60 mt-1">
+                    бренд ГК с 2008
+                  </div>
                 </div>
               </div>
 
@@ -341,7 +334,7 @@ export default function LedPage() {
         </section>
 
         {/* Преимущества */}
-        <section className="py-12 md:py-20 bg-white">
+        <section className="py-12 md:py-20 bg-slate-50">
           <div className="max-w-[1280px] mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Почему выбирают нас</h2>
@@ -373,7 +366,7 @@ export default function LedPage() {
         </section>
 
         {/* Процесс — 6 шагов */}
-        <section className="py-12 md:py-20 bg-slate-50">
+        <section className="py-12 md:py-20 bg-white">
           <div className="max-w-[1280px] mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Как мы работаем</h2>

@@ -95,7 +95,7 @@ export default function LedCalculator() {
 
   if (!data) {
     return (
-      <section id="calculator" className="py-12 md:py-20 bg-slate-50">
+      <section id="calculator" className="py-12 md:py-20 bg-white">
         <div className="text-center text-slate-500">Загружаем калькулятор...</div>
       </section>
     );
@@ -108,7 +108,7 @@ export default function LedCalculator() {
   const screenRange = data.ledScreens.pricing.estimatedRanges.find((r) => r.type === screenType);
 
   return (
-    <section id="calculator" className="py-12 md:py-20 bg-slate-50">
+    <section id="calculator" className="py-12 md:py-20 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Калькулятор стоимости</h2>
