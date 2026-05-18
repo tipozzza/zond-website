@@ -19,7 +19,7 @@ const CASES = [
   },
   {
     href: "/production",
-    image: "/images/outdoor-led-night.jpg",
+    image: "/images/production-workshop.jpg",
     title: "Производство",
     caption: "Изготовление конструкций под ключ: проектирование, металл, монтаж.",
   },
@@ -37,7 +37,7 @@ const CASES = [
   },
   {
     href: "/led",
-    image: "/images/client-meeting.jpg",
+    image: "/images/led-illumination.jpg",
     title: "LED и иллюминация",
     caption: "Новогодняя иллюминация городов, фасадов, ТЦ. Бренд Лайтово.",
   },
