@@ -1,61 +1,50 @@
 import Image from "next/image";
-import { FileText, Printer, Gift, Megaphone, Palette, BookOpen } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingWA from "@/components/FloatingWA";
 import DesignCalculator from "@/components/DesignCalculator";
+import DesignPortfolio from "@/components/DesignPortfolio";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
-const CATEGORIES: { icon: LucideIcon; title: string; startPrice: string; description: string }[] = [
+const CATEGORIES: { img: string; title: string; priceBadge: string; description: string }[] = [
   {
-    icon: FileText,
+    img: "/images/design/category-design-polygraphy.jpg",
     title: "Дизайн полиграфии",
-    startPrice: "от 200 ₽",
+    priceBadge: "ОТ 200 ₽",
     description: "Визитки, буклеты, открытки, календари — 32 позиции прайса.",
   },
   {
-    icon: Printer,
+    img: "/images/design/category-print.jpg",
     title: "Печать полиграфии",
-    startPrice: "от 4 ₽/шт",
+    priceBadge: "ОТ 4 ₽/ШТ",
     description: "Визитки от 96 шт, листовки от 10 шт, открытки, буклеты, флаеры.",
   },
   {
-    icon: Gift,
+    img: "/images/design/category-souvenir.jpg",
     title: "Сувенирная продукция",
-    startPrice: "от 5 ₽/шт",
-    description: "Тампонная печать на ручках, кружках, флешках. От 50 шт.",
+    priceBadge: "ОТ 5 ₽/ШТ",
+    description: "Тампонная печать на ручках, кружках, флешках, от 50 шт.",
   },
   {
-    icon: Megaphone,
+    img: "/images/design/category-outdoor-design.jpg",
     title: "Дизайн наружки",
-    startPrice: "от 250 ₽",
+    priceBadge: "ОТ 250 ₽",
     description: "Таблички, вывески, баннеры, штендеры, световые короба.",
   },
   {
-    icon: Palette,
+    img: "/images/design/category-logo.jpg",
     title: "Логотип",
-    startPrice: "от 8 000 ₽",
-    description: "Монохромный, цветной, комплекс с лого-буком. 3 концепции на выбор.",
+    priceBadge: "ОТ 8 000 ₽",
+    description: "Монохромный, цветной, комплекс с лого-буком.",
   },
   {
-    icon: BookOpen,
+    img: "/images/design/category-brandbook.jpg",
     title: "Брендбук",
-    startPrice: "от 20 000 ₽",
+    priceBadge: "ОТ 20 000 ₽",
     description: "Индивидуальный / Оптимальный / Комплекс с офис- и интерьерным стилем.",
   },
-];
-
-const PORTFOLIO = [
-  "Логотип «Колибри»",
-  "Брендбук «Сибирский институт»",
-  "Каталог СибАгро",
-  "Серия плакатов «Виктория»",
-  "Полиграфия Газпром нефть",
-  "Айдентика кофейни",
-  "Календари «Лама»",
-  "Этикетка «Томпиво»",
 ];
 
 const STEPS = [
@@ -66,22 +55,65 @@ const STEPS = [
   { num: 5, title: "Сдача", text: "Передаём готовый тираж или печатные файлы." },
 ];
 
-const EQUIPMENT = [
+const EQUIPMENT: {
+  image: string;
+  type: string;
+  name: string;
+  specs: { label: string; value: string }[];
+}[] = [
   {
+    image: "/images/design/equipment-xerox-color550.jpg",
+    type: "ФЛАГМАН МФ",
     name: "Xerox Color 550",
-    desc: "Цифровая печать SRA3, до 2400 dpi, 50 стр/мин. Основная рабочая лошадка для полиграфии.",
+    specs: [
+      { label: "Формат", value: "SRA3, A6–A3+" },
+      { label: "Плотность", value: "64–300 г/м²" },
+      { label: "Скорость", value: "50 стр/мин" },
+      { label: "Разрешение", value: "до 2400 dpi" },
+    ],
   },
   {
+    image: "/images/design/equipment-oki-es9541.jpg",
+    type: "БЕЛИЛО + ЛАК",
     name: "OKI ES9541",
-    desc: "Уникальный для Томска: печать CMYK + белым и лаком. Для эксклюзивной полиграфии.",
+    specs: [
+      { label: "Формат", value: "A5–A3+" },
+      { label: "Плотность", value: "до 360 г/м²" },
+      { label: "Скорость", value: "25 стр/мин" },
+      { label: "Цветность", value: "CMYK + белый + лак (уникально для Томска)" },
+    ],
   },
   {
-    name: "Duplo DP-63S",
-    desc: "Цифровой ризограф для больших тиражей. Быстро и недорого — листовки, буклеты.",
-  },
-  {
+    image: "/images/design/equipment-hp-designjet.jpg",
+    type: "ШИРОКОФОРМАТНАЯ ФОТО",
     name: "HP DesignJet Z5200",
-    desc: "Широкоформатная фотопечать до A0. Постеры, репродукции, выставочные материалы.",
+    specs: [
+      { label: "Формат", value: "до A0 (1118×1676 мм)" },
+      { label: "Плотность", value: "до 500 г/м²" },
+      { label: "Скорость", value: "10 м²/час" },
+      { label: "Разрешение", value: "2400×1200 dpi, отпечатки до 200 лет" },
+    ],
+  },
+  {
+    image: "/images/design/equipment-zeon-cutter.jpg",
+    type: "РЕЗКА И БИГОВКА",
+    name: "ZEONCUT FB-6090",
+    specs: [
+      { label: "Тип", value: "планшетный плоттер" },
+      { label: "Формат", value: "600×900 мм" },
+      { label: "Давление", value: "до 1200 г" },
+      { label: "Скорость", value: "до 600 мм/с" },
+    ],
+  },
+  {
+    image: "/images/design/equipment-zprinter-3d.jpg",
+    type: "3D-ПЕЧАТЬ",
+    name: "Z Corporation ZPrinter 450",
+    specs: [
+      { label: "Цветность", value: "полноцветная" },
+      { label: "Объект", value: "203×254×203 мм" },
+      { label: "Разрешение", value: "300×450 dpi" },
+    ],
   },
 ];
 
@@ -141,25 +173,31 @@ export default function DesignPage() {
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
               6 направлений работы дизайн-центра — с реальными ценами от.
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {CATEGORIES.map(({ icon: Icon, title, startPrice, description }) => (
-                <article
-                  key={title}
-                  className="bg-white rounded-2xl border border-slate-200 hover:border-[#3949AB] shadow-sm hover:shadow-lg transition-all p-6 flex flex-col"
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {CATEGORIES.map((c) => (
+                <a
+                  key={c.title}
+                  href="#calculator"
+                  className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#3949AB] hover:shadow-2xl hover:shadow-[#3949AB]/20 transition-all duration-500 hover:-translate-y-2"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#3949AB]/10 flex items-center justify-center mb-5">
-                    <Icon size={26} className="text-[#3949AB]" />
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                    <Image
+                      src={c.img}
+                      alt={c.title}
+                      fill
+                      loading="lazy"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#3949AB]">
+                      {c.priceBadge}
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2 leading-tight">{title}</h3>
-                  <div className="text-[#3949AB] font-bold text-lg mb-3">{startPrice}</div>
-                  <p className="text-slate-600 leading-relaxed flex-1 mb-4">{description}</p>
-                  <a
-                    href="#calculator"
-                    className="text-[#3949AB] font-semibold text-sm self-start hover:underline"
-                  >
-                    Подробнее в калькуляторе →
-                  </a>
-                </article>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 text-slate-900 leading-tight">{c.title}</h3>
+                    <p className="text-slate-600 leading-relaxed">{c.description}</p>
+                  </div>
+                </a>
               ))}
             </div>
           </div>
@@ -169,29 +207,9 @@ export default function DesignPage() {
         <DesignCalculator />
 
         {/* Портфолио */}
-        <section id="portfolio" className="py-12 md:py-20 bg-white">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Наши работы</h2>
-            <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              Реальные кейсы — от логотипа кофейни до брендбука университета. Фото загружаются.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {PORTFOLIO.map((title) => (
-                <article
-                  key={title}
-                  className="aspect-square rounded-2xl bg-gradient-to-br from-slate-200 to-slate-300 border border-slate-200 overflow-hidden relative"
-                >
-                  <div className="absolute inset-0 flex items-center justify-center text-slate-500 text-sm">
-                    Фото
-                  </div>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3">
-                    <div className="text-white font-semibold text-sm leading-tight">{title}</div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <div id="portfolio">
+          <DesignPortfolio />
+        </div>
 
         {/* Этапы */}
         <section className="py-12 md:py-20 bg-slate-50">
@@ -224,18 +242,34 @@ export default function DesignPage() {
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
               Цифровая и широкоформатная печать — всё на нашей территории, без посредников.
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {EQUIPMENT.map((e) => (
-                <div
+                <article
                   key={e.name}
-                  className="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col"
+                  className="bg-white rounded-2xl border border-slate-200 hover:shadow-xl hover:border-[#3949AB] transition-all overflow-hidden flex flex-col"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#3949AB]/10 flex items-center justify-center mb-4 text-2xl">
-                    🖨️
+                  <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
+                    <ImageWithFallback
+                      src={e.image}
+                      alt={e.name}
+                      fallbackEmoji="🖨️"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="font-bold text-slate-900 mb-2 leading-tight">{e.name}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{e.desc}</p>
-                </div>
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="text-xs font-bold text-[#3949AB] uppercase tracking-wide mb-1">
+                      {e.type}
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 mb-3 leading-tight">{e.name}</h3>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      {e.specs.map((spec) => (
+                        <li key={spec.label}>
+                          <strong className="text-slate-800">{spec.label}:</strong> {spec.value}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
