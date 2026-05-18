@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Award, Zap, Settings, Shield, Printer, Image as ImageIcon, Layers, FileText } from "lucide-react";
+import { Award, Zap, Settings, Shield, Printer, Image as ImageIcon, Scissors, FileText } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,6 +7,8 @@ import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingWA from "@/components/FloatingWA";
 import PrintCalculator from "@/components/PrintCalculator";
+import PrintPortfolio from "@/components/PrintPortfolio";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 const ADVANTAGES: { icon: LucideIcon; title: string; text: string }[] = [
   {
@@ -31,63 +33,109 @@ const ADVANTAGES: { icon: LucideIcon; title: string; text: string }[] = [
   },
 ];
 
-const PRINT_TYPES: { icon: LucideIcon; title: string; description: string; items: string[] }[] = [
+const PRINT_TYPES: {
+  icon: LucideIcon;
+  image: string;
+  badge: string;
+  title: string;
+  description: string;
+  items: string;
+}[] = [
   {
     icon: Printer,
+    image: "/images/print/type-solvent.jpg",
+    badge: "ДО 3.2 М ШИРИНОЙ",
     title: "Широкоформатная сольвентная",
     description: "Баннеры для билбордов, фасадов, перетягов. Печать до 3.2 м шириной.",
-    items: ["Баннер 280 / 340 / 440 / 510 г/м²", "Сетка mesh для фасадов", "Постерная бумага и Blue Back"],
+    items: "Баннер 280/340/440/510 г, Blue Back, постерная, сетка mesh",
   },
   {
     icon: ImageIcon,
+    image: "/images/print/type-interior.jpg",
+    badge: "1440 DPI",
     title: "Интерьерная эко-сольвентная",
-    description: "Постеры, оформление витрин, выставочных стендов. Разрешение 1440 dpi.",
-    items: ["Плёнка ORAJET и Китай", "Холст, ткань, бумага", "Принтеры Mimaki и Mustang"],
+    description: "Постеры, оформление витрин, выставочных стендов. Разрешение до 1440 dpi.",
+    items: "Плёнка ORAJET и Китай, холст, ткань, бумага. Принтеры Mimaki и Mustang.",
   },
   {
-    icon: Layers,
+    icon: Scissors,
+    image: "/images/print/type-postprint.jpg",
+    badge: "ОТ 20 ₽/М",
     title: "Постпечатная обработка",
     description: "Превращаем отпечаток в готовое изделие. Резка, проклейка, ламинирование, люверсы.",
-    items: ["Подрезка по периметру", "Проклейка края и установка люверсов", "Ламинирование плёнкой 30–250 мкм"],
+    items: "Подрезка по периметру, проклейка края, установка люверсов, ламинирование 30–250 мкм.",
   },
 ];
 
-const EQUIPMENT: { icon: string; name: string; type: string; specs: string[] }[] = [
+const EQUIPMENT: {
+  image: string;
+  name: string;
+  type: string;
+  specs: { label: string; value: string }[];
+}[] = [
   {
-    icon: "🖨️",
+    image: "/images/print/printer-magellan.jpg",
     name: "Magellan C3208i",
-    type: "Сольвент",
-    specs: ["Ширина 3.2 м", "до 720 dpi", "до 240 м²/час", "Баннер, бумага, плёнка, сетка, холст"],
+    type: "СОЛЬВЕНТ",
+    specs: [
+      { label: "Ширина", value: "3.2 м" },
+      { label: "Разрешение", value: "до 720 dpi" },
+      { label: "Скорость", value: "до 240 м²/час" },
+      { label: "Материалы", value: "баннер, бумага, плёнка, сетка, холст" },
+    ],
   },
   {
-    icon: "🖨️",
+    image: "/images/print/printer-flora.jpg",
     name: "Flora LJ-3208P",
-    type: "Сольвент",
-    specs: ["Ширина 3.2 м", "до 600 dpi", "до 185 м²/час", "Баннер, бумага, плёнка"],
+    type: "СОЛЬВЕНТ",
+    specs: [
+      { label: "Ширина", value: "3.2 м" },
+      { label: "Разрешение", value: "до 600 dpi" },
+      { label: "Скорость", value: "до 185 м²/час" },
+      { label: "Материалы", value: "баннер, бумага, плёнка" },
+    ],
   },
   {
-    icon: "🖨️",
+    image: "/images/print/printer-mimaki.jpg",
     name: "Mimaki CJV150-160",
-    type: "Эко-сольвент",
-    specs: ["Ширина 1.6 м", "1440 dpi", "32 м²/час", "С контурной резкой"],
+    type: "ЭКО-СОЛЬВЕНТ",
+    specs: [
+      { label: "Ширина", value: "1.6 м" },
+      { label: "Разрешение", value: "1440 dpi" },
+      { label: "Скорость", value: "32 м²/час" },
+      { label: "Особенности", value: "+ контурная резка 30 см/сек" },
+    ],
   },
   {
-    icon: "🖨️",
+    image: "/images/print/printer-mustang.jpg",
     name: "Mustang MG 1601 DK",
-    type: "Эко-сольвент",
-    specs: ["Ширина 1.6 м", "1440 dpi", "до 15 м²/час", "Головы EPSON DX-5"],
+    type: "ЭКО-СОЛЬВЕНТ",
+    specs: [
+      { label: "Ширина", value: "1.6 м" },
+      { label: "Разрешение", value: "1440 dpi" },
+      { label: "Скорость", value: "до 15 м²/час" },
+      { label: "Особенности", value: "головы EPSON DX-5" },
+    ],
   },
   {
-    icon: "✂️",
+    image: "/images/print/cutter-keencut.jpg",
     name: "KEENCUT Javelin 3 м",
-    type: "Резак",
-    specs: ["Лазерная технология", "Ширина 3 м", "Ровные стыки", "Для составных панелей"],
+    type: "РЕЗАК",
+    specs: [
+      { label: "Тип", value: "лазерная технология" },
+      { label: "Ширина", value: "3 м" },
+      { label: "Особенности", value: "ровные стыки для составных панелей" },
+    ],
   },
   {
-    icon: "🎞️",
+    image: "/images/print/laminator-excelam.jpg",
     name: "EXCELAM WIDE 1670RS",
-    type: "Ламинатор",
-    specs: ["Горячий и холодный режим", "Ширина 1.6 м", "Плёнка 30–250 мкм", "Финиширование интерьера"],
+    type: "ЛАМИНАТОР",
+    specs: [
+      { label: "Режим", value: "горячий и холодный" },
+      { label: "Ширина", value: "до 1.6 м" },
+      { label: "Плёнка", value: "30–250 мкм" },
+    ],
   },
 ];
 
@@ -197,6 +245,9 @@ export default function PrintPage() {
         {/* Калькулятор */}
         <PrintCalculator />
 
+        {/* Портфолио */}
+        <PrintPortfolio />
+
         {/* Виды печати */}
         <section className="py-12 md:py-20 bg-white">
           <div className="max-w-[1280px] mx-auto px-6">
@@ -205,24 +256,34 @@ export default function PrintPage() {
               Три направления закрывают любую задачу — от уличной рекламы до финального оформления изделия.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-              {PRINT_TYPES.map(({ icon: Icon, title, description, items }) => (
+              {PRINT_TYPES.map(({ icon: Icon, image, badge, title, description, items }) => (
                 <article
                   key={title}
-                  className="bg-white rounded-2xl border border-slate-200 hover:border-[#FFCC00] shadow-sm hover:shadow-lg transition-all p-8 flex flex-col"
+                  className="group rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#FFCC00] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#FFCC00]/15 flex items-center justify-center mb-5">
-                    <Icon size={28} className="text-amber-600" />
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                    <ImageWithFallback
+                      src={image}
+                      alt={title}
+                      fallbackEmoji="🖨️"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 left-4 bg-[#FFCC00] text-slate-900 px-3 py-1 rounded-full text-xs font-bold">
+                      {badge}
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3 leading-tight">{title}</h3>
-                  <p className="text-slate-600 mb-5 leading-relaxed">{description}</p>
-                  <ul className="space-y-1.5 text-sm text-slate-700 mt-auto">
-                    {items.map((it) => (
-                      <li key={it} className="flex items-start gap-2">
-                        <span className="text-[#FFCC00] font-bold mt-0.5">•</span>
-                        <span>{it}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-[#FFCC00]/20 flex items-center justify-center flex-shrink-0">
+                        <Icon size={20} className="text-slate-900" />
+                      </div>
+                      <h3 className="text-xl font-bold text-slate-900 leading-tight">{title}</h3>
+                    </div>
+                    <p className="text-slate-600 mb-4 leading-relaxed">{description}</p>
+                    <p className="text-sm text-slate-500 mt-auto leading-relaxed">
+                      <strong className="text-slate-700">Материалы:</strong> {items}
+                    </p>
+                  </div>
                 </article>
               ))}
             </div>
@@ -240,27 +301,29 @@ export default function PrintPage() {
               {EQUIPMENT.map((e) => (
                 <article
                   key={e.name}
-                  className="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col"
+                  className="bg-white rounded-2xl border border-slate-200 hover:shadow-xl hover:border-[#FFCC00] transition-all overflow-hidden flex flex-col"
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#FFCC00]/15 flex items-center justify-center text-2xl">
-                      {e.icon}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-slate-900 leading-tight">{e.name}</h3>
-                      <div className="text-xs text-slate-500 uppercase tracking-wider mt-0.5">
-                        {e.type}
-                      </div>
-                    </div>
+                  <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
+                    <ImageWithFallback
+                      src={e.image}
+                      alt={e.name}
+                      fallbackEmoji="🖨️"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <ul className="space-y-1.5 text-sm text-slate-700">
-                    {e.specs.map((spec) => (
-                      <li key={spec} className="flex items-start gap-2">
-                        <span className="text-[#FFCC00] font-bold mt-0.5">•</span>
-                        <span>{spec}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="text-xs font-bold text-amber-600 uppercase tracking-wide mb-1">
+                      {e.type}
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 mb-3 leading-tight">{e.name}</h3>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      {e.specs.map((spec) => (
+                        <li key={spec.label}>
+                          <strong className="text-slate-800">{spec.label}:</strong> {spec.value}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </article>
               ))}
             </div>
