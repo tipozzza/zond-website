@@ -177,7 +177,7 @@ export default function PrintPage() {
               sizes="100vw"
               className="object-cover opacity-40"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/20" />
           </div>
           <div className="max-w-[1280px] mx-auto px-6 relative z-10 py-20">
             <div className="max-w-2xl text-white">
@@ -200,7 +200,7 @@ export default function PrintPage() {
                 </a>
                 <a
                   href="#equipment"
-                  className="bg-white/10 backdrop-blur border border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-colors"
+                  className="bg-black/40 backdrop-blur border border-white/40 text-white px-8 py-4 rounded-xl font-semibold hover:bg-black/60 transition-colors"
                 >
                   Наше оборудование
                 </a>
