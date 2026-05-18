@@ -16,13 +16,15 @@ declare global {
 type Props = {
   sides: Side[];
   onSideClick: (side: Side) => void;
+  focusSide?: Side | null;
 };
 
-export default function YandexMap({ sides, onSideClick }: Props) {
+export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
   const onSideClickRef = useRef(onSideClick);
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
     onSideClickRef.current = onSideClick;
@@ -91,6 +93,7 @@ export default function YandexMap({ sides, onSideClick }: Props) {
       map.geoObjects.add(clusterer);
 
       mapInstance.current = map;
+      setMapReady(true);
     });
 
     return () => {
@@ -98,8 +101,15 @@ export default function YandexMap({ sides, onSideClick }: Props) {
         mapInstance.current.destroy();
         mapInstance.current = null;
       }
+      setMapReady(false);
     };
   }, [scriptLoaded, sides]);
+
+  useEffect(() => {
+    if (!mapReady || !mapInstance.current) return;
+    if (!focusSide || focusSide.lat == null || focusSide.lng == null) return;
+    mapInstance.current.setCenter([focusSide.lat, focusSide.lng], 17, { duration: 500 });
+  }, [focusSide, mapReady]);
 
   const apiKey = process.env.NEXT_PUBLIC_YANDEX_MAPS_KEY;
 

@@ -6,6 +6,7 @@ import type { Side } from "@/lib/types";
 type Props = {
   sides: Side[];
   onSideClick: (side: Side) => void;
+  onShowOnMap: (side: Side) => void;
 };
 
 type SortKey = "id" | "address" | "type" | "format" | "priceFinal" | "grp";
@@ -21,7 +22,7 @@ const COLUMNS: { k: SortKey; label: string }[] = [
   { k: "grp", label: "GRP" },
 ];
 
-export default function SidesListView({ sides, onSideClick }: Props) {
+export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props) {
   const [search, setSearch] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("id");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
@@ -117,12 +118,21 @@ export default function SidesListView({ sides, onSideClick }: Props) {
                 <td className="px-3 py-2">{s.grp ?? "—"}</td>
                 <td className="px-3 py-2">{s.illuminated ? "✓" : "—"}</td>
                 <td className="px-3 py-2">
-                  <button
-                    onClick={() => onSideClick(s)}
-                    className="text-brand font-semibold hover:underline"
-                  >
-                    Подробнее
-                  </button>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => onSideClick(s)}
+                      className="text-brand font-semibold hover:underline whitespace-nowrap"
+                    >
+                      Подробнее
+                    </button>
+                    <button
+                      onClick={() => onShowOnMap(s)}
+                      className="text-slate-600 hover:text-brand hover:underline whitespace-nowrap"
+                      title="Показать на карте"
+                    >
+                      📍 На карте
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

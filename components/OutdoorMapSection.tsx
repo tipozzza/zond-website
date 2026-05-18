@@ -23,6 +23,7 @@ export default function OutdoorMapSection() {
   const [selectedSide, setSelectedSide] = useState<Side | null>(null);
   const [bookingSide, setBookingSide] = useState<Side | null>(null);
   const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [focusSide, setFocusSide] = useState<Side | null>(null);
 
   useEffect(() => {
     fetchSides()
@@ -30,6 +31,20 @@ export default function OutdoorMapSection() {
       .catch((err) => console.error("Failed to load sides:", err))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    if (!focusSide) return;
+    const t = setTimeout(() => {
+      setSelectedSide(focusSide);
+      setFocusSide(null);
+    }, 800);
+    return () => clearTimeout(t);
+  }, [focusSide]);
+
+  const handleShowOnMap = (side: Side) => {
+    setView("map");
+    setFocusSide(side);
+  };
 
   const filteredSides = useMemo(() => {
     return allSides.filter((s) => {
@@ -89,9 +104,17 @@ export default function OutdoorMapSection() {
           </div>
           <div>
             {view === "map" ? (
-              <YandexMap sides={filteredSides} onSideClick={setSelectedSide} />
+              <YandexMap
+                sides={filteredSides}
+                onSideClick={setSelectedSide}
+                focusSide={focusSide}
+              />
             ) : (
-              <SidesListView sides={filteredSides} onSideClick={setSelectedSide} />
+              <SidesListView
+                sides={filteredSides}
+                onSideClick={setSelectedSide}
+                onShowOnMap={handleShowOnMap}
+              />
             )}
           </div>
         </div>
