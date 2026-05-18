@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import type { Side } from "@/lib/types";
-import { TYPE_COLORS, getSidePhotoUrl } from "@/lib/sides-data";
+import { TYPE_COLORS } from "@/lib/sides-data";
 
 declare global {
   interface Window {
@@ -67,9 +67,8 @@ export default function YandexMap({ sides, onSideClick }: Props) {
         .filter((s) => s.lat !== null && s.lng !== null)
         .map((side) => {
           const color = TYPE_COLORS[side.type] || "#666";
-          const photoUrl = getSidePhotoUrl(side);
-          const photoHtml = photoUrl
-            ? `<img src="${photoUrl}" alt="${side.id}" style="width:100%;max-width:280px;height:auto;border-radius:6px;margin-bottom:8px;display:block;" onerror="this.style.display='none'" />`
+          const photoHtml = side.photo_filename
+            ? `<img src="/images/constructions/${side.photo_filename}" alt="${side.id}" style="width:100%;max-width:280px;height:auto;border-radius:6px;margin-bottom:8px;display:block;" onerror="this.style.display='none'" />`
             : "";
           const price = side.priceFinal ? side.priceFinal.toLocaleString("ru-RU") + " ₽/мес" : "";
           const button = `<button onclick="window.__zondOpenSide('${side.id}'); return false;" style="background:#3D2E91;color:white;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-weight:600;margin-top:8px;">Подробнее и забронировать</button>`;

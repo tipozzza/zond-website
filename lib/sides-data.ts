@@ -40,20 +40,3 @@ export async function fetchSides(): Promise<Side[]> {
   if (!res.ok) throw new Error("Failed to fetch sides");
   return res.json();
 }
-
-const SIDE_LETTER_MAP: Record<string, string> = {
-  А: "a", A: "a", В: "b", B: "b",
-};
-
-export function getSidePhotoFilename(side: Side): string | null {
-  if (!side.construction || !side.side) return null;
-  const prefix = side.side.charAt(0);
-  const letter = SIDE_LETTER_MAP[prefix];
-  if (!letter) return null;
-  return `${side.construction}${letter}_l_d.jpg`;
-}
-
-export function getSidePhotoUrl(side: Side): string | null {
-  const name = getSidePhotoFilename(side);
-  return name ? `/images/constructions/${name}` : null;
-}

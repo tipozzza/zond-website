@@ -1,7 +1,7 @@
 "use client";
 
 import type { Side } from "@/lib/types";
-import { MONTH_LABELS, STATUS_LABELS, STATUS_COLORS, getSidePhotoUrl } from "@/lib/sides-data";
+import { MONTH_LABELS, STATUS_LABELS, STATUS_COLORS } from "@/lib/sides-data";
 
 type Props = {
   side: Side;
@@ -10,8 +10,6 @@ type Props = {
 };
 
 export default function SideDetails({ side, onClose, onBook }: Props) {
-  const photoUrl = getSidePhotoUrl(side);
-
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={onClose}>
       <div
@@ -28,11 +26,11 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
           </button>
         </div>
 
-        {photoUrl ? (
+        {side.photo_filename ? (
           <div className="relative w-full aspect-[4/3] mb-4 rounded-xl overflow-hidden bg-slate-100">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={photoUrl}
+              src={`/images/constructions/${side.photo_filename}`}
               alt={`Конструкция ${side.id} — ${side.address}`}
               className="w-full h-full object-cover"
               onError={(e) => {

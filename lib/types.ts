@@ -18,6 +18,7 @@ export type Side = {
   lng: number | null;
   illuminated: boolean;
   organization: string;
+  photo_filename: string | null;
   status: {
     may: SideStatus;
     june: SideStatus;
