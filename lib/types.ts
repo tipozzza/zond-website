@@ -1,4 +1,4 @@
-export type SideStatus = "free" | "busy" | "partial" | "reserved" | "self";
+export type SideStatus = "free" | "busy" | "partial" | "reserved";
 
 export type Side = {
   id: string;

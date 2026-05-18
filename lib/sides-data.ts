@@ -29,7 +29,6 @@ export const STATUS_LABELS: Record<string, string> = {
   busy: "Занято",
   partial: "Частично",
   reserved: "Резерв",
-  self: "Самореклама",
 };
 
 export const STATUS_COLORS: Record<string, string> = {
@@ -37,7 +36,6 @@ export const STATUS_COLORS: Record<string, string> = {
   busy: "#ef4444",
   partial: "#f59e0b",
   reserved: "#3b82f6",
-  self: "#8b5cf6",
 };
 
 export const TYPE_COLORS: Record<string, string> = {
