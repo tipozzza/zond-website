@@ -1,16 +1,5 @@
 import Image from "next/image";
-import {
-  Tag,
-  Square,
-  Lightbulb,
-  Type,
-  Box,
-  Sparkles,
-  Settings,
-  Zap,
-  Scissors,
-  Wrench,
-} from "lucide-react";
+import { ArrowRight, Settings, Zap, Scissors, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -20,46 +9,66 @@ import FloatingWA from "@/components/FloatingWA";
 import ProductionCalculator from "@/components/ProductionCalculator";
 
 const CATEGORIES: {
-  icon: LucideIcon;
+  img: string;
   title: string;
-  startPrice: string;
+  priceBadge: string;
+  secondBadge: string;
+  subtitle: string;
   description: string;
 }[] = [
   {
-    icon: Tag,
+    img: "/images/production/tablichki.jpg",
     title: "Таблички",
-    startPrice: "от 95 ₽/шт",
-    description: "Информационные, навигационные, шильдики. От 10 шт цена тиражная.",
+    priceBadge: "ОТ 95 ₽/ШТ",
+    secondBadge: "ТИРАЖ ОТ 10 ШТ",
+    subtitle: "Офисы · Кабинеты · Навигация",
+    description:
+      "Шильдики на двери, информационные плашки, навигация по зданию. Печать или гравировка по ПВХ, оргстеклу, композиту, металлу.",
   },
   {
-    icon: Square,
+    img: "/images/production/flat-signs.jpg",
     title: "Плоские вывески",
-    startPrice: "от 1 240 ₽/м²",
-    description: "ПВХ, композит, оргстекло с плёночной аппликацией или печатью.",
+    priceBadge: "ОТ 1 240 ₽/м²",
+    secondBadge: "БЕЗ ПОДСВЕТКИ",
+    subtitle: "Бюджетный фасад · Магазины · Кафе",
+    description:
+      "Композит, ПВХ или оргстекло с печатью или плёночной аппликацией. Самый быстрый и недорогой способ оформить фасад.",
   },
   {
-    icon: Lightbulb,
+    img: "/images/production/lightbox.jpg",
     title: "Световые короба",
-    startPrice: "от 10 500 ₽/м²",
-    description: "Одно- и двусторонние, фигурные. Гарантия 3–5 лет.",
+    priceBadge: "ОТ 10 500 ₽/м²",
+    secondBadge: "ГАРАНТИЯ 3-5 ЛЕТ",
+    subtitle: "Брендирование · Двусторонние · Видны издалека",
+    description:
+      "Объёмные конструкции с внутренней LED-подсветкой. Светятся 24/7. Алюминиевый профиль, фасонная форма по эскизу.",
   },
   {
-    icon: Type,
+    img: "/images/production/pseudo-letters.jpg",
     title: "Псевдообъёмные буквы",
-    startPrice: "от 16 ₽/см высоты",
-    description: "Плоские с эффектом объёма за счёт дистанционных держателей.",
+    priceBadge: "ОТ 16 ₽/СМ ВЫСОТЫ",
+    secondBadge: "БЮДЖЕТНО",
+    subtitle: "Интерьер · Reception · Кабинеты",
+    description:
+      "Плоские буквы из ПВХ или оргстекла с эффектом объёма за счёт дистанционных держателей. Лёгкий и недорогой вариант.",
   },
   {
-    icon: Box,
+    img: "/images/production/volumetric-letters.jpg",
     title: "Объёмные буквы",
-    startPrice: "от 65 ₽ без подсветки",
-    description: "От монолитных до с открытыми диодами. Фронтальная и контражурная подсветка.",
+    priceBadge: "ОТ 65 ₽ БЕЗ ПОДСВЕТКИ",
+    secondBadge: "С ПОДСВЕТКОЙ ОТ 105 ₽",
+    subtitle: "Фасад · ТЦ · Премиум-сегмент",
+    description:
+      "Цельная конструкция с боковым каркасом. От монолитных без подсветки до букв с открытыми диодами и контражурным свечением.",
   },
   {
-    icon: Sparkles,
+    img: "/images/production/sequin-letters.jpg",
     title: "Буквы-пайетки",
-    startPrice: "от 13 540 ₽/м²",
-    description: "Живая вывеска: динамическое изображение из вращающихся пайеток.",
+    priceBadge: "ОТ 13 540 ₽/м²",
+    secondBadge: "ЖИВАЯ ВЫВЕСКА",
+    subtitle: "Динамика · ТРЦ · Особое внимание",
+    description:
+      "Сотни вращающихся диодов создают динамическое изображение. Реагирует на ветер, привлекает максимум внимания.",
   },
 ];
 
@@ -169,27 +178,43 @@ export default function ProductionPage() {
               Что мы производим
             </h2>
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              6 направлений собственного производства в Томске — с реальными ценами от.
+              6 направлений с реальными ценами. Кликайте на карточку — откроется калькулятор.
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {CATEGORIES.map(({ icon: Icon, title, startPrice, description }) => (
-                <article
-                  key={title}
-                  className="bg-white rounded-2xl border border-slate-200 hover:border-[#7CB342] shadow-sm hover:shadow-lg transition-all p-6 flex flex-col"
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {CATEGORIES.map((c) => (
+                <a
+                  key={c.title}
+                  href="#calculator"
+                  className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#7CB342] hover:shadow-2xl hover:shadow-[#7CB342]/20 transition-all duration-500 hover:-translate-y-2"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#7CB342]/10 flex items-center justify-center mb-5">
-                    <Icon size={26} className="text-[#7CB342]" />
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                    <Image
+                      src={c.img}
+                      alt={c.title}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#7CB342]">
+                      {c.priceBadge}
+                    </div>
+                    <div className="absolute top-4 right-4 bg-[#7CB342] text-white px-3 py-1 rounded-full text-xs font-bold">
+                      {c.secondBadge}
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2 leading-tight">{title}</h3>
-                  <div className="text-[#7CB342] font-bold text-lg mb-3">{startPrice}</div>
-                  <p className="text-slate-600 leading-relaxed flex-1 mb-4">{description}</p>
-                  <a
-                    href="#calculator"
-                    className="text-[#7CB342] font-semibold text-sm self-start hover:underline"
-                  >
-                    Подробнее в калькуляторе →
-                  </a>
-                </article>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-2 text-slate-900">{c.title}</h3>
+                    <p className="text-sm text-[#7CB342] font-semibold mb-3">{c.subtitle}</p>
+                    <p className="text-slate-600 mb-4 leading-relaxed">{c.description}</p>
+                    <div className="flex items-center text-[#7CB342] font-semibold">
+                      <span>Рассчитать стоимость</span>
+                      <ArrowRight
+                        size={18}
+                        className="ml-1 group-hover:translate-x-1 transition-transform"
+                      />
+                    </div>
+                  </div>
+                </a>
               ))}
             </div>
           </div>
