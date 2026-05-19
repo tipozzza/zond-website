@@ -2,6 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { COMPANY } from "@/lib/site-data";
 
+const SOCIAL_LINKS = [
+  { href: "https://vk.com/zond.reklama", label: "ВКонтакте", short: "VK" },
+  { href: "https://t.me/zond_reklama", label: "Telegram", short: "TG" },
+];
+
 const SECTIONS = [
   {
     title: "Направления",
@@ -42,9 +47,16 @@ export default function Footer() {
               Полный цикл: размещение, производство, дизайн, монтаж, обслуживание.
             </p>
             <div className="flex gap-2.5 mt-4">
-              {["VK", "TG", "YT", "WA"].map((n) => (
-                <a key={n} href="#" className="w-9 h-9 rounded-lg bg-white/8 flex items-center justify-center text-xs font-bold text-white hover:bg-white hover:text-brand transition-colors">
-                  {n}
+              {SOCIAL_LINKS.map((s) => (
+                <a
+                  key={s.short}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-lg bg-white/8 flex items-center justify-center text-xs font-bold text-white hover:bg-white hover:text-brand transition-colors"
+                >
+                  {s.short}
                 </a>
               ))}
             </div>

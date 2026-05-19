@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
@@ -79,7 +79,7 @@ export default function ContactsPage() {
                 </div>
               </div>
 
-              {/* Mail / WA / VK */}
+              {/* Mail / Telegram / VK */}
               <div className="bg-[#f6f5fa] rounded-2xl p-8 border border-gray-100">
                 <div className="w-14 h-14 rounded-xl bg-brand/10 text-brand flex items-center justify-center mb-5">
                   <Mail size={28} />
@@ -96,13 +96,13 @@ export default function ContactsPage() {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <a
-                    href="https://wa.me/79234009705"
+                    href="https://t.me/zond_reklama"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors"
+                    className="inline-flex items-center gap-2 bg-[#0088cc] hover:bg-[#0077B5] text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors"
                   >
-                    <MessageCircle size={18} />
-                    WhatsApp
+                    <Send size={18} />
+                    Telegram
                   </a>
                   <a
                     href="https://vk.com/zond.reklama"
