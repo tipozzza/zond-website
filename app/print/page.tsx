@@ -19,9 +19,9 @@ const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string 
   },
   {
     icon: Activity,
-    stat: "500 000",
+    stat: "50 000",
     title: "м² в год",
-    text: "Парк оборудования печатает полноцветные широкоформатные изображения объёмом полмиллиона квадратных метров ежегодно.",
+    text: "Парк оборудования печатает полноцветные широкоформатные изображения объёмом 50 000 квадратных метров ежегодно.",
   },
   {
     icon: Award,
@@ -191,7 +191,7 @@ export default function PrintPage() {
                 Широкоформатная и интерьерная печать
               </h1>
               <p className="text-xl md:text-2xl text-white/90 mb-8 text-left leading-relaxed">
-                500 000 м² полноцветной печати в год. От баннеров 6×3 до интерьерных постеров с разрешением 1440 dpi.
+                50 000 м² полноцветной печати в год. От баннеров 6×3 до интерьерных постеров с разрешением 1440 dpi.
               </p>
               <div className="flex gap-4 flex-wrap mb-12">
                 <a
@@ -217,7 +217,7 @@ export default function PrintPage() {
                   <div className="text-sm text-white/80 mt-1">материалов</div>
                 </div>
                 <div>
-                  <div className="text-4xl md:text-5xl font-bold text-[#FFCC00] leading-none">500 000</div>
+                  <div className="text-4xl md:text-5xl font-bold text-[#FFCC00] leading-none">50 000</div>
                   <div className="text-sm text-white/80 mt-1">м²/год</div>
                 </div>
               </div>

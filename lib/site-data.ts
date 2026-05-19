@@ -21,7 +21,7 @@ export const STATS = {
   digital: 336,
   digitalScreens: 27,
   area: "13 800",
-  printingPerYear: "500 000",
+  printingPerYear: "50 000",
 };
 
 export const SERVICES = [
@@ -43,7 +43,7 @@ export const SERVICES = [
     title: "Широкоформатная печать",
     icon: "🖨",
     color: "print",
-    description: "Печать баннеров, плёнок, бумаги, холста. 4 промышленных принтера общей мощностью 500 000 м² в год.",
+    description: "Печать баннеров, плёнок, бумаги, холста. 4 промышленных принтера общей мощностью 50 000 м² в год.",
     features: [
       "Баннер 3×6 за 10 минут",
       "Разрешение до 1440 dpi",
