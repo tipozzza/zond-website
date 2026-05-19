@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Side } from "@/lib/types";
 import { fetchSides, getCurrentMonthKey } from "@/lib/sides-data";
 import YandexMap from "./YandexMap";
@@ -24,6 +24,7 @@ export default function OutdoorMapSection() {
   const [bookingSide, setBookingSide] = useState<Side | null>(null);
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [focusSide, setFocusSide] = useState<Side | null>(null);
+  const mapWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchSides()
@@ -35,6 +36,9 @@ export default function OutdoorMapSection() {
   const handleShowOnMap = (side: Side) => {
     setView("map");
     setFocusSide(side);
+    setTimeout(() => {
+      mapWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   const filteredSides = useMemo(() => {
@@ -101,7 +105,7 @@ export default function OutdoorMapSection() {
           </div>
           <div>
             <div style={{ display: view === "map" ? "block" : "none" }}>
-              <div className="relative">
+              <div ref={mapWrapperRef} className="relative">
                 <YandexMap
                   sides={filteredSides}
                   onSideClick={setSelectedSide}
