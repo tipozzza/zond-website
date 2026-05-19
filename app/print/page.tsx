@@ -45,6 +45,7 @@ const PRINT_TYPES: {
   title: string;
   description: string;
   items: string;
+  anchor?: string;
 }[] = [
   {
     icon: Printer,
@@ -53,6 +54,7 @@ const PRINT_TYPES: {
     title: "Широкоформатная сольвентная",
     description: "Баннеры для билбордов, фасадов, перетягов. Печать до 3.2 м шириной.",
     items: "Баннер 280/340/440/510 г, Blue Back, постерная, сетка mesh",
+    anchor: "wide",
   },
   {
     icon: ImageIcon,
@@ -61,6 +63,7 @@ const PRINT_TYPES: {
     title: "Интерьерная эко-сольвентная",
     description: "Постеры, оформление витрин, выставочных стендов. Разрешение до 1440 dpi.",
     items: "Плёнка ORAJET и Китай, холст, ткань, бумага. Принтер Mustang.",
+    anchor: "interior",
   },
   {
     icon: Scissors,
@@ -266,10 +269,11 @@ export default function PrintPage() {
               Три направления закрывают любую задачу — от уличной рекламы до финального оформления изделия.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-              {PRINT_TYPES.map(({ icon: Icon, image, badge, title, description, items }) => (
+              {PRINT_TYPES.map(({ icon: Icon, image, badge, title, description, items, anchor }) => (
                 <article
                   key={title}
-                  className="group rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#FFCC00] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col"
+                  id={anchor}
+                  className="group rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#FFCC00] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col scroll-mt-24"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                     <ImageWithFallback

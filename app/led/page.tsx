@@ -255,10 +255,12 @@ export default function LedPage() {
         <LedCalculator />
 
         {/* Иллюминация (Лайтово) */}
-        <LedIllumination />
+        <div id="illumination" className="scroll-mt-24">
+          <LedIllumination />
+        </div>
 
         {/* LED-экраны — секция Зонда (фиолетовая) */}
-        <section className="py-12 md:py-20 bg-white">
+        <section id="screens" className="py-12 md:py-20 bg-white scroll-mt-24">
           <div className="max-w-[1280px] mx-auto px-6">
             <div className="text-center mb-12">
               <div className="inline-block bg-[#7B1FA2]/10 text-[#7B1FA2] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">

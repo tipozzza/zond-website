@@ -9,12 +9,13 @@ import DesignCalculator from "@/components/DesignCalculator";
 import DesignPortfolio from "@/components/DesignPortfolio";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
-const CATEGORIES: { img: string; title: string; priceBadge: string; description: string }[] = [
+const CATEGORIES: { img: string; title: string; priceBadge: string; description: string; anchor?: string }[] = [
   {
     img: "/images/design/category-design-polygraphy.jpg",
     title: "Дизайн полиграфии",
     priceBadge: "ОТ 200 ₽",
     description: "Визитки, буклеты, открытки, календари — 32 позиции прайса.",
+    anchor: "polygraphy",
   },
   {
     img: "/images/design/category-print.jpg",
@@ -27,12 +28,14 @@ const CATEGORIES: { img: string; title: string; priceBadge: string; description:
     title: "Сувенирная продукция",
     priceBadge: "ОТ 5 ₽/ШТ",
     description: "Тампонная печать на ручках, кружках, флешках, от 50 шт.",
+    anchor: "souvenirs",
   },
   {
     img: "/images/design/category-outdoor-design.jpg",
     title: "Дизайн наружки",
     priceBadge: "ОТ 250 ₽",
     description: "Таблички, вывески, баннеры, штендеры, световые короба.",
+    anchor: "advertising-design",
   },
   {
     img: "/images/design/category-logo.jpg",
@@ -184,8 +187,9 @@ export default function DesignPage() {
               {CATEGORIES.map((c) => (
                 <a
                   key={c.title}
+                  id={c.anchor}
                   href="#calculator"
-                  className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#3949AB] hover:shadow-2xl hover:shadow-[#3949AB]/20 transition-all duration-500 hover:-translate-y-2"
+                  className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#3949AB] hover:shadow-2xl hover:shadow-[#3949AB]/20 transition-all duration-500 hover:-translate-y-2 scroll-mt-24"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                     <Image
@@ -279,6 +283,36 @@ export default function DesignPage() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Комплексное оформление */}
+        <section id="complex" className="py-16 bg-slate-50 scroll-mt-24">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">Комплексное оформление</h2>
+            <p className="text-slate-700 mb-4">
+              Объединяем все услуги под одной задачей — от концепции до монтажа.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-white p-5 rounded-xl">
+                <h3 className="font-bold mb-2">Точки продаж</h3>
+                <p className="text-sm text-slate-600">Брендирование магазинов, кафе, салонов</p>
+              </div>
+              <div className="bg-white p-5 rounded-xl">
+                <h3 className="font-bold mb-2">Мероприятия</h3>
+                <p className="text-sm text-slate-600">Презентации, открытия, корпоративы</p>
+              </div>
+              <div className="bg-white p-5 rounded-xl">
+                <h3 className="font-bold mb-2">Офисы</h3>
+                <p className="text-sm text-slate-600">Брендированные интерьеры и навигация</p>
+              </div>
+            </div>
+            <a
+              href="#contact-form"
+              className="inline-block bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-lg font-semibold"
+            >
+              Обсудить проект
+            </a>
           </div>
         </section>
 

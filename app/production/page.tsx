@@ -306,6 +306,29 @@ export default function ProductionPage() {
           </div>
         </section>
 
+        {/* Согласование рекламы */}
+        <section id="approval" className="py-16 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">Согласование рекламы</h2>
+            <p className="text-slate-700 mb-4">
+              Размещение наружной рекламы в Томске требует согласования с администрацией города.
+              Готовим полный пакет документов:
+            </p>
+            <ul className="space-y-2 mb-6">
+              <li className="flex gap-2"><span className="text-brand">✓</span> Паспорт фасада здания</li>
+              <li className="flex gap-2"><span className="text-brand">✓</span> Паспорт рекламного места</li>
+              <li className="flex gap-2"><span className="text-brand">✓</span> Паспорт рекламной конструкции</li>
+              <li className="flex gap-2"><span className="text-brand">✓</span> Согласование с городской администрацией</li>
+            </ul>
+            <a
+              href="#contact-form"
+              className="inline-block bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-lg font-semibold"
+            >
+              Получить расчёт
+            </a>
+          </div>
+        </section>
+
         <CTAForm accentColor="#7CB342" />
       </main>
       <Footer />
