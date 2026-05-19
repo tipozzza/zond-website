@@ -105,6 +105,7 @@ export default function OutdoorMapSection() {
                 <YandexMap
                   sides={filteredSides}
                   onSideClick={setSelectedSide}
+                  onSideFocus={setFocusSide}
                   focusSide={focusSide}
                 />
                 {focusSide && (
