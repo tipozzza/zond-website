@@ -155,7 +155,7 @@ export default function AboutPage() {
             </h1>
 
             <p className="text-lg text-white/85 mb-12 max-w-[720px] font-light leading-relaxed">
-              Лидер рекламно-производственной отрасли в Томске с 1992 года.
+              Рекламно-производственная компания в Томске с 1992 года.
             </p>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-9 border-t border-white/10">

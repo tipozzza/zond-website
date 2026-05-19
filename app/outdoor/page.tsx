@@ -84,7 +84,7 @@ const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string 
     icon: Map,
     stat: "726",
     title: "726 сторон под управлением",
-    text: "Лидер по охвату наружной рекламы в Томской области.",
+    text: "Крупная сеть наружной рекламы в Томской области.",
   },
   {
     icon: Zap,
@@ -178,7 +178,7 @@ export default function OutdoorPage() {
 
               <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow">
                 726 рекламных сторон на 226 конструкциях, 336 digital.
-                Лидер наружной рекламы Томска с 1992 года.
+                Крупнейшая сеть наружной рекламы в Томске с 1992 года.
               </p>
 
               <div className="flex flex-wrap gap-3">
@@ -217,7 +217,7 @@ export default function OutdoorPage() {
           <div className="max-w-[1280px] mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Сеть в цифрах</h2>
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              Лидер по охвату наружной рекламы в Томской области.
+              Крупная сеть наружной рекламы в Томской области.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {STATS.map((s) => (

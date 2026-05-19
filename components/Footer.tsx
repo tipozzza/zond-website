@@ -38,7 +38,7 @@ export default function Footer() {
               className="h-12 w-auto mb-4"
             />
             <p className="text-sm leading-relaxed mb-4">
-              Лидер рекламно-производственной отрасли в Томске с 1992 года.
+              Рекламно-производственная компания в Томске с 1992 года.
               Полный цикл: размещение, производство, дизайн, монтаж, обслуживание.
             </p>
             <div className="flex gap-2.5 mt-4">

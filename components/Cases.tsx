@@ -25,7 +25,7 @@ const CARDS: Card[] = [
     img: "/images/production.jpg",
     title: "Широкоформатная печать",
     description:
-      "Печать на баннере, плёнке, бэклите, сетке, холсте. Сольвентные принтеры Flora, Mimaki, Mustang шириной до 5 м.",
+      "Печать на баннере, плёнке, бэклите, сетке, холсте. Сольвентные принтеры Flora, Magellan, Mustang шириной до 3,2 м.",
     priceBadge: "ОТ 120 ₽/М²",
     badgeClass: "bg-[#FFCC00] text-slate-900",
   },

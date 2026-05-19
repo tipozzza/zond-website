@@ -34,7 +34,7 @@ export default function Hero() {
             className="self-start inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold uppercase tracking-wider"
           >
             <span className="w-2 h-2 rounded-full bg-section-outdoor animate-pulse shadow-[0_0_12px_rgba(227,6,19,0.8)]" />
-            №1 в наружной рекламе Томска с 1992 года
+            В наружной рекламе Томска с 1992 года
           </motion.span>
 
           <motion.h1

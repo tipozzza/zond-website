@@ -59,7 +59,7 @@ const PRINT_TYPES: {
     badge: "1440 DPI",
     title: "Интерьерная эко-сольвентная",
     description: "Постеры, оформление витрин, выставочных стендов. Разрешение до 1440 dpi.",
-    items: "Плёнка ORAJET и Китай, холст, ткань, бумага. Принтеры Mimaki и Mustang.",
+    items: "Плёнка ORAJET и Китай, холст, ткань, бумага. Принтер Mustang.",
   },
   {
     icon: Scissors,
@@ -97,17 +97,6 @@ const EQUIPMENT: {
       { label: "Разрешение", value: "до 600 dpi" },
       { label: "Скорость", value: "до 185 м²/час" },
       { label: "Материалы", value: "баннер, бумага, плёнка" },
-    ],
-  },
-  {
-    image: "/images/print/printer-mimaki.jpg",
-    name: "Mimaki CJV150-160",
-    type: "ЭКО-СОЛЬВЕНТ",
-    specs: [
-      { label: "Ширина", value: "1.6 м" },
-      { label: "Разрешение", value: "1440 dpi" },
-      { label: "Скорость", value: "32 м²/час" },
-      { label: "Особенности", value: "+ контурная резка 30 см/сек" },
     ],
   },
   {
