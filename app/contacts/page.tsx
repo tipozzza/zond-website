@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, Send, Users } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -21,6 +22,12 @@ const REQUISITES = [
   { label: "ОКПО", value: "82639128" },
   { label: "Юридический адрес", value: "634021, г. Томск, пр. Фрунзе, 115" },
 ];
+
+export const metadata: Metadata = {
+  title: "Контакты — Зонд-Реклама в Томске",
+  description:
+    "Контакты Зонд-Реклама в Томске: пр. Фрунзе, 115. Тел. 8 (3822) 97-97-05. Email office@zondreklama.ru.",
+};
 
 export default function ContactsPage() {
   return (
@@ -58,15 +65,6 @@ export default function ContactsPage() {
                 </div>
                 <h2 className="text-2xl font-bold mb-6">Позвонить</h2>
                 <div className="space-y-4">
-                  <div>
-                    <a
-                      href="tel:+78002222062"
-                      className="block text-2xl font-bold text-brand hover:underline"
-                    >
-                      8 800 222-20-62
-                    </a>
-                    <div className="text-sm text-slate-500 mt-1">Бесплатный по России</div>
-                  </div>
                   <div>
                     <a
                       href="tel:+73822979705"

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -116,6 +117,12 @@ const EQUIPMENT: {
     ],
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Дизайн и полиграфия в Томске — Зонд-Реклама",
+  description:
+    "Дизайн, полиграфия и сувенирная продукция в Томске. Логотипы от 8000 ₽, брендбук от 20000 ₽. Калькулятор.",
+};
 
 export default function DesignPage() {
   return (

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRight, Settings, Zap, Scissors, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -113,6 +114,12 @@ const EQUIPMENT: { icon: LucideIcon; name: string; desc: string }[] = [
     desc: "Сварка, гибка, покраска. Каркасы коробов и металлоконструкций.",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Производство наружной рекламы и вывесок в Томске — Зонд-Реклама",
+  description:
+    "Производство наружной рекламы и вывесок в Томске с 1992 года. Объёмные буквы, лайтбоксы, штендеры. Свой цех с ЧПУ и лазером.",
+};
 
 export default function ProductionPage() {
   return (

@@ -57,7 +57,7 @@ export default function CTAForm({ accentColor }: Props = {}) {
               </div>
               <p className="text-xs text-gray-500 leading-relaxed">
                 Нажимая «Отправить», вы соглашаетесь с{" "}
-                <a href="#" className="text-brand">политикой конфиденциальности</a>{" "}
+                <a href="/privacy" className="text-brand">политикой конфиденциальности</a>{" "}
                 и даёте согласие на обработку персональных данных.
               </p>
               <button

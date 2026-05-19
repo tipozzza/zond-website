@@ -85,8 +85,6 @@ export default function MapPreview() {
                     </circle>
                   </g>
                 ))}
-                <circle cx="220" cy="170" r="22" fill="white" opacity="0.95" />
-                <text x="220" y="176" textAnchor="middle" fill="#3D2E91" fontSize="14" fontWeight="bold">42</text>
               </svg>
             </div>
           </motion.div>

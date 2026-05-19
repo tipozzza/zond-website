@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Award, Zap, History, Activity, Printer, Image as ImageIcon, Scissors, FileText } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -13,8 +14,8 @@ import ImageWithFallback from "@/components/ImageWithFallback";
 const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string }[] = [
   {
     icon: History,
-    stat: "30+",
-    title: "Лет в Томске",
+    stat: "33",
+    title: "года в Томске",
     text: "Первый полноцвет 3×6 в городе напечатан нами в 1995 году.",
   },
   {
@@ -148,6 +149,12 @@ const FILE_REQS = [
   "Чёрный должен быть «глубокий»: C-50 M-40 Y-40 K-100",
   "Передача: до 1 МБ — на email; больше — через USB или FTP",
 ];
+
+export const metadata: Metadata = {
+  title: "Широкоформатная печать в Томске — Зонд-Реклама",
+  description:
+    "Широкоформатная и интерьерная печать в Томске. 50 000 м²/год. Баннеры, плёнка, бумага. Калькулятор стоимости.",
+};
 
 export default function PrintPage() {
   return (

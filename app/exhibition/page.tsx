@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Palette, Printer, Box, Layers, Calendar, Star } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -166,6 +167,12 @@ const TIMELINE: { year: number; project: string }[] = [
   { year: 2024, project: "Город IT 2024 + чемпионат RoboCup" },
   { year: 2025, project: "Комплексное оформление «Город IT 2025»" },
 ];
+
+export const metadata: Metadata = {
+  title: "Выставочные стенды в Томске — Зонд-Реклама",
+  description:
+    "Выставочные стенды в Томске. Официальный дилер MAXIBIT (Швеция) с 2006. От Pop-up за 1800 ₽ до экспозиций под ключ.",
+};
 
 export default function ExhibitionPage() {
   return (

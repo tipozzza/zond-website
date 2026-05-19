@@ -8,7 +8,7 @@ export const COMPANY = {
   inn: "7017200748",
   founded: 1992,
   phone: "8 (3822) 97-97-05",
-  phoneRaw: "+78002222062",
+  phoneRaw: "+73822979705",
   email: "office@zondreklama.ru",
   address: "634021, г. Томск, пр. Фрунзе, 115",
   hours: "Пн–Пт 9:00–18:00",

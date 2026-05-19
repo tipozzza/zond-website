@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Trophy, Map, Zap, Gift, History, Camera } from "lucide-react";
@@ -77,7 +78,7 @@ const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string 
   {
     icon: Trophy,
     stat: "27",
-    title: "Крупнейшая digital-сеть Томска",
+    title: "Собственная digital-сеть в Томске",
     text: "27 уникальных цифровых экранов в проходных местах города.",
   },
   {
@@ -100,8 +101,8 @@ const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string 
   },
   {
     icon: History,
-    stat: "32+",
-    title: "Опыт 32+ года",
+    stat: "33",
+    title: "года опыта",
     text: "Работаем в Томске с 1992 года. Знаем что работает в этом городе.",
   },
   {
@@ -146,6 +147,12 @@ const FAQ = [
   },
 ];
 
+export const metadata: Metadata = {
+  title: "Наружная реклама в Томске — Зонд-Реклама",
+  description:
+    "Наружная реклама в Томске: 726 сторон на 226 конструкциях, 336 цифровых, 27 LED-экранов. Карта, бронирование онлайн.",
+};
+
 export default function OutdoorPage() {
   return (
     <>
@@ -178,7 +185,7 @@ export default function OutdoorPage() {
 
               <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow">
                 726 рекламных сторон на 226 конструкциях, 336 digital.
-                Крупнейшая сеть наружной рекламы в Томске с 1992 года.
+                Собственная сеть наружной рекламы в Томске с 1992 года.
               </p>
 
               <div className="flex flex-wrap gap-3">

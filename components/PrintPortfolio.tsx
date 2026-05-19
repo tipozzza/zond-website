@@ -77,7 +77,7 @@ export default function PrintPortfolio() {
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Что мы уже напечатали</h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Реальные работы за 30 лет. Кликайте — посмотрите в большом размере.
+            Реальные работы за 33 года. Кликайте — посмотрите в большом размере.
           </p>
         </div>
 

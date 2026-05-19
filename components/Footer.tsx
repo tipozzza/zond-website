@@ -88,7 +88,7 @@ export default function Footer() {
 
         <div className="pt-7 border-t border-white/10 flex justify-between items-center text-xs flex-wrap gap-4">
           <span>© 1992–2026 {COMPANY.fullName} · {COMPANY.legalName} · ИНН {COMPANY.inn}</span>
-          <a href="#" className="hover:text-white">Политика конфиденциальности</a>
+          <Link href="/privacy" className="hover:text-white">Политика конфиденциальности</Link>
         </div>
       </div>
     </footer>

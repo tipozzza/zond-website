@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import {
   Building2,
@@ -93,7 +94,7 @@ const SCREEN_TYPES: {
 ];
 
 const HISTORY: { year: number; event: string }[] = [
-  { year: 2006, event: "Первый светодиодный экран в Томске на пл. Новособорная" },
+  { year: 2007, event: "Первый светодиодный экран в Томске на пл. Новособорная" },
   { year: 2008, event: "Экран для ТДСК" },
   { year: 2011, event: "Первое производство бегущих строк в Сибирском регионе" },
   { year: 2014, event: "Экран в Северске" },
@@ -109,7 +110,7 @@ const ADVANTAGES: { title: string; desc: string }[] = [
   { title: "Прямые контракты с заводами", desc: "WGO (Китай) для LED-модулей + китайские поставщики гирлянд" },
   { title: "Гарантия 12 месяцев", desc: "На всё оборудование. LED-экраны — 24 месяца" },
   { title: "Бесплатный дизайн по фото", desc: "Присылаете фото объекта — мы делаем визуализацию" },
-  { title: "Аренда оборудования", desc: "Для разовых мероприятий — экономия для разовых событий" },
+  { title: "Аренда оборудования", desc: "Для разовых мероприятий — выгоднее, чем покупка" },
 ];
 
 const PROCESS: { step: number; name: string; desc: string }[] = [
@@ -120,6 +121,12 @@ const PROCESS: { step: number; name: string; desc: string }[] = [
   { step: 5, name: "Монтаж под ключ", desc: "Электромонтаж, установка, тестирование" },
   { step: 6, name: "Демонтаж + хранение", desc: "После сезона снимаем и храним на складе" },
 ];
+
+export const metadata: Metadata = {
+  title: "LED и новогодняя иллюминация в Томске — Зонд-Реклама",
+  description:
+    "Светодиодная продукция и новогодняя иллюминация. Бренд Лайтово (ГК Зонд) с 2021. Собственное производство LED-экранов с 2007.",
+};
 
 export default function LedPage() {
   return (
@@ -157,7 +164,7 @@ export default function LedPage() {
                     LIGHTOVO
                   </div>
                   <div className="text-xs uppercase tracking-widest text-white/70 mt-1">
-                    бренд ГК Зонд с 2008
+                    бренд ГК Зонд с 2021
                   </div>
                 </div>
               </div>
@@ -165,8 +172,9 @@ export default function LedPage() {
                 Новогодняя иллюминация и световые конструкции
               </h1>
               <p className="text-xl md:text-2xl text-white/85 mb-8 leading-relaxed">
-                Под ключ: дизайн → производство → монтаж → демонтаж → хранение. Лайтово — бренд
-                ГК Зонд с 2008 года, более 500 объектов в год по всей России.
+                Светодиодная продукция, новогодняя иллюминация и световые конструкции.
+                Гирляндами и иллюминацией ГК Зонд занимается с 2008 года (раньше — под доменом
+                гирлянды-томск.рф). С 2021 года продаём под брендом Лайтово на федеральном рынке.
               </p>
               <div className="flex gap-4 flex-wrap">
                 <a
@@ -185,7 +193,7 @@ export default function LedPage() {
                 </a>
               </div>
               <p className="text-sm text-white/60 mt-6 mb-12">
-                + Собственное производство LED-экранов с 2006 года — подробнее ниже на странице ↓
+                + Собственное производство LED-экранов с 2007 года — подробнее ниже на странице ↓
               </p>
               <div className="flex gap-8 flex-wrap text-white">
                 <div>
@@ -193,8 +201,8 @@ export default function LedPage() {
                   <div className="text-sm text-white/70 mt-1">объектов в год по всей России</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-[#F4C430] leading-none">14+</div>
-                  <div className="text-sm text-white/70 mt-1">Лайтово на рынке</div>
+                  <div className="text-4xl font-bold text-[#F4C430] leading-none">17</div>
+                  <div className="text-sm text-white/70 mt-1">Гирляндами занимаемся с 2008</div>
                 </div>
                 <div>
                   <div className="text-4xl font-bold text-[#F4C430] leading-none">1000+</div>
@@ -254,13 +262,13 @@ export default function LedPage() {
           <div className="max-w-[1280px] mx-auto px-6">
             <div className="text-center mb-12">
               <div className="inline-block bg-[#7B1FA2]/10 text-[#7B1FA2] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
-                Производство Зонд с 2006
+                Производство Зонд с 2007
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Собственное производство LED-экранов с 2006 года
+                Собственное производство LED-экранов с 2007 года
               </h2>
               <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                Первый светодиодный экран в Томске установлен нами на пл. Новособорная в 2006 году.
+                Первый светодиодный экран в Томске установлен нами на пл. Новособорная в 2007 году.
                 С тех пор — более 500 м² экранов.
               </p>
             </div>
@@ -309,7 +317,7 @@ export default function LedPage() {
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Хроника LED в Сибири</h2>
               <p className="text-lg text-slate-600">
-                От первого экрана 2006 года до 500+ м² в 2026 году.
+                От первого экрана 2007 года до 500+ м² в 2026 году.
               </p>
             </div>
             <div className="overflow-x-auto pb-6">
