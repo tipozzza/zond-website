@@ -50,7 +50,7 @@ const items: Item[] = [
   },
   {
     title: "Выставочные экспозиции",
-    desc: "Мобильные стенды MAXIBIT и JUST, выставочные конструкции под ключ.",
+    desc: "От портативного Pop-up за 1 800 ₽ до уникальной экспозиции 100+ м². Дилер MAXIBIT (Швеция) с 2006.",
     image: "/images/exhibition.jpg",
     href: "/exhibition",
     accent: "#3FA3D9",
@@ -78,21 +78,21 @@ const items: Item[] = [
   },
   {
     title: "Брендированные сувениры",
-    desc: "Корпоративный мерч и брендированная канцелярия для клиентов и команды.",
+    desc: "Кружки, ручки, флешки, ежедневники, одежда с вашим логотипом. От пробной партии до тиража 10 000+ штук.",
     image: "/images/design/category-souvenir.jpg",
     href: "/design#souvenirs",
     accent: "#3949AB",
   },
   {
     title: "Согласование рекламы",
-    desc: "Паспорт фасада, паспорт рекламного места, паспорт конструкции, согласование с администрацией.",
+    desc: "Берём на себя бумажную работу — паспорта фасада и конструкции, согласование с администрацией Томска под ключ.",
     image: "/images/approval.jpg",
     href: "/production#approval",
     accent: "#7CB342",
   },
   {
     title: "Комплексное оформление",
-    desc: "Брендирование точек продаж, оформление мероприятий и офисов в едином стиле.",
+    desc: "Когда нужно всё сразу — от вывески и витрины до бейджа сотрудника. Единый стиль везде.",
     image: "/images/complex.jpg",
     href: "/design#complex",
     accent: "#3949AB",
@@ -110,15 +110,15 @@ export default function Cases() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr">
           {items.map((item) => (
             <Link
               key={item.title}
               href={item.href}
-              className="group rounded-2xl overflow-hidden bg-white border border-slate-200 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              className="group rounded-2xl overflow-hidden bg-white border border-slate-200 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl h-full flex flex-col"
               style={{ "--accent": item.accent } as CSSProperties}
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 flex-shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.image}
@@ -134,10 +134,10 @@ export default function Cases() {
                   {item.title}
                 </h3>
               </div>
-              <div className="p-5">
-                <p className="text-sm text-slate-600 leading-relaxed mb-3">{item.desc}</p>
+              <div className="p-5 flex-1 flex flex-col">
+                <p className="text-sm text-slate-600 leading-relaxed mb-3 flex-1">{item.desc}</p>
                 <span
-                  className="text-sm font-semibold flex items-center gap-1"
+                  className="text-sm font-semibold flex items-center gap-1 mt-auto"
                   style={{ color: "var(--accent)" }}
                 >
                   Подробнее
