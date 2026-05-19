@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
-import FloatingWA from "@/components/FloatingWA";
+import FloatingTG from "@/components/FloatingTG";
 import { SERVICES } from "@/lib/site-data";
 import { notFound } from "next/navigation";
 
@@ -61,7 +61,7 @@ export default function ServicePage({ id }: { id: string }) {
       </main>
       <Footer />
       <PixelBorder />
-      <FloatingWA />
+      <FloatingTG />
     </>
   );
 }

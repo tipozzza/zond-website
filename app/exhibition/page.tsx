@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
-import FloatingWA from "@/components/FloatingWA";
+import FloatingTG from "@/components/FloatingTG";
 import ExhibitionCalculator from "@/components/ExhibitionCalculator";
 import ExhibitionPortfolio from "@/components/ExhibitionPortfolio";
 
@@ -388,7 +388,7 @@ export default function ExhibitionPage() {
       </main>
       <Footer />
       <PixelBorder />
-      <FloatingWA />
+      <FloatingTG />
     </>
   );
 }

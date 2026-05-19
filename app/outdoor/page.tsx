@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
-import FloatingWA from "@/components/FloatingWA";
+import FloatingTG from "@/components/FloatingTG";
 import OutdoorMapSection from "@/components/OutdoorMapSection";
 
 const BADGES = ["33+ года на рынке", "726 сторон", "336 цифровых"];
@@ -376,7 +376,7 @@ export default function OutdoorPage() {
       </main>
       <Footer />
       <PixelBorder />
-      <FloatingWA />
+      <FloatingTG />
     </>
   );
 }

@@ -11,7 +11,7 @@ import Testimonials from "@/components/Testimonials";
 import Clients from "@/components/Clients";
 import Timeline from "@/components/Timeline";
 import CTAForm from "@/components/CTAForm";
-import FloatingWA from "@/components/FloatingWA";
+import FloatingTG from "@/components/FloatingTG";
 
 export default function HomePage() {
   return (
@@ -31,7 +31,7 @@ export default function HomePage() {
         <CTAForm />
       </main>
       <Footer />
-      <FloatingWA />
+      <FloatingTG />
     </>
   );
 }

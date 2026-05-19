@@ -22,7 +22,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
-import FloatingWA from "@/components/FloatingWA";
+import FloatingTG from "@/components/FloatingTG";
 import LedCalculator from "@/components/LedCalculator";
 import LedIllumination from "@/components/LedIllumination";
 import LedPortfolio from "@/components/LedPortfolio";
@@ -421,7 +421,7 @@ export default function LedPage() {
       </main>
       <Footer />
       <PixelBorder />
-      <FloatingWA />
+      <FloatingTG />
     </>
   );
 }

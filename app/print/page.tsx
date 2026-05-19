@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
-import FloatingWA from "@/components/FloatingWA";
+import FloatingTG from "@/components/FloatingTG";
 import PrintCalculator from "@/components/PrintCalculator";
 import PrintPortfolio from "@/components/PrintPortfolio";
 import ImageWithFallback from "@/components/ImageWithFallback";
@@ -399,7 +399,7 @@ export default function PrintPage() {
       </main>
       <Footer />
       <PixelBorder />
-      <FloatingWA />
+      <FloatingTG />
     </>
   );
 }

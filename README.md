@@ -38,7 +38,7 @@ components/            — React-компоненты
   ├─ News.tsx         — новости
   ├─ CTAForm.tsx      — секция формы заявки
   ├─ PixelBorder.tsx  — декоративная LED-пиксельная полоса
-  └─ FloatingWA.tsx   — плавающая кнопка WhatsApp
+  └─ FloatingTG.tsx   — плавающая кнопка Telegram
 
 lib/
   └─ site-data.ts     — данные сайта (контакты, услуги, кейсы и т.д.)

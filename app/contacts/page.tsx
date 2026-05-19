@@ -1,8 +1,8 @@
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, Users } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
-import FloatingWA from "@/components/FloatingWA";
+import FloatingTG from "@/components/FloatingTG";
 import OfficeMap from "@/components/OfficeMap";
 import ContactForm from "@/components/ContactForm";
 
@@ -99,7 +99,7 @@ export default function ContactsPage() {
                     href="https://t.me/zond_reklama"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#0088cc] hover:bg-[#0077B5] text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors"
+                    className="inline-flex items-center gap-2 bg-[#229ED9] hover:bg-[#1A8BC0] text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors"
                   >
                     <Send size={18} />
                     Telegram
@@ -110,6 +110,7 @@ export default function ContactsPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-[#0077FF] hover:bg-[#0066DD] text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors"
                   >
+                    <Users size={18} />
                     ВКонтакте
                   </a>
                 </div>
@@ -208,7 +209,7 @@ export default function ContactsPage() {
       </main>
       <Footer />
       <PixelBorder />
-      <FloatingWA />
+      <FloatingTG />
     </>
   );
 }
