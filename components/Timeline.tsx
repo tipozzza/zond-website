@@ -19,7 +19,7 @@ export default function Timeline() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 relative mt-14">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-6 relative mt-14">
           <div className="hidden lg:block absolute left-7 right-7 top-5 h-0.5 bg-gradient-to-r from-section-outdoor via-section-production via-section-exhibition to-section-led opacity-50" />
 
           {TIMELINE.map((item) => (

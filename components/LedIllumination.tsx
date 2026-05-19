@@ -24,9 +24,30 @@ type Theme = "dark" | "light";
 
 const formatRub = (n: number) => `${n.toLocaleString("ru-RU")} ₽`;
 
+// Maps `${prefix}-${id}` → actual filename in /public/images/led/.
+// Items absent here fall through to the "Фото скоро" placeholder.
+const LED_IMAGES: Record<string, string> = {
+  "garland-nit": "garland-nit.png",
+  "garland-bahroma": "garland-bahroma.png",
+  "garland-zanaves": "garland-zanaves.png",
+  "garland-retro": "garland-retro.png",
+  "garland-set": "garland-set.png",
+  "garland-shary": "garland-shary.jpg",
+  "garland-meteoroty": "garland-meteor.jpg",
+  "garland-snezhinka": "garland-snowflake.jpg",
+  "garland-neon": "garland-neon.png",
+  "garland-duralight": "garland-duralight.jpg",
+  "figure-deer": "figure-deer.png",
+  "figure-snowman-broom": "figure-snowman-broom.png",
+  "figure-snowman-balls": "figure-snowman-balls.jpg",
+  "figure-snowman-hat": "figure-snowman-hat.jpg",
+  "figure-gift": "figure-gift.png",
+};
+
 function ItemCard({ item, imgPrefix, theme }: { item: Item; imgPrefix: string; theme: Theme }) {
-  const [failed, setFailed] = useState(false);
-  const src = `/images/led/${imgPrefix}-${item.id}.jpg`;
+  const mappedFile = LED_IMAGES[`${imgPrefix}-${item.id}`];
+  const [failed, setFailed] = useState(!mappedFile);
+  const src = mappedFile ? `/images/led/${mappedFile}` : "";
   const isDark = theme === "dark";
 
   return (

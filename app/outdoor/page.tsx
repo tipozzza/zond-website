@@ -9,7 +9,7 @@ import PixelBorder from "@/components/PixelBorder";
 import FloatingWA from "@/components/FloatingWA";
 import OutdoorMapSection from "@/components/OutdoorMapSection";
 
-const BADGES = ["32+ года на рынке", "726 сторон", "336 цифровых"];
+const BADGES = ["33+ года на рынке", "726 сторон", "336 цифровых"];
 
 const STATS = [
   { num: "1992", label: "год основания" },

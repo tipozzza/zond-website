@@ -14,7 +14,9 @@ const OFFICE_COORDS: [number, number] = [56.4847, 84.9756];
 export default function OfficeMap() {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
-  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState(
+    () => typeof window !== "undefined" && !!window.ymaps
+  );
 
   useEffect(() => {
     if (!scriptLoaded || !mapRef.current) return;

@@ -336,7 +336,7 @@ export default function AboutPage() {
               {CLIENTS.map((c) => (
                 <div
                   key={c}
-                  className="h-12 flex items-center justify-center text-lg font-extrabold text-gray-400 opacity-60 hover:opacity-100 hover:text-brand transition-all"
+                  className="h-12 flex items-center justify-center text-lg font-extrabold text-gray-500 opacity-70 hover:opacity-100 hover:text-brand transition-all"
                 >
                   {c}
                 </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const BADGES = ["32+ года на рынке", "226 конструкций", "1000+ клиентов"];
+const BADGES = ["33+ года на рынке", "226 конструкций", "1000+ клиентов"];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
