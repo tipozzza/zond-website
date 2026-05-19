@@ -16,14 +16,16 @@ declare global {
 type Props = {
   sides: Side[];
   onSideClick: (side: Side) => void;
+  onSideFocus: (side: Side) => void;
   focusSide?: Side | null;
 };
 
-export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
+export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
   const clustererHiddenRef = useRef(false);
   const onSideClickRef = useRef(onSideClick);
+  const onSideFocusRef = useRef(onSideFocus);
   const [scriptLoaded, setScriptLoaded] = useState(
     () => typeof window !== "undefined" && !!window.ymaps
   );
@@ -31,6 +33,7 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
 
   useEffect(() => {
     onSideClickRef.current = onSideClick;
+    onSideFocusRef.current = onSideFocus;
   });
 
   useEffect(() => {
@@ -78,7 +81,7 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
             : "";
           const price = side.priceFinal ? side.priceFinal.toLocaleString("ru-RU") + " ₽/мес" : "";
           const button = `<button onclick="window.__zondOpenSide('${side.id}'); return false;" style="background:#F57C28;color:white;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-weight:600;margin-top:8px;">Подробнее и забронировать</button>`;
-          return new window.ymaps.Placemark(
+          const placemark = new window.ymaps.Placemark(
             [side.lat, side.lng],
             {
               hintContent: `${side.id} — ${side.type} ${side.format}`,
@@ -91,6 +94,11 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
               iconColor: color,
             }
           );
+          placemark.events.add("click", (e: any) => {
+            e.preventDefault();
+            onSideFocusRef.current(side);
+          });
+          return placemark;
         });
 
       clusterer.add(placemarks);
