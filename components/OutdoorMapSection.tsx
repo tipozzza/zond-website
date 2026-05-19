@@ -105,7 +105,7 @@ export default function OutdoorMapSection() {
           </div>
           <div>
             <div style={{ display: view === "map" ? "block" : "none" }}>
-              <div ref={mapWrapperRef} className="relative">
+              <div ref={mapWrapperRef} className="relative scroll-mt-24">
                 <YandexMap
                   sides={filteredSides}
                   onSideClick={setSelectedSide}
