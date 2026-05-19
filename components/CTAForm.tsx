@@ -24,7 +24,7 @@ export default function CTAForm({ accentColor }: Props = {}) {
               покажем фото конструкций и трафик локаций.
             </p>
             <div className="grid gap-3.5">
-              <Channel icon="📞" title={COMPANY.phone} subtitle="Звонок, бесплатно по России" />
+              <Channel icon="📞" title={COMPANY.phone} subtitle="Томск, городской" />
               <Channel icon="💬" title="Telegram" subtitle="Быстрее всего написать в мессенджер" />
               <Channel icon="✉️" title={COMPANY.email} subtitle="Для договоров и официальных запросов" />
             </div>

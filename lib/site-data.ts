@@ -16,8 +16,8 @@ export const COMPANY = {
 };
 
 export const STATS = {
-  surfaces: 751,
-  constructions: 244,
+  surfaces: 726,
+  constructions: 226,
   digital: 336,
   digitalScreens: 27,
   area: "13 800",
@@ -32,7 +32,7 @@ export const SERVICES = [
     color: "outdoor",
     description: "Размещение на собственной сети: digital-биллборды 3×6 и 5×15, статичные щиты, тривижны, суперсайты, сити-форматы, indoor-пилоны.",
     features: [
-      "244 конструкции, 751 сторона",
+      "226 конструкций, 726 сторон",
       "Единственная digital-сеть города",
       "Размещение от 1 дня",
     ],
