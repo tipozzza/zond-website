@@ -24,7 +24,7 @@ export default function OutdoorMapSection() {
   const [bookingSide, setBookingSide] = useState<Side | null>(null);
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [focusSide, setFocusSide] = useState<Side | null>(null);
-  const mapWrapperRef = useRef<HTMLDivElement>(null);
+  const mapWrapperRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     fetchSides()
@@ -56,7 +56,7 @@ export default function OutdoorMapSection() {
   }
 
   return (
-    <section className="py-16 bg-slate-50">
+    <section ref={mapWrapperRef} className="py-16 bg-slate-50 scroll-mt-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold mb-2">Карта конструкций</h2>
@@ -105,7 +105,7 @@ export default function OutdoorMapSection() {
           </div>
           <div>
             <div style={{ display: view === "map" ? "block" : "none" }}>
-              <div ref={mapWrapperRef} className="relative scroll-mt-24">
+              <div className="relative">
                 <YandexMap
                   sides={filteredSides}
                   onSideClick={setSelectedSide}
