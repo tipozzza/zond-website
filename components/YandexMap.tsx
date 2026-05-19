@@ -22,6 +22,7 @@ type Props = {
 export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
+  const clustererHiddenRef = useRef(false);
   const onSideClickRef = useRef(onSideClick);
   const [scriptLoaded, setScriptLoaded] = useState(
     () => typeof window !== "undefined" && !!window.ymaps
@@ -66,7 +67,7 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
         clusterBalloonContentLayout: "cluster#balloonAccordion",
         clusterBalloonPanelMaxMapArea: 0,
       });
-      (window as unknown as { __zondClusterer: unknown }).__zondClusterer = clusterer;
+      (window as any).__zondClusterer = clusterer;
 
       const placemarks = sides
         .filter((s) => s.lat !== null && s.lng !== null)
@@ -95,6 +96,11 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
       clusterer.add(placemarks);
       map.geoObjects.add(clusterer);
 
+      const highlightLayer = new window.ymaps.GeoObjectCollection();
+      map.geoObjects.add(highlightLayer);
+      (window as any).__zondHighlightLayer = highlightLayer;
+      clustererHiddenRef.current = false;
+
       mapInstance.current = map;
       setMapReady(true);
     });
@@ -110,35 +116,50 @@ export default function YandexMap({ sides, onSideClick, focusSide }: Props) {
 
   useEffect(() => {
     if (!mapReady || !mapInstance.current) return;
-    if (!focusSide || focusSide.lat == null || focusSide.lng == null) return;
-
     const map = mapInstance.current;
-    const lat = focusSide.lat;
-    const lng = focusSide.lng;
+    const clusterer = (window as any).__zondClusterer;
+    const highlightLayer = (window as any).__zondHighlightLayer;
+    if (!clusterer || !highlightLayer) return;
 
-    // 1. Центрируем и зумим до уличного уровня
-    map.setCenter([lat, lng], 18, { duration: 500 });
+    highlightLayer.removeAll();
 
-    // 2. После анимации — найти placemark и открыть его балун
-    const t = setTimeout(() => {
-      const clusterer = (window as unknown as { __zondClusterer?: { getGeoObjects: () => unknown[] } })
-        .__zondClusterer;
-      if (!clusterer) return;
+    if (focusSide && focusSide.lat != null && focusSide.lng != null) {
+      if (!clustererHiddenRef.current) {
+        map.geoObjects.remove(clusterer);
+        clustererHiddenRef.current = true;
+      }
 
-      const objects = clusterer.getGeoObjects() as Array<{
-        geometry: { getCoordinates: () => [number, number] };
-        balloon: { open: () => void };
-      }>;
+      const HighlightLayout = window.ymaps.templateLayoutFactory.createClass(
+        `<div style="position:relative;width:32px;height:32px;margin-left:-16px;margin-top:-16px;">
+          <div style="position:absolute;inset:0;background:#F57C28;border:4px solid white;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:2;"></div>
+          <div style="position:absolute;inset:-8px;border:3px solid #F57C28;border-radius:50%;opacity:0.5;animation:zondPulse 1.6s ease-out infinite;"></div>
+        </div>
+        <style>@keyframes zondPulse{0%{transform:scale(0.7);opacity:0.7}100%{transform:scale(2);opacity:0}}</style>`
+      );
 
-      const target = objects.find((p) => {
-        const coords = p.geometry.getCoordinates();
-        return Math.abs(coords[0] - lat) < 0.0001 && Math.abs(coords[1] - lng) < 0.0001;
-      });
-
-      if (target) target.balloon.open();
-    }, 700);
-
-    return () => clearTimeout(t);
+      const placemark = new window.ymaps.Placemark(
+        [focusSide.lat, focusSide.lng],
+        {
+          hintContent: `${focusSide.id} — ${focusSide.type} ${focusSide.format}`,
+          balloonContentHeader: `<strong>${focusSide.id}</strong> · ${focusSide.type} ${focusSide.format}`,
+          balloonContentBody: `${focusSide.address}<br/>${focusSide.priceFinal ? focusSide.priceFinal.toLocaleString("ru-RU") + " ₽/мес" : ""}`,
+          balloonContentFooter: `<button onclick="window.__zondOpenSide && window.__zondOpenSide('${focusSide.id}'); return false;" style="background:#F57C28;color:white;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-weight:600;">Подробнее и забронировать</button>`,
+        },
+        {
+          iconLayout: HighlightLayout,
+          iconShape: { type: "Circle", coordinates: [0, 0], radius: 16 },
+        }
+      );
+      highlightLayer.add(placemark);
+      map.setCenter([focusSide.lat, focusSide.lng], 17, { duration: 500 });
+      const t = setTimeout(() => placemark.balloon.open(), 600);
+      return () => clearTimeout(t);
+    } else {
+      if (clustererHiddenRef.current) {
+        map.geoObjects.add(clusterer);
+        clustererHiddenRef.current = false;
+      }
+    }
   }, [focusSide, mapReady]);
 
   const apiKey = process.env.NEXT_PUBLIC_YANDEX_MAPS_KEY;

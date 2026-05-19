@@ -63,7 +63,10 @@ export default function OutdoorMapSection() {
 
         <div className="flex justify-center mb-6 gap-2">
           <button
-            onClick={() => setView("map")}
+            onClick={() => {
+              setView("map");
+              setFocusSide(null);
+            }}
             className={`px-6 py-2 rounded-lg font-semibold transition ${
               view === "map"
                 ? "bg-[#F57C28] text-white"
@@ -73,7 +76,10 @@ export default function OutdoorMapSection() {
             Карта
           </button>
           <button
-            onClick={() => setView("list")}
+            onClick={() => {
+              setView("list");
+              setFocusSide(null);
+            }}
             className={`px-6 py-2 rounded-lg font-semibold transition ${
               view === "list"
                 ? "bg-[#F57C28] text-white"
@@ -95,11 +101,25 @@ export default function OutdoorMapSection() {
           </div>
           <div>
             <div style={{ display: view === "map" ? "block" : "none" }}>
-              <YandexMap
-                sides={filteredSides}
-                onSideClick={setSelectedSide}
-                focusSide={focusSide}
-              />
+              <div className="relative">
+                <YandexMap
+                  sides={filteredSides}
+                  onSideClick={setSelectedSide}
+                  focusSide={focusSide}
+                />
+                {focusSide && (
+                  <div className="absolute top-4 right-4 z-10 bg-white shadow-lg rounded-full pl-4 pr-2 py-1 flex items-center gap-2">
+                    <span className="text-sm font-semibold text-slate-800">Показана: {focusSide.id}</span>
+                    <button
+                      onClick={() => setFocusSide(null)}
+                      className="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm"
+                      title="Показать все конструкции"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
             <div style={{ display: view === "list" ? "block" : "none" }}>
               <SidesListView
