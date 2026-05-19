@@ -9,6 +9,8 @@ import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import OutdoorMapSection from "@/components/OutdoorMapSection";
+import Breadcrumb from "@/components/Breadcrumb";
+import ServiceSchema from "@/components/ServiceSchema";
 
 const BADGES = ["33+ года на рынке", "726 сторон", "336 цифровых"];
 
@@ -148,9 +150,16 @@ const FAQ = [
 ];
 
 export const metadata: Metadata = {
-  title: "Наружная реклама в Томске — Зонд-Реклама",
+  title: "Наружная реклама в Томске — 726 сторон, билборды, LED | Зонд",
   description:
-    "Наружная реклама в Томске: 726 сторон на 226 конструкциях, 336 цифровых, 27 LED-экранов. Карта, бронирование онлайн.",
+    "Размещение рекламы на билбордах 3×6, цифровых LED-экранах, сити-форматах, суперсайтах 5×15 в Томске. Карта с фото каждой стороны, бронирование онлайн от 3 дней.",
+  keywords: [
+    "наружная реклама Томск",
+    "билборды Томск",
+    "цифровая реклама Томск",
+    "размещение рекламы Томск",
+    "LED экраны Томск",
+  ],
 };
 
 export default function OutdoorPage() {
@@ -158,7 +167,20 @@ export default function OutdoorPage() {
     <>
       <PixelBorder />
       <Header />
+      <ServiceSchema
+        serviceType="Наружная реклама"
+        name="Размещение наружной рекламы в Томске"
+        description="726 рекламных сторон на 226 конструкциях: билборды, LED-экраны, сити-форматы, суперсайты."
+        lowPrice={9000}
+        priceRange="9 000–75 000 ₽/мес"
+      />
       <main>
+        <Breadcrumb
+          items={[
+            { name: "Главная", url: "/" },
+            { name: "Наружная реклама", url: "/outdoor" },
+          ]}
+        />
         {/* Hero */}
         <section className="relative min-h-[90vh] flex items-center overflow-hidden">
           <Image

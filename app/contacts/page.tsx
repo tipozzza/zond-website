@@ -6,6 +6,7 @@ import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import OfficeMap from "@/components/OfficeMap";
 import ContactForm from "@/components/ContactForm";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const HOURS = [
   { day: "Понедельник — Пятница", time: "9:00 — 18:00" },
@@ -24,9 +25,14 @@ const REQUISITES = [
 ];
 
 export const metadata: Metadata = {
-  title: "Контакты — Зонд-Реклама в Томске",
+  title: "Контакты Зонд-Реклама в Томске — пр. Фрунзе, 115",
   description:
-    "Контакты Зонд-Реклама в Томске: пр. Фрунзе, 115. Тел. 8 (3822) 97-97-05. Email office@zondreklama.ru.",
+    "Адрес: 634021, г. Томск, пр. Фрунзе, 115. Телефон: 8 (3822) 97-97-05. Email: office@zondreklama.ru. Режим работы: Пн-Пт 9-18, Сб 10-15.",
+  keywords: [
+    "Зонд-Реклама контакты",
+    "адрес рекламного агентства Томск",
+    "телефон Зонд",
+  ],
 };
 
 export default function ContactsPage() {
@@ -35,6 +41,12 @@ export default function ContactsPage() {
       <PixelBorder />
       <Header />
       <main>
+        <Breadcrumb
+          items={[
+            { name: "Главная", url: "/" },
+            { name: "Контакты", url: "/contacts" },
+          ]}
+        />
         {/* Hero */}
         <section className="hero-bg text-white pt-[70px] pb-20 relative overflow-hidden">
           <div className="max-w-[1280px] mx-auto px-6 relative z-10">

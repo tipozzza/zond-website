@@ -8,6 +8,8 @@ import FloatingTG from "@/components/FloatingTG";
 import DesignCalculator from "@/components/DesignCalculator";
 import DesignPortfolio from "@/components/DesignPortfolio";
 import ImageWithFallback from "@/components/ImageWithFallback";
+import Breadcrumb from "@/components/Breadcrumb";
+import ServiceSchema from "@/components/ServiceSchema";
 
 const CATEGORIES: { img: string; title: string; priceBadge: string; description: string; anchor?: string }[] = [
   {
@@ -122,9 +124,16 @@ const EQUIPMENT: {
 ];
 
 export const metadata: Metadata = {
-  title: "Дизайн и полиграфия в Томске — Зонд-Реклама",
+  title: "Дизайн, полиграфия и сувениры в Томске | Зонд-Реклама",
   description:
-    "Дизайн, полиграфия и сувенирная продукция в Томске. Логотипы от 8000 ₽, брендбук от 20000 ₽. Калькулятор.",
+    "Разработка логотипа от 8 000 ₽, брендбук, визитки, листовки, календари, открытки, сувениры. Дизайн-центр Зонд-Реклама в Томске с 1995 года.",
+  keywords: [
+    "дизайн логотипа Томск",
+    "полиграфия Томск",
+    "печать визиток Томск",
+    "брендбук Томск",
+    "фирменный стиль Томск",
+  ],
 };
 
 export default function DesignPage() {
@@ -132,7 +141,20 @@ export default function DesignPage() {
     <>
       <PixelBorder />
       <Header />
+      <ServiceSchema
+        serviceType="Дизайн и полиграфия"
+        name="Разработка логотипов, брендбуков и полиграфии в Томске"
+        description="Логотипы, фирменный стиль, брендбуки, печать визиток, листовок, календарей, сувениры."
+        lowPrice={200}
+        priceRange="200-50 000 ₽"
+      />
       <main>
+        <Breadcrumb
+          items={[
+            { name: "Главная", url: "/" },
+            { name: "Дизайн и полиграфия", url: "/design" },
+          ]}
+        />
         {/* Hero */}
         <section className="relative min-h-[70vh] bg-gradient-to-br from-indigo-900 to-slate-900 overflow-hidden">
           <div className="absolute inset-0">

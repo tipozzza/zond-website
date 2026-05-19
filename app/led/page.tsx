@@ -27,6 +27,8 @@ import FloatingTG from "@/components/FloatingTG";
 import LedCalculator from "@/components/LedCalculator";
 import LedIllumination from "@/components/LedIllumination";
 import LedPortfolio from "@/components/LedPortfolio";
+import Breadcrumb from "@/components/Breadcrumb";
+import ServiceSchema from "@/components/ServiceSchema";
 
 const SOLUTION_ICONS: Record<string, LucideIcon> = {
   Building2,
@@ -123,9 +125,16 @@ const PROCESS: { step: number; name: string; desc: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "LED и новогодняя иллюминация в Томске — Зонд-Реклама",
+  title: "Светодиодная иллюминация и LED-продукция в Томске | Лайтово",
   description:
-    "Светодиодная продукция и новогодняя иллюминация. Бренд Лайтово (ГК Зонд) с 2021. Собственное производство LED-экранов с 2007.",
+    "Новогоднее оформление, гирлянды, 3D-фигуры, контурная подсветка фасадов. Бренд Лайтово ГК Зонд с 2021 года. Опт по России, монтаж в Томске под ключ.",
+  keywords: [
+    "новогодняя иллюминация Томск",
+    "гирлянды опт",
+    "светодиодные фигуры",
+    "иллюминация фасадов Томск",
+    "Лайтово",
+  ],
 };
 
 export default function LedPage() {
@@ -133,7 +142,20 @@ export default function LedPage() {
     <>
       <PixelBorder />
       <Header />
+      <ServiceSchema
+        serviceType="Светодиодная иллюминация"
+        name="Новогодняя иллюминация и LED-продукция"
+        description="Гирлянды, 3D-фигуры, контурная подсветка фасадов. Бренд Лайтово, опт по России."
+        lowPrice={350}
+        priceRange="350-100 000 ₽"
+      />
       <main>
+        <Breadcrumb
+          items={[
+            { name: "Главная", url: "/" },
+            { name: "Светодиодная продукция", url: "/led" },
+          ]}
+        />
         {/* Hero */}
         <section className="relative min-h-[90vh] bg-[#0B1E3F] overflow-hidden">
           <div className="absolute inset-0 z-0">

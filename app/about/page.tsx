@@ -15,6 +15,7 @@ import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
+import Breadcrumb from "@/components/Breadcrumb";
 import { COMPANY, CLIENTS } from "@/lib/site-data";
 
 const HERO_STATS = [
@@ -137,9 +138,15 @@ const GROUP_COMPANIES = [
 ];
 
 export const metadata: Metadata = {
-  title: "О компании Зонд-Реклама в Томске — 33 года с 1992 года",
+  title: "О компании Зонд-Реклама — 33 года в Томске | История с 1992",
   description:
-    "О компании Зонд-Реклама в Томске. 33 года истории с 1992 года. Полный цикл рекламы и производства.",
+    "ГК Зонд-Реклама в Томске. История с 1992 года, 226 рекламных конструкций, 50+ сотрудников, дилерство MAXIBIT, бренд Лайтово.",
+  keywords: [
+    "Зонд-Реклама",
+    "рекламное агентство Томск",
+    "история компании",
+    "ГК Зонд",
+  ],
 };
 
 export default function AboutPage() {
@@ -148,6 +155,12 @@ export default function AboutPage() {
       <PixelBorder />
       <Header />
       <main>
+        <Breadcrumb
+          items={[
+            { name: "Главная", url: "/" },
+            { name: "О компании", url: "/about" },
+          ]}
+        />
         {/* Hero */}
         <section className="hero-bg text-white pt-[70px] pb-20 relative overflow-hidden">
           <div className="max-w-[1280px] mx-auto px-6 relative z-10">

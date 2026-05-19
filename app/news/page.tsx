@@ -4,12 +4,18 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
+import Breadcrumb from "@/components/Breadcrumb";
 import { NEWS } from "@/lib/news-data";
 
 export const metadata: Metadata = {
-  title: "Новости | Зонд-Реклама",
+  title: "Новости Зонд-Реклама — что происходит в компании",
   description:
-    "Свежие новости компании Зонд-Реклама в Томске: новые цифровые билборды, акции, проекты, изменения в законодательстве.",
+    "Новые цифровые билборды, реализованные проекты, акции и события рекламной компании Зонд-Реклама в Томске. Обновления каждую неделю.",
+  keywords: [
+    "новости Зонд-Реклама",
+    "новости рекламы Томск",
+    "новые билборды Томск",
+  ],
 };
 
 export default function NewsPage() {
@@ -18,6 +24,12 @@ export default function NewsPage() {
       <PixelBorder />
       <Header />
       <main className="min-h-screen bg-slate-50 py-12">
+        <Breadcrumb
+          items={[
+            { name: "Главная", url: "/" },
+            { name: "Новости", url: "/news" },
+          ]}
+        />
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-3">Новости</h1>

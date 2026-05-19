@@ -9,6 +9,8 @@ import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import ProductionCalculator from "@/components/ProductionCalculator";
 import PortfolioGallery from "@/components/PortfolioGallery";
+import Breadcrumb from "@/components/Breadcrumb";
+import ServiceSchema from "@/components/ServiceSchema";
 
 const CATEGORIES: {
   img: string;
@@ -116,9 +118,16 @@ const EQUIPMENT: { icon: LucideIcon; name: string; desc: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Производство наружной рекламы и вывесок в Томске — Зонд-Реклама",
+  title: "Производство вывесок и наружной рекламы в Томске | Зонд",
   description:
-    "Производство наружной рекламы и вывесок в Томске с 1992 года. Объёмные буквы, лайтбоксы, штендеры. Свой цех с ЧПУ и лазером.",
+    "Изготовление объёмных букв, лайтбоксов, световых коробов, штендеров в Томске. Собственный цех с ЧПУ и лазером. Гарантия 12 месяцев. Калькулятор стоимости онлайн.",
+  keywords: [
+    "вывески Томск",
+    "объёмные буквы Томск",
+    "лайтбоксы Томск",
+    "изготовление наружной рекламы Томск",
+    "световые короба Томск",
+  ],
 };
 
 export default function ProductionPage() {
@@ -126,7 +135,20 @@ export default function ProductionPage() {
     <>
       <PixelBorder />
       <Header />
+      <ServiceSchema
+        serviceType="Производство наружной рекламы"
+        name="Изготовление вывесок и конструкций в Томске"
+        description="Объёмные буквы, лайтбоксы, световые короба, штендеры, таблички. Собственный цех с ЧПУ."
+        lowPrice={95}
+        priceRange="95-50 000 ₽"
+      />
       <main>
+        <Breadcrumb
+          items={[
+            { name: "Главная", url: "/" },
+            { name: "Производство", url: "/production" },
+          ]}
+        />
         {/* Hero */}
         <section className="relative min-h-[70vh] bg-gradient-to-br from-green-900 to-slate-900 overflow-hidden">
           <div className="absolute inset-0">

@@ -9,6 +9,8 @@ import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import PrintCalculator from "@/components/PrintCalculator";
 import PrintPortfolio from "@/components/PrintPortfolio";
+import Breadcrumb from "@/components/Breadcrumb";
+import ServiceSchema from "@/components/ServiceSchema";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
 const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string }[] = [
@@ -154,9 +156,15 @@ const FILE_REQS = [
 ];
 
 export const metadata: Metadata = {
-  title: "Широкоформатная печать в Томске — Зонд-Реклама",
+  title: "Широкоформатная печать в Томске — баннеры, плёнка | Зонд",
   description:
-    "Широкоформатная и интерьерная печать в Томске. 50 000 м²/год. Баннеры, плёнка, бумага. Калькулятор стоимости.",
+    "Печать баннеров до 3,2 м шириной, плёнки, фотопанелей, плакатов в Томске. Сольвентная и интерьерная печать с 1995 года. Калькулятор стоимости онлайн.",
+  keywords: [
+    "широкоформатная печать Томск",
+    "печать баннеров Томск",
+    "интерьерная печать Томск",
+    "печать плакатов Томск",
+  ],
 };
 
 export default function PrintPage() {
@@ -164,7 +172,20 @@ export default function PrintPage() {
     <>
       <PixelBorder />
       <Header />
+      <ServiceSchema
+        serviceType="Широкоформатная печать"
+        name="Широкоформатная и интерьерная печать в Томске"
+        description="Печать баннеров до 3,2 м, плёнки, фотопанелей, плакатов. 50 000 м² в год."
+        lowPrice={120}
+        priceRange="120-2 000 ₽/м²"
+      />
       <main>
+        <Breadcrumb
+          items={[
+            { name: "Главная", url: "/" },
+            { name: "Широкоформатная печать", url: "/print" },
+          ]}
+        />
         {/* Hero */}
         <section className="relative min-h-[85vh] flex items-center bg-slate-900 overflow-hidden">
           {/* Фон */}

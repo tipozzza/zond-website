@@ -9,6 +9,8 @@ import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import ExhibitionCalculator from "@/components/ExhibitionCalculator";
 import ExhibitionPortfolio from "@/components/ExhibitionPortfolio";
+import Breadcrumb from "@/components/Breadcrumb";
+import ServiceSchema from "@/components/ServiceSchema";
 
 const SERVICES: { icon: LucideIcon; title: string; text: string }[] = [
   {
@@ -169,9 +171,15 @@ const TIMELINE: { year: number; project: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Выставочные стенды в Томске — Зонд-Реклама",
+  title: "Выставочные стенды в Томске — MAXIBIT, JUST | Зонд-Реклама",
   description:
-    "Выставочные стенды в Томске. Официальный дилер MAXIBIT (Швеция) с 2006. От Pop-up за 1800 ₽ до экспозиций под ключ.",
+    "Pop-up стенды от 1 800 ₽, ролл-апы, выставочные экспозиции под ключ в Томске. Официальный дилер MAXIBIT (Швеция) с 2006 года. Калькулятор стоимости онлайн.",
+  keywords: [
+    "выставочные стенды Томск",
+    "мобильные стенды Томск",
+    "ролл-апы Томск",
+    "MAXIBIT Томск",
+  ],
 };
 
 export default function ExhibitionPage() {
@@ -179,7 +187,20 @@ export default function ExhibitionPage() {
     <>
       <PixelBorder />
       <Header />
+      <ServiceSchema
+        serviceType="Выставочные стенды"
+        name="Выставочные стенды и экспозиции в Томске"
+        description="Pop-up стенды, ролл-апы, мобильные конструкции MAXIBIT и JUST. Официальный дилер MAXIBIT с 2006."
+        lowPrice={1800}
+        priceRange="1 800-200 000 ₽"
+      />
       <main>
+        <Breadcrumb
+          items={[
+            { name: "Главная", url: "/" },
+            { name: "Выставочные экспозиции", url: "/exhibition" },
+          ]}
+        />
         {/* Hero */}
         <section className="relative min-h-[85vh] flex items-center bg-slate-900 overflow-hidden">
           <div className="absolute inset-0 z-0">
