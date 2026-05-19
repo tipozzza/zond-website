@@ -9,9 +9,9 @@ const SECTIONS = [
       { label: "Наружная реклама", href: "/outdoor" },
       { label: "Широкоформатная печать", href: "/print" },
       { label: "Производство", href: "/production" },
-      { label: "Дизайн", href: "/design" },
-      { label: "LED и новогодка", href: "/led" },
-      { label: "Выставочное", href: "/exhibition" },
+      { label: "Выставочные экспозиции", href: "/exhibition" },
+      { label: "Дизайн и полиграфия", href: "/design" },
+      { label: "Светодиодная продукция", href: "/led" },
     ],
   },
   {

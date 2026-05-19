@@ -10,9 +10,9 @@ const SERVICES_DROPDOWN = [
   { label: "Наружная реклама", href: "/outdoor" },
   { label: "Широкоформатная печать", href: "/print" },
   { label: "Производство", href: "/production" },
-  { label: "Дизайн и полиграфия", href: "/design" },
-  { label: "LED и новогоднее", href: "/led" },
   { label: "Выставочные экспозиции", href: "/exhibition" },
+  { label: "Дизайн и полиграфия", href: "/design" },
+  { label: "Светодиодная продукция", href: "/led" },
 ];
 
 export default function Header() {
