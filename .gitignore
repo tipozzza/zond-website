@@ -7,5 +7,6 @@ out/
 .vercel
 .idea/
 .vscode/
+.claude/
 *.tsbuildinfo
 next-env.d.ts
