@@ -7,6 +7,7 @@ import Cases from "@/components/Cases";
 import Production from "@/components/Production";
 import MapPreview from "@/components/MapPreview";
 import Team from "@/components/Team";
+import NewsBlock from "@/components/NewsBlock";
 import Testimonials from "@/components/Testimonials";
 import Clients from "@/components/Clients";
 import Timeline from "@/components/Timeline";
@@ -25,6 +26,7 @@ export default function HomePage() {
         <Production />
         <MapPreview />
         <Team />
+        <NewsBlock />
         <Testimonials />
         <Clients />
         <Timeline />
