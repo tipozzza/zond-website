@@ -37,7 +37,7 @@ const items: Item[] = [
   {
     title: "Согласование рекламы",
     desc: "Паспорт фасада, паспорт рекламного места, паспорт конструкции, согласование с администрацией.",
-    image: "/images/production-workshop.jpg",
+    image: "/images/approval.jpg",
     href: "/production#approval",
     accent: "#7CB342",
   },
@@ -93,7 +93,7 @@ const items: Item[] = [
   {
     title: "Комплексное оформление",
     desc: "Брендирование точек продаж, оформление мероприятий и офисов в едином стиле.",
-    image: "/images/exhibition.jpg",
+    image: "/images/complex.jpg",
     href: "/design#complex",
     accent: "#3949AB",
   },
