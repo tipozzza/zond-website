@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
+import YandexMetrika from "@/components/YandexMetrika";
 
 const rubik = Rubik({
   subsets: ["latin", "cyrillic"],
@@ -23,7 +24,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className={rubik.variable}>
-      <body>{children}</body>
+      <body>
+        <YandexMetrika />
+        {children}
+      </body>
     </html>
   );
 }
