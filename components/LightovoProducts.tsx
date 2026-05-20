@@ -1,10 +1,14 @@
 "use client";
 
 const PRODUCTS = [
-  { name: "Гирлянда Нить", image: "/images/led/product-nit.jpg", description: "Тонкая декоративная гирлянда" },
-  { name: "Гирлянда Бахрома", image: "/images/led/product-bahroma.jpg", description: "Свисающие нити-сосульки" },
-  { name: "Гирлянда Сетка", image: "/images/led/product-setka.jpg", description: "Для деревьев и фасадов" },
-  { name: "Дюралайт", image: "/images/led/product-duralight.jpg", description: "Гибкий световой шнур" },
+  { name: "Гирлянда Бахрома", image: "/images/led/product-bahroma.jpg", description: "Свисающие нити-сосульки для крыш и фасадов" },
+  { name: "Гирлянда Занавес", image: "/images/led/product-zanaves.jpg", description: "Плотная световая стена для оформления окон" },
+  { name: "Гирлянда Шары", image: "/images/led/product-shary.jpg", description: "Шаровидные LED-светильники для деревьев и зон" },
+  { name: "Светодиодные снежинки", image: "/images/led/product-snejinki.jpg", description: "Плоские фигуры на фасады и опоры" },
+  { name: "Светодиодные метеориты", image: "/images/led/product-meteority.jpg", description: "Падающие световые столбики, эффект «капель»" },
+  { name: "Дюралайт", image: "/images/led/product-duralight.jpg", description: "Гибкий световой шнур для контурной подсветки" },
+  { name: "Световая фигура: Снеговик с шарами", image: "/images/led/product-snegovik-shary.jpg", description: "Объёмная новогодняя инсталляция" },
+  { name: "Световая фигура: Снеговик в шляпе", image: "/images/led/product-snegovik-shlyapa.jpg", description: "Классическая 3D-фигура для городков" },
 ];
 
 export default function LightovoProducts() {
@@ -19,7 +23,7 @@ export default function LightovoProducts() {
           <div className="w-16 h-1 bg-[#F4C430] mx-auto mt-4"></div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {PRODUCTS.map((product, i) => (
             <div
               key={i}
