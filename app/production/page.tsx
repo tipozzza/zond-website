@@ -11,6 +11,7 @@ import ProductionCalculator from "@/components/ProductionCalculator";
 import PortfolioGallery from "@/components/PortfolioGallery";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
+import FAQ from "@/components/FAQ";
 
 const CATEGORIES: {
   img: string;
@@ -118,15 +119,16 @@ const EQUIPMENT: { icon: LucideIcon; name: string; desc: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Производство вывесок и наружной рекламы в Томске | Зонд",
+  title: "Изготовление вывесок в Томске под ключ — от 1 дня | Зонд",
   description:
-    "Изготовление объёмных букв, лайтбоксов, световых коробов, штендеров в Томске. Собственный цех с ЧПУ и лазером. Гарантия 12 месяцев. Калькулятор стоимости онлайн.",
+    "Световые и неоновые вывески, лайтбоксы, объёмные буквы, таблички в Томске. Изготовление от 1 дня, монтаж под ключ, гарантия 12 месяцев. Бесплатный замер. От 95 ₽.",
   keywords: [
+    "изготовление вывесок Томск",
     "вывески Томск",
-    "объёмные буквы Томск",
-    "лайтбоксы Томск",
-    "изготовление наружной рекламы Томск",
-    "световые короба Томск",
+    "световые вывески",
+    "неоновая вывеска Томск",
+    "заказать вывеску",
+    "лайтбокс Томск",
   ],
 };
 
@@ -154,7 +156,7 @@ export default function ProductionPage() {
           <div className="absolute inset-0">
             <Image
               src="/images/production-workshop.jpg"
-              alt="Цех производства вывесок"
+              alt="Изготовление вывесок в Томске под ключ"
               fill
               priority
               sizes="100vw"
@@ -168,11 +170,10 @@ export default function ProductionPage() {
                 СОБСТВЕННОЕ ПРОИЗВОДСТВО С 1992 ГОДА
               </div>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.05] tracking-tight">
-                Производство вывесок и конструкций
+                Изготовление вывесок в Томске под ключ
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
-                Объёмные буквы, лайтбоксы, плоские вывески, таблички. Все этапы у нас:
-                проектирование → ЧПУ-фрезеровка → сборка → монтаж.
+                Световые, неоновые, объёмные. От 1 дня. Гарантия 12 месяцев. Бесплатный замер.
               </p>
               <div className="flex gap-4 flex-wrap">
                 <a
@@ -189,6 +190,26 @@ export default function ProductionPage() {
                 </a>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Предупреждение о законе 2026 */}
+        <section className="bg-red-50 border-y border-red-200 py-6">
+          <div className="container mx-auto px-4 max-w-4xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <h3 className="font-bold text-red-900 mb-1">
+                ⚠ С 1 марта 2026 запрещены англоязычные вывески
+              </h3>
+              <p className="text-red-700 text-sm">
+                Штрафы до 500 000 ₽. Поможем заменить или дополнить переводом — от 1 дня.
+              </p>
+            </div>
+            <a
+              href="/russifikaciya"
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold whitespace-nowrap"
+            >
+              Подробнее →
+            </a>
           </div>
         </section>
 
@@ -350,6 +371,59 @@ export default function ProductionPage() {
             </a>
           </div>
         </section>
+
+        {/* Почему мы — УТП */}
+        <section className="py-16 bg-slate-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              Почему заказывают вывески у нас
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="bg-white p-6 rounded-2xl text-center">
+                <div className="text-4xl mb-3">🏆</div>
+                <h3 className="font-bold text-lg mb-2">33+ года в Томске</h3>
+                <p className="text-slate-600">Знаем что согласовать, как смонтировать, где есть подводные камни</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl text-center">
+                <div className="text-4xl mb-3">⚡</div>
+                <h3 className="font-bold text-lg mb-2">От 1 дня</h3>
+                <p className="text-slate-600">Таблички и срочные заказы — за 1 рабочий день</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl text-center">
+                <div className="text-4xl mb-3">📏</div>
+                <h3 className="font-bold text-lg mb-2">Бесплатный замер</h3>
+                <p className="text-slate-600">Выезд по Томску — бесплатно. Точные размеры и фото</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl text-center">
+                <div className="text-4xl mb-3">🛡️</div>
+                <h3 className="font-bold text-lg mb-2">Гарантия 12 месяцев</h3>
+                <p className="text-slate-600">На конструкцию и LED-подсветку. Бесплатное обслуживание</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl text-center">
+                <div className="text-4xl mb-3">🏭</div>
+                <h3 className="font-bold text-lg mb-2">Собственный цех</h3>
+                <p className="text-slate-600">ЧПУ-фрезер, лазер, металлообработка. Без посредников</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl text-center">
+                <div className="text-4xl mb-3">📋</div>
+                <h3 className="font-bold text-lg mb-2">Согласование под ключ</h3>
+                <p className="text-slate-600">Берём бумажную работу на себя — Паспорт фасада, согласование с администрацией</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <FAQ
+          items={[
+            { question: "Сколько стоит изготовление вывески в Томске?", answer: "Стоимость зависит от типа: таблички — от 95 ₽/шт, плоские вывески — от 1 240 ₽/м², световые короба — от 10 500 ₽/м², объёмные буквы — от 65 ₽/см² без подсветки. Точную цену рассчитаем после бесплатного замера." },
+            { question: "Сколько изготавливается вывеска?", answer: "Таблички и небольшие изделия делаем за 1-3 рабочих дня. Средние световые вывески — 5-7 дней. Крупные конструкции (фасадные, со сложным монтажом) — 14-21 день. Срочно — от 1 дня по предварительной договорённости." },
+            { question: "Нужно ли согласовывать вывеску с администрацией?", answer: "Для большинства фасадных вывесок в Томске нужны Паспорт фасада и Паспорт рекламной конструкции. Мы готовим и согласовываем документы под ключ — берём бумажную работу на себя." },
+            { question: "Делаете ли русификацию англоязычных вывесок?", answer: "Да, по новому закону с 1 марта 2026 года иностранные слова на вывесках должны быть на государственном языке. Заменяем или дополняем существующие вывески — от перевода до полной замены конструкции." },
+            { question: "Какая гарантия на вывеску?", answer: "Гарантия 12 месяцев на саму конструкцию и LED-подсветку. Бесплатное обслуживание в гарантийный период." },
+            { question: "Делаете ли бесплатный замер?", answer: "Да, выезд замерщика по Томску — бесплатно. Замерщик приезжает в удобное время, делает обмер места, фотофиксацию и согласует размещение." },
+            { question: "Есть ли рассрочка?", answer: "Да, при заказе от 50 000 ₽ доступна рассрочка 0% на 3-6 месяцев. Также работаем по безналу с НДС для юр. лиц." },
+          ]}
+        />
 
         <CTAForm accentColor="#7CB342" />
       </main>

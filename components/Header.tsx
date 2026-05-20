@@ -13,6 +13,7 @@ const SERVICES_DROPDOWN = [
   { label: "Выставочные экспозиции", href: "/exhibition" },
   { label: "Дизайн и полиграфия", href: "/design" },
   { label: "Светодиодная продукция", href: "/led" },
+  { label: "Русификация вывески", href: "/russifikaciya" },
 ];
 
 export default function Header() {

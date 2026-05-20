@@ -10,6 +10,7 @@ type Item = {
   image: string;
   href: string;
   accent: string;
+  cta?: string;
 };
 
 const items: Item[] = [
@@ -19,6 +20,7 @@ const items: Item[] = [
     image: "/images/outdoor-mix.jpg",
     href: "/outdoor",
     accent: "#F57C28",
+    cta: "Разместить наружную рекламу",
   },
   {
     title: "Светодиодные экраны",
@@ -26,6 +28,7 @@ const items: Item[] = [
     image: "/images/outdoor-led-night.jpg",
     href: "/led#screens",
     accent: "#7B1FA2",
+    cta: "Заказать LED-экран",
   },
   {
     title: "Производство рекламы",
@@ -33,6 +36,7 @@ const items: Item[] = [
     image: "/images/production-workshop.jpg",
     href: "/production",
     accent: "#7CB342",
+    cta: "Заказать вывеску в Томске",
   },
   {
     title: "Широкоформатная печать",
@@ -40,6 +44,7 @@ const items: Item[] = [
     image: "/images/production.jpg",
     href: "/print#wide",
     accent: "#FFCC00",
+    cta: "Заказать печать в Томске",
   },
   {
     title: "Светодиодная иллюминация",
@@ -47,6 +52,7 @@ const items: Item[] = [
     image: "/images/led-illumination.jpg",
     href: "/led#illumination",
     accent: "#7B1FA2",
+    cta: "Заказать новогоднее оформление",
   },
   {
     title: "Выставочные экспозиции",
@@ -54,6 +60,7 @@ const items: Item[] = [
     image: "/images/exhibition.jpg",
     href: "/exhibition",
     accent: "#3FA3D9",
+    cta: "Заказать выставочный стенд",
   },
   {
     title: "Дизайн рекламы",
@@ -61,6 +68,7 @@ const items: Item[] = [
     image: "/images/design/category-outdoor-design.jpg",
     href: "/design#advertising-design",
     accent: "#3949AB",
+    cta: "Создать логотип",
   },
   {
     title: "Интерьерная печать",
@@ -140,7 +148,7 @@ export default function Cases() {
                   className="text-sm font-semibold flex items-center gap-1 mt-auto"
                   style={{ color: "var(--accent)" }}
                 >
-                  Подробнее
+                  {item.cta ?? "Подробнее"}
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>

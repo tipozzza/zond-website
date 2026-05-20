@@ -11,6 +11,7 @@ import PrintCalculator from "@/components/PrintCalculator";
 import PrintPortfolio from "@/components/PrintPortfolio";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
+import FAQ from "@/components/FAQ";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
 const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string }[] = [
@@ -156,14 +157,16 @@ const FILE_REQS = [
 ];
 
 export const metadata: Metadata = {
-  title: "Широкоформатная печать в Томске — баннеры, плёнка | Зонд",
+  title: "Печать в Томске — визитки, баннеры, листовки | Зонд-Реклама",
   description:
-    "Печать баннеров до 3,2 м шириной, плёнки, фотопанелей, плакатов в Томске. Сольвентная и интерьерная печать с 1995 года. Калькулятор стоимости онлайн.",
+    "Цветная печать в Томске: визитки от 4 ₽/шт, баннеры 6×3 за 10 минут, листовки, плакаты. Собственный цех, доставка по городу. Звоните: 8 (3822) 97-97-05",
   keywords: [
-    "широкоформатная печать Томск",
+    "печать Томск",
+    "печать визиток Томск",
     "печать баннеров Томск",
-    "интерьерная печать Томск",
-    "печать плакатов Томск",
+    "печать листовок",
+    "цветная печать",
+    "заказать баннер Томск",
   ],
 };
 
@@ -192,7 +195,7 @@ export default function PrintPage() {
           <div className="absolute inset-0 z-0">
             <Image
               src="/images/production.jpg"
-              alt="Цех широкоформатной печати"
+              alt="Печать баннеров и визиток в Томске"
               fill
               priority
               sizes="100vw"
@@ -208,10 +211,10 @@ export default function PrintPage() {
                 ПЕЧАТАЕМ В ТОМСКЕ С 1995 ГОДА
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white text-left tracking-tight leading-tight">
-                Широкоформатная и интерьерная печать
+                Печать в Томске: визитки, баннеры, листовки
               </h1>
               <p className="text-xl md:text-2xl text-white/90 mb-8 text-left leading-relaxed">
-                50 000 м² полноцветной печати в год. От баннеров 6×3 до интерьерных постеров с разрешением 1440 dpi.
+                Свой цех, 50 000 м²/год. Цветная печать с доставкой по городу. Минимальный тираж от 100 шт.
               </p>
               <div className="flex gap-4 flex-wrap mb-12">
                 <a
@@ -426,6 +429,17 @@ export default function PrintPage() {
             </div>
           </div>
         </section>
+
+        <FAQ
+          items={[
+            { question: "Сколько стоит печать визиток в Томске?", answer: "Визитки 90×50 мм от 4 ₽/шт при тираже от 500 шт. Минимальный тираж — 100 шт. На плотной бумаге Colotech, есть варианты с матовой и глянцевой ламинацией." },
+            { question: "За сколько времени напечатается баннер 6×3 м?", answer: "На наших сольвентных принтерах Magellan и Flora печать одного баннера 6×3 м занимает менее 10 минут. С учётом постпечатной обработки (люверсы, проклейка края) — заберёте в день обращения." },
+            { question: "Какая максимальная ширина печати?", answer: "До 3,2 метров на широкоформатных принтерах Magellan C3208i и Flora LJ-3208P. Для интерьерной печати — до 1,6 м (Mustang MG 1601 DK). Если нужна большая ширина — печатаем составные полотна." },
+            { question: "На каких материалах печатаете?", answer: "Баннер 280-510 г/м² (литой и ламинированный), баннерная сетка mesh, плёнка ORAJET, бумага Blue Back 115 г, постерная бумага 150 г, холст, ткань." },
+            { question: "Какое разрешение печати?", answer: "Для уличных баннеров — 300-600 dpi (этого достаточно с дистанции 3+ метров). Для интерьерной печати — до 1440 dpi (фотокачество)." },
+            { question: "Можно ли заказать с доставкой?", answer: "Да, доставка по Томску от 5 000 ₽ — бесплатно. Доставка в Северск и пригороды — по тарифу. В других городах — через ТК (за счёт заказчика)." },
+          ]}
+        />
 
         <CTAForm accentColor="#FFCC00" />
       </main>

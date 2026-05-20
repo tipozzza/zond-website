@@ -11,6 +11,7 @@ import ExhibitionCalculator from "@/components/ExhibitionCalculator";
 import ExhibitionPortfolio from "@/components/ExhibitionPortfolio";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
+import FAQ from "@/components/FAQ";
 
 const SERVICES: { icon: LucideIcon; title: string; text: string }[] = [
   {
@@ -171,9 +172,9 @@ const TIMELINE: { year: number; project: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Выставочные стенды в Томске — MAXIBIT, JUST | Зонд-Реклама",
+  title: "Выставочные стенды в Томске — Pop-up, ролл-ап | Зонд",
   description:
-    "Pop-up стенды от 1 800 ₽, ролл-апы, выставочные экспозиции под ключ в Томске. Официальный дилер MAXIBIT (Швеция) с 2006 года. Калькулятор стоимости онлайн.",
+    "Изготовление выставочных стендов в Томске под ключ: Pop-up от 1 800 ₽, ролл-апы, мобильные стенды MAXIBIT и JUST. Официальный дилер MAXIBIT с 2006 года.",
   keywords: [
     "выставочные стенды Томск",
     "мобильные стенды Томск",
@@ -206,7 +207,7 @@ export default function ExhibitionPage() {
           <div className="absolute inset-0 z-0">
             <Image
               src="/images/exhibition.jpg"
-              alt="Выставочные стенды"
+              alt="Выставочные стенды в Томске под ключ"
               fill
               priority
               sizes="100vw"
@@ -220,11 +221,10 @@ export default function ExhibitionPage() {
                 ВЫСТАВЛЯЕМСЯ С 1993 ГОДА
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
-                Выставочные стенды и экспозиции в Томске
+                Выставочные стенды в Томске под ключ
               </h1>
               <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-                Официальный дилер MAXIBIT (Швеция) с 2006 года. От Pop-up стендов за 1 800 ₽
-                до уникальных экспозиций «под ключ».
+                Pop-up от 1 800 ₽, ролл-апы, экспозиции. Дилер MAXIBIT (Швеция) с 2006 года.
               </p>
               <div className="flex gap-4 flex-wrap mb-12">
                 <a
@@ -411,6 +411,14 @@ export default function ExhibitionPage() {
             </div>
           </div>
         </section>
+
+        <FAQ
+          items={[
+            { question: "Что входит в Pop-up стенд за 1 800 ₽?", answer: "Это JUST X FAST — складной X-стенд с готовой печатью на баннере 80×180 см. В комплекте: каркас (3 ножки складные), сумка-чехол. Сборка-разборка за 2 минуты без инструментов." },
+            { question: "Делаете ли стенды под ключ?", answer: "Да, полный цикл: концепция → дизайн → производство → монтаж на выставке (Томск или другие города России). Опыт работы с MAXIBIT с 2006 года." },
+            { question: "Какой минимальный заказ?", answer: "От 1 ролл-апа или баннерного X-стенда. Для эксклюзивных конструкций под бренд клиента — от 60 000 ₽." },
+          ]}
+        />
 
         <CTAForm accentColor="#3FA3D9" />
       </main>

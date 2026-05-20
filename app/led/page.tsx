@@ -29,6 +29,7 @@ import LedIllumination from "@/components/LedIllumination";
 import LedPortfolio from "@/components/LedPortfolio";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
+import FAQ from "@/components/FAQ";
 
 const SOLUTION_ICONS: Record<string, LucideIcon> = {
   Building2,
@@ -125,14 +126,15 @@ const PROCESS: { step: number; name: string; desc: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Светодиодная иллюминация и LED-продукция в Томске | Лайтово",
+  title: "Новогоднее оформление и гирлянды в Томске | Лайтово",
   description:
-    "Новогоднее оформление, гирлянды, 3D-фигуры, контурная подсветка фасадов. Бренд Лайтово ГК Зонд с 2021 года. Опт по России, монтаж в Томске под ключ.",
+    "Новогоднее оформление городов, фасадов и ТЦ в Томске и по России. Гирлянды, 3D-фигуры, световые конструкции. Бренд Лайтово ГК Зонд. Заказ от сентября.",
   keywords: [
-    "новогодняя иллюминация Томск",
+    "новогоднее оформление Томск",
+    "гирлянды Томск",
     "гирлянды опт",
     "светодиодные фигуры",
-    "иллюминация фасадов Томск",
+    "новогодняя иллюминация Томск",
     "Лайтово",
   ],
 };
@@ -191,7 +193,7 @@ export default function LedPage() {
                 </div>
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
-                Новогодняя иллюминация и световые конструкции
+                Новогоднее оформление и иллюминация в Томске
               </h1>
               <p className="text-xl md:text-2xl text-white/85 mb-8 leading-relaxed">
                 Светодиодная продукция, новогодняя иллюминация и световые конструкции.
@@ -448,6 +450,15 @@ export default function LedPage() {
             </a>
           </div>
         </section>
+
+        <FAQ
+          items={[
+            { question: "Когда заказывать новогоднее оформление?", answer: "Оптимально — в сентябре-октябре, чтобы успеть согласовать концепцию, изготовить конструкции и смонтировать к 1 декабря. Для крупных проектов (целые улицы, фасады ТЦ) — лучше с июля-августа." },
+            { question: "Делаете ли монтаж?", answer: "Да, по Томску и в других городах России. Своя бригада с автовышкой и допуском к высотным работам. Опыт оформления улиц, фасадов, парков, ТЦ." },
+            { question: "Какая защита от погоды?", answer: "Для улицы — гирлянды IP44 и IP65 (выдерживают сибирские морозы до -40°C, влагу, снег). Для интерьеров — IP20. Все продукты сертифицированы." },
+            { question: "Можно купить гирлянды оптом?", answer: "Да, под брендом Лайтово работаем с дилерами и оптовыми покупателями по всей России. Полный каталог 1000+ позиций — на lightovo.ru" },
+          ]}
+        />
 
         <CTAForm accentColor="#F4C430" />
       </main>
