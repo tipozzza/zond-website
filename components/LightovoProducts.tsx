@@ -1,14 +1,51 @@
 "use client";
 
 const PRODUCTS = [
-  { name: "Гирлянда Бахрома", image: "/images/led/product-bahroma.jpg", description: "Свисающие нити-сосульки для крыш и фасадов" },
-  { name: "Гирлянда Занавес", image: "/images/led/product-zanaves.jpg", description: "Плотная световая стена для оформления окон" },
-  { name: "Гирлянда Шары", image: "/images/led/product-shary.jpg", description: "Шаровидные LED-светильники для деревьев и зон" },
-  { name: "Светодиодные снежинки", image: "/images/led/product-snejinki.jpg", description: "Плоские фигуры на фасады и опоры" },
-  { name: "Светодиодные метеориты", image: "/images/led/product-meteority.jpg", description: "Падающие световые столбики, эффект «капель»" },
-  { name: "Дюралайт", image: "/images/led/product-duralight.jpg", description: "Гибкий световой шнур для контурной подсветки" },
-  { name: "Световая фигура: Снеговик с шарами", image: "/images/led/product-snegovik-shary.jpg", description: "Объёмная новогодняя инсталляция" },
-  { name: "Световая фигура: Снеговик в шляпе", image: "/images/led/product-snegovik-shlyapa.jpg", description: "Классическая 3D-фигура для городков" },
+  {
+    name: "Гирлянда Нить",
+    image: "/images/led/product-nit.jpg",
+    description:
+      "Классическая гирлянда-нить с тёплыми белыми LED. Универсальное решение для деревьев, фасадов и интерьеров.",
+  },
+  {
+    name: "Гирлянда Бахрома",
+    image: "/images/led/product-bahroma.jpg",
+    description:
+      "Свисающие нити разной длины — идеально для оформления карнизов, козырьков и витрин.",
+  },
+  {
+    name: "Гирлянда Занавес",
+    image: "/images/led/product-zanaves.jpg",
+    description: "Стена из света для оформления окон, входных групп и фотозон.",
+  },
+  {
+    name: "Гирлянда Шары",
+    image: "/images/led/product-shary.jpg",
+    description:
+      "Светящиеся шары на прозрачном проводе — мягкий уют для кафе, террас и банкетных залов.",
+  },
+  {
+    name: "Светодиодные снежинки",
+    image: "/images/led/product-snejinki.jpg",
+    description:
+      "Объёмные подвесные снежинки с холодным белым свечением — украшение для улиц и общественных пространств.",
+  },
+  {
+    name: "Светодиодные метеориты",
+    image: "/images/led/product-meteority.jpg",
+    description: "Эффект падающих звёзд — динамичная подсветка для деревьев и фасадов.",
+  },
+  {
+    name: "Дюралайт",
+    image: "/images/led/product-duralight.jpg",
+    description: "Гибкий световой шнур для контурной подсветки любых форм и линий.",
+  },
+  {
+    name: "Световая фигура «Снеговик»",
+    image: "/images/led/product-snegovik-shary.jpg",
+    description:
+      "Объёмная LED-фигура высотой 1,5–3 м — украшение площадей, скверов и входных групп. Изготавливаем фигуры любых форм под заказ.",
+  },
 ];
 
 export default function LightovoProducts() {
