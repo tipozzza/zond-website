@@ -1,23 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import {
-  Building2,
-  Trees,
-  TreeDeciduous,
-  Lightbulb,
-  LampDesk,
-  CalendarClock,
-  Monitor,
-  Tv,
-  ScrollText,
-  Cross,
-  Award,
-  Wrench,
-  Globe2,
-  Shield,
-  Eye,
-  CalendarRange,
-} from "lucide-react";
+import { Monitor, Tv, ScrollText, Cross } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -25,29 +8,13 @@ import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import LedCalculator from "@/components/LedCalculator";
-import LedIllumination from "@/components/LedIllumination";
-import LedPortfolio from "@/components/LedPortfolio";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
-
-const SOLUTION_ICONS: Record<string, LucideIcon> = {
-  Building2,
-  Trees,
-  TreeDeciduous,
-  Lightbulb,
-  LampDesk,
-  CalendarClock,
-};
-
-const SOLUTIONS = [
-  { id: "facade", name: "Иллюминация фасадов", desc: "Магазины, ТЦ, кафе, рестораны, бизнес-центры", iconHint: "Building2" },
-  { id: "trees", name: "Оформление деревьев", desc: "Парки, скверы, дворы, придомовые территории", iconHint: "Trees" },
-  { id: "spruces", name: "Оформление ёлок к Новому году", desc: "От 3 до 15 метров. Городские и торговые ёлки", iconHint: "TreeDeciduous" },
-  { id: "neon", name: "Контурная подсветка неоном", desc: "Динамичные контуры зданий, вывески, декор", iconHint: "Lightbulb" },
-  { id: "architectural", name: "Архитектурная подсветка", desc: "Декоративные светильники, прожекторы. Работает круглый год", iconHint: "LampDesk" },
-  { id: "rent", name: "Аренда гирлянд", desc: "На разовые мероприятия и события", iconHint: "CalendarClock" },
-];
+import IlluminationServices from "@/components/IlluminationServices";
+import DesignFree from "@/components/DesignFree";
+import LightovoProducts from "@/components/LightovoProducts";
+import LedWorks from "@/components/LedWorks";
 
 const SCREEN_ICONS: Record<string, LucideIcon> = {
   outdoor: Monitor,
@@ -105,36 +72,16 @@ const HISTORY: { year: number; event: string }[] = [
   { year: 2026, event: "Более 500 м² установленных экранов в Томске и Сибири" },
 ];
 
-const ADVANTAGE_ICONS = [Award, Wrench, Globe2, Shield, Eye, CalendarRange];
-
-const ADVANTAGES: { title: string; desc: string }[] = [
-  { title: "Более 14 лет опыта", desc: "Лайтово с 2008 года, ГК Зонд-Реклама — с 1992" },
-  { title: "Собственное производство", desc: "Гирлянды, фигуры, экраны — всё своё. Без посредников" },
-  { title: "Прямые контракты с заводами", desc: "WGO (Китай) для LED-модулей + китайские поставщики гирлянд" },
-  { title: "Гарантия 12 месяцев", desc: "На всё оборудование. LED-экраны — 24 месяца" },
-  { title: "Бесплатный дизайн по фото", desc: "Присылаете фото объекта — мы делаем визуализацию" },
-  { title: "Аренда оборудования", desc: "Для разовых мероприятий — выгоднее, чем покупка" },
-];
-
-const PROCESS: { step: number; name: string; desc: string }[] = [
-  { step: 1, name: "Заявка", desc: "Звоните или оставляете запрос с фото объекта" },
-  { step: 2, name: "Дизайн (бесплатно)", desc: "Визуализация и расчёт стоимости" },
-  { step: 3, name: "Согласование", desc: "Утверждение макета и договор" },
-  { step: 4, name: "Производство", desc: "Сборка гирлянд / фигур / экранов" },
-  { step: 5, name: "Монтаж под ключ", desc: "Электромонтаж, установка, тестирование" },
-  { step: 6, name: "Демонтаж + хранение", desc: "После сезона снимаем и храним на складе" },
-];
-
 export const metadata: Metadata = {
-  title: "Новогоднее оформление и гирлянды в Томске | Лайтово",
+  title: "Новогоднее оформление и иллюминация в Томске | Лайтово",
   description:
-    "Новогоднее оформление городов, фасадов и ТЦ в Томске и по России. Гирлянды, 3D-фигуры, световые конструкции. Бренд Лайтово ГК Зонд. Заказ от сентября.",
+    "Подсветка фасадов, ёлок, деревьев. Световые фигуры, дюралайт, гирлянды оптом. Бесплатный дизайн-проект. Бренд Лайтово ГК Зонд-Реклама с 2021 года.",
   keywords: [
     "новогоднее оформление Томск",
-    "гирлянды Томск",
+    "подсветка фасадов",
+    "иллюминация Томск",
     "гирлянды опт",
-    "светодиодные фигуры",
-    "новогодняя иллюминация Томск",
+    "световые фигуры",
     "Лайтово",
   ],
 };
@@ -158,7 +105,8 @@ export default function LedPage() {
             { name: "Светодиодная продукция", url: "/led" },
           ]}
         />
-        {/* Hero */}
+
+        {/* Hero — двойной бренд ZOND + LIGHTOVO */}
         <section className="relative min-h-[90vh] bg-[#0B1E3F] overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
@@ -196,24 +144,21 @@ export default function LedPage() {
                 Новогоднее оформление и иллюминация в Томске
               </h1>
               <p className="text-xl md:text-2xl text-white/85 mb-8 leading-relaxed">
-                Светодиодная продукция, новогодняя иллюминация и световые конструкции.
-                Гирляндами и иллюминацией ГК Зонд занимается с 2008 года (раньше — под доменом
-                гирлянды-томск.рф). С 2021 года продаём под брендом Лайтово на федеральном рынке.
+                Новогоднее оформление городов, фасадов и ёлок. Производство LED-экранов с 2007 года.
+                Бесплатный дизайн-проект.
               </p>
               <div className="flex gap-4 flex-wrap">
                 <a
-                  href="#calculator"
+                  href="#contact-form"
                   className="bg-[#F4C430] hover:bg-[#E8B86E] text-[#0B1E3F] px-8 py-4 rounded-xl font-bold transition shadow-xl"
                 >
-                  Получить дизайн бесплатно
+                  Получить дизайн-проект бесплатно
                 </a>
                 <a
-                  href="https://lightovo.ru"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#products"
                   className="bg-white/10 backdrop-blur border border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition"
                 >
-                  Каталог на lightovo.ru →
+                  Виды продукции →
                 </a>
               </div>
               <p className="text-sm text-white/60 mt-6 mb-12">
@@ -241,47 +186,19 @@ export default function LedPage() {
           </div>
         </section>
 
-        {/* Что мы делаем — 6 решений */}
-        <section className="py-12 md:py-20 bg-[#0B1E3F]">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-                Иллюминация под ключ — 6 решений
-              </h2>
-              <p className="text-lg text-white/70 max-w-2xl mx-auto">
-                От проекта до демонтажа. Бесплатный дизайн по фото объекта.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {SOLUTIONS.map((s) => {
-                const Icon = SOLUTION_ICONS[s.iconHint] ?? Lightbulb;
-                return (
-                  <div
-                    key={s.id}
-                    className="group bg-[#0E1A2B] rounded-2xl border border-[#1E3661] hover:border-[#F4C430] p-6 transition-all hover:shadow-xl hover:shadow-[#F4C430]/10"
-                  >
-                    <div className="w-14 h-14 rounded-2xl bg-[#F4C430]/15 group-hover:bg-[#F4C430] flex items-center justify-center mb-5 transition-colors">
-                      <Icon
-                        size={26}
-                        className="text-[#F4C430] group-hover:text-[#0B1E3F] transition-colors"
-                      />
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-2 leading-tight">{s.name}</h3>
-                    <p className="text-sm text-white/70 leading-relaxed">{s.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        {/* 6 услуг иллюминации */}
+        <IlluminationServices />
 
-        {/* Калькулятор */}
-        <LedCalculator />
+        {/* Дизайн бесплатно */}
+        <DesignFree />
 
-        {/* Иллюминация (Лайтово) */}
+        {/* Виды продукции LIGHTOVO */}
         <div id="illumination" className="scroll-mt-24">
-          <LedIllumination />
+          <LightovoProducts />
         </div>
+
+        {/* Наши работы */}
+        <LedWorks />
 
         {/* LED-экраны — секция Зонда (фиолетовая) */}
         <section id="screens" className="py-12 md:py-20 bg-white scroll-mt-24">
@@ -337,6 +254,9 @@ export default function LedPage() {
           </div>
         </section>
 
+        {/* Калькулятор LED-экранов */}
+        <LedCalculator />
+
         {/* Хроника */}
         <section className="py-12 md:py-20 bg-slate-50">
           <div className="max-w-[1280px] mx-auto px-6">
@@ -365,69 +285,6 @@ export default function LedPage() {
             </div>
           </div>
         </section>
-
-        {/* Преимущества */}
-        <section className="py-12 md:py-20 bg-slate-50">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Почему выбирают нас</h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Опыт, собственное производство, прямые контракты и гарантия.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {ADVANTAGES.map((a, i) => {
-                const Icon = ADVANTAGE_ICONS[i] ?? Award;
-                return (
-                  <div
-                    key={a.title}
-                    className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#F4C430] hover:shadow-xl transition-all"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-[#F4C430]/15 group-hover:bg-[#F4C430] flex items-center justify-center mb-4 transition-colors">
-                      <Icon
-                        size={22}
-                        className="text-amber-600 group-hover:text-[#0B1E3F] transition-colors"
-                      />
-                    </div>
-                    <h3 className="text-lg font-bold text-slate-900 mb-2 leading-tight">{a.title}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{a.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Процесс — 6 шагов */}
-        <section className="py-12 md:py-20 bg-white">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Как мы работаем</h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                6 шагов от первого звонка до сезонного хранения оборудования.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {PROCESS.map((p) => (
-                <div
-                  key={p.step}
-                  className="flex gap-4 p-6 rounded-2xl bg-white border border-slate-200"
-                >
-                  <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[#F4C430] text-[#0B1E3F] flex items-center justify-center text-xl font-bold">
-                    {p.step}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900 mb-1 leading-tight">{p.name}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{p.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Портфолио */}
-        <LedPortfolio />
 
         {/* CTA на lightovo.ru */}
         <section className="py-16 bg-gradient-to-br from-[#0B1E3F] to-[#0E1A2B] text-white">
