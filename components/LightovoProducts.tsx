@@ -73,14 +73,6 @@ export default function LightovoProducts() {
                   alt={product.name}
                   loading="lazy"
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = "none";
-                    const parent = target.parentElement;
-                    if (parent)
-                      parent.innerHTML =
-                        '<div class="w-full h-full flex items-center justify-center text-5xl">✨</div>';
-                  }}
                 />
               </div>
               <h3 className="text-lg font-bold text-center mb-1">{product.name}</h3>

@@ -70,14 +70,6 @@ export default function IlluminationServices() {
                     alt={service.title}
                     loading="lazy"
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      const parent = target.parentElement;
-                      if (parent)
-                        parent.innerHTML =
-                          '<div class="w-full h-full flex items-center justify-center text-6xl">💡</div>';
-                    }}
                   />
                 </div>
               </div>

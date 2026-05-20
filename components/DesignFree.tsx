@@ -2,9 +2,19 @@ export default function DesignFree() {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#0B1E3F] to-[#1E3A5F] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
-          <div className="grid md:grid-cols-2 gap-8 items-center relative z-10">
-            <div>
+        <div className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden text-white shadow-2xl">
+          {/* Фоновое фото */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/led/service-design-free.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Затемнение, чтобы текст оставался читаемым */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E3F]/95 via-[#0B1E3F]/85 to-[#0B1E3F]/40" />
+
+          <div className="relative z-10 p-8 md:p-12">
+            <div className="max-w-2xl">
               <div className="inline-block bg-[#F4C430] text-[#0B1E3F] px-3 py-1 rounded-full text-sm font-bold mb-4">
                 БЕСПЛАТНО
               </div>
@@ -24,12 +34,6 @@ export default function DesignFree() {
                 <span>→</span>
               </a>
             </div>
-            <div className="flex justify-center">
-              <div className="text-9xl opacity-90">🎨</div>
-            </div>
-          </div>
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#F4C430] rounded-full blur-3xl"></div>
           </div>
         </div>
       </div>
