@@ -135,7 +135,7 @@ export default function LedPage() {
                 />
                 <div className="h-12 w-px bg-white/40" />
                 <div>
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-wide sm:tracking-wider text-[#F4C430] leading-none">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight sm:tracking-wide md:tracking-wider text-[#F4C430] leading-none">
                     LIGHTOVO
                   </div>
                   <div className="text-xs uppercase tracking-widest text-white/70 mt-1">
@@ -167,22 +167,24 @@ export default function LedPage() {
               <p className="text-sm text-white/60 mt-6 mb-12">
                 + Собственное производство LED-экранов с 2007 года — подробнее ниже на странице ↓
               </p>
-              <div className="flex gap-8 flex-wrap text-white">
-                <div>
-                  <div className="text-4xl font-bold text-[#F4C430] leading-none">500+</div>
-                  <div className="text-sm text-white/70 mt-1">объектов в год по всей России</div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-white">
+                <div className="min-w-0">
+                  <div className="text-3xl sm:text-4xl font-bold text-[#F4C430] leading-none">500+</div>
+                  <div className="text-xs sm:text-sm text-white/70 mt-1">объектов в год по всей России</div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold text-[#F4C430] leading-none">17</div>
-                  <div className="text-sm text-white/70 mt-1">Гирляндами занимаемся с 2008</div>
+                <div className="min-w-0">
+                  <div className="text-3xl sm:text-4xl font-bold text-[#F4C430] leading-none">
+                    {new Date().getFullYear() - 2008}
+                  </div>
+                  <div className="text-xs sm:text-sm text-white/70 mt-1">лет занимаемся гирляндами</div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold text-[#F4C430] leading-none">1000+</div>
-                  <div className="text-sm text-white/70 mt-1">товаров в каталоге</div>
+                <div className="min-w-0">
+                  <div className="text-3xl sm:text-4xl font-bold text-[#F4C430] leading-none">1000+</div>
+                  <div className="text-xs sm:text-sm text-white/70 mt-1">товаров в каталоге</div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold text-[#F4C430] leading-none">12 мес</div>
-                  <div className="text-sm text-white/70 mt-1">гарантия</div>
+                <div className="min-w-0">
+                  <div className="text-3xl sm:text-4xl font-bold text-[#F4C430] leading-none">12 мес</div>
+                  <div className="text-xs sm:text-sm text-white/70 mt-1">гарантия</div>
                 </div>
               </div>
             </div>

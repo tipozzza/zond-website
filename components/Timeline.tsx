@@ -12,7 +12,7 @@ export default function Timeline() {
             О компании
           </span>
           <h2 className="text-[clamp(28px,4vw,44px)] font-extrabold tracking-tight leading-tight mb-4">
-            33 года развития<br />рекламного рынка Томска
+            {new Date().getFullYear() - 1992} года развития<br />рекламного рынка Томска
           </h2>
           <p className="text-lg text-white/85 leading-relaxed">
             Мы первыми установили щит 3×6 в Томске, первыми привезли{" "}
