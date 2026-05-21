@@ -12,6 +12,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
 import PublicPortfolio from "@/components/PublicPortfolio";
+import { HERO_BLURS } from "@/lib/hero-blurs";
 
 const CATEGORIES: {
   img: string;
@@ -160,6 +161,8 @@ export default function ProductionPage() {
               fill
               priority
               sizes="100vw"
+              placeholder="blur"
+              blurDataURL={HERO_BLURS.production}
               className="object-cover opacity-40"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />

@@ -15,6 +15,7 @@ import PublicPortfolio from "@/components/PublicPortfolio";
 import IlluminationServices from "@/components/IlluminationServices";
 import DesignFree from "@/components/DesignFree";
 import LightovoProducts from "@/components/LightovoProducts";
+import { HERO_BLURS } from "@/lib/hero-blurs";
 
 const SCREEN_ICONS: Record<string, LucideIcon> = {
   outdoor: Monitor,
@@ -115,6 +116,8 @@ export default function LedPage() {
               fill
               priority
               sizes="100vw"
+              placeholder="blur"
+              blurDataURL={HERO_BLURS.led}
               className="object-cover opacity-90"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E3F]/85 via-[#0B1E3F]/50 to-[#0B1E3F]/10" />

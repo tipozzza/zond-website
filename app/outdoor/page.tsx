@@ -13,6 +13,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
 import PublicPortfolio from "@/components/PublicPortfolio";
+import { HERO_BLURS } from "@/lib/hero-blurs";
 
 const BADGES = ["33+ года на рынке", "726 сторон", "336 цифровых"];
 
@@ -164,6 +165,8 @@ export default function OutdoorPage() {
             fill
             priority
             sizes="100vw"
+            placeholder="blur"
+            blurDataURL={HERO_BLURS.outdoor}
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />

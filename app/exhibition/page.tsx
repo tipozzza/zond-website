@@ -12,6 +12,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
 import PublicPortfolio from "@/components/PublicPortfolio";
+import { HERO_BLURS } from "@/lib/hero-blurs";
 
 const SERVICES: { icon: LucideIcon; title: string; text: string }[] = [
   {
@@ -211,6 +212,8 @@ export default function ExhibitionPage() {
               fill
               priority
               sizes="100vw"
+              placeholder="blur"
+              blurDataURL={HERO_BLURS.exhibition}
               className="object-cover opacity-60"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />

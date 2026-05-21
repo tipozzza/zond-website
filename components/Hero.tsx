@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { HERO_BLURS } from "@/lib/hero-blurs";
 
 const BADGES = ["33+ года на рынке", "226 конструкций", "1000+ клиентов"];
 
@@ -20,6 +21,8 @@ export default function Hero() {
         fill
         priority
         sizes="100vw"
+        placeholder="blur"
+        blurDataURL={HERO_BLURS.home}
         className="object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-l from-black/80 via-black/40 to-transparent" />
