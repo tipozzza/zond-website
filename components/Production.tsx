@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 const SLIDES = [
   {
@@ -18,6 +19,8 @@ const SLIDES = [
       "Объёмные буквы, вывески, лайтбоксы",
       "Срок производства от 3 дней",
     ],
+    cta: "Заказать металлоконструкцию",
+    href: "/production",
   },
   {
     image: "/images/production.jpg",
@@ -32,6 +35,8 @@ const SLIDES = [
       "Любые носители: баннер, плёнка, сетка, холст",
       "Готовый тираж за 1–3 дня",
     ],
+    cta: "Заказать широкоформатную печать",
+    href: "/print",
   },
   {
     image: "/images/exhibition.jpg",
@@ -46,6 +51,8 @@ const SLIDES = [
       "Монтаж в любом городе России",
       "Демонтаж и хранение для повторного использования",
     ],
+    cta: "Заказать выставочный стенд",
+    href: "/exhibition",
   },
 ];
 
@@ -95,6 +102,16 @@ export default function Production() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
               Производство сейчас
+            </div>
+
+            <div className="absolute inset-x-0 bottom-16 flex justify-center z-10 px-4">
+              <Link
+                href={slide.href}
+                className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-xl font-semibold shadow-xl transition-colors"
+              >
+                {slide.cta}
+                <ArrowRight size={18} />
+              </Link>
             </div>
 
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">

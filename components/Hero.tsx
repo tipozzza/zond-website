@@ -55,7 +55,10 @@ export default function Hero() {
             className="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow"
           >
             726 рекламных сторон на 226 конструкциях.{" "}
-            <Link href="/production" className="underline decoration-white/40 hover:decoration-white">
+            <Link
+              href="/production"
+              className="text-accent-yellow underline decoration-accent-yellow/60 hover:text-amber-300 hover:decoration-amber-300 transition-colors"
+            >
               Производство
             </Link>{" "}
             и монтаж под ключ — с 1992 года.

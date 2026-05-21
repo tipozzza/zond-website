@@ -16,7 +16,10 @@ export default function Timeline() {
           </h2>
           <p className="text-lg text-white/85 leading-relaxed">
             Мы первыми установили щит 3×6 в Томске, первыми привезли{" "}
-            <Link href="/outdoor" className="underline decoration-white/40 hover:decoration-white">
+            <Link
+              href="/outdoor"
+              className="text-accent-yellow underline decoration-accent-yellow/60 hover:text-amber-300 hover:decoration-amber-300 transition-colors"
+            >
               digital-биллборд
             </Link>
             , первыми построили цифровую сеть. Развиваем рынок вместе с городом.

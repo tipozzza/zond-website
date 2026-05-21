@@ -49,9 +49,9 @@ export default function NewsBlock() {
                   {item.title}
                 </h3>
                 <p className="text-sm text-slate-600 line-clamp-2 mb-3">{item.excerpt}</p>
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand">
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-brand">
                   Читать новость
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
             </Link>
