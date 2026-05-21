@@ -15,7 +15,6 @@ import PublicPortfolio from "@/components/PublicPortfolio";
 import IlluminationServices from "@/components/IlluminationServices";
 import DesignFree from "@/components/DesignFree";
 import LightovoProducts from "@/components/LightovoProducts";
-import LedWorks from "@/components/LedWorks";
 
 const SCREEN_ICONS: Record<string, LucideIcon> = {
   outdoor: Monitor,
@@ -199,7 +198,6 @@ export default function LedPage() {
         </div>
 
         {/* Наши работы */}
-        <LedWorks />
 
         {/* LED-экраны — секция Зонда (фиолетовая) */}
         <section id="screens" className="py-12 md:py-20 bg-white scroll-mt-24">

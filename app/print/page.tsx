@@ -8,7 +8,6 @@ import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import PrintCalculator from "@/components/PrintCalculator";
-import PrintPortfolio from "@/components/PrintPortfolio";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
@@ -284,7 +283,6 @@ export default function PrintPage() {
         <PrintCalculator />
 
         {/* Портфолио */}
-        <PrintPortfolio />
 
         {/* Виды печати */}
         <section className="py-12 md:py-20 bg-white">

@@ -8,7 +8,6 @@ import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import ExhibitionCalculator from "@/components/ExhibitionCalculator";
-import ExhibitionPortfolio from "@/components/ExhibitionPortfolio";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
@@ -381,7 +380,6 @@ export default function ExhibitionPage() {
         <ExhibitionCalculator />
 
         {/* Портфолио */}
-        <ExhibitionPortfolio />
 
         {/* Хроника */}
         <section className="py-12 md:py-20 bg-slate-50">

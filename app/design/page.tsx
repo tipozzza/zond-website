@@ -6,7 +6,6 @@ import CTAForm from "@/components/CTAForm";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import DesignCalculator from "@/components/DesignCalculator";
-import DesignPortfolio from "@/components/DesignPortfolio";
 import ImageWithFallback from "@/components/ImageWithFallback";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
@@ -243,7 +242,6 @@ export default function DesignPage() {
 
         {/* Портфолио */}
         <div id="portfolio">
-          <DesignPortfolio />
         </div>
 
         {/* Этапы */}
