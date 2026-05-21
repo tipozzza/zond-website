@@ -11,6 +11,7 @@ import LedCalculator from "@/components/LedCalculator";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
+import PublicPortfolio from "@/components/PublicPortfolio";
 import IlluminationServices from "@/components/IlluminationServices";
 import DesignFree from "@/components/DesignFree";
 import LightovoProducts from "@/components/LightovoProducts";
@@ -316,6 +317,8 @@ export default function LedPage() {
             { question: "Можно купить гирлянды оптом?", answer: "Да, под брендом Лайтово работаем с дилерами и оптовыми покупателями по всей России. Полный каталог 1000+ позиций — на lightovo.ru" },
           ]}
         />
+
+        <PublicPortfolio category="led" />
 
         <CTAForm accentColor="#F4C430" />
       </main>

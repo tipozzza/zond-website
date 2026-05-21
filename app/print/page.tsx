@@ -12,6 +12,7 @@ import PrintPortfolio from "@/components/PrintPortfolio";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
+import PublicPortfolio from "@/components/PublicPortfolio";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
 const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string }[] = [
@@ -440,6 +441,8 @@ export default function PrintPage() {
             { question: "Можно ли заказать с доставкой?", answer: "Да, доставка по Томску от 5 000 ₽ — бесплатно. Доставка в Северск и пригороды — по тарифу. В других городах — через ТК (за счёт заказчика)." },
           ]}
         />
+
+        <PublicPortfolio category="print" />
 
         <CTAForm accentColor="#FFCC00" />
       </main>

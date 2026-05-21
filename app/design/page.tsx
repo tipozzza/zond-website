@@ -11,6 +11,7 @@ import ImageWithFallback from "@/components/ImageWithFallback";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
+import PublicPortfolio from "@/components/PublicPortfolio";
 
 const CATEGORIES: { img: string; title: string; priceBadge: string; description: string; anchor?: string }[] = [
   {
@@ -349,6 +350,8 @@ export default function DesignPage() {
             { question: "Печатаете ли визитки и полиграфию?", answer: "Да, полный цикл: разработка дизайна + печать + постобработка. Визитки от 4 ₽/шт, листовки, буклеты, календари, открытки, конверты." },
           ]}
         />
+
+        <PublicPortfolio category="design" />
 
         <CTAForm accentColor="#3949AB" />
       </main>

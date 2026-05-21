@@ -12,6 +12,7 @@ import OutdoorMapSection from "@/components/OutdoorMapSection";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
+import PublicPortfolio from "@/components/PublicPortfolio";
 
 const BADGES = ["33+ года на рынке", "726 сторон", "336 цифровых"];
 
@@ -358,6 +359,8 @@ export default function OutdoorPage() {
             { question: "Что такое сторона A и сторона B?", answer: "У большинства конструкций две стороны для размещения. Сторона A — по основному потоку транспорта, B — встречному. Сторона A обычно дороже из-за лучшего трафика." },
           ]}
         />
+
+        <PublicPortfolio category="outdoor" />
 
         <CTAForm accentColor="#F57C28" />
       </main>

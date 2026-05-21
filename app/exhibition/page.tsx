@@ -12,6 +12,7 @@ import ExhibitionPortfolio from "@/components/ExhibitionPortfolio";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
+import PublicPortfolio from "@/components/PublicPortfolio";
 
 const SERVICES: { icon: LucideIcon; title: string; text: string }[] = [
   {
@@ -419,6 +420,8 @@ export default function ExhibitionPage() {
             { question: "Какой минимальный заказ?", answer: "От 1 ролл-апа или баннерного X-стенда. Для эксклюзивных конструкций под бренд клиента — от 60 000 ₽." },
           ]}
         />
+
+        <PublicPortfolio category="exhibition" />
 
         <CTAForm accentColor="#3FA3D9" />
       </main>

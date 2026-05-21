@@ -12,6 +12,7 @@ import PortfolioGallery from "@/components/PortfolioGallery";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
+import PublicPortfolio from "@/components/PublicPortfolio";
 
 const CATEGORIES: {
   img: string;
@@ -424,6 +425,8 @@ export default function ProductionPage() {
             { question: "Есть ли рассрочка?", answer: "Да, при заказе от 50 000 ₽ доступна рассрочка 0% на 3-6 месяцев. Также работаем по безналу с НДС для юр. лиц." },
           ]}
         />
+
+        <PublicPortfolio category="production" />
 
         <CTAForm accentColor="#7CB342" />
       </main>
