@@ -47,6 +47,7 @@ export type BlogPost = {
   image: string;
   content: string;
   readingMinutes: number;
+  author?: string;
 };
 
 export function computeReadingMinutes(content: string): number {
