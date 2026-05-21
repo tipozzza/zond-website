@@ -186,6 +186,7 @@ export const NAV_LINKS: { label: string; href: string; hasDropdown?: boolean }[]
   { label: "Карта", href: "/outdoor" },
   { label: "Кейсы", href: "/#cases" },
   { label: "Новости", href: "/news" },
+  { label: "Блог", href: "/blog" },
   { label: "О компании", href: "/about" },
   { label: "Контакты", href: "/contacts" },
 ];

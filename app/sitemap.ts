@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { NEWS } from "@/lib/news-data";
+import { BLOG } from "@/lib/blog-data";
 
 const BASE_URL = "https://zond-website.vercel.app";
 
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/about`, priority: 0.7, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/contacts`, priority: 0.8, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/news`, priority: 0.8, changeFrequency: "weekly" as const },
+    { url: `${BASE_URL}/blog`, priority: 0.8, changeFrequency: "weekly" as const },
     { url: `${BASE_URL}/russifikaciya`, priority: 0.7, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/privacy`, priority: 0.3, changeFrequency: "yearly" as const },
   ].map((p) => ({ ...p, lastModified: new Date() }));
@@ -26,5 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...newsPages];
+  const blogPages = BLOG.map((item) => ({
+    url: `${BASE_URL}/blog/${item.slug}`,
+    lastModified: new Date(item.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...newsPages, ...blogPages];
 }

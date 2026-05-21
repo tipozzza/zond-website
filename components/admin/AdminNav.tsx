@@ -7,7 +7,8 @@ export default function AdminNav() {
   const router = useRouter();
   const pathname = usePathname();
   const isPortfolio = pathname.startsWith("/admin/portfolio");
-  const isNews = !isPortfolio;
+  const isBlog = pathname.startsWith("/admin/blog");
+  const isNews = !isPortfolio && !isBlog;
 
   const handleLogout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
@@ -32,6 +33,14 @@ export default function AdminNav() {
           }`}
         >
           Портфолио
+        </Link>
+        <Link
+          href="/admin/blog"
+          className={`px-4 py-2 rounded-lg font-semibold ${
+            isBlog ? "bg-brand text-white" : "text-slate-600 hover:bg-slate-100"
+          }`}
+        >
+          Блог
         </Link>
       </div>
       <button
