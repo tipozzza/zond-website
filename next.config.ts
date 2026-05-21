@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Здесь будем добавлять конфигурацию по мере роста проекта
-  // images: { remotePatterns: [...] } — если будем тянуть картинки извне
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
 };
 
 export default nextConfig;
