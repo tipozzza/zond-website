@@ -33,7 +33,7 @@ export default function Team() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
           {TEAM_STATS.map((s) => (
             <div key={s.label} className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-brand mb-3 leading-none">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand mb-3 leading-none">
                 {s.value}
               </div>
               <div className="text-sm text-slate-600">{s.label}</div>

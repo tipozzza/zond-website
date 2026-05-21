@@ -52,7 +52,7 @@ export default function Services() {
                 className="group bg-white rounded-3xl p-8 relative overflow-hidden border-2 border-slate-200 hover:border-[var(--accent)] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col"
               >
                 <span
-                  className="absolute top-4 right-6 text-7xl font-black text-slate-200 group-hover:text-[var(--accent)] transition-colors duration-500 select-none pointer-events-none leading-none"
+                  className="absolute top-4 right-6 text-5xl sm:text-6xl md:text-7xl font-black text-slate-200 group-hover:text-[var(--accent)] transition-colors duration-500 select-none pointer-events-none leading-none"
                   style={{ opacity: 0.15 }}
                 >
                   0{index + 1}

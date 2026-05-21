@@ -15,7 +15,7 @@ export default function Stats() {
               key={s.label}
               className="bg-white rounded-2xl shadow-lg p-6 text-center"
             >
-              <div className="text-5xl font-bold text-brand mb-2 leading-none">{s.num}</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand mb-2 leading-none">{s.num}</div>
               <div className="text-sm text-slate-600 uppercase tracking-wider">{s.label}</div>
             </div>
           ))}

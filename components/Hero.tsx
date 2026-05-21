@@ -45,7 +45,7 @@ export default function Hero() {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] drop-shadow-lg"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] drop-shadow-lg"
           >
             Наружная реклама<br />в Томске
           </motion.h1>
