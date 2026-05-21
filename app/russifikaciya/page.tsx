@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
@@ -6,11 +9,12 @@ import FloatingTG from "@/components/FloatingTG";
 import Breadcrumb from "@/components/Breadcrumb";
 import FAQ from "@/components/FAQ";
 import CTAForm from "@/components/CTAForm";
+import { buildOgUrl } from "@/lib/og";
 
 export const metadata: Metadata = {
-  title: "Русификация англоязычной вывески в Томске — закон 2026",
+  title: "Русификация вывесок в Томске — закон с 1 марта 2026 | ZOND",
   description:
-    "С 1 марта 2026 года иностранные слова на вывесках должны быть на государственном языке. Замена, перевод или новая вывеска в Томске — от 1 дня. Бесплатный замер.",
+    "Перевод, замена или новая вывеска под закон РФ от 1 марта 2026. Бесплатный замер по Томску, согласование с администрацией, гарантия 2 года. От 5 000 ₽.",
   keywords: [
     "русификация вывески",
     "замена англоязычной вывески",
@@ -18,6 +22,179 @@ export const metadata: Metadata = {
     "закон 2026 вывески",
     "перевод вывески Томск",
   ],
+  alternates: { canonical: "/russifikaciya" },
+  openGraph: {
+    images: [
+      {
+        url: buildOgUrl({
+          title: "Русификация вывесок в Томске",
+          subtitle: "Закон с 1 марта 2026",
+          category: "Под ключ",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
+
+const STATS = [
+  { value: "500 000 ₽", label: "макс. штраф для юр.лиц", accent: "text-rose-500" },
+  { value: "7 дней", label: "типовой срок под ключ", accent: "text-brand" },
+  { value: `${new Date().getFullYear() - 1992} года`, label: "опыт ZOND", accent: "text-brand" },
+  { value: "4", label: "варианта решения", accent: "text-brand" },
+];
+
+const SOLUTIONS = [
+  {
+    icon: "📝",
+    title: "Перевод (наклейка/табличка)",
+    price: "от 5 000 ₽",
+    duration: "1-2 дня",
+    description:
+      "Аккуратная наклейка с русским переводом поверх английского. Самый бюджетный вариант, сохраняет ваш дизайн.",
+  },
+  {
+    icon: "➕",
+    title: "Дополнение существующей",
+    price: "от 15 000 ₽",
+    duration: "2-3 дня",
+    description:
+      "Добавим русский блок рядом или под существующей вывеской. Подходит для согласования по новому закону.",
+  },
+  {
+    icon: "🔄",
+    title: "Полная замена",
+    price: "от 50 000 ₽",
+    duration: "5-10 дней",
+    description:
+      "Изготовим новую вывеску с русским названием. Согласуем с администрацией под ключ.",
+  },
+  {
+    icon: "✨",
+    title: "Новый дизайн + замена",
+    price: "от 100 000 ₽",
+    duration: "14-21 день",
+    description:
+      "Полная переработка фирменного стиля + новая вывеска. Используем как повод обновить бренд.",
+  },
+];
+
+const PROCESS = [
+  { icon: "📞", title: "Заявка", desc: "звонок или форма, 5 минут" },
+  { icon: "📐", title: "Бесплатный замер", desc: "выезд по Томску, 1 час" },
+  { icon: "🎨", title: "Дизайн и согласование", desc: "макет с правками, 1-3 дня" },
+  { icon: "🏭", title: "Производство", desc: "наш цех на пр. Фрунзе 115, 3-7 дней" },
+  { icon: "🛠️", title: "Демонтаж + монтаж", desc: "за 1 рабочий день" },
+];
+
+const FALLBACK_PHOTO = "/images/blog/vyveski-soglasovanie.jpg";
+
+const PORTFOLIO_RAW = [
+  {
+    before: "/images/blog/rusification-1-before.jpg",
+    after: "/images/blog/rusification-1-after.jpg",
+    caption: "Магазин одежды на пр. Ленина, май 2026",
+  },
+  {
+    before: "/images/blog/rusification-2-before.jpg",
+    after: "/images/blog/rusification-2-after.jpg",
+    caption: "Кафе на ул. Красноармейской, апрель 2026",
+  },
+  {
+    before: "/images/blog/rusification-3-before.jpg",
+    after: "/images/blog/rusification-3-after.jpg",
+    caption: "Салон красоты на пр. Фрунзе, март 2026",
+  },
+  {
+    before: "/images/blog/rusification-4-before.jpg",
+    after: "/images/blog/rusification-4-after.jpg",
+    caption: "Автосервис на Иркутском тракте, май 2026",
+  },
+];
+
+function resolvePhoto(publicPath: string): { src: string; missing: boolean } {
+  const abs = path.join(process.cwd(), "public", publicPath.replace(/^\//, ""));
+  const ok = existsSync(abs);
+  return { src: ok ? publicPath : FALLBACK_PHOTO, missing: !ok };
+}
+
+const missingPhotos: string[] = [];
+const PORTFOLIO = PORTFOLIO_RAW.map((p) => {
+  const before = resolvePhoto(p.before);
+  const after = resolvePhoto(p.after);
+  if (before.missing) missingPhotos.push(p.before);
+  if (after.missing) missingPhotos.push(p.after);
+  return { before: before.src, after: after.src, caption: p.caption };
+});
+
+if (missingPhotos.length > 0) {
+  console.warn(
+    `[/russifikaciya] Missing portfolio photos (using fallback ${FALLBACK_PHOTO}):\n  - ` +
+      missingPhotos.join("\n  - "),
+  );
+}
+
+const FAQ_ITEMS = [
+  {
+    question: "Какие именно слова надо переводить?",
+    answer:
+      "Все коммерческие названия товаров, услуг, профессий на иностранных языках. Исключение — зарегистрированные бренды и торговые марки (Apple, Coca-Cola, IKEA сохраняем как есть).",
+  },
+  {
+    question: "Можно ли просто наклеить русские слова поверх английских?",
+    answer:
+      "Да, для существующих вывесок это законно. Главное — текст читаемый, того же размера, не закрывает важные элементы. Делаем виниловые наклейки за 1-2 дня от 5 000 ₽.",
+  },
+  {
+    question: "А если у меня бренд на английском (например NIKE, ZARA)?",
+    answer:
+      "Зарегистрированные международные бренды сохраняются. Но описательная часть («Магазин одежды», «Кафе», «Салон») должна быть на русском. Поможем определить что трогать, что не трогать.",
+  },
+  {
+    question: "Нужно ли согласовывать новую вывеску?",
+    answer:
+      "Если меняется только текст (наклейка или дополнение) — не нужно. Если заменяете полностью или меняется размер/положение — да, согласование с Комитетом архитектуры. Помогаем с документами, срок 3-4 недели.",
+  },
+  {
+    question: "Сколько времени осталось чтобы избежать штрафа?",
+    answer:
+      "Закон уже действует. Проверки администрации Томска начались в апреле. Чем раньше — тем спокойнее. Срочные работы выполняем за 1-3 дня.",
+  },
+  {
+    question: "Что входит в «бесплатный замер»?",
+    answer:
+      "Выезд специалиста к вашему объекту, фотофиксация текущей вывески, замер размеров, оценка состояния. По итогам — 2-3 варианта решения с ценами в течение 1-2 дней.",
+  },
+  {
+    question: "Работаете ли с бюджетными организациями (44-ФЗ / 223-ФЗ)?",
+    answer:
+      "Да. ООО «Формат-Сити» работает по 44-ФЗ и 223-ФЗ. Все закрывающие документы, ЭЦП, опыт участия в тендерах с 2010 года.",
+  },
+  {
+    question: "Какая гарантия на работы?",
+    answer:
+      "На материалы и плёнки — 2 года. На монтаж — 1 год. Сервисный выезд по гарантии — бесплатно по Томску.",
+  },
+];
+
+const SERVICE_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Русификация вывесок в Томске",
+  serviceType: "Замена и перевод вывесок под закон 53-ФЗ",
+  areaServed: { "@type": "City", name: "Томск" },
+  provider: {
+    "@type": "Organization",
+    name: "Зонд-Реклама",
+    url: "https://zond-website.vercel.app",
+  },
+  offers: {
+    "@type": "AggregateOffer",
+    lowPrice: "5000",
+    priceCurrency: "RUB",
+    offerCount: "4",
+  },
 };
 
 export default function RussifikaciyaPage() {
@@ -25,6 +202,10 @@ export default function RussifikaciyaPage() {
     <>
       <PixelBorder />
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSONLD) }}
+      />
       <main>
         <Breadcrumb
           items={[
@@ -34,132 +215,257 @@ export default function RussifikaciyaPage() {
         />
 
         {/* HERO */}
-        <section className="bg-gradient-to-br from-brand to-purple-900 text-white py-20">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <div className="inline-block bg-red-500 text-white px-4 py-1.5 rounded-full text-sm font-bold mb-6">
-              ВНИМАНИЕ: закон с 1 марта 2026
+        <section className="relative bg-gradient-to-br from-brand to-purple-900 text-white overflow-hidden">
+          <Image
+            src="/images/blog/vyveski-soglasovanie.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-15 mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-brand/90 to-purple-900/95" />
+          <div className="relative container mx-auto px-4 max-w-5xl py-16 md:py-24">
+            <div className="inline-flex items-center gap-2 bg-rose-500/95 text-white px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg">
+              <span aria-hidden>🔔</span>
+              Закон вступил в силу с 1 марта 2026
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Замена англоязычной вывески в Томске по закону 2026 года
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight">
+              Русификация вывесок в&nbsp;Томске под&nbsp;ключ
             </h1>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              С 1 марта 2026 года вывески с иностранными словами должны быть переведены на
-              государственный язык или дополнены переводом такого же размера. За нарушение —
-              штрафы от 50 000 ₽ до 500 000 ₽ для юр.лиц.
+            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl">
+              Переведём, заменим или сделаем новую вывеску — с соблюдением закона
+              и согласованием с администрацией Томска.
             </p>
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex flex-wrap gap-3 mb-6">
               <a
                 href="#contact-form"
-                className="bg-white text-brand px-8 py-4 rounded-xl font-bold"
+                className="inline-flex items-center gap-2 bg-accent-yellow text-slate-900 px-7 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:brightness-95 transition"
               >
-                Получить бесплатный замер
+                🆓 Бесплатный замер
               </a>
               <a
                 href="tel:+73822979705"
-                className="bg-white/10 backdrop-blur border border-white/30 text-white px-8 py-4 rounded-xl font-semibold"
+                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/30 text-white px-7 py-4 rounded-xl font-semibold text-base hover:bg-white/20 transition"
               >
-                8 (3822) 97-97-05
+                ☎ 8 (3822) 97-97-05
               </a>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/85">
+              <span>✓ Выезд бесплатно</span>
+              <span>✓ Замер за 1 час</span>
+              <span>✓ Гарантия 2 года</span>
+            </div>
+          </div>
+        </section>
+
+        {/* STATS */}
+        <section className="bg-white border-b border-slate-100">
+          <div className="container mx-auto px-4 max-w-6xl py-10 md:py-12">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8">
+              {STATS.map((s) => (
+                <div key={s.label} className="text-center">
+                  <div
+                    className={`text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight ${s.accent}`}
+                  >
+                    {s.value}
+                  </div>
+                  <div className="text-xs sm:text-sm text-slate-600 mt-2 leading-snug">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* ЧТО ИЗМЕНИЛОСЬ */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="text-3xl font-bold mb-6">Что изменилось с 1 марта 2026 года</h2>
-            <p className="mb-4 text-slate-700 leading-relaxed">
-              Федеральным законом «О государственном языке РФ» (с изменениями от 28.02.2025
-              № 53-ФЗ) запрещено использование иностранных слов и выражений на вывесках, в
-              наружной рекламе, а также в названиях товаров и услуг — за исключением случаев,
-              когда у этих слов нет общеупотребительных русских аналогов.
+        <section className="py-16 md:py-20 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+              Что изменилось с 1 марта 2026 года
+            </h2>
+            <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+              Кратко — что говорит закон, кого касается и какие штрафы.
             </p>
-            <p className="mb-4 text-slate-700 leading-relaxed">
-              Если на фасаде вашего магазина, кафе, салона или офиса есть слова на английском
-              или других иностранных языках — их нужно либо перевести, либо сопроводить
-              переводом того же размера и шрифта.
-            </p>
-            <p className="mb-4 text-slate-700 leading-relaxed">
-              <strong>Штрафы за нарушение:</strong> для должностных лиц — от 10 000 до 50 000 ₽,
-              для юридических лиц — от 50 000 до 500 000 ₽ (ст. 14.3 КоАП РФ).
-            </p>
-          </div>
-        </section>
-
-        {/* ЧТО ПРЕДЛАГАЕМ */}
-        <section className="py-16 bg-slate-50">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <h2 className="text-3xl font-bold mb-10 text-center">Что мы предлагаем</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-2xl shadow-sm">
-                <div className="text-4xl mb-3">📝</div>
-                <h3 className="text-xl font-bold mb-2">Перевод и дополнение</h3>
-                <p className="text-slate-600">
-                  Добавляем русский перевод к существующей вывеске. Самый бюджетный вариант — от
-                  5 000 ₽.
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div className="text-xs uppercase tracking-wider text-brand font-bold mb-3">
+                  Закон
+                </div>
+                <h3 className="text-lg font-bold mb-2">ФЗ № 53-ФЗ от 28.02.2025</h3>
+                <p className="text-slate-700 text-sm leading-relaxed">
+                  Вывески, наружная реклама и названия товаров должны быть на государственном
+                  языке — либо сопровождаться русским дополнением того же размера.
                 </p>
               </div>
-              <div className="bg-white p-6 rounded-2xl shadow-sm">
-                <div className="text-4xl mb-3">🔄</div>
-                <h3 className="text-xl font-bold mb-2">Полная замена</h3>
-                <p className="text-slate-600">
-                  Изготавливаем новую вывеску — только на русском или с дополнительным русским
-                  блоком. От 1 дня для табличек, 5-7 дней для световых.
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div className="text-xs uppercase tracking-wider text-brand font-bold mb-3">
+                  Кого касается
+                </div>
+                <h3 className="text-lg font-bold mb-2">Юр.лица и ИП</h3>
+                <p className="text-slate-700 text-sm leading-relaxed">
+                  Все организации в Томске, у которых на фасадах, табло, ценниках встречаются
+                  иностранные слова без русского аналога.
                 </p>
               </div>
-              <div className="bg-white p-6 rounded-2xl shadow-sm">
-                <div className="text-4xl mb-3">🎨</div>
-                <h3 className="text-xl font-bold mb-2">Новый дизайн</h3>
-                <p className="text-slate-600">
-                  Разрабатываем новый логотип и вывеску с нуля — с русским названием и
-                  проработанной типографикой. От 8 000 ₽.
+              <div className="bg-white p-6 rounded-2xl border border-rose-200 shadow-sm">
+                <div className="text-xs uppercase tracking-wider text-rose-500 font-bold mb-3">
+                  Штрафы
+                </div>
+                <h3 className="text-lg font-bold mb-2">До 500 000 ₽</h3>
+                <p className="text-slate-700 text-sm leading-relaxed">
+                  Должностные лица: 10-50К ₽.
+                  <br />
+                  Юр.лица: 50-500К ₽.
+                  <br />
+                  Статья 14.3 КоАП РФ.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* СРОКИ И ЦЕНЫ */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="text-3xl font-bold mb-6">Сколько стоит и как быстро</h2>
-            <ul className="space-y-3 text-slate-700">
-              <li>✓ <strong>Перевод (наклейка/таблица):</strong> от 5 000 ₽, 1-2 дня</li>
-              <li>✓ <strong>Замена баннера на вывеске:</strong> от 15 000 ₽, 2-3 дня</li>
-              <li>✓ <strong>Замена световых букв:</strong> от 50 000 ₽, 5-10 дней</li>
-              <li>✓ <strong>Полная замена лайтбокса:</strong> от 30 000 ₽, 5-7 дней</li>
-              <li>✓ <strong>Новый комплексный фасад:</strong> от 100 000 ₽, 14-21 день</li>
-            </ul>
-            <p className="mt-6 text-slate-600">
-              Бесплатный замер по Томску. Согласование с администрацией — берём на себя.
+        {/* 4 РЕШЕНИЯ */}
+        <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+              4 варианта решения
+            </h2>
+            <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+              От наклейки за день до нового фирменного стиля — выбираем по бюджету
+              и состоянию текущей вывески.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+              {SOLUTIONS.map((s) => (
+                <div
+                  key={s.title}
+                  className="bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand hover:shadow-xl hover:-translate-y-1 transition flex flex-col"
+                >
+                  <div className="text-4xl mb-3">{s.icon}</div>
+                  <h3 className="text-lg font-bold mb-2 leading-tight">{s.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4 flex-1">
+                    {s.description}
+                  </p>
+                  <div className="border-t border-slate-100 pt-4 flex items-center justify-between text-sm">
+                    <span className="font-bold text-brand">{s.price}</span>
+                    <span className="text-slate-500">{s.duration}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ПРОЦЕСС */}
+        <section className="py-16 md:py-20 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+              Как мы работаем
+            </h2>
+            <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+              Пять шагов от заявки до запуска новой вывески. Каждый — с фиксированным
+              сроком.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {PROCESS.map((step, i) => (
+                <div
+                  key={step.title}
+                  className="bg-white rounded-2xl p-5 border border-slate-200 relative"
+                >
+                  <div className="absolute -top-3 -left-3 w-9 h-9 bg-brand text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">
+                    {i + 1}
+                  </div>
+                  <div className="text-3xl mb-2">{step.icon}</div>
+                  <h3 className="font-bold mb-1">{step.title}</h3>
+                  <p className="text-xs text-slate-600 leading-snug">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ПОРТФОЛИО ДО/ПОСЛЕ */}
+        <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+              До и после: наши работы
+            </h2>
+            <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+              Примеры русификации вывесок в Томске — переводы, дополнения и полные замены.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {PORTFOLIO.map((p) => (
+                <article
+                  key={p.caption}
+                  className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white"
+                >
+                  <div className="grid grid-cols-2 relative">
+                    <div className="relative aspect-[4/3] bg-slate-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={p.before}
+                        alt={`До: ${p.caption}`}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                      <span className="absolute top-2 left-2 bg-rose-500 text-white text-xs font-bold px-2 py-1 rounded">
+                        ДО
+                      </span>
+                    </div>
+                    <div className="relative aspect-[4/3] bg-slate-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={p.after}
+                        alt={`После: ${p.caption}`}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                      <span className="absolute top-2 right-2 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded">
+                        ПОСЛЕ
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4 text-sm text-slate-700 font-medium">
+                    {p.caption}
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p className="text-center text-xs text-slate-500 mt-6">
+              Это AI-визуализации типовых работ. Реальные фото объектов клиентов
+              публикуем только с письменного согласия.
             </p>
           </div>
         </section>
 
-        <FAQ
-          items={[
-            {
-              question: "Какие именно слова надо переводить?",
-              answer:
-                "Все иностранные слова — английские, китайские, японские и другие. Исключение — слова без общеупотребительных русских аналогов (например, «Wi-Fi», «такси», «кофе»). Если сомневаетесь — поможем определить.",
-            },
-            {
-              question: "Можно ли просто наклеить русские слова поверх английских?",
-              answer:
-                "Можно, если это аккуратно с точки зрения дизайна и материала. Но по практике лучше сделать новую вывеску — она прослужит дольше и не будет выглядеть «латаной».",
-            },
-            {
-              question: "А если у меня бренд на английском?",
-              answer:
-                "Можно оставить английское написание бренда, но рядом обязательно — русское прочтение того же размера. Например: NIKE / НАЙК, MCDONALD'S / МАКДОНАЛДС.",
-            },
-            {
-              question: "Нужно ли согласовывать новую вывеску?",
-              answer:
-                "Если меняется только текст (например, добавляется русский перевод), новое согласование обычно не требуется. Если меняется конструкция целиком — нужен новый Паспорт фасада. Мы согласуем под ключ.",
-            },
-          ]}
-        />
+        <FAQ items={FAQ_ITEMS} />
+
+        {/* БОЛЬШОЙ CTA ПЕРЕД ФОРМОЙ */}
+        <section className="bg-brand text-white py-16 md:py-20">
+          <div className="container mx-auto px-4 max-w-5xl text-center">
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+              Не ждите проверки — оставьте заявку
+            </h2>
+            <p className="text-lg md:text-xl text-white/85 mb-8 max-w-2xl mx-auto">
+              Замер бесплатно. Расчёт за 1-2 дня. Под ключ — за неделю.
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-4">
+              <a
+                href="#contact-form"
+                className="inline-flex items-center gap-2 bg-accent-yellow text-slate-900 px-8 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:brightness-95 transition"
+              >
+                Получить бесплатный замер →
+              </a>
+              <a
+                href="tel:+73822979705"
+                className="inline-flex items-center gap-2 text-white text-lg font-semibold hover:underline"
+              >
+                ☎ 8 (3822) 97-97-05
+              </a>
+            </div>
+          </div>
+        </section>
 
         <CTAForm />
       </main>
