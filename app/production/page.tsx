@@ -131,6 +131,15 @@ export const metadata: Metadata = {
     "заказать вывеску",
     "лайтбокс Томск",
   ],
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=Вывески и световые конструкции под ключ&subtitle=Согласование, производство, монтаж в Томске&category=Производство",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function ProductionPage() {

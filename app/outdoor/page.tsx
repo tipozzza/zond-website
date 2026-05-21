@@ -136,6 +136,15 @@ export const metadata: Metadata = {
     "размещение наружной рекламы",
     "баннер Томск",
   ],
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=726 сторон наружной рекламы в Томске&subtitle=Билборды и цифровые LED-экраны&category=Наружная реклама",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function OutdoorPage() {

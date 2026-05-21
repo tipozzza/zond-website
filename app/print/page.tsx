@@ -169,6 +169,15 @@ export const metadata: Metadata = {
     "цветная печать",
     "заказать баннер Томск",
   ],
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=Широкоформатная печать и полиграфия&subtitle=Собственный цех в Томске, до 3,2 м&category=Печать",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function PrintPage() {

@@ -137,6 +137,15 @@ export const metadata: Metadata = {
     "фирменный стиль Томск",
     "брендбук Томск",
   ],
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=Логотип и фирменный стиль в Томске&subtitle=Дизайн-центр Зонд с 1995 года&category=Дизайн",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function DesignPage() {

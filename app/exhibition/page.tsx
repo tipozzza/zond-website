@@ -182,6 +182,15 @@ export const metadata: Metadata = {
     "ролл-апы Томск",
     "MAXIBIT Томск",
   ],
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=Выставочные стенды Pop-up и ролл-апы&subtitle=Дилер MAXIBIT и JUST с 2006 года&category=Выставки",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function ExhibitionPage() {

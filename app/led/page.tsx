@@ -85,6 +85,15 @@ export const metadata: Metadata = {
     "световые фигуры",
     "Лайтово",
   ],
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=Новогоднее оформление и иллюминация&subtitle=Подсветка фасадов под брендом Лайтово с 2008 года&category=LED-иллюминация",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function LedPage() {

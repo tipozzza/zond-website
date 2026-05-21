@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import { NEWS, type NewsItem } from "@/lib/news-data";
+import { buildOgUrl } from "@/lib/og";
 
 const BASE_URL = "https://zond-website.vercel.app";
 
@@ -21,6 +22,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const news = NEWS.find((n) => n.slug === slug);
   if (!news) return { title: "Новость не найдена" };
+  const ogUrl = buildOgUrl({
+    title: news.title,
+    subtitle: news.dateLabel,
+    category: "Новости",
+  });
   return {
     title: news.title,
     description: news.excerpt,
@@ -31,7 +37,9 @@ export async function generateMetadata({
       publishedTime: news.date,
       images: [
         {
-          url: news.image,
+          url: ogUrl,
+          width: 1200,
+          height: 630,
           alt: `${news.title} — Зонд-Реклама, Томск`,
         },
       ],

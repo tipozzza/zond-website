@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/api/og?title=Зонд-Реклама&subtitle=Реклама и производство в Томске с 1992 года&category=ZOND × Лайтово",
         width: 1200,
         height: 630,
         alt: "Зонд-Реклама — рекламная компания в Томске",
@@ -49,7 +49,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Зонд-Реклама — Реклама и производство в Томске",
     description: "Полный цикл рекламы в Томске с 1992 года",
-    images: ["/og-image.jpg"],
+    images: [
+      "/api/og?title=Зонд-Реклама&subtitle=Реклама и производство в Томске с 1992 года&category=ZOND × Лайтово",
+    ],
   },
   robots: {
     index: true,

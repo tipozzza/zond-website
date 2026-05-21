@@ -11,6 +11,7 @@ import {
   BLOG_CATEGORY_LABELS,
   type BlogPost,
 } from "@/lib/types/blog";
+import { buildOgUrl } from "@/lib/og";
 
 const BASE_URL = "https://zond-website.vercel.app";
 
@@ -26,6 +27,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = BLOG.find((b) => b.slug === slug);
   if (!post) return { title: "Статья не найдена" };
+  const ogUrl = buildOgUrl({
+    title: post.title,
+    subtitle: `${post.dateLabel} • ~${post.readingMinutes} мин чтения`,
+    category: BLOG_CATEGORY_LABELS[post.category] || "Блог",
+  });
   return {
     title: post.metaTitle || post.title,
     description: post.metaDescription,
@@ -38,7 +44,9 @@ export async function generateMetadata({
       publishedTime: post.date,
       images: [
         {
-          url: post.image,
+          url: ogUrl,
+          width: 1200,
+          height: 630,
           alt: `${post.title} — Зонд-Реклама, Томск`,
         },
       ],
