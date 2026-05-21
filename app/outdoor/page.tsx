@@ -179,7 +179,7 @@ export default function OutdoorPage() {
                 Наружная реклама
               </span>
 
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] drop-shadow-lg">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] drop-shadow-lg">
                 Наружная реклама<br />в Томске
               </h1>
 

@@ -223,7 +223,7 @@ export default function ExhibitionPage() {
               <div className="inline-block bg-[#3FA3D9] text-white px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
                 ВЫСТАВЛЯЕМСЯ С 1993 ГОДА
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
                 Выставочные стенды в Томске под ключ
               </h1>
               <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">

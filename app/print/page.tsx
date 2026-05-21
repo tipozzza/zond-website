@@ -213,7 +213,7 @@ export default function PrintPage() {
               <div className="inline-block bg-[#FFCC00] text-slate-900 px-4 py-1.5 rounded-full text-sm font-bold mb-6 uppercase tracking-wider">
                 ПЕЧАТАЕМ В ТОМСКЕ С 1995 ГОДА
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white text-left tracking-tight leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white text-left tracking-tight leading-tight">
                 Печать в Томске: визитки, баннеры, листовки
               </h1>
               <p className="text-xl md:text-2xl text-white/90 mb-8 text-left leading-relaxed">

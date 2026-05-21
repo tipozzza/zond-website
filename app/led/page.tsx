@@ -135,7 +135,7 @@ export default function LedPage() {
                 />
                 <div className="h-12 w-px bg-white/40" />
                 <div>
-                  <div className="text-5xl font-black tracking-wider text-[#F4C430] leading-none">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-wide sm:tracking-wider text-[#F4C430] leading-none">
                     LIGHTOVO
                   </div>
                   <div className="text-xs uppercase tracking-widest text-white/70 mt-1">
@@ -143,7 +143,7 @@ export default function LedPage() {
                   </div>
                 </div>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
                 Новогоднее оформление и иллюминация в Томске
               </h1>
               <p className="text-xl md:text-2xl text-white/85 mb-8 leading-relaxed">
