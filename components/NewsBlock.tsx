@@ -35,7 +35,7 @@ export default function NewsBlock() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={`${item.title} — новость Зонд-Реклама, Томск`}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   onError={(e) => {
@@ -48,7 +48,11 @@ export default function NewsBlock() {
                 <h3 className="font-bold mb-2 line-clamp-2 group-hover:text-brand transition">
                   {item.title}
                 </h3>
-                <p className="text-sm text-slate-600 line-clamp-2">{item.excerpt}</p>
+                <p className="text-sm text-slate-600 line-clamp-2 mb-3">{item.excerpt}</p>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand">
+                  Читать новость
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </span>
               </div>
             </Link>
           ))}

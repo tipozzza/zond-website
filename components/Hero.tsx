@@ -54,7 +54,11 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow"
           >
-            726 рекламных сторон на 226 конструкциях. Производство и монтаж под ключ — с 1992 года.
+            726 рекламных сторон на 226 конструкциях.{" "}
+            <Link href="/production" className="underline decoration-white/40 hover:decoration-white">
+              Производство
+            </Link>{" "}
+            и монтаж под ключ — с 1992 года.
           </motion.p>
 
           <motion.div

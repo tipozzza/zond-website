@@ -7,6 +7,7 @@ import { Check } from "lucide-react";
 const SLIDES = [
   {
     image: "/images/production-workshop.jpg",
+    imageAlt: "Цех производства вывесок и металлоконструкций — ZOND, Томск",
     badge: "ПРОИЗВОДСТВО",
     title: "Металл и сборка",
     description:
@@ -20,6 +21,7 @@ const SLIDES = [
   },
   {
     image: "/images/production.jpg",
+    imageAlt: "Сольвентные принтеры Flora и Magellan — широкоформатная печать в Томске, ZOND",
     badge: "ШИРОКОФОРМАТНАЯ ПЕЧАТЬ",
     title: "Печать любого формата",
     description:
@@ -33,6 +35,7 @@ const SLIDES = [
   },
   {
     image: "/images/exhibition.jpg",
+    imageAlt: "Выставочные стенды MAXIBIT под ключ — ZOND, Томск",
     badge: "ВЫСТАВКИ И СТЕНДЫ",
     title: "Готовые работы под ключ",
     description:
@@ -71,7 +74,7 @@ export default function Production() {
               <motion.img
                 key={current}
                 src={slide.image}
-                alt={slide.title}
+                alt={slide.imageAlt}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{
                   opacity: 1,

@@ -76,6 +76,7 @@ const items: Item[] = [
     image: "/images/design/category-print.jpg",
     href: "/print#interior",
     accent: "#FFCC00",
+    cta: "Заказать интерьерную печать",
   },
   {
     title: "Печать полиграфии",
@@ -83,6 +84,7 @@ const items: Item[] = [
     image: "/images/design/category-design-polygraphy.jpg",
     href: "/design#polygraphy",
     accent: "#3949AB",
+    cta: "Заказать полиграфию",
   },
   {
     title: "Брендированные сувениры",
@@ -90,6 +92,7 @@ const items: Item[] = [
     image: "/images/design/category-souvenir.jpg",
     href: "/design#souvenirs",
     accent: "#3949AB",
+    cta: "Заказать сувениры с логотипом",
   },
   {
     title: "Согласование рекламы",
@@ -97,6 +100,7 @@ const items: Item[] = [
     image: "/images/approval.jpg",
     href: "/production#approval",
     accent: "#7CB342",
+    cta: "Заказать согласование под ключ",
   },
   {
     title: "Комплексное оформление",
@@ -104,6 +108,7 @@ const items: Item[] = [
     image: "/images/complex.jpg",
     href: "/design#complex",
     accent: "#3949AB",
+    cta: "Обсудить комплексный проект",
   },
 ];
 
@@ -130,7 +135,7 @@ export default function Cases() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={`${item.title} — Зонд-Реклама, Томск`}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   onError={(e) => {

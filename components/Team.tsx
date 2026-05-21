@@ -23,7 +23,7 @@ export default function Team() {
         <div className="relative max-w-6xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden shadow-xl mb-16">
           <Image
             src="/images/team.jpg"
-            alt="Команда Зонд-Реклама"
+            alt="Команда Зонд-Реклама — 50+ специалистов рекламы и производства в Томске"
             fill
             sizes="(min-width: 1024px) 72rem, 100vw"
             className="object-cover"

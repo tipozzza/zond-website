@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SERVICES } from "@/lib/site-data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -29,9 +30,26 @@ export const metadata: Metadata = {
   ],
 };
 
+const BASE_URL = "https://zond-website.vercel.app";
+
+const SERVICES_ITEM_LIST = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: SERVICES.map((s, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: s.title,
+    url: `${BASE_URL}${s.href}`,
+  })),
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_ITEM_LIST) }}
+      />
       <Header />
       <main>
         <Hero />

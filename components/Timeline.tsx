@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TIMELINE } from "@/lib/site-data";
 
 export default function Timeline() {
@@ -14,8 +15,11 @@ export default function Timeline() {
             33 года развития<br />рекламного рынка Томска
           </h2>
           <p className="text-lg text-white/85 leading-relaxed">
-            Мы первыми установили щит 3×6 в Томске, первыми привезли digital-биллборд,
-            первыми построили цифровую сеть. Развиваем рынок вместе с городом.
+            Мы первыми установили щит 3×6 в Томске, первыми привезли{" "}
+            <Link href="/outdoor" className="underline decoration-white/40 hover:decoration-white">
+              digital-биллборд
+            </Link>
+            , первыми построили цифровую сеть. Развиваем рынок вместе с городом.
           </p>
         </div>
 

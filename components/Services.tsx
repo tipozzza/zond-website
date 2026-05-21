@@ -77,7 +77,7 @@ export default function Services() {
                   style={{ color: accent }}
                   className="inline-flex items-center gap-2 font-semibold group/link relative z-10 self-start transition-colors"
                 >
-                  <span>Подробнее</span>
+                  <span>Подробнее о {service.title.toLowerCase()}</span>
                   <ArrowRight
                     size={18}
                     className="group-hover/link:translate-x-1 transition-transform duration-300"
