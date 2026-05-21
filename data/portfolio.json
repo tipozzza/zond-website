@@ -1,0 +1,32 @@
+{
+  "outdoor": {
+    "title": "Наружная реклама",
+    "slug": "outdoor",
+    "items": []
+  },
+  "print": {
+    "title": "ШФ печать",
+    "slug": "print",
+    "items": []
+  },
+  "production": {
+    "title": "Производство",
+    "slug": "production",
+    "items": []
+  },
+  "exhibition": {
+    "title": "Выставочные экспозиции",
+    "slug": "exhibition",
+    "items": []
+  },
+  "design": {
+    "title": "Дизайн и полиграфия",
+    "slug": "design",
+    "items": []
+  },
+  "led": {
+    "title": "Светодиодная продукция",
+    "slug": "led",
+    "items": []
+  }
+}

@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import AdminNav from "@/components/admin/AdminNav";
 
 type NewsRecord = {
   slug: string;
@@ -43,30 +44,18 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleLogout = async () => {
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/login");
-  };
-
   return (
     <div className="min-h-screen bg-slate-100 p-6">
       <div className="max-w-6xl mx-auto">
+        <AdminNav />
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold">Новости — управление</h1>
-          <div className="flex gap-3">
-            <Link
-              href="/admin/news/new"
-              className="bg-brand text-white px-6 py-2 rounded-lg font-semibold"
-            >
-              + Добавить новость
-            </Link>
-            <button
-              onClick={handleLogout}
-              className="text-slate-600 hover:text-slate-900 px-4 py-2"
-            >
-              Выйти
-            </button>
-          </div>
+          <Link
+            href="/admin/news/new"
+            className="bg-brand text-white px-6 py-2 rounded-lg font-semibold"
+          >
+            + Добавить новость
+          </Link>
         </div>
 
         {loading && <div className="text-center py-12 text-slate-500">Загрузка...</div>}
