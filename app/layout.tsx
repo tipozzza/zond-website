@@ -3,6 +3,7 @@ import { Rubik } from "next/font/google";
 import "./globals.css";
 import YandexMetrika from "@/components/YandexMetrika";
 import StructuredData from "@/components/StructuredData";
+import CookieBanner from "@/components/CookieBanner";
 
 const rubik = Rubik({
   subsets: ["latin", "cyrillic"],
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StructuredData />
         <YandexMetrika />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

@@ -1,6 +1,36 @@
+"use client";
+
 import Script from "next/script";
+import { useEffect, useState } from "react";
+
+const STORAGE_KEY = "zond-cookie-consent";
+const TTL_DAYS = 365;
+
+function hasValidConsent(): boolean {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return false;
+    const { ts } = JSON.parse(saved);
+    return Date.now() - ts < TTL_DAYS * 86400 * 1000;
+  } catch {
+    return false;
+  }
+}
 
 export default function YandexMetrika() {
+  const [allowed, setAllowed] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      if (hasValidConsent()) setAllowed(true);
+    };
+    check();
+    window.addEventListener("cookie-consent-given", check);
+    return () => window.removeEventListener("cookie-consent-given", check);
+  }, []);
+
+  if (!allowed) return null;
+
   return (
     <>
       <Script id="yandex-metrika" strategy="lazyOnload">
