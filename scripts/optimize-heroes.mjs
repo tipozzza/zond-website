@@ -14,6 +14,7 @@ const heroes = [
   { key: "production", path: "public/images/production-workshop.jpg" },
   { key: "outdoor", path: "public/images/outdoor-mix.jpg" },
   { key: "print", path: "public/images/production.jpg" },
+  { key: "russifikaciya", path: "public/images/blog/russifikaciya-hero.jpg" },
 ];
 
 const blurs = {};

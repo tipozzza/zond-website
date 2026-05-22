@@ -10,6 +10,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import FAQ from "@/components/FAQ";
 import CTAForm from "@/components/CTAForm";
 import { buildOgUrl } from "@/lib/og";
+import { HERO_BLURS } from "@/lib/hero-blurs";
 
 export const metadata: Metadata = {
   title: "Русификация вывесок в Томске — закон с 1 марта 2026 | ZOND",
@@ -215,16 +216,18 @@ export default function RussifikaciyaPage() {
         />
 
         {/* HERO */}
-        <section className="relative bg-gradient-to-br from-brand to-purple-900 text-white overflow-hidden">
+        <section className="relative bg-slate-900 text-white overflow-hidden">
           <Image
             src="/images/blog/russifikaciya-hero.jpg"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-20 mix-blend-luminosity"
+            placeholder="blur"
+            blurDataURL={HERO_BLURS.russifikaciya}
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-brand/90 to-purple-900/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70" />
           <div className="relative container mx-auto px-4 max-w-5xl py-16 md:py-24">
             <div className="inline-flex items-center gap-2 bg-rose-500/95 text-white px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg">
               <span aria-hidden>🔔</span>
