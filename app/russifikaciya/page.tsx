@@ -25,16 +25,36 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/russifikaciya" },
   openGraph: {
+    title: "Русификация вывесок в Томске — закон с 1 марта 2026",
+    description:
+      "Перевод, замена или новая вывеска под закон РФ от 1 марта 2026. Бесплатный замер по Томску, согласование с администрацией, гарантия 2 года.",
+    url: "https://zond-website.vercel.app/russifikaciya",
+    siteName: "ZOND",
+    locale: "ru_RU",
+    type: "website",
     images: [
       {
         url: buildOgUrl({
           title: "Русификация вывесок в Томске",
-          subtitle: "Закон с 1 марта 2026",
+          subtitle: "Закон с 1 марта 2026 — переведём, заменим или сделаем новую",
           category: "Под ключ",
         }),
         width: 1200,
         height: 630,
       },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Русификация вывесок в Томске — закон с 1 марта 2026",
+    description:
+      "Перевод, замена или новая вывеска под закон РФ. Бесплатный замер по Томску.",
+    images: [
+      buildOgUrl({
+        title: "Русификация вывесок в Томске",
+        subtitle: "Закон с 1 марта 2026 — переведём, заменим или сделаем новую",
+        category: "Под ключ",
+      }),
     ],
   },
 };

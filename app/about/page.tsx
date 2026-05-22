@@ -17,6 +17,7 @@ import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import Breadcrumb from "@/components/Breadcrumb";
 import { COMPANY, CLIENTS } from "@/lib/site-data";
+import { buildOgUrl } from "@/lib/og";
 
 const HERO_STATS = [
   { num: "33", label: "года рынку" },
@@ -138,7 +139,7 @@ const GROUP_COMPANIES = [
 ];
 
 export const metadata: Metadata = {
-  title: "О компании Зонд-Реклама — 33 года в Томске | История с 1992",
+  title: "О компании Зонд-Реклама — 34 года в Томске | История с 1992",
   description:
     "ГК Зонд-Реклама в Томске. История с 1992 года, 226 рекламных конструкций, 50+ сотрудников, дилерство MAXIBIT, бренд Лайтово.",
   keywords: [
@@ -147,6 +148,39 @@ export const metadata: Metadata = {
     "история компании",
     "ГК Зонд",
   ],
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "О компании ZOND",
+    description:
+      "34 года на рынке рекламы Томска — с 1992. 226 конструкций, собственный цех, дилерство MAXIBIT, бренд Лайтово.",
+    url: "https://zond-website.vercel.app/about",
+    siteName: "ZOND",
+    locale: "ru_RU",
+    type: "website",
+    images: [
+      {
+        url: buildOgUrl({
+          title: "О компании ZOND",
+          subtitle: "34 года на рынке рекламы Томска — с 1992",
+          category: "О нас",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "О компании ZOND",
+    description: "34 года на рынке рекламы Томска — с 1992",
+    images: [
+      buildOgUrl({
+        title: "О компании ZOND",
+        subtitle: "34 года на рынке рекламы Томска — с 1992",
+        category: "О нас",
+      }),
+    ],
+  },
 };
 
 export default function AboutPage() {

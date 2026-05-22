@@ -6,6 +6,7 @@ import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import Breadcrumb from "@/components/Breadcrumb";
 import { NEWS } from "@/lib/news-data";
+import { buildOgUrl } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "Новости Зонд-Реклама — что происходит в компании",
@@ -16,6 +17,39 @@ export const metadata: Metadata = {
     "новости рекламы Томск",
     "новые билборды Томск",
   ],
+  alternates: { canonical: "/news" },
+  openGraph: {
+    title: "Новости агентства ZOND",
+    description:
+      "Реклама, производство, события в Томске. Цифровые билборды, реализованные проекты, акции.",
+    url: "https://zond-website.vercel.app/news",
+    siteName: "ZOND",
+    locale: "ru_RU",
+    type: "website",
+    images: [
+      {
+        url: buildOgUrl({
+          title: "Новости агентства ZOND",
+          subtitle: "Реклама, производство, события в Томске",
+          category: "Новости",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Новости агентства ZOND",
+    description: "Реклама, производство, события в Томске",
+    images: [
+      buildOgUrl({
+        title: "Новости агентства ZOND",
+        subtitle: "Реклама, производство, события в Томске",
+        category: "Новости",
+      }),
+    ],
+  },
 };
 
 export default function NewsPage() {

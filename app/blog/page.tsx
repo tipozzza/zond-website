@@ -6,6 +6,7 @@ import FloatingTG from "@/components/FloatingTG";
 import Breadcrumb from "@/components/Breadcrumb";
 import BlogList from "@/components/BlogList";
 import { BLOG } from "@/lib/blog-data";
+import { buildOgUrl } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "Блог Зонд-Реклама — гайды по рекламе и производству",
@@ -18,6 +19,38 @@ export const metadata: Metadata = {
     "производство вывесок инструкция",
   ],
   alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Блог ZOND — гайды по рекламе",
+    description:
+      "Цены, согласования, технологии для бизнеса в Томске. Опыт компании с 1992 года.",
+    url: "https://zond-website.vercel.app/blog",
+    siteName: "ZOND",
+    locale: "ru_RU",
+    type: "website",
+    images: [
+      {
+        url: buildOgUrl({
+          title: "Блог ZOND — гайды по рекламе",
+          subtitle: "Цены, согласования, технологии для бизнеса в Томске",
+          category: "Блог",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Блог ZOND — гайды по рекламе",
+    description: "Цены, согласования, технологии для бизнеса в Томске",
+    images: [
+      buildOgUrl({
+        title: "Блог ZOND — гайды по рекламе",
+        subtitle: "Цены, согласования, технологии для бизнеса в Томске",
+        category: "Блог",
+      }),
+    ],
+  },
 };
 
 export default function BlogIndexPage() {

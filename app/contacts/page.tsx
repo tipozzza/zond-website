@@ -7,6 +7,7 @@ import FloatingTG from "@/components/FloatingTG";
 import OfficeMap from "@/components/OfficeMap";
 import ContactForm from "@/components/ContactForm";
 import Breadcrumb from "@/components/Breadcrumb";
+import { buildOgUrl } from "@/lib/og";
 
 const HOURS = [
   { day: "Понедельник — Пятница", time: "9:00 — 18:00" },
@@ -33,6 +34,39 @@ export const metadata: Metadata = {
     "адрес рекламного агентства Томск",
     "телефон Зонд",
   ],
+  alternates: { canonical: "/contacts" },
+  openGraph: {
+    title: "Контакты ZOND",
+    description:
+      "Томск, пр. Фрунзе 115 — звоните или приезжайте. 8 (3822) 97-97-05, office@zondreklama.ru.",
+    url: "https://zond-website.vercel.app/contacts",
+    siteName: "ZOND",
+    locale: "ru_RU",
+    type: "website",
+    images: [
+      {
+        url: buildOgUrl({
+          title: "Контакты ZOND",
+          subtitle: "Томск, пр. Фрунзе 115 — звоните или приезжайте",
+          category: "Контакты",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Контакты ZOND",
+    description: "Томск, пр. Фрунзе 115 — звоните или приезжайте",
+    images: [
+      buildOgUrl({
+        title: "Контакты ZOND",
+        subtitle: "Томск, пр. Фрунзе 115 — звоните или приезжайте",
+        category: "Контакты",
+      }),
+    ],
+  },
 };
 
 export default function ContactsPage() {
