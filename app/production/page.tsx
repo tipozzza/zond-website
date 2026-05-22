@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Settings, Zap, Scissors, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
@@ -360,34 +361,22 @@ export default function ProductionPage() {
           </div>
         </section>
 
-        {/* Согласование рекламы */}
-        <section id="approval" className="py-16 bg-slate-50">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-3xl font-bold mb-6">Согласование рекламы</h2>
-            <p className="text-slate-700 mb-4">
-              Размещение наружной рекламы в Томске требует согласования с администрацией города.
-              Готовим полный пакет документов:
+        {/* Согласование рекламы — компактный блок со ссылкой на /pasport-fasada */}
+        <section id="approval" className="py-12 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3">
+              Согласование вывесок и паспорт фасада
+            </h2>
+            <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
+              Берём на себя сбор документов, переговоры с Комитетом архитектуры Томска
+              и получение разрешения. Полный цикл — за 3-4 недели.
             </p>
-            <ul className="space-y-2 mb-6">
-              <li className="flex gap-2"><span className="text-brand">✓</span> Паспорт фасада здания</li>
-              <li className="flex gap-2"><span className="text-brand">✓</span> Паспорт рекламного места</li>
-              <li className="flex gap-2"><span className="text-brand">✓</span> Паспорт рекламной конструкции</li>
-              <li className="flex gap-2"><span className="text-brand">✓</span> Согласование с городской администрацией</li>
-            </ul>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#contact-form"
-                className="inline-block bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-lg font-semibold"
-              >
-                Получить расчёт
-              </a>
-              <a
-                href="/pasport-fasada"
-                className="inline-block border border-brand text-brand hover:bg-brand hover:text-white px-6 py-3 rounded-lg font-semibold transition"
-              >
-                Подробнее о согласовании →
-              </a>
-            </div>
+            <Link
+              href="/pasport-fasada"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white font-medium rounded-lg hover:opacity-90 transition"
+            >
+              Подробнее о паспорте фасада →
+            </Link>
           </div>
         </section>
 

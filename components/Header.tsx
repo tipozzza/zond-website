@@ -6,14 +6,18 @@ import Link from "next/link";
 import { Menu, Phone, X } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "@/lib/site-data";
 
-const SERVICES_DROPDOWN = [
+const SERVICES_MAIN = [
   { label: "Наружная реклама", href: "/outdoor" },
   { label: "Широкоформатная печать", href: "/print" },
   { label: "Производство", href: "/production" },
-  { label: "Выставочные экспозиции", href: "/exhibition" },
   { label: "Дизайн и полиграфия", href: "/design" },
+  { label: "Выставочные экспозиции", href: "/exhibition" },
   { label: "Светодиодная продукция", href: "/led" },
-  { label: "Русификация вывески", href: "/russifikaciya" },
+];
+
+const SERVICES_ADDITIONAL = [
+  { label: "Русификация вывесок", href: "/russifikaciya" },
+  { label: "Паспорт фасада", href: "/pasport-fasada" },
 ];
 
 export default function Header() {
@@ -74,7 +78,20 @@ export default function Header() {
                   </Link>
                   <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible focus-within:opacity-100 focus-within:visible transition-opacity">
                     <div className="min-w-[260px] py-2 bg-white rounded-xl shadow-xl border border-gray-100">
-                      {SERVICES_DROPDOWN.map((s) => (
+                      {SERVICES_MAIN.map((s) => (
+                        <Link
+                          key={s.href}
+                          href={s.href}
+                          className="block px-5 py-2.5 text-sm text-[#1f2530] hover:bg-[#f6f5fa] hover:text-brand transition-colors"
+                        >
+                          {s.label}
+                        </Link>
+                      ))}
+                      <div className="my-1.5 mx-5 border-t border-gray-100" />
+                      <div className="px-5 pt-1 pb-1 text-[10px] uppercase tracking-wider text-gray-400 font-semibold">
+                        Доп. услуги
+                      </div>
+                      {SERVICES_ADDITIONAL.map((s) => (
                         <Link
                           key={s.href}
                           href={s.href}
@@ -143,7 +160,7 @@ export default function Header() {
                 Услуги
               </div>
               <div className="space-y-1">
-                {SERVICES_DROPDOWN.map((s) => (
+                {SERVICES_MAIN.map((s) => (
                   <Link
                     key={s.href}
                     href={s.href}
@@ -153,6 +170,21 @@ export default function Header() {
                     {s.label}
                   </Link>
                 ))}
+                <div className="my-2 pt-2 border-t border-gray-100">
+                  <div className="text-[11px] uppercase tracking-wider text-gray-400 font-semibold mb-1">
+                    Доп. услуги
+                  </div>
+                  {SERVICES_ADDITIONAL.map((s) => (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      onClick={close}
+                      className="block py-2 text-lg font-medium text-[#1f2530] hover:text-brand transition-colors"
+                    >
+                      {s.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
