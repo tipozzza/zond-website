@@ -24,6 +24,7 @@ const SECTIONS = [
     links: [
       { label: "О нас", href: "/about" },
       { label: "Кейсы", href: "/#cases" },
+      { label: "Гарантия", href: "/garantiya" },
       { label: "Контакты", href: "/contacts" },
     ],
   },
