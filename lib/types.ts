@@ -15,7 +15,6 @@ export type Side = {
   lat: number | null;
   lng: number | null;
   illuminated: boolean;
-  organization: string;
   photo_filename: string | null;
   status: {
     jan: SideStatus;
