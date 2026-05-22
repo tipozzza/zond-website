@@ -8,6 +8,9 @@ import SideFilters, { type FilterState } from "./SideFilters";
 import SideDetails from "./SideDetails";
 import BookingForm from "./BookingForm";
 import SidesListView from "./SidesListView";
+import { CartProvider } from "@/lib/cart/CartContext";
+import FloatingCartButton from "./cart/FloatingCartButton";
+import CartPanel from "./cart/CartPanel";
 
 export default function OutdoorMapSection() {
   const [allSides, setAllSides] = useState<Side[]>([]);
@@ -56,6 +59,7 @@ export default function OutdoorMapSection() {
   }
 
   return (
+    <CartProvider>
     <section ref={mapWrapperRef} className="py-16 bg-slate-50 scroll-mt-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
@@ -183,6 +187,9 @@ export default function OutdoorMapSection() {
           </div>
         )}
       </div>
+      <FloatingCartButton />
+      <CartPanel />
     </section>
+    </CartProvider>
   );
 }

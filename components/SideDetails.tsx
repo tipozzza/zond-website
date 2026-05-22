@@ -2,6 +2,7 @@
 
 import type { Side } from "@/lib/types";
 import { MONTH_LABELS, STATUS_LABELS, STATUS_COLORS } from "@/lib/sides-data";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 
 type Props = {
   side: Side;
@@ -100,12 +101,27 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
             </div>
           </div>
 
-          <button
-            onClick={onBook}
-            className="w-full bg-[#F57C28] hover:bg-[#E26A1F] text-white py-4 rounded-lg font-semibold text-lg mt-4"
-          >
-            Забронировать сторону
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3 mt-4">
+            <button
+              onClick={onBook}
+              className="flex-1 bg-[#F57C28] hover:bg-[#E26A1F] text-white py-4 rounded-lg font-semibold text-lg"
+            >
+              Забронировать сторону
+            </button>
+            <AddToCartButton
+              item={{
+                sideId: side.id,
+                address: side.address,
+                type: side.type,
+                format: side.format,
+                pricePerMonth: side.priceFinal,
+                photo: side.photo_filename
+                  ? `/images/constructions/${side.photo_filename}`
+                  : undefined,
+              }}
+              className="flex-1 py-4 text-lg"
+            />
+          </div>
         </div>
       </div>
     </div>
