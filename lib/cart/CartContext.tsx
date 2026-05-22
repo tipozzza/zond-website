@@ -98,6 +98,17 @@ function discountForMonths(m: number): number {
 
 const CartContext = createContext<CartApi | null>(null);
 
+// Window-bridge для не-React контекстов — например, ymaps balloon (инжектированный
+// HTML с onclick). См. components/YandexMap.tsx, где balloon вызывает
+// window.__zondAddToCart(item).
+declare global {
+  interface Window {
+    __zondAddToCart?: (item: CartItem) => void;
+    __zondHasInCart?: (sideId: string) => boolean;
+    __zondOpenCart?: () => void;
+  }
+}
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<CartState>(EMPTY_STATE);
   const [isOpen, setIsOpen] = useState(false);
@@ -143,6 +154,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const open = useCallback(() => setIsOpen(true), []);
   const close = useCallback(() => setIsOpen(false), []);
+
+  // Бридж для ymaps balloon (window.onclick-кнопки).
+  useEffect(() => {
+    window.__zondAddToCart = (item: CartItem) => {
+      setState((s) =>
+        s.items.some((i) => i.sideId === item.sideId)
+          ? s
+          : { ...s, items: [...s.items, item] },
+      );
+    };
+    window.__zondHasInCart = (sideId: string) => state.items.some((i) => i.sideId === sideId);
+    window.__zondOpenCart = () => setIsOpen(true);
+    return () => {
+      delete window.__zondAddToCart;
+      delete window.__zondHasInCart;
+      delete window.__zondOpenCart;
+    };
+  }, [state.items]);
 
   const derived = useMemo(() => {
     const pricePerMonthTotal = state.items.reduce(

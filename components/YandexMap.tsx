@@ -10,6 +10,7 @@ declare global {
     ymaps: any;
     __zondSides: Record<string, Side>;
     __zondOpenSide: (id: string) => void;
+    __zondAddSideToCart: (id: string) => void;
   }
 }
 
@@ -61,6 +62,22 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
           onSideClickRef.current(side);
         }
       };
+      // Прямое добавление в подбор из balloon — без открытия модалки.
+      window.__zondAddSideToCart = (id: string) => {
+        const side = window.__zondSides[id];
+        if (!side || !window.__zondAddToCart) return;
+        window.__zondAddToCart({
+          sideId: side.id,
+          address: side.address,
+          type: side.type,
+          format: side.format,
+          pricePerMonth: side.priceFinal,
+          photo: side.photo_filename
+            ? `/images/constructions/${side.photo_filename}`
+            : undefined,
+        });
+        map.balloon.close();
+      };
 
       const clusterer = new window.ymaps.Clusterer({
         preset: "islands#violetClusterIcons",
@@ -80,7 +97,11 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
             ? `<img src="/images/constructions/${side.photo_filename}" alt="${side.id}" style="width:100%;max-width:280px;height:auto;border-radius:6px;margin-bottom:8px;display:block;" onerror="this.style.display='none'" />`
             : "";
           const price = side.priceFinal ? side.priceFinal.toLocaleString("ru-RU") + " ₽/мес" : "";
-          const button = `<button onclick="window.__zondOpenSide('${side.id}'); return false;" style="background:#F57C28;color:white;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-weight:600;margin-top:8px;">Подробнее и забронировать</button>`;
+          const button = `
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+              <button onclick="window.__zondOpenSide('${side.id}'); return false;" style="flex:1;min-width:140px;background:#F57C28;color:white;padding:8px 14px;border-radius:6px;border:none;cursor:pointer;font-weight:600;">Подробнее</button>
+              <button onclick="window.__zondAddSideToCart('${side.id}'); return false;" style="flex:1;min-width:120px;background:white;color:#F57C28;padding:8px 14px;border-radius:6px;border:2px solid #F57C28;cursor:pointer;font-weight:600;">➕ В подбор</button>
+            </div>`;
           const placemark = new window.ymaps.Placemark(
             [side.lat, side.lng],
             {
@@ -151,7 +172,11 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
           hintContent: `${focusSide.id} — ${focusSide.type} ${focusSide.format}`,
           balloonContentHeader: `<strong>${focusSide.id}</strong> · ${focusSide.type} ${focusSide.format}`,
           balloonContentBody: `${focusSide.address}<br/>${focusSide.priceFinal ? focusSide.priceFinal.toLocaleString("ru-RU") + " ₽/мес" : ""}`,
-          balloonContentFooter: `<button onclick="window.__zondOpenSide && window.__zondOpenSide('${focusSide.id}'); return false;" style="background:#F57C28;color:white;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-weight:600;">Подробнее и забронировать</button>`,
+          balloonContentFooter: `
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <button onclick="window.__zondOpenSide && window.__zondOpenSide('${focusSide.id}'); return false;" style="flex:1;min-width:140px;background:#F57C28;color:white;padding:8px 14px;border-radius:6px;border:none;cursor:pointer;font-weight:600;">Подробнее</button>
+              <button onclick="window.__zondAddSideToCart && window.__zondAddSideToCart('${focusSide.id}'); return false;" style="flex:1;min-width:120px;background:white;color:#F57C28;padding:8px 14px;border-radius:6px;border:2px solid #F57C28;cursor:pointer;font-weight:600;">➕ В подбор</button>
+            </div>`,
         },
         {
           iconLayout: HighlightLayout,
