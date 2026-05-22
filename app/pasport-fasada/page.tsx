@@ -42,10 +42,26 @@ if (missingPhotos.length > 0) {
 }
 
 const GALLERY = [
-  { src: PHOTOS.gallery1, caption: "ТЦ в центре Томска" },
-  { src: PHOTOS.gallery2, caption: "Кафе на пр. Ленина" },
-  { src: PHOTOS.gallery3, caption: "Бизнес-центр на Фрунзе" },
-  { src: PHOTOS.gallery4, caption: "Магазин в Кировском районе" },
+  {
+    src: PHOTOS.gallery1,
+    caption: "ТЦ в центре Томска",
+    alt: "Согласованная вывеска торгового центра в Томске — пример паспорта фасада",
+  },
+  {
+    src: PHOTOS.gallery2,
+    caption: "Кафе на пр. Ленина",
+    alt: "Вывеска кафе на пр. Ленина в Томске согласована с архитектурой города",
+  },
+  {
+    src: PHOTOS.gallery3,
+    caption: "Бизнес-центр на Фрунзе",
+    alt: "Вывеска бизнес-центра на пр. Фрунзе Томск — паспорт фасада оформлен",
+  },
+  {
+    src: PHOTOS.gallery4,
+    caption: "Магазин в Кировском районе",
+    alt: "Магазин в Кировском районе Томска — согласование вывески под ключ",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -231,6 +247,18 @@ const SERVICE_JSONLD = {
   },
 };
 
+const IMAGE_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  contentUrl: "https://zond-website.vercel.app/images/blog/pasport-example.jpg",
+  url: "https://zond-website.vercel.app/images/blog/pasport-example.jpg",
+  name: "Паспорт фасада в Томске — пример работ ZOND",
+  description:
+    "Официальный документ согласования вывески с Комитетом архитектуры Томска",
+  creditText: "ZOND — ООО «Формат Сити», Томск",
+  acquireLicensePage: "https://zond-website.vercel.app/pasport-fasada",
+};
+
 export default function PasportFasadaPage() {
   return (
     <>
@@ -240,10 +268,15 @@ export default function PasportFasadaPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSONLD) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(IMAGE_JSONLD) }}
+      />
       <main>
         <Breadcrumb
           items={[
             { name: "Главная", url: "/" },
+            { name: "Услуги", url: "/#services" },
             { name: "Паспорт фасада", url: "/pasport-fasada" },
           ]}
         />
@@ -401,12 +434,12 @@ export default function PasportFasadaPage() {
                 </ul>
               </div>
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-slate-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={PHOTOS.document}
-                  alt="Согласованный паспорт фасада — пример документа"
-                  loading="lazy"
-                  className="w-full h-full object-cover"
+                  alt="Образец паспорта фасада здания в Томске — официальный документ с печатью администрации"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
                 />
               </div>
             </div>
@@ -482,12 +515,12 @@ export default function PasportFasadaPage() {
                   className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white"
                 >
                   <div className="relative aspect-[4/3] bg-slate-100">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={g.src}
-                      alt={g.caption}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
+                      alt={g.alt}
+                      fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-cover"
                     />
                   </div>
                   <div className="p-4 text-sm font-medium text-slate-700">
@@ -556,12 +589,12 @@ export default function PasportFasadaPage() {
               можно сразу подшивать в учёт и использовать как защиту от предписаний.
             </p>
             <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 mb-8">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={PHOTOS.example}
-                alt="Пример согласованного паспорта фасада"
-                loading="lazy"
-                className="w-full h-full object-cover"
+                alt="Готовый паспорт фасада ZOND — эскиз, размеры, согласование с печатью Комитета архитектуры Томска"
+                fill
+                sizes="(min-width: 1024px) 1024px, 100vw"
+                className="object-cover"
               />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
