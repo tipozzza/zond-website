@@ -217,12 +217,12 @@ export default function RussifikaciyaPage() {
         {/* HERO */}
         <section className="relative bg-gradient-to-br from-brand to-purple-900 text-white overflow-hidden">
           <Image
-            src="/images/blog/vyveski-soglasovanie.jpg"
+            src="/images/blog/russifikaciya-hero.jpg"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-15 mix-blend-luminosity"
+            className="object-cover opacity-20 mix-blend-luminosity"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-brand/90 to-purple-900/95" />
           <div className="relative container mx-auto px-4 max-w-5xl py-16 md:py-24">
