@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/blog`, priority: 0.8, changeFrequency: "weekly" as const },
     { url: `${BASE_URL}/russifikaciya`, priority: 0.7, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/garantiya`, priority: 0.7, changeFrequency: "monthly" as const },
+    { url: `${BASE_URL}/pasport-fasada`, priority: 0.7, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/privacy`, priority: 0.3, changeFrequency: "yearly" as const },
   ].map((p) => ({ ...p, lastModified: new Date() }));
 

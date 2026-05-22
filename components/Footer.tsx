@@ -17,6 +17,7 @@ const SECTIONS = [
       { label: "Выставочные экспозиции", href: "/exhibition" },
       { label: "Дизайн и полиграфия", href: "/design" },
       { label: "Светодиодная продукция", href: "/led" },
+      { label: "Паспорт фасада", href: "/pasport-fasada" },
     ],
   },
   {

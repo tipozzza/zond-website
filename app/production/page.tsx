@@ -374,12 +374,20 @@ export default function ProductionPage() {
               <li className="flex gap-2"><span className="text-brand">✓</span> Паспорт рекламной конструкции</li>
               <li className="flex gap-2"><span className="text-brand">✓</span> Согласование с городской администрацией</li>
             </ul>
-            <a
-              href="#contact-form"
-              className="inline-block bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-lg font-semibold"
-            >
-              Получить расчёт
-            </a>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="#contact-form"
+                className="inline-block bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-lg font-semibold"
+              >
+                Получить расчёт
+              </a>
+              <a
+                href="/pasport-fasada"
+                className="inline-block border border-brand text-brand hover:bg-brand hover:text-white px-6 py-3 rounded-lg font-semibold transition"
+              >
+                Подробнее о согласовании →
+              </a>
+            </div>
           </div>
         </section>
 
