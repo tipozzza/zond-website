@@ -15,7 +15,8 @@ import FAQ from "@/components/FAQ";
 import PublicPortfolio from "@/components/PublicPortfolio";
 import { HERO_BLURS } from "@/lib/hero-blurs";
 
-const BADGES = ["33+ года на рынке", "726 сторон", "336 цифровых"];
+const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
+const BADGES = [`${YEARS_ON_MARKET} лет на рынке`, "726 сторон", "336 цифровых"];
 
 const STATS = [
   { num: "1992", label: "год основания" },

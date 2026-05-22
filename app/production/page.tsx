@@ -389,7 +389,7 @@ export default function ProductionPage() {
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               <div className="bg-white p-6 rounded-2xl text-center">
                 <div className="text-4xl mb-3">🏆</div>
-                <h3 className="font-bold text-lg mb-2">33+ года в Томске</h3>
+                <h3 className="font-bold text-lg mb-2">{new Date().getFullYear() - 1992} лет в Томске</h3>
                 <p className="text-slate-600">Знаем что согласовать, как смонтировать, где есть подводные камни</p>
               </div>
               <div className="bg-white p-6 rounded-2xl text-center">

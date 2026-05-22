@@ -90,14 +90,6 @@ export default function Production() {
               />
             ))}
 
-            <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-black/40 backdrop-blur px-3 py-1.5 rounded-full text-white text-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-              </span>
-              Производство сейчас
-            </div>
-
             <div className="absolute inset-x-0 bottom-16 flex justify-center z-10 px-4">
               <Link
                 href={slide.href}

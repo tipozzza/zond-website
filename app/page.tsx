@@ -8,7 +8,8 @@ import Services from "@/components/Services";
 import Cases from "@/components/Cases";
 import Production from "@/components/Production";
 import MapPreview from "@/components/MapPreview";
-import Team from "@/components/Team";
+// Team временно скрыт — вернём, когда будет реальное фото команды.
+// import Team from "@/components/Team";
 import NewsBlock from "@/components/NewsBlock";
 import Testimonials from "@/components/Testimonials";
 import Clients from "@/components/Clients";
@@ -58,7 +59,7 @@ export default function HomePage() {
         <Cases />
         <Production />
         <MapPreview />
-        <Team />
+        {/* <Team /> временно скрыто, вернём когда будет реальное фото */}
         <NewsBlock />
         <Testimonials />
         <Clients />

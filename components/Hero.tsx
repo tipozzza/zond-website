@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { HERO_BLURS } from "@/lib/hero-blurs";
 
-const BADGES = ["33+ года на рынке", "226 конструкций", "1000+ клиентов"];
+const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
+const BADGES = [`${YEARS_ON_MARKET} лет на рынке`, "226 конструкций", "1000+ клиентов"];
 
 export default function Hero() {
   return (

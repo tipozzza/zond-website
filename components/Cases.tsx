@@ -8,6 +8,7 @@ type Item = {
   title: string;
   desc: string;
   image: string;
+  imageAlt?: string;
   href: string;
   accent: string;
   cta?: string;
@@ -73,7 +74,8 @@ const items: Item[] = [
   {
     title: "Интерьерная печать",
     desc: "Наклейки, печать на холсте, фотопанели, трафареты — до 1440 dpi.",
-    image: "/images/design/category-print.jpg",
+    image: "/images/blog/shirokoformatnaya-pechat.jpg",
+    imageAlt: "Интерьерная печать на холсте и плёнке в Томске — ZOND",
     href: "/print#interior",
     accent: "#FFCC00",
     cta: "Заказать интерьерную печать",
@@ -98,9 +100,9 @@ const items: Item[] = [
     title: "Согласование рекламы",
     desc: "Берём на себя бумажную работу — паспорта фасада и конструкции, согласование с администрацией Томска под ключ.",
     image: "/images/approval.jpg",
-    href: "/production#approval",
+    href: "/pasport-fasada",
     accent: "#7CB342",
-    cta: "Заказать согласование под ключ",
+    cta: "Подробнее о согласовании",
   },
   {
     title: "Комплексное оформление",
@@ -135,7 +137,7 @@ export default function Cases() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.image}
-                  alt={`${item.title} — Зонд-Реклама, Томск`}
+                  alt={item.imageAlt ?? `${item.title} — Зонд-Реклама, Томск`}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   onError={(e) => {
