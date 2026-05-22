@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { existsSync } from "node:fs";
+import path from "node:path";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,6 +13,40 @@ import { buildOgUrl } from "@/lib/og";
 
 const EXTERNAL_SITE_URL = "https://xn--80aaaat1dfbkhek0a.xn--p1ai/";
 const EXTERNAL_SITE_LABEL = "паспортфасада.рф";
+
+const FALLBACK_PHOTO = "/images/blog/vyveski-soglasovanie.jpg";
+
+const missingPhotos: string[] = [];
+
+function resolvePhoto(publicPath: string): string {
+  const abs = path.join(process.cwd(), "public", publicPath.replace(/^\//, ""));
+  if (existsSync(abs)) return publicPath;
+  missingPhotos.push(publicPath);
+  return FALLBACK_PHOTO;
+}
+
+const PHOTOS = {
+  document: resolvePhoto("/images/blog/pasport-document.jpg"),
+  gallery1: resolvePhoto("/images/blog/pasport-1-trc.jpg"),
+  gallery2: resolvePhoto("/images/blog/pasport-2-cafe.jpg"),
+  gallery3: resolvePhoto("/images/blog/pasport-3-office.jpg"),
+  gallery4: resolvePhoto("/images/blog/pasport-4-store.jpg"),
+  example: resolvePhoto("/images/blog/pasport-example.jpg"),
+};
+
+if (missingPhotos.length > 0) {
+  console.warn(
+    `[/pasport-fasada] Missing photos (using fallback ${FALLBACK_PHOTO}):\n  - ` +
+      missingPhotos.join("\n  - "),
+  );
+}
+
+const GALLERY = [
+  { src: PHOTOS.gallery1, caption: "ТЦ в центре Томска" },
+  { src: PHOTOS.gallery2, caption: "Кафе на пр. Ленина" },
+  { src: PHOTOS.gallery3, caption: "Бизнес-центр на Фрунзе" },
+  { src: PHOTOS.gallery4, caption: "Магазин в Кировском районе" },
+];
 
 export const metadata: Metadata = {
   title: "Паспорт фасада в Томске — согласование под ключ | ZOND",
@@ -324,8 +360,61 @@ export default function PasportFasadaPage() {
           </div>
         </section>
 
-        {/* КОГДА НУЖНО */}
+        {/* ДЕКОРАТИВНЫЙ БЛОК — документ для администрации */}
         <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-10 items-center">
+              <div>
+                <div className="text-xs uppercase tracking-wider text-brand font-bold mb-3">
+                  Что вы получаете
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                  Документ для администрации Томска
+                </h2>
+                <p className="text-slate-700 leading-relaxed mb-6">
+                  Паспорт фасада — это юридически оформленный пакет с эскизами,
+                  размерами и согласовательной печатью Комитета архитектуры.
+                  С ним вашу вывеску или фасад нельзя демонтировать по предписанию.
+                </p>
+                <ul className="space-y-3 text-slate-700">
+                  <li className="flex items-start gap-3">
+                    <span className="text-2xl shrink-0" aria-hidden>📋</span>
+                    <span>
+                      <strong>Эскизы и фотомонтажи</strong> — точное изображение
+                      вывески на фасаде с размерами
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-2xl shrink-0" aria-hidden>✅</span>
+                    <span>
+                      <strong>Согласовательная печать</strong> — официальный штамп
+                      Комитета архитектуры и градостроительства
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-2xl shrink-0" aria-hidden>🏛️</span>
+                    <span>
+                      <strong>Закрывающие документы</strong> — оригиналы заявлений,
+                      решений, проект паспорта
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-slate-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={PHOTOS.document}
+                  alt="Согласованный паспорт фасада — пример документа"
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* КОГДА НУЖНО */}
+        <section className="py-16 md:py-20 bg-slate-50">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
               Когда нужно оформлять
@@ -349,7 +438,7 @@ export default function PasportFasadaPage() {
         </section>
 
         {/* ПРОЦЕСС */}
-        <section className="py-16 md:py-20 bg-slate-50">
+        <section className="py-16 md:py-20 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
               Этапы работы
@@ -372,6 +461,45 @@ export default function PasportFasadaPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ГАЛЕРЕЯ ОБЪЕКТОВ */}
+        <section className="py-16 md:py-20 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+              Примеры наших согласованных объектов
+            </h2>
+            <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+              Типовые задачи: торговые центры, кафе, бизнес-центры, магазины.
+              По каждому объекту — полный пакет документов и разрешение
+              Комитета архитектуры.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {GALLERY.map((g) => (
+                <article
+                  key={g.caption}
+                  className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white"
+                >
+                  <div className="relative aspect-[4/3] bg-slate-100">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={g.src}
+                      alt={g.caption}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-4 text-sm font-medium text-slate-700">
+                    {g.caption}
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p className="text-center text-xs text-slate-500 mt-6">
+              AI-визуализации типовых задач. Реальные фото клиентских объектов
+              публикуем только с письменного согласия.
+            </p>
           </div>
         </section>
 
@@ -413,6 +541,48 @@ export default function PasportFasadaPage() {
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* КАК ВЫГЛЯДИТ ГОТОВЫЙ ПАСПОРТ */}
+        <section className="py-16 md:py-20 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+              Как выглядит готовый паспорт
+            </h2>
+            <p className="text-center text-slate-600 mb-10 max-w-2xl mx-auto">
+              Финальный документ, который вы получаете на руки после согласования —
+              можно сразу подшивать в учёт и использовать как защиту от предписаний.
+            </p>
+            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 mb-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={PHOTOS.example}
+                alt="Пример согласованного паспорта фасада"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+              <div className="bg-white rounded-xl p-4 border border-slate-200">
+                <div className="text-2xl mb-1" aria-hidden>📐</div>
+                <p className="text-sm font-semibold text-slate-700">
+                  ✓ Эскиз с размерами
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-4 border border-slate-200">
+                <div className="text-2xl mb-1" aria-hidden>🏛️</div>
+                <p className="text-sm font-semibold text-slate-700">
+                  ✓ Согласовано печатью
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-4 border border-slate-200">
+                <div className="text-2xl mb-1" aria-hidden>📑</div>
+                <p className="text-sm font-semibold text-slate-700">
+                  ✓ Закрывающие документы
+                </p>
+              </div>
             </div>
           </div>
         </section>
