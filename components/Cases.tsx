@@ -1,5 +1,5 @@
-"use client";
-
+import { existsSync } from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
@@ -13,6 +13,13 @@ type Item = {
   accent: string;
   cta?: string;
 };
+
+const FALLBACK_INTERIOR_PRINT = "/images/blog/shirokoformatnaya-pechat.jpg";
+
+function resolvePhoto(preferredPath: string, fallback: string): string {
+  const abs = path.join(process.cwd(), "public", preferredPath.replace(/^\//, ""));
+  return existsSync(abs) ? preferredPath : fallback;
+}
 
 const items: Item[] = [
   {
@@ -74,7 +81,7 @@ const items: Item[] = [
   {
     title: "Интерьерная печать",
     desc: "Наклейки, печать на холсте, фотопанели, трафареты — до 1440 dpi.",
-    image: "/images/blog/shirokoformatnaya-pechat.jpg",
+    image: resolvePhoto("/images/cases/interior-print.jpg", FALLBACK_INTERIOR_PRINT),
     imageAlt: "Интерьерная печать на холсте и плёнке в Томске — ZOND",
     href: "/print#interior",
     accent: "#FFCC00",
@@ -140,9 +147,6 @@ export default function Cases() {
                   alt={item.imageAlt ?? `${item.title} — Зонд-Реклама, Томск`}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
                 />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
                 <h3 className="absolute bottom-3 left-4 right-4 text-white font-bold text-lg drop-shadow-lg leading-tight">

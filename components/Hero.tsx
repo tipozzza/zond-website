@@ -2,8 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { HERO_BLURS } from "@/lib/hero-blurs";
 
+function pluralizeYears(n: number): string {
+  const lastTwo = n % 100;
+  if (lastTwo >= 11 && lastTwo <= 14) return "лет";
+  const last = n % 10;
+  if (last === 1) return "год";
+  if (last >= 2 && last <= 4) return "года";
+  return "лет";
+}
+
 const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
-const BADGES = [`${YEARS_ON_MARKET} лет на рынке`, "226 конструкций", "1000+ клиентов"];
+const BADGES = [
+  `${YEARS_ON_MARKET} ${pluralizeYears(YEARS_ON_MARKET)} на рынке`,
+  "226 конструкций",
+  "1000+ клиентов",
+];
 
 export default function Hero() {
   return (
@@ -62,7 +75,7 @@ export default function Hero() {
               Получить расчёт
             </Link>
             <Link
-              href="/#services"
+              href="/outdoor"
               className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur border border-white/30 text-white px-8 py-4 rounded-xl font-semibold transition-colors"
             >
               Посмотреть конструкции
