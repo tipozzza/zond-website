@@ -9,7 +9,10 @@ declare global {
   }
 }
 
-const OFFICE_COORDS: [number, number] = [56.4847, 84.9756];
+const OFFICE_ADDRESS = "Россия, Томск, проспект Фрунзе, 115";
+// Fallback на случай, если геокодер недоступен / не вернёт результат.
+// Используется только если ymaps.geocode() не нашёл адрес.
+const FALLBACK_COORDS: [number, number] = [56.4794, 84.9534];
 
 export default function OfficeMap() {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -21,22 +24,36 @@ export default function OfficeMap() {
   useEffect(() => {
     if (!scriptLoaded || !mapRef.current) return;
 
-    window.ymaps.ready(() => {
+    window.ymaps.ready(async () => {
       if (mapInstance.current) mapInstance.current.destroy();
 
+      let coords: [number, number] = FALLBACK_COORDS;
+      try {
+        const result = await window.ymaps.geocode(OFFICE_ADDRESS, { results: 1 });
+        const geoObject = result.geoObjects.get(0);
+        if (geoObject) {
+          const resolved = geoObject.geometry.getCoordinates();
+          if (Array.isArray(resolved) && resolved.length === 2) {
+            coords = [resolved[0], resolved[1]];
+          }
+        }
+      } catch {
+        // Силенциозный fallback — карта всё равно отрисуется по координатам.
+      }
+
       const map = new window.ymaps.Map(mapRef.current!, {
-        center: OFFICE_COORDS,
-        zoom: 16,
+        center: coords,
+        zoom: 17,
         controls: ["zoomControl", "fullscreenControl"],
       });
 
       const placemark = new window.ymaps.Placemark(
-        OFFICE_COORDS,
+        coords,
         {
           hintContent: "ГК «Зонд-Реклама»",
           balloonContentHeader: "<strong>ГК «Зонд-Реклама»</strong>",
           balloonContentBody:
-            "пр. Фрунзе, 115 (офис)<br/>пр. Фрунзе, 109 (производственный цех)<br/>Пн–Пт 9:00–18:00",
+            "пр. Фрунзе, 115 (офис + шоурум + производство)<br/>Пн–Пт 9:00–18:00, Сб 10:00–15:00",
         },
         {
           preset: "islands#violetIcon",
