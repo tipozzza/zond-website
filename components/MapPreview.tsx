@@ -1,19 +1,12 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
+import AnimateOnScroll from "./AnimateOnScroll";
 
 export default function MapPreview() {
   return (
     <section className="py-20 bg-gradient-to-br from-brand to-purple-900 text-white overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <AnimateOnScroll variant="slide-in-left">
             <div className="inline-block bg-white/10 backdrop-blur px-4 py-1 rounded-full text-sm font-semibold mb-4">
               ИНТЕРАКТИВНАЯ КАРТА
             </div>
@@ -53,15 +46,9 @@ export default function MapPreview() {
                 <path d="M5 12h14M13 5l7 7-7 7" />
               </svg>
             </Link>
-          </motion.div>
+          </AnimateOnScroll>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative"
-          >
+          <AnimateOnScroll variant="scale-in" className="relative">
             <div className="relative aspect-[4/3] bg-white/5 backdrop-blur rounded-3xl overflow-hidden shadow-2xl border border-white/10">
               <svg viewBox="0 0 400 300" className="w-full h-full">
                 <rect width="400" height="300" fill="rgba(255,255,255,0.05)" />
@@ -87,7 +74,7 @@ export default function MapPreview() {
                 ))}
               </svg>
             </div>
-          </motion.div>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>

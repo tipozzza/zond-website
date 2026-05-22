@@ -45,6 +45,11 @@ const config: Config = {
       },
       animation: {
         pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "fade-up": "zond-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "fade-in-soft": "zond-fade-in 0.6s ease-out both",
+        "slide-in-left": "zond-slide-in-left 0.6s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "scale-in": "zond-scale-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "ken-burns": "zond-ken-burns 8s linear both",
       },
     },
   },

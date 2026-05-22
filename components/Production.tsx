@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 
 const SLIDES = [
@@ -76,25 +75,20 @@ export default function Production() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Slideshow */}
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-            <AnimatePresence mode="sync">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <motion.img
-                key={current}
-                src={slide.image}
-                alt={slide.imageAlt}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{
-                  opacity: 1,
-                  scale: 1.1,
-                  transition: {
-                    opacity: { duration: 1 },
-                    scale: { duration: 8, ease: "linear" },
-                  },
-                }}
-                exit={{ opacity: 0, transition: { duration: 1 } }}
-                className="absolute inset-0 w-full h-full object-cover"
+            {/* Все слайды лежат стопкой; активный получает opacity-100, остальные — 0.
+                Плавный cross-fade обеспечивается CSS transition-opacity. */}
+            {SLIDES.map((s, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={i}
+                src={s.image}
+                alt={s.imageAlt}
+                loading={i === 0 ? "eager" : "lazy"}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                  i === current ? "opacity-100" : "opacity-0"
+                }`}
               />
-            </AnimatePresence>
+            ))}
 
             <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-black/40 backdrop-blur px-3 py-1.5 rounded-full text-white text-sm">
               <span className="relative flex h-2 w-2">
@@ -128,43 +122,33 @@ export default function Production() {
             </div>
           </div>
 
-          {/* Synced text */}
+          {/* Synced text — key={current} перезапускает анимации при смене слайда */}
           <div className="lg:min-h-[500px] flex flex-col justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="text-sm font-semibold text-brand uppercase tracking-wider mb-3">
-                  {slide.badge}
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
-                  {slide.title}
-                </h2>
-                <p className="text-lg text-slate-700 mb-8 leading-relaxed">
-                  {slide.description}
-                </p>
-                <ul className="space-y-3">
-                  {slide.features.map((feature, i) => (
-                    <motion.li
-                      key={feature}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 + i * 0.1 }}
-                      className="flex items-start gap-3"
-                    >
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                        <Check size={14} className="text-green-700" strokeWidth={3} />
-                      </span>
-                      <span className="text-slate-800">{feature}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            </AnimatePresence>
+            <div key={current} className="animate-fade-up">
+              <div className="text-sm font-semibold text-brand uppercase tracking-wider mb-3">
+                {slide.badge}
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
+                {slide.title}
+              </h2>
+              <p className="text-lg text-slate-700 mb-8 leading-relaxed">
+                {slide.description}
+              </p>
+              <ul className="space-y-3">
+                {slide.features.map((feature, i) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-3 animate-slide-in-left"
+                    style={{ animationDelay: `${200 + i * 100}ms` }}
+                  >
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                      <Check size={14} className="text-green-700" strokeWidth={3} />
+                    </span>
+                    <span className="text-slate-800">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

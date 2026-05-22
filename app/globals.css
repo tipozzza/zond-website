@@ -110,3 +110,71 @@
     @apply bg-transparent text-brand border-2 border-brand hover:bg-brand hover:text-white;
   }
 }
+
+/* Анимации, заменившие framer-motion. Все запускаются на mount, в Hero — через
+   отдельные `animation-delay`. Стартовое состояние спрятано — задаём
+   собственно `from` ключом в keyframes + `animation-fill-mode: both`. */
+@keyframes zond-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zond-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zond-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zond-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Ken Burns для слайдеров: лёгкий зум на длительности слайда. */
+@keyframes zond-ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* Уважаем reduce-motion. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-in-soft,
+  .animate-slide-in-left,
+  .animate-scale-in,
+  .animate-ken-burns {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

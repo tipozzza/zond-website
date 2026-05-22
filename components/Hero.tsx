@@ -1,16 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { HERO_BLURS } from "@/lib/hero-blurs";
 
 const BADGES = ["33+ года на рынке", "226 конструкций", "1000+ клиентов"];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
 
 export default function Hero() {
   return (
@@ -29,33 +21,24 @@ export default function Hero() {
 
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 py-24 flex justify-end">
         <div className="max-w-xl w-full flex flex-col gap-6 text-white">
-          <motion.span
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="self-start inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold uppercase tracking-wider"
+          <span
+            className="self-start inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold uppercase tracking-wider animate-fade-up"
+            style={{ animationDelay: "100ms" }}
           >
             <span className="w-2 h-2 rounded-full bg-section-outdoor animate-pulse shadow-[0_0_12px_rgba(227,6,19,0.8)]" />
             В наружной рекламе Томска с 1992 года
-          </motion.span>
+          </span>
 
-          <motion.h1
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] drop-shadow-lg"
+          <h1
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] drop-shadow-lg animate-fade-up"
+            style={{ animationDelay: "250ms" }}
           >
             Наружная реклама<br />в Томске
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow"
+          <p
+            className="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow animate-fade-up"
+            style={{ animationDelay: "400ms" }}
           >
             726 рекламных сторон на 226 конструкциях.{" "}
             <Link
@@ -65,14 +48,11 @@ export default function Hero() {
               Производство
             </Link>{" "}
             и монтаж под ключ — с 1992 года.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            transition={{ duration: 0.6, delay: 0.55 }}
-            className="flex flex-wrap gap-3"
+          <div
+            className="flex flex-wrap gap-3 animate-fade-up"
+            style={{ animationDelay: "550ms" }}
           >
             <Link
               href="#contact-form"
@@ -86,16 +66,13 @@ export default function Hero() {
             >
               Посмотреть конструкции
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="absolute bottom-8 left-0 right-0 z-10"
+      <div
+        className="absolute bottom-8 left-0 right-0 z-10 animate-fade-up"
+        style={{ animationDelay: "800ms" }}
       >
         <div className="max-w-[1280px] mx-auto px-6 flex flex-wrap gap-2 md:gap-4 justify-end">
           {BADGES.map((b) => (
@@ -107,7 +84,7 @@ export default function Hero() {
             </span>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
