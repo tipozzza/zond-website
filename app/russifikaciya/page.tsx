@@ -245,18 +245,18 @@ export default function RussifikaciyaPage() {
             sizes="100vw"
             placeholder="blur"
             blurDataURL={HERO_BLURS.russifikaciya}
-            className="object-cover"
+            className="object-cover blur-[2px] md:blur-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/85 md:from-black/40 md:via-black/30 md:to-black/70" />
           <div className="relative container mx-auto px-4 max-w-5xl py-16 md:py-24">
             <div className="inline-flex items-center gap-2 bg-rose-500/95 text-white px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg">
               <span aria-hidden>🔔</span>
               Закон вступил в силу с 1 марта 2026
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] md:drop-shadow-lg">
               Русификация вывесок в&nbsp;Томске под&nbsp;ключ
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl">
+            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] md:drop-shadow-lg">
               Переведём, заменим или сделаем новую вывеску — с соблюдением закона
               и согласованием с администрацией Томска.
             </p>
