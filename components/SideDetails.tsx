@@ -1,7 +1,6 @@
 "use client";
 
 import type { Side } from "@/lib/types";
-import { MONTH_LABELS, STATUS_LABELS, STATUS_COLORS } from "@/lib/sides-data";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 
 type Props = {
@@ -87,19 +86,6 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
               )}
             </div>
           )}
-
-          <div>
-            <div className="text-sm text-slate-500 mb-2">Статус по месяцам (2026)</div>
-            <div className="grid grid-cols-4 lg:grid-cols-6 gap-2">
-              {(Object.keys(side.status) as Array<keyof Side["status"]>).map((m) => (
-                <div key={m} className="text-center">
-                  <div className="text-xs text-slate-500">{MONTH_LABELS[m]}</div>
-                  <div className="w-full h-2 rounded mt-1" style={{ background: STATUS_COLORS[side.status[m]] }} />
-                  <div className="text-xs mt-1">{STATUS_LABELS[side.status[m]]}</div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           <div className="flex flex-col sm:flex-row gap-3 mt-4">
             <button

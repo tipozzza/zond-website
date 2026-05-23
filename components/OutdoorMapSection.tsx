@@ -2,9 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Side } from "@/lib/types";
-import { fetchSides, getCurrentMonthKey } from "@/lib/sides-data";
+import { fetchSides } from "@/lib/sides-data";
 import YandexMap from "./YandexMap";
-import SideFilters, { type FilterState } from "./SideFilters";
+import SideFilters, { EMPTY_FILTERS, type FilterState } from "./SideFilters";
 import SideDetails from "./SideDetails";
 import BookingForm from "./BookingForm";
 import SidesListView from "./SidesListView";
@@ -15,13 +15,7 @@ import CartPanel from "./cart/CartPanel";
 export default function OutdoorMapSection() {
   const [allSides, setAllSides] = useState<Side[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState<FilterState>(() => ({
-    types: [],
-    formats: [],
-    illuminatedOnly: false,
-    freeOnly: false,
-    selectedMonth: getCurrentMonthKey(),
-  }));
+  const [filters, setFilters] = useState<FilterState>(EMPTY_FILTERS);
   const [view, setView] = useState<"map" | "list">("map");
   const [selectedSide, setSelectedSide] = useState<Side | null>(null);
   const [bookingSide, setBookingSide] = useState<Side | null>(null);
@@ -49,7 +43,6 @@ export default function OutdoorMapSection() {
       if (filters.types.length > 0 && !filters.types.includes(s.type)) return false;
       if (filters.formats.length > 0 && !filters.formats.includes(s.format)) return false;
       if (filters.illuminatedOnly && !s.illuminated) return false;
-      if (filters.freeOnly && s.status[filters.selectedMonth] !== "free") return false;
       return true;
     });
   }, [allSides, filters]);

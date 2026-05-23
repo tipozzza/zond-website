@@ -3,7 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import type { Side } from "@/lib/types";
-import { TYPE_COLORS } from "@/lib/sides-data";
+
+// Все метки одного брендового цвета. Раньше различались по TYPE_COLORS,
+// но это создавало впечатление "светофора" статусов — убрали.
+const MARKER_COLOR = "#3D2E91";
 
 declare global {
   interface Window {
@@ -92,7 +95,6 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
       const placemarks = sides
         .filter((s) => s.lat !== null && s.lng !== null)
         .map((side) => {
-          const color = TYPE_COLORS[side.type] || "#666";
           const photoHtml = side.photo_filename
             ? `<img src="/images/constructions/${side.photo_filename}" alt="${side.id}" style="width:100%;max-width:280px;height:auto;border-radius:6px;margin-bottom:8px;display:block;" onerror="this.style.display='none'" />`
             : "";
@@ -112,7 +114,7 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
             },
             {
               preset: "islands#dotIcon",
-              iconColor: color,
+              iconColor: MARKER_COLOR,
             }
           );
           placemark.events.add("click", (e: any) => {

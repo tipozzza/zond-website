@@ -1,14 +1,9 @@
 "use client";
 
-import type { Side } from "@/lib/types";
-import { getCurrentMonthKey } from "@/lib/sides-data";
-
 export type FilterState = {
   types: string[];
   formats: string[];
   illuminatedOnly: boolean;
-  freeOnly: boolean;
-  selectedMonth: keyof Side["status"];
 };
 
 type Props = {
@@ -20,20 +15,12 @@ type Props = {
 
 const ALL_TYPES = ["Digital", "Щит", "Тривижн", "Сити-формат", "Супер-сайт"];
 const ALL_FORMATS = ["3х6", "1,2 х 1,8", "5х15", "6x4", "3х12 м", "5,5х2,5"];
-const MONTHS: { value: keyof Side["status"]; label: string }[] = [
-  { value: "jan", label: "Январь" },
-  { value: "feb", label: "Февраль" },
-  { value: "mar", label: "Март" },
-  { value: "apr", label: "Апрель" },
-  { value: "may", label: "Май" },
-  { value: "june", label: "Июнь" },
-  { value: "july", label: "Июль" },
-  { value: "aug", label: "Август" },
-  { value: "sep", label: "Сентябрь" },
-  { value: "oct", label: "Октябрь" },
-  { value: "nov", label: "Ноябрь" },
-  { value: "dec", label: "Декабрь" },
-];
+
+export const EMPTY_FILTERS: FilterState = {
+  types: [],
+  formats: [],
+  illuminatedOnly: false,
+};
 
 export default function SideFilters({ filters, setFilters, totalCount, filteredCount }: Props) {
   const toggleType = (t: string) => {
@@ -60,21 +47,6 @@ export default function SideFilters({ filters, setFilters, totalCount, filteredC
       </div>
 
       <div>
-        <div className="font-semibold mb-2">Месяц</div>
-        <select
-          value={filters.selectedMonth}
-          onChange={(e) => setFilters({ ...filters, selectedMonth: e.target.value as keyof Side["status"] })}
-          className="w-full border rounded-lg px-3 py-2"
-        >
-          {MONTHS.map((m) => (
-            <option key={m.value} value={m.value}>
-              {m.label} 2026
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
         <div className="font-semibold mb-2">Тип носителя</div>
         <div className="space-y-2">
           {ALL_TYPES.map((t) => (
@@ -98,7 +70,7 @@ export default function SideFilters({ filters, setFilters, totalCount, filteredC
         </div>
       </div>
 
-      <div className="space-y-2 border-t pt-4">
+      <div className="border-t pt-4">
         <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
@@ -107,26 +79,10 @@ export default function SideFilters({ filters, setFilters, totalCount, filteredC
           />
           <span>Только освещаемые</span>
         </label>
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={filters.freeOnly}
-            onChange={(e) => setFilters({ ...filters, freeOnly: e.target.checked })}
-          />
-          <span>Только свободные в выбранный месяц</span>
-        </label>
       </div>
 
       <button
-        onClick={() =>
-          setFilters({
-            types: [],
-            formats: [],
-            illuminatedOnly: false,
-            freeOnly: false,
-            selectedMonth: getCurrentMonthKey(),
-          })
-        }
+        onClick={() => setFilters(EMPTY_FILTERS)}
         className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-2 rounded-lg text-sm"
       >
         Сбросить фильтры
