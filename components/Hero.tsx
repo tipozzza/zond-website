@@ -40,7 +40,7 @@ export default function Hero() {
             style={{ animationDelay: "100ms" }}
           >
             <span className="w-2 h-2 rounded-full bg-section-outdoor animate-pulse shadow-[0_0_12px_rgba(227,6,19,0.8)]" />
-            В наружной рекламе Томска с 1992 года
+            Работаем с 1992 года
           </span>
 
           <h1
@@ -54,7 +54,7 @@ export default function Hero() {
             className="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow animate-fade-up"
             style={{ animationDelay: "400ms" }}
           >
-            726 рекламных сторон на 226 конструкциях.{" "}
+            751 рекламная сторона на 226 конструкциях.{" "}
             <Link
               href="/production"
               className="text-accent-yellow underline decoration-accent-yellow/60 hover:text-amber-300 hover:decoration-amber-300 transition-colors"

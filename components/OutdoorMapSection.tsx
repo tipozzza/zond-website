@@ -58,7 +58,7 @@ export default function OutdoorMapSection() {
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold mb-2">Карта конструкций</h2>
           <p className="text-slate-600">
-            726 рекламных сторон по Томску · выберите площадку и забронируйте онлайн
+            751 рекламная сторона по Томску · выберите площадку и забронируйте онлайн
           </p>
         </div>
 
