@@ -1,142 +1,146 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { SERVICES_12 } from "@/lib/services-12";
 
-const SLIDES = [
-  {
-    image: "/images/production-workshop.jpg",
-    imageAlt: "Цех производства вывесок и металлоконструкций — ZOND, Томск",
-    badge: "ПРОИЗВОДСТВО",
-    title: "Металл и сборка",
-    description:
-      "Лазерная резка, фрезеровка, сварка металлоконструкций. От объёмных букв и лайтбоксов до крупногабаритных билбордов. Каждый этап под контролем мастеров с многолетним стажем.",
-    features: [
-      "Лазерная резка стали и нержавейки",
-      "Сварка с гарантией 12 месяцев",
-      "Объёмные буквы, вывески, лайтбоксы",
-      "Срок производства от 3 дней",
-    ],
-    cta: "Заказать металлоконструкцию",
-    href: "/production",
-  },
-  {
-    image: "/images/production.jpg",
-    imageAlt: "Сольвентные принтеры Flora и Magellan — широкоформатная печать в Томске, ZOND",
-    badge: "ШИРОКОФОРМАТНАЯ ПЕЧАТЬ",
-    title: "Печать любого формата",
-    description:
-      "Собственный парк сольвентных принтеров Flora, Magellan, Mustang. Печать на баннере, плёнке, бэклите, сетке, холсте. Ширина до 3,2 м — для любых форматов наружной и интерьерной рекламы.",
-    features: [
-      "Принтеры Flora, Magellan, Mustang",
-      "Ширина печати до 3,2 м",
-      "Любые носители: баннер, плёнка, сетка, холст",
-      "Готовый тираж за 1–3 дня",
-    ],
-    cta: "Заказать широкоформатную печать",
-    href: "/print",
-  },
-  {
-    image: "/images/exhibition.jpg",
-    imageAlt: "Выставочные стенды MAXIBIT под ключ — ZOND, Томск",
-    badge: "ВЫСТАВКИ И СТЕНДЫ",
-    title: "Готовые работы под ключ",
-    description:
-      "Производим и монтируем выставочные стенды, экспозиции, корпоративные конструкции. Уникальный дизайн под бренд клиента, мобильные и стационарные решения. Опыт работы по всей России.",
-    features: [
-      "Проектирование 3D-стенда",
-      "Изготовление за 5–10 дней",
-      "Монтаж в любом городе России",
-      "Демонтаж и хранение для повторного использования",
-    ],
-    cta: "Заказать выставочный стенд",
-    href: "/exhibition",
-  },
-];
-
-const INTERVAL_MS = 7000;
+const INTERVAL_MS = 5000;
+const SWIPE_THRESHOLD = 50;
 
 export default function Production() {
   const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((c) => (c + 1) % SLIDES.length);
-    }, INTERVAL_MS);
-    return () => clearInterval(timer);
+  const goTo = useCallback((idx: number) => {
+    setCurrent(((idx % SERVICES_12.length) + SERVICES_12.length) % SERVICES_12.length);
   }, []);
 
-  const slide = SLIDES[current];
+  const next = useCallback(() => setCurrent((c) => (c + 1) % SERVICES_12.length), []);
+  const prev = useCallback(
+    () => setCurrent((c) => (c - 1 + SERVICES_12.length) % SERVICES_12.length),
+    [],
+  );
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(next, INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [paused, next, current]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > SWIPE_THRESHOLD) {
+      if (dx < 0) next();
+      else prev();
+    }
+    touchStartX.current = null;
+  };
+
+  const slide = SERVICES_12[current];
 
   return (
-    <section className="py-12 md:py-20 bg-slate-50">
+    <section
+      className="py-12 md:py-20 bg-slate-50"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div
+          className="grid lg:grid-cols-2 gap-12 items-center"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
           {/* Slideshow */}
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-slate-200">
             {/* Все слайды лежат стопкой; активный получает opacity-100, остальные — 0.
                 Плавный cross-fade обеспечивается CSS transition-opacity. */}
-            {SLIDES.map((s, i) => (
+            {SERVICES_12.map((s, i) => (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                key={i}
+                key={s.id}
                 src={s.image}
                 alt={s.imageAlt}
                 loading={i === 0 ? "eager" : "lazy"}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
                   i === current ? "opacity-100" : "opacity-0"
                 }`}
               />
             ))}
 
-            <div className="absolute inset-x-0 bottom-16 flex justify-center z-10 px-4">
+            {/* Стрелки навигации */}
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Предыдущий слайд"
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur text-white flex items-center justify-center transition"
+            >
+              <ChevronLeft size={22} />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Следующий слайд"
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur text-white flex items-center justify-center transition"
+            >
+              <ChevronRight size={22} />
+            </button>
+
+            <div className="absolute inset-x-0 bottom-14 flex justify-center z-10 px-4">
               <Link
                 href={slide.href}
-                className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-xl font-semibold shadow-xl transition-colors"
+                className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-xl font-semibold shadow-xl transition-colors text-sm md:text-base"
               >
                 {slide.cta}
                 <ArrowRight size={18} />
               </Link>
             </div>
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-              {SLIDES.map((_, i) => (
+            {/* 12 точек: на узких экранах чуть мельче */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 max-w-[90%] flex-wrap justify-center">
+              {SERVICES_12.map((s, i) => (
                 <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === current ? "bg-white w-8" : "bg-white/50 hover:bg-white/75 w-2"
+                  key={s.id}
+                  onClick={() => goTo(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === current ? "bg-white w-6" : "bg-white/50 hover:bg-white/75 w-1.5"
                   }`}
-                  aria-label={`Слайд ${i + 1}`}
+                  aria-label={`Слайд ${i + 1}: ${s.title}`}
+                  aria-current={i === current}
                 />
               ))}
             </div>
           </div>
 
-          {/* Synced text — key={current} перезапускает анимации при смене слайда */}
-          <div className="lg:min-h-[500px] flex flex-col justify-center">
+          {/* Synced text — фиксированная min-height чтобы не «прыгало» при смене.
+              key={current} перезапускает CSS-анимации при каждом переходе. */}
+          <div className="min-h-[420px] sm:min-h-[460px] md:min-h-[500px] flex flex-col justify-center">
             <div key={current} className="animate-fade-up">
-              <div className="text-sm font-semibold text-brand uppercase tracking-wider mb-3">
+              <div className="text-xs sm:text-sm font-semibold text-brand uppercase tracking-wider mb-3">
                 {slide.badge}
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-slate-900 leading-tight">
                 {slide.title}
               </h2>
-              <p className="text-lg text-slate-700 mb-8 leading-relaxed">
+              <p className="text-base md:text-lg text-slate-700 mb-6 md:mb-8 leading-relaxed">
                 {slide.description}
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {slide.features.map((feature, i) => (
                   <li
                     key={feature}
                     className="flex items-start gap-3 animate-slide-in-left"
-                    style={{ animationDelay: `${200 + i * 100}ms` }}
+                    style={{ animationDelay: `${200 + i * 80}ms` }}
                   >
                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
                       <Check size={14} className="text-green-700" strokeWidth={3} />
                     </span>
-                    <span className="text-slate-800">{feature}</span>
+                    <span className="text-slate-800 text-sm md:text-base">{feature}</span>
                   </li>
                 ))}
               </ul>
