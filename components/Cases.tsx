@@ -72,7 +72,7 @@ const items: Item[] = [
   },
   {
     title: "Дизайн рекламы",
-    desc: "Баннеры, фирстиль, вывески, упаковка, этикетки, 3D-модели и анимация роликов.",
+    desc: "Баннеры, фирменный стиль, вывески, упаковка, этикетки, 3D-модели и анимация роликов.",
     image: "/images/design/category-outdoor-design.jpg",
     href: "/design#advertising-design",
     accent: "#3949AB",
