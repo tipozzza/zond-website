@@ -29,7 +29,7 @@ export default function Hero() {
         sizes="100vw"
         placeholder="blur"
         blurDataURL={HERO_BLURS.home}
-        className="object-cover"
+        className="object-cover object-[center_70%]"
       />
       <div className="absolute inset-0 bg-gradient-to-l from-black/80 via-black/40 to-transparent" />
 
