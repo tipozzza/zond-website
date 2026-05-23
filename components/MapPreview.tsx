@@ -32,7 +32,7 @@ export default function MapPreview() {
                 <div className="text-sm text-white/80">цифровых сторон</div>
               </div>
               <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
-                <div className="text-4xl font-bold">87%</div>
+                <div className="text-4xl font-bold">100%</div>
                 <div className="text-sm text-white/80">с подсветкой</div>
               </div>
             </div>
