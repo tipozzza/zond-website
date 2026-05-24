@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Settings, Zap, Scissors, Wrench } from "lucide-react";
+import { ArrowRight, Settings, Zap, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -69,13 +69,15 @@ const CATEGORIES: {
       "Цельная конструкция с боковым каркасом. От монолитных без подсветки до букв с открытыми диодами и контражурным свечением.",
   },
   {
+    // TODO: текущее фото возможно показывает LED-буквы — Дмитрий пришлёт правильное
+    // фото фасада с пайетками; до этого момента fallback на sequin-letters.jpg.
     img: "/images/production/sequin-letters.jpg",
     title: "Буквы-пайетки",
     priceBadge: "ОТ 13 540 ₽/м²",
-    secondBadge: "ЖИВАЯ ВЫВЕСКА",
-    subtitle: "Динамика · ТРЦ · Особое внимание",
+    secondBadge: "ЖИВАЯ ВЫВЕСКА · БЕЗ ЭЛЕКТРОНИКИ",
+    subtitle: "Фасады · витрины · праздничное оформление",
     description:
-      "Сотни вращающихся диодов создают динамическое изображение. Реагирует на ветер, привлекает максимум внимания.",
+      "Декоративные блестящие диски на подвижном основании создают эффект мерцания и переливов от движения воздуха. Используются для оформления фасадов, витрин, праздничных конструкций. Без электроники.",
   },
 ];
 
@@ -107,11 +109,6 @@ const EQUIPMENT: { icon: LucideIcon; name: string; desc: string }[] = [
     icon: Zap,
     name: "Лазерный станок",
     desc: "Точная резка металлических заготовок и тонких пластиков.",
-  },
-  {
-    icon: Scissors,
-    name: "Плоттер ZEONCUT FB-6090",
-    desc: "Резка плёнки и бумаги: контурная, по форме, для аппликации.",
   },
   {
     icon: Wrench,

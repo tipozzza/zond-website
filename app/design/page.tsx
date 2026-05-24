@@ -25,7 +25,7 @@ const CATEGORIES: { img: string; title: string; priceBadge: string; description:
     img: "/images/design/category-print.jpg",
     title: "Печать полиграфии",
     priceBadge: "ОТ 4 ₽/ШТ",
-    description: "Визитки от 96 шт, листовки от 10 шт, открытки, буклеты, флаеры.",
+    description: "Визитки, листовки, открытки, буклеты, флаеры — цифровая и офсетная печать.",
   },
   {
     img: "/images/design/category-souvenir.jpg",
@@ -92,25 +92,15 @@ const EQUIPMENT: {
     ],
   },
   {
-    image: "/images/design/equipment-hp-designjet.jpg",
-    type: "ШИРОКОФОРМАТНАЯ ФОТО",
-    name: "HP DesignJet Z5200",
-    specs: [
-      { label: "Формат", value: "до A0 (1118×1676 мм)" },
-      { label: "Плотность", value: "до 500 г/м²" },
-      { label: "Скорость", value: "10 м²/час" },
-      { label: "Разрешение", value: "2400×1200 dpi, отпечатки до 200 лет" },
-    ],
-  },
-  {
     image: "/images/design/equipment-zeon-cutter.jpg",
-    type: "РЕЗКА И БИГОВКА",
+    type: "КОНТУРНАЯ РЕЗКА",
     name: "ZEONCUT FB-6090",
     specs: [
       { label: "Тип", value: "планшетный плоттер" },
       { label: "Формат", value: "600×900 мм" },
       { label: "Давление", value: "до 1200 г" },
       { label: "Скорость", value: "до 600 мм/с" },
+      { label: "Применение", value: "наклейки, этикетки, малые тиражи полиграфии" },
     ],
   },
   {

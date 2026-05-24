@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Trophy, Map, Zap, Gift, History, Camera } from "lucide-react";
+import { Trophy, Map, Zap, Gift, History, Camera, Activity } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -55,10 +55,19 @@ const CONSTRUCTIONS: {
     img: "/images/outdoor-types/type-trivision.jpg",
     name: "Тривижн 3×6",
     priceBadge: "ОТ 35 000 ₽/МЕС",
-    typeBadge: "ВРАЩАЮЩИЙСЯ",
+    typeBadge: "ДИНАМИЧЕСКИЙ",
     subtitle: "3 рекламы на одной стороне",
     description:
-      "Вращающийся щит на 3 стороны — 1 поверхность показывает 3 разных рекламы поочерёдно.",
+      "Динамическая поверхность имеющая 3 стороны — 1 щит показывает 3 разных рекламы поочерёдно.",
+  },
+  {
+    img: "/images/outdoor-types/type-trivision.jpg",
+    name: "Тривижн 3×12",
+    priceBadge: "ОТ 67 000 ₽/МЕС",
+    typeBadge: "ДИНАМИЧЕСКИЙ · ПРЕМИУМ",
+    subtitle: "2 шт на пр. Ленина (центр Томска)",
+    description:
+      "Крупноформатная динамическая поверхность с 3 поворотными секциями. Эксклюзив центра — обе конструкции в самом проходном месте города.",
   },
   {
     img: "/images/outdoor-types/type-city-format.jpg",
@@ -77,6 +86,15 @@ const CONSTRUCTIONS: {
     subtitle: "Максимальный охват",
     description:
       "Крупноформатные щиты на въездах в город и магистралях. Видны издалека, привлекают максимум внимания.",
+  },
+  {
+    img: "/images/constructions/107b_l_d.jpg",
+    name: "Цифровой суперсайт 5×15",
+    priceBadge: "ОТ 90 000 ₽/МЕС",
+    typeBadge: "ЕДИНСТВЕННЫЙ В ТОМСКЕ",
+    subtitle: "75 м² LED · Коммунальный мост, пр. Нахимова",
+    description:
+      "Цифровой суперсайт на въезде в центр — 75 м² LED-экрана. Видеоконтент, смена креативов без перепечатки, ротация с 5-8 рекламодателями.",
   },
 ];
 
@@ -116,6 +134,12 @@ const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string 
     stat: "100%",
     title: "Фотоотчёт после монтажа",
     text: "Документируем каждое размещение — вы видите свою рекламу на конструкции.",
+  },
+  {
+    icon: Activity,
+    stat: "24/7",
+    title: "Видеомониторинг работы экранов",
+    text: "Круглосуточный контроль работы всех цифровых LED-экранов — гарантия что ваша реклама в эфире.",
   },
 ];
 
