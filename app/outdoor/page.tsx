@@ -316,17 +316,19 @@ export default function OutdoorPage() {
                         c.name.startsWith("Digital") || c.name.startsWith("Цифровой") ? "brightness-110 contrast-110" : ""
                       }`}
                     />
-                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#F57C28]">
-                      {c.priceBadge}
-                    </div>
-                    <div
-                      className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold ${
-                        c.isExclusive
-                          ? "bg-amber-400 text-slate-900 shadow-lg shadow-amber-400/50"
-                          : "bg-[#F57C28] text-white"
-                      }`}
-                    >
-                      {c.typeBadge}
+                    <div className="absolute top-3 left-3 right-3 z-10 flex justify-between items-start gap-2">
+                      <div className="bg-white/95 backdrop-blur px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold text-[#F57C28] shrink-0 whitespace-nowrap">
+                        {c.priceBadge}
+                      </div>
+                      <div
+                        className={`px-3 py-1 rounded-full font-bold leading-tight max-w-[60%] text-right whitespace-normal text-[10px] sm:text-xs ${
+                          c.isExclusive
+                            ? "bg-amber-400 text-slate-900 shadow-lg shadow-amber-400/50"
+                            : "bg-[#F57C28] text-white"
+                        }`}
+                      >
+                        {c.typeBadge}
+                      </div>
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-1">
