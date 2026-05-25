@@ -27,32 +27,48 @@ const STATS = [
 
 const CONSTRUCTIONS: {
   img: string;
+  alt: string;
   name: string;
   priceBadge: string;
   typeBadge: string;
   subtitle: string;
   description: string;
+  isExclusive?: boolean;
 }[] = [
   {
+    img: "/images/outdoor-types/digital-5x15.jpg",
+    alt: "Цифровой суперсайт 5×15 на въезде в Томск — томский эксклюзив, ZOND",
+    name: "Цифровой суперсайт 5×15",
+    priceBadge: "ОТ 75 000 ₽/МЕС",
+    typeBadge: "ЭКСКЛЮЗИВ · ДИНАМИЧЕСКИЙ ПРЕМИУМ",
+    subtitle: "75 м² LED-экран на въезде в город",
+    description:
+      "5 секунд × 12 сюжетов в цикле — 1440 показов в сутки. Единственный в Томске.",
+    isExclusive: true,
+  },
+  {
     img: "/images/outdoor-types/type-digital.jpg",
+    alt: "Цифровой LED-экран Digital 3×6 в Томске — рекламное размещение, ZOND",
     name: "Digital 3×6",
     priceBadge: "ОТ 45 000 ₽/МЕС",
     typeBadge: "ЦИФРОВОЙ",
     subtitle: "Цифровой LED-экран",
     description:
-      "Ролик 8 секунд, до 60 показов в час. 27 цифровых экранов в проходных местах Томска.",
+      "5 секунд × 12 сюжетов в цикле — 1440 показов в сутки. 27 экранов в проходных местах Томска.",
   },
   {
-    img: "/images/outdoor-types/type-shchit.jpg",
-    name: "Щит 3×6",
-    priceBadge: "ОТ 29 000 ₽/МЕС",
-    typeBadge: "СТАТИЧНЫЙ",
-    subtitle: "Классический билборд",
+    img: "/images/outdoor-types/type-trivision-3x12.jpg",
+    alt: "Тривижн 3×12 в центре Томска на ул. Ленина — динамическая реклама, ZOND",
+    name: "Тривижн 3×12",
+    priceBadge: "ОТ 50 000 ₽/МЕС",
+    typeBadge: "ДИНАМИЧЕСКИЙ · 2 шт на ул. Ленина",
+    subtitle: "Большой динамический формат",
     description:
-      "Идеален для долгосрочных кампаний и брендирования. Самый распространённый формат наружной рекламы.",
+      "Динамическая поверхность имеющая 3 стороны — 1 щит показывает 3 разных рекламы поочерёдно. Размер 3×12 м.",
   },
   {
     img: "/images/outdoor-types/type-trivision.jpg",
+    alt: "Тривижн 3×6 — 3 стороны рекламы в Томске, ZOND",
     name: "Тривижн 3×6",
     priceBadge: "ОТ 35 000 ₽/МЕС",
     typeBadge: "ДИНАМИЧЕСКИЙ",
@@ -61,40 +77,34 @@ const CONSTRUCTIONS: {
       "Динамическая поверхность имеющая 3 стороны — 1 щит показывает 3 разных рекламы поочерёдно.",
   },
   {
-    img: "/images/outdoor-types/type-trivision.jpg",
-    name: "Тривижн 3×12",
-    priceBadge: "ОТ 67 000 ₽/МЕС",
-    typeBadge: "ДИНАМИЧЕСКИЙ · ПРЕМИУМ",
-    subtitle: "2 шт на пр. Ленина (центр Томска)",
+    img: "/images/outdoor-types/type-billboard.jpg",
+    alt: "Классический билборд 3×6 в Томске — статичная наружная реклама, ZOND",
+    name: "Щит 3×6",
+    priceBadge: "ОТ 29 000 ₽/МЕС",
+    typeBadge: "СТАТИЧНЫЙ",
+    subtitle: "Классический билборд",
     description:
-      "Крупноформатная динамическая поверхность с 3 поворотными секциями. Эксклюзив центра — обе конструкции в самом проходном месте города.",
-  },
-  {
-    img: "/images/outdoor-types/type-city-format.jpg",
-    name: "Сити-формат 1.2×1.8",
-    priceBadge: "ОТ 9 000 ₽/МЕС",
-    typeBadge: "ПЕШЕХОДНЫЙ",
-    subtitle: "Компактный формат",
-    description:
-      "Компактные конструкции на остановках и у магазинов. Высокое внимание пешеходов.",
+      "Идеален для долгосрочных кампаний и брендирования. Самый распространённый формат наружной рекламы.",
   },
   {
     img: "/images/outdoor-types/type-supersite.jpg",
-    name: "Супер-сайт 5×15",
-    priceBadge: "ОТ 75 000 ₽/МЕС",
+    alt: "Суперсайт 5×15 на трассе Томска — премиум-формат, ZOND",
+    name: "Суперсайт 5×15",
+    priceBadge: "ОТ 67 000 ₽/МЕС",
     typeBadge: "ПРЕМИУМ",
-    subtitle: "Максимальный охват",
+    subtitle: "Большой статичный формат",
     description:
-      "Крупноформатные щиты на въездах в город и магистралях. Видны издалека, привлекают максимум внимания.",
+      "75 м² печатной поверхности на трассах и въездах в город. Максимальный охват аудитории.",
   },
   {
-    img: "/images/constructions/107b_l_d.jpg",
-    name: "Цифровой суперсайт 5×15",
-    priceBadge: "ОТ 90 000 ₽/МЕС",
-    typeBadge: "ЕДИНСТВЕННЫЙ В ТОМСКЕ",
-    subtitle: "75 м² LED · Коммунальный мост, пр. Нахимова",
+    img: "/images/outdoor-types/type-city-format.jpg",
+    alt: "Сити-формат в Томске — реклама на остановках, ZOND",
+    name: "Сити-формат 1.2×1.8",
+    priceBadge: "ОТ 9 000 ₽/МЕС",
+    typeBadge: "ПЕШЕХОДНЫЙ",
+    subtitle: "Пешеходный формат",
     description:
-      "Цифровой суперсайт на въезде в центр — 75 м² LED-экрана. Видеоконтент, смена креативов без перепечатки, ротация с 5-8 рекламодателями.",
+      "Размещение в остановочных комплексах, на пешеходных улицах. Реклама на уровне глаз.",
   },
 ];
 
@@ -298,18 +308,24 @@ export default function OutdoorPage() {
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                     <Image
                       src={c.img}
-                      alt={c.name}
+                      alt={c.alt}
                       fill
                       loading="lazy"
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className={`object-cover group-hover:scale-105 transition-transform duration-700 ${
-                        c.name.startsWith("Digital") ? "brightness-110 contrast-110" : ""
+                        c.name.startsWith("Digital") || c.name.startsWith("Цифровой") ? "brightness-110 contrast-110" : ""
                       }`}
                     />
                     <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#F57C28]">
                       {c.priceBadge}
                     </div>
-                    <div className="absolute top-4 right-4 bg-[#F57C28] text-white px-3 py-1 rounded-full text-xs font-bold">
+                    <div
+                      className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold ${
+                        c.isExclusive
+                          ? "bg-amber-400 text-slate-900 shadow-lg shadow-amber-400/50"
+                          : "bg-[#F57C28] text-white"
+                      }`}
+                    >
                       {c.typeBadge}
                     </div>
                   </div>
