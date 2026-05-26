@@ -15,7 +15,16 @@ export default function PublicPortfolio({ category, title = "Наши работ
   const cat = (portfolioData as Record<string, { items: PortfolioItem[] }>)[category];
   if (!cat || cat.items.length === 0) return null;
 
-  const items = [...cat.items].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  // Свежие работы первыми: основная сортировка по createdAt DESC (у новых
+  // загруженных через админку дата позже), при равных датах — order ASC
+  // (порядок, заданный вручную в /admin/portfolio через drag-and-drop).
+  const items = [...cat.items].sort((a, b) => {
+    const aDate = (a as { createdAt?: string }).createdAt ?? "";
+    const bDate = (b as { createdAt?: string }).createdAt ?? "";
+    const dateCmp = bDate.localeCompare(aDate);
+    if (dateCmp !== 0) return dateCmp;
+    return (a.order ?? 0) - (b.order ?? 0);
+  });
 
   return (
     <section className="py-16 bg-slate-50">
