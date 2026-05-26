@@ -22,6 +22,7 @@ const CATEGORIES: {
   secondBadge: string;
   subtitle: string;
   description: string;
+  customQuote?: boolean;
 }[] = [
   {
     img: "/images/production/tablichki.jpg",
@@ -78,6 +79,9 @@ const CATEGORIES: {
     subtitle: "Фасады · витрины · праздничное оформление",
     description:
       "Декоративные блестящие диски на подвижном основании создают эффект мерцания и переливов от движения воздуха. Используются для оформления фасадов, витрин, праздничных конструкций. Без электроники.",
+    // Калькулятор пайеток не предусмотрен (расчёт индивидуальный) — кнопка
+    // ведёт на форму заявки с предзаполненным контекстом.
+    customQuote: true,
   },
 ];
 
@@ -236,7 +240,7 @@ export default function ProductionPage() {
               {CATEGORIES.map((c) => (
                 <a
                   key={c.title}
-                  href="#calculator"
+                  href={c.customQuote ? "#contact-form" : "#calculator"}
                   className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#7CB342] hover:shadow-2xl hover:shadow-[#7CB342]/20 transition-all duration-500 hover:-translate-y-2"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
@@ -259,7 +263,7 @@ export default function ProductionPage() {
                     <p className="text-sm text-[#7CB342] font-semibold mb-3">{c.subtitle}</p>
                     <p className="text-slate-600 mb-4 leading-relaxed">{c.description}</p>
                     <div className="flex items-center text-[#7CB342] font-semibold">
-                      <span>Рассчитать стоимость</span>
+                      <span>{c.customQuote ? "Индивидуальный расчёт — оставить заявку" : "Рассчитать стоимость"}</span>
                       <ArrowRight
                         size={18}
                         className="ml-1 group-hover:translate-x-1 transition-transform"
