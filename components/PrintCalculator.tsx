@@ -82,8 +82,16 @@ export default function PrintCalculator() {
       total += sum;
 
       if (postPrint.length > 0) {
+        // Проклейка/люверсы возможны только на баннере и сетке — фильтр чтобы
+        // случайно выбранный ранее пункт не считался при переключении материала.
+        const matName = mat.name.toLowerCase();
+        const glueAllowed =
+          matName.includes("баннер") ||
+          matName.includes("сетк") ||
+          matName.includes("mesh");
         const perimeter = 2 * (width + height);
         for (const ppId of postPrint) {
+          if (!glueAllowed && ppId.startsWith("glue")) continue;
           const item = data.postPrintPerMeter.find((p) => p.id === ppId);
           if (!item) continue;
           const sum2 = item.price * perimeter;
@@ -122,6 +130,19 @@ export default function PrintCalculator() {
 
   const activeMaterials = mode === "solvent" ? data.solventPerM2.materials : data.interiorPerM2.materials;
   const totalDisplay = calc && calc.total > 0 ? formatRub(calc.total) : "—";
+
+  // Постпечатная обработка «проклейка» / «люверсовка» технически возможна
+  // только на баннере и сетке. Для плёнки/бумаги/холста — скрываем эти опции,
+  // оставляя только «trim» (подрезка по периметру).
+  const selectedMaterial = activeMaterials.find((m) => m.id === material);
+  const materialName = (selectedMaterial?.name ?? "").toLowerCase();
+  const supportsGlueAndEyelets =
+    materialName.includes("баннер") ||
+    materialName.includes("сетк") ||
+    materialName.includes("mesh");
+  const visiblePostPrint = supportsGlueAndEyelets
+    ? data.postPrintPerMeter
+    : data.postPrintPerMeter.filter((pp) => !pp.id.startsWith("glue"));
 
   return (
     <section id="calculator" className="py-12 md:py-20 bg-slate-50">
@@ -234,7 +255,7 @@ export default function PrintCalculator() {
                       Постпечатная обработка (опционально)
                     </label>
                     <div className="space-y-2">
-                      {data.postPrintPerMeter.map((pp) => (
+                      {visiblePostPrint.map((pp) => (
                         <label
                           key={pp.id}
                           className="flex items-center gap-2 cursor-pointer text-sm"
@@ -251,6 +272,12 @@ export default function PrintCalculator() {
                         </label>
                       ))}
                     </div>
+                    {!supportsGlueAndEyelets && material && (
+                      <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                        Проклейка и установка люверсов на плёнке / бумаге / холсте не выполняются —
+                        опции доступны только для баннера и сетки.
+                      </p>
+                    )}
                   </div>
                 </>
               )}
