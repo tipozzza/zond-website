@@ -129,8 +129,21 @@ export default function CategoryAdminPage() {
                   <SortableCard
                     key={item.id}
                     item={item}
+                    category={category}
                     onEdit={() => setEditId(item.id)}
                     onDelete={() => handleDelete(item.id, item.title)}
+                    onYearChange={(year) => {
+                      setData((prev) =>
+                        prev
+                          ? {
+                              ...prev,
+                              items: prev.items.map((it) =>
+                                it.id === item.id ? { ...it, completionYear: year } : it,
+                              ),
+                            }
+                          : prev,
+                      );
+                    }}
                   />
                 ))}
               </div>
@@ -173,12 +186,16 @@ export default function CategoryAdminPage() {
 
 function SortableCard({
   item,
+  category,
   onEdit,
   onDelete,
+  onYearChange,
 }: {
   item: PortfolioItem;
+  category: string;
   onEdit: () => void;
   onDelete: () => void;
+  onYearChange: (year: number | null) => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: item.id,
@@ -187,6 +204,43 @@ function SortableCard({
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.4 : 1,
+  };
+
+  const [editingYear, setEditingYear] = useState(false);
+  const [yearDraft, setYearDraft] = useState(
+    item.completionYear != null ? String(item.completionYear) : "",
+  );
+  const [yearSaving, setYearSaving] = useState(false);
+
+  const saveYear = async () => {
+    if (yearSaving) return;
+    const trimmed = yearDraft.trim();
+    const parsed = trimmed === "" ? null : parseInt(trimmed, 10);
+    const valid = parsed === null || (Number.isFinite(parsed) && parsed >= 1992 && parsed <= 2099);
+    if (!valid) {
+      setYearDraft(item.completionYear != null ? String(item.completionYear) : "");
+      setEditingYear(false);
+      return;
+    }
+    if (parsed === (item.completionYear ?? null)) {
+      setEditingYear(false);
+      return;
+    }
+    setYearSaving(true);
+    try {
+      const res = await fetch(`/api/admin/portfolio/${category}/${item.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ completionYear: parsed }),
+      });
+      if (res.ok) onYearChange(parsed);
+      else setYearDraft(item.completionYear != null ? String(item.completionYear) : "");
+    } catch {
+      setYearDraft(item.completionYear != null ? String(item.completionYear) : "");
+    } finally {
+      setYearSaving(false);
+      setEditingYear(false);
+    }
   };
 
   return (
@@ -212,7 +266,40 @@ function SortableCard({
       </div>
       <div className="p-3">
         <div className="font-semibold text-sm mb-1 line-clamp-2">{item.title}</div>
-        <div className="text-xs text-slate-500 line-clamp-2 mb-3">{item.description}</div>
+        <div className="text-xs text-slate-500 line-clamp-2 mb-2">{item.description}</div>
+        <div className="flex items-center justify-between gap-2 mb-2 text-xs">
+          <span className="text-slate-500">Год:</span>
+          {editingYear ? (
+            <input
+              type="number"
+              min={1992}
+              max={2099}
+              value={yearDraft}
+              autoFocus
+              disabled={yearSaving}
+              onChange={(e) => setYearDraft(e.target.value)}
+              onBlur={saveYear}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") saveYear();
+                if (e.key === "Escape") {
+                  setYearDraft(item.completionYear != null ? String(item.completionYear) : "");
+                  setEditingYear(false);
+                }
+              }}
+              placeholder="2024"
+              className="w-20 border border-slate-300 rounded px-2 py-0.5 text-xs text-right disabled:opacity-50"
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={() => setEditingYear(true)}
+              className="font-semibold text-slate-700 hover:text-brand hover:underline"
+              title="Кликните чтобы изменить год"
+            >
+              {item.completionYear ?? "— не указан"}
+            </button>
+          )}
+        </div>
         <div className="flex items-center justify-end gap-2 text-xs">
           <button onClick={onEdit} className="text-brand hover:underline">
             ✏️ Редактировать
@@ -231,6 +318,7 @@ type PendingFile = {
   file: File;
   title: string;
   description: string;
+  completionYear: string; // в форме храним как строку, парсим на сервере
   preview: string;
   originalKB: number;
   compressedKB?: number;
@@ -283,6 +371,7 @@ function AddPhotosModal({
         file: f,
         title: stripExt(f.name),
         description: "",
+        completionYear: "",
         preview: URL.createObjectURL(f),
         originalKB: Math.round(f.size / 1024),
         compressedFile,
@@ -293,8 +382,11 @@ function AddPhotosModal({
   };
 
   const removeOne = (id: string) => setPending((p) => p.filter((it) => it.id !== id));
-  const update = (id: string, field: "title" | "description", value: string) =>
-    setPending((p) => p.map((it) => (it.id === id ? { ...it, [field]: value } : it)));
+  const update = (
+    id: string,
+    field: "title" | "description" | "completionYear",
+    value: string,
+  ) => setPending((p) => p.map((it) => (it.id === id ? { ...it, [field]: value } : it)));
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -315,6 +407,7 @@ function AddPhotosModal({
       form.append("title", it.title || stripExt(it.file.name));
       const desc = it.description || globalDesc;
       form.append("description", desc);
+      if (it.completionYear) form.append("completionYear", it.completionYear);
       try {
         const res = await fetch(`/api/admin/portfolio/${category}`, { method: "POST", body: form });
         if (!res.ok) {
@@ -395,6 +488,15 @@ function AddPhotosModal({
                       value={it.description}
                       onChange={(e) => update(it.id, "description", e.target.value)}
                       placeholder="Описание (опционально)"
+                      className="w-full border border-slate-300 rounded px-2 py-1 text-xs mb-1"
+                    />
+                    <input
+                      type="number"
+                      min={1992}
+                      max={2099}
+                      value={it.completionYear}
+                      onChange={(e) => update(it.id, "completionYear", e.target.value)}
+                      placeholder="Год реализации (например 2024)"
                       className="w-full border border-slate-300 rounded px-2 py-1 text-xs mb-1"
                     />
                     <div className="text-xs text-slate-500">
@@ -495,6 +597,9 @@ function EditItemModal({
 }) {
   const [title, setTitle] = useState(item.title);
   const [description, setDescription] = useState(item.description);
+  const [completionYear, setCompletionYear] = useState(
+    item.completionYear != null ? String(item.completionYear) : "",
+  );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -502,10 +607,16 @@ function EditItemModal({
     e.preventDefault();
     setSaving(true);
     setError("");
+    const trimmedYear = completionYear.trim();
+    const payload: Record<string, unknown> = {
+      title,
+      description,
+      completionYear: trimmedYear === "" ? null : parseInt(trimmedYear, 10),
+    };
     const res = await fetch(`/api/admin/portfolio/${category}/${item.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description }),
+      body: JSON.stringify(payload),
     });
     setSaving(false);
     if (res.ok) {
@@ -550,6 +661,21 @@ function EditItemModal({
             rows={3}
             className="w-full border border-slate-300 rounded-lg px-3 py-2"
           />
+        </div>
+        <div>
+          <label className="block text-sm font-semibold mb-1">Год реализации проекта</label>
+          <input
+            type="number"
+            min={1992}
+            max={2099}
+            value={completionYear}
+            onChange={(e) => setCompletionYear(e.target.value)}
+            placeholder="2024"
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+          <p className="text-xs text-slate-500 mt-1">
+            Если неизвестен — оставьте пустым, работа отсортируется в конец.
+          </p>
         </div>
         {error && <div className="text-red-600 text-sm">{error}</div>}
         <div className="flex gap-3">
