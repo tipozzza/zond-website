@@ -23,6 +23,8 @@ const CATEGORIES: {
   subtitle: string;
   description: string;
   customQuote?: boolean;
+  /** Якорь для прямого перехода с редиректа (#panel-kronshteyny, #neon). */
+  anchor?: string;
 }[] = [
   {
     img: "/images/production/tablichki.jpg",
@@ -50,6 +52,30 @@ const CATEGORIES: {
     subtitle: "Брендирование · Двусторонние · Видны издалека",
     description:
       "Объёмные конструкции с внутренней LED-подсветкой. Светятся 24/7. Алюминиевый профиль, фасонная форма по эскизу.",
+  },
+  {
+    // TODO: фото панель-кронштейна от Дмитрия — пока fallback на лайтбокс.
+    img: "/images/production/lightbox.jpg",
+    title: "Панель-кронштейны",
+    priceBadge: "ПО ЗАПРОСУ",
+    secondBadge: "ДВУСТОРОННИЕ",
+    subtitle: "Двусторонние выносные вывески",
+    description:
+      "Вывески, выступающие от фасада перпендикулярно. Видны прохожим с двух сторон по улице. Металлический каркас, акрил или ПВХ, опционально светодиодная подсветка. Согласование с УГА — поможем.",
+    customQuote: true,
+    anchor: "panel-kronshteyny",
+  },
+  {
+    // TODO: фото неоновой вывески от Дмитрия — пока fallback на объёмные буквы.
+    img: "/images/production/volumetric-letters.jpg",
+    title: "Неоновые вывески",
+    priceBadge: "ПО ЗАПРОСУ",
+    secondBadge: "КЛАССИКА + LED-НЕОН",
+    subtitle: "Классический неон и LED-неон Neonflex",
+    description:
+      "Классический газоразрядный неон и современный LED-неон (Neonflex). Подходят для баров, кафе, фасадов, интерьерного декора, выставок. Срок службы LED-неона — 50 000+ часов. Ремонт и обслуживание.",
+    customQuote: true,
+    anchor: "neon",
   },
   {
     img: "/images/production/pseudo-letters.jpg",
@@ -124,7 +150,7 @@ const EQUIPMENT: { icon: LucideIcon; name: string; desc: string }[] = [
 export const metadata: Metadata = {
   title: "Изготовление вывесок в Томске под ключ — от 1 дня | Зонд",
   description:
-    "Световые и неоновые вывески, лайтбоксы, объёмные буквы, таблички в Томске. Изготовление от 1 дня, монтаж под ключ, гарантия 12 месяцев. Бесплатный замер. От 95 ₽.",
+    "Световые и неоновые вывески, лайтбоксы, панель-кронштейны, объёмные буквы, таблички в Томске. Изготовление от 1 дня, монтаж под ключ, гарантия 12 месяцев. Бесплатный замер. От 95 ₽.",
   keywords: [
     "изготовление вывесок Томск",
     "вывески Томск",
@@ -152,7 +178,7 @@ export default function ProductionPage() {
       <ServiceSchema
         serviceType="Производство наружной рекламы"
         name="Изготовление вывесок и конструкций в Томске"
-        description="Объёмные буквы, лайтбоксы, световые короба, штендеры, таблички. Собственный цех с ЧПУ."
+        description="Объёмные буквы, лайтбоксы, световые короба, панель-кронштейны, неоновые вывески, штендеры, таблички. Собственный цех с ЧПУ."
         lowPrice={95}
         priceRange="95-50 000 ₽"
       />
@@ -234,14 +260,15 @@ export default function ProductionPage() {
               Что мы производим
             </h2>
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              6 направлений с реальными ценами. Кликайте на карточку — откроется калькулятор.
+              8 направлений: цены в калькуляторе или индивидуальный расчёт по заявке.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {CATEGORIES.map((c) => (
                 <a
                   key={c.title}
+                  id={c.anchor}
                   href={c.customQuote ? "#contact-form" : "#calculator"}
-                  className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#7CB342] hover:shadow-2xl hover:shadow-[#7CB342]/20 transition-all duration-500 hover:-translate-y-2"
+                  className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#7CB342] hover:shadow-2xl hover:shadow-[#7CB342]/20 transition-all duration-500 hover:-translate-y-2 scroll-mt-24"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                     <Image
