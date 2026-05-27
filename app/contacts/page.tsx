@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 
 const STATS = [
   { value: "< 1 час", label: "ответ в рабочее время" },
-  { value: "5", label: "каналов связи" },
+  { value: "6", label: "каналов связи" },
   { value: "6 дней", label: "работаем в неделю" },
   { value: "24/7", label: "заявка через сайт" },
 ];
@@ -83,6 +83,13 @@ const CHANNELS = [
     value: "@zond_reklama",
     desc: "Быстрее всего написать в мессенджер.",
     href: "https://t.me/zond_reklama",
+  },
+  {
+    icon: "🇲",
+    title: "MAX",
+    value: "+7 923 400-97-05",
+    desc: "Российский мессенджер от VK. Работаем в рабочие часы.",
+    href: "max://message?phone=79234009705",
   },
   {
     icon: "🟦",
@@ -153,7 +160,7 @@ const FAQ_ITEMS = [
   {
     question: "В каких мессенджерах вы доступны?",
     answer:
-      "Telegram — основной канал (@zond_reklama). WhatsApp — по согласованию. Менеджеры отвечают в свои рабочие часы; через бот сайта заявка попадёт ответственному сотруднику автоматически.",
+      "Telegram — основной канал (@zond_reklama). Также MAX (российский мессенджер от VK): +7 923 400-97-05. ВКонтакте — лента работ и оперативные ответы. Менеджеры отвечают в рабочие часы; через бот сайта заявка попадёт ответственному сотруднику автоматически.",
   },
   {
     question: "Куда отправлять макеты и крупные файлы?",
@@ -211,12 +218,21 @@ export default function ContactsPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/30 text-white px-7 py-4 rounded-xl font-semibold text-base hover:bg-white/20 transition"
               >
-                ✈ Написать в Telegram
+                ✈ Telegram
+              </a>
+              <a
+                href="max://message?phone=79234009705"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/30 text-white px-7 py-4 rounded-xl font-semibold text-base hover:bg-white/20 transition"
+              >
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-[#7B61FF] text-white text-[10px] font-bold">M</span>
+                MAX
               </a>
             </div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/85">
               <span>✓ Ответ за час</span>
-              <span>✓ 5 каналов связи</span>
+              <span>✓ 6 каналов связи</span>
               <span>✓ Бесплатная парковка</span>
             </div>
           </div>

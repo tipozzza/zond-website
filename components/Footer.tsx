@@ -5,6 +5,7 @@ import { COMPANY } from "@/lib/site-data";
 const SOCIAL_LINKS = [
   { href: "https://vk.com/zond.reklama", label: "ВКонтакте", short: "VK" },
   { href: "https://t.me/zond_reklama", label: "Telegram", short: "TG" },
+  { href: "max://message?phone=79234009705", label: "MAX (+7 923 400-97-05)", short: "MAX" },
 ];
 
 const SECTIONS = [

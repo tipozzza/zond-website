@@ -25,7 +25,8 @@ export default function CTAForm({ accentColor }: Props = {}) {
             </p>
             <div className="grid gap-3.5">
               <Channel icon="📞" title={COMPANY.phone} subtitle="Томск, городской" />
-              <Channel icon="💬" title="Telegram" subtitle="Быстрее всего написать в мессенджер" />
+              <Channel icon="✈" title="Telegram" subtitle="@zond_reklama — быстрее всего" />
+              <Channel icon="🇲" title="MAX" subtitle="+7 923 400-97-05 — российский мессенджер" />
               <Channel icon="✉️" title={COMPANY.email} subtitle="Для договоров и официальных запросов" />
             </div>
           </div>

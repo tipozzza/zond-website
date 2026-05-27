@@ -26,6 +26,24 @@ export default function StructuredData() {
         telephone: "+7-3822-97-97-05",
         email: "office@zondreklama.ru",
         url: "https://zond-website.vercel.app",
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: "+7-3822-97-97-05",
+            contactType: "customer service",
+            areaServed: "RU",
+            availableLanguage: "Russian",
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: "+7-923-400-97-05",
+            contactType: "customer service",
+            contactOption: "TollFree",
+            areaServed: "RU",
+            availableLanguage: "Russian",
+            description: "Telegram и MAX",
+          },
+        ],
         address: {
           "@type": "PostalAddress",
           streetAddress: "пр. Фрунзе, 115",
