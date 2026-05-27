@@ -15,14 +15,18 @@ export default function PublicPortfolio({ category, title = "Наши работ
   const cat = (portfolioData as Record<string, { items: PortfolioItem[] }>)[category];
   if (!cat || cat.items.length === 0) return null;
 
-  // Свежие работы первыми: основная сортировка по createdAt DESC (у новых
-  // загруженных через админку дата позже), при равных датах — order ASC
-  // (порядок, заданный вручную в /admin/portfolio через drag-and-drop).
+  // Сортировка работ (приоритет сверху вниз):
+  //  1) completionYear DESC — свежие реализованные проекты выше;
+  //  2) работы без указанного года — в конец списка;
+  //  3) при равных годах — order ASC (порядок drag-and-drop из /admin/portfolio).
   const items = [...cat.items].sort((a, b) => {
-    const aDate = (a as { createdAt?: string }).createdAt ?? "";
-    const bDate = (b as { createdAt?: string }).createdAt ?? "";
-    const dateCmp = bDate.localeCompare(aDate);
-    if (dateCmp !== 0) return dateCmp;
+    const ay = (a as { completionYear?: number | null }).completionYear ?? null;
+    const by = (b as { completionYear?: number | null }).completionYear ?? null;
+    if (ay !== by) {
+      if (ay === null) return 1; // null → в конец
+      if (by === null) return -1;
+      return by - ay; // больший год первым
+    }
     return (a.order ?? 0) - (b.order ?? 0);
   });
 
