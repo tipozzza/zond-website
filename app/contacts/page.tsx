@@ -8,6 +8,7 @@ import OfficeMap from "@/components/OfficeMap";
 import ContactForm from "@/components/ContactForm";
 import Breadcrumb from "@/components/Breadcrumb";
 import FAQ from "@/components/FAQ";
+import MaxLink from "@/components/MaxLink";
 import { buildOgUrl } from "@/lib/og";
 
 export const metadata: Metadata = {
@@ -89,7 +90,9 @@ const CHANNELS = [
     title: "MAX",
     value: "+7 923 400-97-05",
     desc: "Российский мессенджер от VK. Работаем в рабочие часы.",
-    href: "max://message?phone=79234009705",
+    // href не задан — MAX-карточка рендерится через <MaxLink> отдельно
+    // ниже в коде, чтобы deep-link + fallback работали корректно.
+    isMax: true,
   },
   {
     icon: "🟦",
@@ -220,15 +223,10 @@ export default function ContactsPage() {
               >
                 ✈ Telegram
               </a>
-              <a
-                href="max://message?phone=79234009705"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/30 text-white px-7 py-4 rounded-xl font-semibold text-base hover:bg-white/20 transition"
-              >
+              <MaxLink className="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/30 text-white px-7 py-4 rounded-xl font-semibold text-base hover:bg-white/20 transition">
                 <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-[#7B61FF] text-white text-[10px] font-bold">M</span>
                 MAX
-              </a>
+              </MaxLink>
             </div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/85">
               <span>✓ Ответ за час</span>
@@ -281,6 +279,13 @@ export default function ContactsPage() {
                 );
                 const className =
                   "bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand hover:shadow-xl transition block";
+                if (c.isMax) {
+                  return (
+                    <MaxLink key={c.title} className={className}>
+                      {inner}
+                    </MaxLink>
+                  );
+                }
                 return c.href ? (
                   <a
                     key={c.title}

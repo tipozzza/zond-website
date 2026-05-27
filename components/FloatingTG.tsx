@@ -1,6 +1,8 @@
 // Имя файла оставлено как FloatingTG для обратной совместимости импортов.
 // По факту это плавающая группа мессенджеров: Telegram + MAX.
 
+import MaxLink from "./MaxLink";
+
 export default function FloatingTG() {
   return (
     <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
@@ -14,16 +16,13 @@ export default function FloatingTG() {
       >
         ✈️
       </a>
-      <a
-        href="max://message?phone=79234009705"
-        target="_blank"
-        rel="noopener"
+      <MaxLink
         className="w-14 h-14 rounded-full bg-[#7B61FF] text-white flex items-center justify-center text-xl font-extrabold shadow-[0_12px_30px_rgba(123,97,255,0.4)] hover:scale-110 transition-transform"
         title="Написать в MAX (+7 923 400-97-05)"
-        aria-label="Написать в MAX"
+        ariaLabel="Написать в MAX"
       >
         M
-      </a>
+      </MaxLink>
     </div>
   );
 }

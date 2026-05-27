@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { COMPANY } from "@/lib/site-data";
+import MaxLink from "@/components/MaxLink";
 
 const SOCIAL_LINKS = [
   { href: "https://vk.com/zond.reklama", label: "ВКонтакте", short: "VK" },
   { href: "https://t.me/zond_reklama", label: "Telegram", short: "TG" },
-  { href: "max://message?phone=79234009705", label: "MAX (+7 923 400-97-05)", short: "MAX" },
 ];
 
 const SECTIONS = [
@@ -63,6 +63,12 @@ export default function Footer() {
                   {s.short}
                 </a>
               ))}
+              <MaxLink
+                className="w-9 h-9 rounded-lg bg-white/8 flex items-center justify-center text-xs font-bold text-white hover:bg-white hover:text-brand transition-colors"
+                ariaLabel="MAX (+7 923 400-97-05)"
+              >
+                MAX
+              </MaxLink>
             </div>
           </div>
 
