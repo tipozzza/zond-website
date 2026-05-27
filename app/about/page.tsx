@@ -409,6 +409,51 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* ЧТО ДЕЛАЕМ САМИ, ЧТО ЗАКАЗЫВАЕМ */}
+        <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+              Что делаем сами, что заказываем
+            </h2>
+            <p className="text-center text-slate-600 mb-10 max-w-2xl mx-auto">
+              Полный цикл от макета до металла на своём производстве — но честно про то,
+              что отдаём на подряд проверенным партнёрам.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6">
+                <h3 className="text-lg font-bold mb-4 text-emerald-700 flex items-center gap-2">
+                  <span>✅</span> Делаем сами
+                </h3>
+                <ul className="space-y-2 text-sm text-slate-800">
+                  <li className="flex gap-2"><span className="text-emerald-600 mt-0.5">•</span><span>Дизайн и подготовка макетов</span></li>
+                  <li className="flex gap-2"><span className="text-emerald-600 mt-0.5">•</span><span>Гибка профиля (свой бортогиб для объёмных букв)</span></li>
+                  <li className="flex gap-2"><span className="text-emerald-600 mt-0.5">•</span><span>Сборка металлоконструкций и букв</span></li>
+                  <li className="flex gap-2"><span className="text-emerald-600 mt-0.5">•</span><span>Изготовление кронштейнов</span></li>
+                  <li className="flex gap-2"><span className="text-emerald-600 mt-0.5">•</span><span>Большая часть монтажных работ</span></li>
+                </ul>
+              </div>
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+                <h3 className="text-lg font-bold mb-4 text-slate-700 flex items-center gap-2">
+                  <span>🤝</span> Заказываем у проверенных подрядчиков
+                </h3>
+                <ul className="space-y-2 text-sm text-slate-800">
+                  <li className="flex gap-2"><span className="text-slate-500 mt-0.5">•</span><span>Лазерный раскрой металла, оргстекла</span></li>
+                  <li className="flex gap-2"><span className="text-slate-500 mt-0.5">•</span><span>Полимерная покраска</span></li>
+                  <li className="flex gap-2"><span className="text-slate-500 mt-0.5">•</span><span>УФ-печать на листовых и рулонных материалах</span></li>
+                  <li className="flex gap-2"><span className="text-slate-500 mt-0.5">•</span><span>Офсетная полиграфия (через типографии)</span></li>
+                  <li className="flex gap-2"><span className="text-slate-500 mt-0.5">•</span><span>Расчёт нагрузок и проектная документация (лицензированные инжиниринговые компании)</span></li>
+                  <li className="flex gap-2"><span className="text-slate-500 mt-0.5">•</span><span>Сварочные работы на крупногабаритных конструкциях</span></li>
+                  <li className="flex gap-2"><span className="text-slate-500 mt-0.5">•</span><span>Промышленный альпинизм на высотных монтажах</span></li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-center text-sm text-slate-600 mt-8 max-w-3xl mx-auto leading-relaxed">
+              Такой подход позволяет гарантировать качество основных процессов и при этом
+              не накладывать на клиента содержание инфраструктуры под все смежные операции.
+            </p>
+          </div>
+        </section>
+
         {/* КОМАНДА */}
         <section className="py-16 md:py-20 bg-slate-50">
           <div className="container mx-auto px-4 max-w-5xl">
