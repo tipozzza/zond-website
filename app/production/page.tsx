@@ -54,8 +54,7 @@ const CATEGORIES: {
       "Объёмные конструкции с внутренней LED-подсветкой. Светятся 24/7. Алюминиевый профиль, фасонная форма по эскизу.",
   },
   {
-    // TODO: фото панель-кронштейна от Дмитрия — пока fallback на лайтбокс.
-    img: "/images/production/lightbox.jpg",
+    img: "/images/production/panel-kronshteyny.jpg",
     title: "Панель-кронштейны",
     priceBadge: "ПО ЗАПРОСУ",
     secondBadge: "ДВУСТОРОННИЕ",
@@ -66,8 +65,7 @@ const CATEGORIES: {
     anchor: "panel-kronshteyny",
   },
   {
-    // TODO: фото неоновой вывески от Дмитрия — пока fallback на объёмные буквы.
-    img: "/images/production/volumetric-letters.jpg",
+    img: "/images/production/neon.jpg",
     title: "Неоновые вывески",
     priceBadge: "ПО ЗАПРОСУ",
     secondBadge: "КЛАССИКА + LED-НЕОН",
