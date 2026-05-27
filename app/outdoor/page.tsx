@@ -36,7 +36,7 @@ const CONSTRUCTIONS: {
   isExclusive?: boolean;
 }[] = [
   {
-    img: "/images/outdoor-types/type-digital.jpg?v=2",
+    img: "/images/outdoor-types/type-digital.jpg?v=3",
     alt: "Цифровой LED-экран Digital 3×6 в Томске — рекламное размещение, ZOND",
     name: "Digital 3×6",
     priceBadge: "ОТ 45 000 ₽/МЕС",
@@ -46,7 +46,7 @@ const CONSTRUCTIONS: {
       "5 секунд × 12 сюжетов в цикле — 1440 показов в сутки. 27 экранов в проходных местах Томска.",
   },
   {
-    img: "/images/outdoor-types/type-billboard.jpg?v=2",
+    img: "/images/outdoor-types/type-billboard.jpg?v=3",
     alt: "Классический билборд 3×6 в Томске — статичная наружная реклама, ZOND",
     name: "Щит 3×6",
     priceBadge: "ОТ 29 000 ₽/МЕС",
@@ -56,7 +56,7 @@ const CONSTRUCTIONS: {
       "Идеален для долгосрочных кампаний и брендирования. Самый распространённый формат наружной рекламы.",
   },
   {
-    img: "/images/outdoor-types/type-trivision.jpg?v=2",
+    img: "/images/outdoor-types/type-trivision.jpg?v=3",
     alt: "Тривижн 3×6 — 3 стороны рекламы в Томске, ZOND",
     name: "Тривижн 3×6",
     priceBadge: "ОТ 35 000 ₽/МЕС",
@@ -66,7 +66,7 @@ const CONSTRUCTIONS: {
       "Динамическая поверхность имеющая 3 стороны — 1 щит показывает 3 разных рекламы поочерёдно.",
   },
   {
-    img: "/images/outdoor-types/digital-5x15.jpg?v=2",
+    img: "/images/outdoor-types/digital-5x15.jpg?v=3",
     alt: "Цифровой суперсайт 5×15 на въезде в Томск — томский эксклюзив, ZOND",
     name: "Цифровой суперсайт 5×15",
     priceBadge: "ОТ 75 000 ₽/МЕС",
@@ -77,7 +77,7 @@ const CONSTRUCTIONS: {
     isExclusive: true,
   },
   {
-    img: "/images/outdoor-types/type-trivision-3x12.jpg?v=2",
+    img: "/images/outdoor-types/type-trivision-3x12.jpg?v=3",
     alt: "Тривижн 3×12 в центре Томска на ул. Ленина — динамическая реклама, ZOND",
     name: "Тривижн 3×12",
     priceBadge: "ОТ 50 000 ₽/МЕС",
@@ -87,7 +87,7 @@ const CONSTRUCTIONS: {
       "Динамическая поверхность имеющая 3 стороны — 1 щит показывает 3 разных рекламы поочерёдно. Размер 3×12 м.",
   },
   {
-    img: "/images/outdoor-types/type-supersite.jpg?v=2",
+    img: "/images/outdoor-types/type-supersite.jpg?v=3",
     alt: "Суперсайт 5×15 на трассе Томска — премиум-формат, ZOND",
     name: "Суперсайт 5×15",
     priceBadge: "ОТ 67 000 ₽/МЕС",
@@ -97,7 +97,7 @@ const CONSTRUCTIONS: {
       "75 м² печатной поверхности на трассах и въездах в город. Максимальный охват аудитории.",
   },
   {
-    img: "/images/outdoor-types/type-city-format.jpg?v=2",
+    img: "/images/outdoor-types/type-city-format.jpg?v=3",
     alt: "Сити-формат в Томске — реклама на остановках, ZOND",
     name: "Сити-формат 1.2×1.8",
     priceBadge: "ОТ 9 000 ₽/МЕС",
