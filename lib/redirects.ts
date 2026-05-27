@@ -58,6 +58,11 @@ const manualRedirects: RedirectRule[] = [
 
   // Корень раздела новостей старого сайта
   { source: "/about/news", destination: "/news", permanent: true },
+
+  // Свёрнутые в карточки на /production (раньше были отдельными страницами).
+  // Якорь сохраняем — браузер прокрутит к нужной карточке.
+  { source: "/panel-kronshteyny", destination: "/production#panel-kronshteyny", permanent: true },
+  { source: "/neon", destination: "/production#neon", permanent: true },
 ];
 
 export const REDIRECTS: RedirectRule[] = [...newsRedirects, ...manualRedirects];
