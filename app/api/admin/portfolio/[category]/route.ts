@@ -8,6 +8,14 @@ export const runtime = "nodejs";
 
 const PORTFOLIO_PATH = "data/portfolio.json";
 
+/** Парсит и валидирует год реализации. Возвращает null при пустом/невалидном вводе. */
+function parseCompletionYear(raw: unknown): number | null {
+  if (raw == null || raw === "") return null;
+  const n = typeof raw === "number" ? raw : parseInt(String(raw), 10);
+  if (!Number.isFinite(n) || n < 1992 || n > 2099) return null;
+  return n;
+}
+
 export async function GET(_req: Request, { params }: { params: Promise<{ category: string }> }) {
   if (!(await verifySession()))
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -32,6 +40,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ categor
     const file = form.get("image") as File | null;
     const title = (form.get("title") as string) || "";
     const description = (form.get("description") as string) || "";
+    const completionYear = parseCompletionYear(form.get("completionYear"));
 
     if (!file) return NextResponse.json({ error: "Файл не передан" }, { status: 400 });
     if (file.size > 8 * 1024 * 1024)
@@ -66,6 +75,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ categor
       description: description.trim(),
       order: maxOrder + 1,
       createdAt: new Date().toISOString(),
+      completionYear,
     };
     data[category].items.push(item);
 

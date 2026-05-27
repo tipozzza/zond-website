@@ -5,6 +5,14 @@ import { isValidCategory, type PortfolioData } from "@/lib/types/portfolio";
 
 const PORTFOLIO_PATH = "data/portfolio.json";
 
+/** Парсит и валидирует год реализации. Возвращает null при пустом/невалидном вводе. */
+function parseCompletionYear(raw: unknown): number | null {
+  if (raw == null || raw === "") return null;
+  const n = typeof raw === "number" ? raw : parseInt(String(raw), 10);
+  if (!Number.isFinite(n) || n < 1992 || n > 2099) return null;
+  return n;
+}
+
 export async function PUT(
   req: Request,
   { params }: { params: Promise<{ category: string; id: string }> },
@@ -15,7 +23,12 @@ export async function PUT(
     const { category, id } = await params;
     if (!isValidCategory(category))
       return NextResponse.json({ error: "Неизвестная категория" }, { status: 400 });
-    const { title, description } = await req.json();
+    const body = await req.json();
+    const { title, description, completionYear } = body as {
+      title?: string;
+      description?: string;
+      completionYear?: unknown;
+    };
 
     const file = await getFile(PORTFOLIO_PATH);
     if (!file) return NextResponse.json({ error: "portfolio.json не найден" }, { status: 500 });
@@ -25,6 +38,11 @@ export async function PUT(
 
     if (typeof title === "string") item.title = title.trim();
     if (typeof description === "string") item.description = description.trim();
+    // completionYear обновляем только если поле присутствует — позволяет
+    // inline-edit слать только { completionYear } без затирки title/description.
+    if ("completionYear" in body) {
+      item.completionYear = parseCompletionYear(completionYear);
+    }
 
     const newContent = JSON.stringify(data, null, 2);
     await putFile(PORTFOLIO_PATH, newContent, `Portfolio: edit ${category}/${id}`, file.sha);
