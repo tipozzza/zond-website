@@ -18,6 +18,7 @@ const SERVICES_MAIN = [
 const SERVICES_ADDITIONAL = [
   { label: "Русификация вывесок", href: "/russifikaciya" },
   { label: "Паспорт фасада", href: "/pasport-fasada" },
+  { label: "Панель-кронштейны", href: "/panel-kronshteyny" },
 ];
 
 export default function Header() {
