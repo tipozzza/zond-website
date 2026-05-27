@@ -5,6 +5,11 @@ export type PortfolioItem = {
   description: string;
   order: number;
   createdAt: string;
+  /**
+   * Год реализации проекта. Опционально — работы без года уходят в конец
+   * списка при сортировке по completionYear DESC.
+   */
+  completionYear?: number | null;
 };
 
 export type PortfolioCategory = {
