@@ -1,24 +1,20 @@
-"use client";
-
-import { useCallback } from "react";
-
 /**
- * Умная ссылка на MAX-мессенджер с фоллбэком.
+ * Ссылка на MAX-мессенджер.
  *
- * Поведение:
- * - На мобильных (iOS/Android) пытаемся открыть приложение через deep-link
- *   `max://im?phone=...`. Если приложение не установлено, через 1.5 сек
- *   редирект на https://max.ru/ (web-версия / страница установки).
- * - На десктопе сразу открываем веб-версию max.ru в новой вкладке —
- *   deep-link на десктопе всё равно не работает.
+ * Сейчас тестируем формат N1: Universal Link на профиль по номеру —
+ * `https://max.ru/+79234009705`. Если MAX установлен и зарегистрирован
+ * как обработчик домена max.ru — система откроет приложение; если нет —
+ * откроется веб-страница профиля.
  *
- * Номер заведён в одном месте — менять тут.
+ * Это Server Component (без onClick) — браузер просто делает GET по URL,
+ * проверка iOS/Android Universal Link происходит на уровне OS.
+ *
+ * Номер MAX заведён в одном месте — менять тут.
  */
 
 const MAX_PHONE = "79234009705";
 const MAX_TEL_DISPLAY = "+7 923 400-97-05";
-const MAX_DEEPLINK = `max://im?phone=${MAX_PHONE}`;
-const MAX_WEB_FALLBACK = "https://max.ru/";
+const MAX_LINK = `https://max.ru/+${MAX_PHONE}`;
 
 type Props = {
   className?: string;
@@ -28,31 +24,11 @@ type Props = {
 };
 
 export default function MaxLink({ className, title, ariaLabel, children }: Props) {
-  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (typeof window === "undefined") return;
-
-    const ua = navigator.userAgent;
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
-
-    if (isMobile) {
-      // Попытка открыть приложение. Если оно установлено — система перехватит
-      // navigation, и setTimeout не успеет выполниться (страница свернётся).
-      // Если приложения нет — упадём на web-fallback через 1.5 сек.
-      window.location.href = MAX_DEEPLINK;
-      window.setTimeout(() => {
-        window.location.href = MAX_WEB_FALLBACK;
-      }, 1500);
-    } else {
-      // Десктоп — deep-link бесполезен. Сразу веб-версию в новой вкладке.
-      window.open(MAX_WEB_FALLBACK, "_blank", "noopener,noreferrer");
-    }
-  }, []);
-
   return (
     <a
-      href={MAX_DEEPLINK}
-      onClick={handleClick}
+      href={MAX_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
       className={className}
       title={title ?? `Написать в MAX (${MAX_TEL_DISPLAY})`}
       aria-label={ariaLabel ?? `Написать в MAX, номер ${MAX_TEL_DISPLAY}`}
