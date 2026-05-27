@@ -279,6 +279,74 @@ export default function ProductionPage() {
         {/* Калькулятор */}
         <ProductionCalculator />
 
+        {/* Подсказка по индивидуальному расчёту */}
+        <section className="bg-amber-50 border-y border-amber-200">
+          <div className="max-w-3xl mx-auto px-6 py-6 text-center text-sm md:text-base text-slate-700 leading-relaxed">
+            ℹ️ Каркасы, кронштейны и нестандартные конструкции рассчитываются
+            индивидуально, согласно проекту. Для точной оценки —{" "}
+            <a href="#contact-form" className="text-[#7CB342] font-semibold hover:underline">
+              оставьте заявку
+            </a>
+            .
+          </div>
+        </section>
+
+        {/* Технологии производства объёмных букв */}
+        <section className="py-12 md:py-20 bg-slate-50">
+          <div className="max-w-[1280px] mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+              Технологии производства объёмных букв
+            </h2>
+            <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
+              Два решения под разные задачи и бюджеты. Подбираем под архитектуру и
+              требования к читаемости.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              <article className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm">
+                <div className="text-xs uppercase tracking-wider text-[#7CB342] font-bold mb-3">
+                  Стандарт
+                </div>
+                <h3 className="text-2xl font-bold mb-3">
+                  Цельноклееные буквы с ПВХ-бортом
+                </h3>
+                <p className="text-slate-700 leading-relaxed mb-4">
+                  Стандартное решение — оптимальное соотношение цены и качества.
+                  Подходит для большинства задач: вывески, навигация, фасады.
+                </p>
+                <ul className="space-y-2 text-sm text-slate-600">
+                  <li>✓ Лёгкая конструкция</li>
+                  <li>✓ Быстрое изготовление</li>
+                  <li>
+                    {/* TODO: уточнить точную толщину ПВХ-борта у Алешина */}
+                    ✓ Толщина борта — стандарт (уточняется при заказе)
+                  </li>
+                  <li>✓ Совместима с любой подсветкой</li>
+                </ul>
+              </article>
+              <article className="bg-white rounded-2xl p-6 md:p-8 border-2 border-[#7CB342] shadow-lg">
+                <div className="text-xs uppercase tracking-wider text-amber-600 font-bold mb-3">
+                  Премиум
+                </div>
+                <h3 className="text-2xl font-bold mb-3">Буквы с алюминиевым бортом</h3>
+                <p className="text-slate-700 leading-relaxed mb-4">
+                  Эстетика, долговечность, ровные грани, минимальные швы. Подходит даже
+                  для мелкого шрифта (от 5 см) — объёмная фактура читается так же чётко,
+                  как у крупных букв.
+                </p>
+                <ul className="space-y-2 text-sm text-slate-600">
+                  <li>✓ Ровные грани без швов</li>
+                  <li>✓ Долговечность 10+ лет</li>
+                  <li>
+                    {/* TODO: уточнить точную толщину алюминия у Алешина */}
+                    ✓ Алюминиевый профиль (толщина уточняется)
+                  </li>
+                  <li>✓ Читаемость мелкого шрифта от 5 см</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
         {/* Этапы работы */}
         <section className="py-12 md:py-20 bg-white">
           <div className="max-w-[1280px] mx-auto px-6">
