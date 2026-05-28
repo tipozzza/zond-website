@@ -65,7 +65,7 @@ const CATEGORIES: {
     anchor: "panel-kronshteyny",
   },
   {
-    img: "/images/production/neon.jpg",
+    img: "/images/production/neon.jpg?v=2",
     title: "Неоновые вывески",
     priceBadge: "ПО ЗАПРОСУ",
     secondBadge: "КЛАССИКА + LED-НЕОН",
