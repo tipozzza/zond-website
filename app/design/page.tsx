@@ -56,7 +56,7 @@ const CATEGORIES: { img: string; title: string; priceBadge: string; description:
 ];
 
 const STEPS = [
-  { num: 1, title: "Бриф", text: "Заполните калькулятор или позвоните — обсудим задачу." },
+  { num: 1, title: "Заявка", text: "Заполните калькулятор или позвоните — обсудим задачу." },
   { num: 2, title: "Концепция", text: "Готовим 2–3 варианта эскизов за 1–3 дня." },
   { num: 3, title: "Доработка", text: "Корректируем выбранный вариант до финального макета." },
   { num: 4, title: "Печать / производство", text: "Типичные сроки — от 1 до 7 дней." },
@@ -251,7 +251,7 @@ export default function DesignPage() {
           <div className="max-w-[1280px] mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Как мы работаем</h2>
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              5 шагов от первого брифа до сдачи готового тиража.
+              5 шагов от первой заявки до сдачи готового тиража.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
               {STEPS.map((s) => (
