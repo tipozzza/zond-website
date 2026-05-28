@@ -527,7 +527,9 @@ export default function ProductionPage() {
           ]}
         />
 
-        <PublicPortfolio category="production" />
+        <section id="works" className="scroll-mt-24">
+          <PublicPortfolio category="production" />
+        </section>
 
         <CTAForm accentColor="#7CB342" />
       </main>
