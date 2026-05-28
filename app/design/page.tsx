@@ -242,10 +242,6 @@ export default function DesignPage() {
         {/* Калькулятор */}
         <DesignCalculator />
 
-        {/* Портфолио */}
-        <div id="portfolio">
-        </div>
-
         {/* Этапы */}
         <section className="py-12 md:py-20 bg-slate-50">
           <div className="max-w-[1280px] mx-auto px-6">
@@ -351,7 +347,9 @@ export default function DesignPage() {
           ]}
         />
 
-        <PublicPortfolio category="design" />
+        <section id="portfolio" className="scroll-mt-24">
+          <PublicPortfolio category="design" />
+        </section>
 
         <CTAForm accentColor="#3949AB" />
       </main>
