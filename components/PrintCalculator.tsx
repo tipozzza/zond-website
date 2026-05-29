@@ -194,6 +194,7 @@ export default function PrintCalculator() {
                     <label className="block text-sm font-semibold mb-2">Тираж (шт)</label>
                     <input
                       type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                       min={1}
                       value={stdQty}
                       onChange={(e) => setStdQty(Math.max(1, parseInt(e.target.value) || 1))}
@@ -226,6 +227,7 @@ export default function PrintCalculator() {
                       <label className="block text-sm font-semibold mb-2">Ширина (м)</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         step="0.1"
                         min="0.1"
                         value={width}
@@ -237,6 +239,7 @@ export default function PrintCalculator() {
                       <label className="block text-sm font-semibold mb-2">Высота (м)</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         step="0.1"
                         min="0.1"
                         value={height}

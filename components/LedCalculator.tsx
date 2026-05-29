@@ -182,6 +182,7 @@ export default function LedCalculator() {
                     </label>
                     <input
                       type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                       min={1}
                       value={illQty}
                       onChange={(e) => setIllQty(Math.max(1, parseInt(e.target.value) || 1))}
@@ -215,6 +216,7 @@ export default function LedCalculator() {
                     </label>
                     <input
                       type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                       step="0.1"
                       min="0.1"
                       value={screenSize}

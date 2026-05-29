@@ -412,6 +412,7 @@ export default function DesignCalculator() {
                     <label className={labelCls}>Тираж (шт)</label>
                     <input
                       type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                       min={1}
                       value={ppQty}
                       onChange={(e) => setPpQty(Math.max(1, parseInt(e.target.value) || 1))}
@@ -506,6 +507,7 @@ export default function DesignCalculator() {
                     <label className={labelCls}>Тираж (шт)</label>
                     <input
                       type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                       min={1}
                       value={lfQty}
                       onChange={(e) => setLfQty(Math.max(1, parseInt(e.target.value) || 1))}
@@ -531,6 +533,7 @@ export default function DesignCalculator() {
                     <label className={labelCls}>Тираж (шт)</label>
                     <input
                       type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                       min={1}
                       value={okQty}
                       onChange={(e) => setOkQty(Math.max(1, parseInt(e.target.value) || 1))}
@@ -578,6 +581,7 @@ export default function DesignCalculator() {
                     <label className={labelCls}>Тираж (шт)</label>
                     <input
                       type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                       min={1}
                       value={svQty}
                       onChange={(e) => setSvQty(Math.max(1, parseInt(e.target.value) || 1))}

@@ -242,6 +242,7 @@ export default function ProductionCalculator() {
                     <label className={labelCls}>Тираж (шт)</label>
                     <input
                       type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                       min={1}
                       value={tQty}
                       onChange={(e) => setTQty(Math.max(1, parseInt(e.target.value) || 1))}
@@ -278,6 +279,7 @@ export default function ProductionCalculator() {
                       <label className={labelCls}>Ширина, м</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         step="0.1"
                         min="0.1"
                         value={fWidth}
@@ -289,6 +291,7 @@ export default function ProductionCalculator() {
                       <label className={labelCls}>Высота, м</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         step="0.1"
                         min="0.1"
                         value={fHeight}
@@ -327,6 +330,7 @@ export default function ProductionCalculator() {
                       <label className={labelCls}>Ширина, м</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         step="0.1"
                         min="0.1"
                         value={lbWidth}
@@ -338,6 +342,7 @@ export default function ProductionCalculator() {
                       <label className={labelCls}>Высота, м</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         step="0.1"
                         min="0.1"
                         value={lbHeight}
@@ -374,6 +379,7 @@ export default function ProductionCalculator() {
                       <label className={labelCls}>Кол-во букв</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         min={1}
                         value={pCount}
                         onChange={(e) => setPCount(Math.max(1, parseInt(e.target.value) || 1))}
@@ -384,6 +390,7 @@ export default function ProductionCalculator() {
                       <label className={labelCls}>Высота, см</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         min={5}
                         value={pHeight}
                         onChange={(e) => setPHeight(Math.max(5, parseInt(e.target.value) || 5))}
@@ -410,6 +417,7 @@ export default function ProductionCalculator() {
                       <label className={labelCls}>Кол-во букв</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         min={1}
                         value={vCount}
                         onChange={(e) => setVCount(Math.max(1, parseInt(e.target.value) || 1))}
@@ -420,6 +428,7 @@ export default function ProductionCalculator() {
                       <label className={labelCls}>Высота буквы, см</label>
                       <input
                         type="number"
+                      onFocus={(e) => e.currentTarget.select()}
                         min={15}
                         value={vHeight}
                         onChange={(e) => setVHeight(Math.max(15, parseInt(e.target.value) || 15))}
