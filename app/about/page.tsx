@@ -302,7 +302,7 @@ export default function AboutPage() {
               Миссия
             </div>
             <blockquote className="text-2xl md:text-4xl font-extrabold leading-tight mb-4">
-              «Создаём рекламу, которую видно. Под ключ — от&nbsp;идеи до&nbsp;монтажа.»
+              «Создаём рекламу, которую видно. Под ключ — от&nbsp;идеи до&nbsp;монтажа».
             </blockquote>
             <div className="text-sm text-white/70">— Команда ZOND</div>
           </div>
