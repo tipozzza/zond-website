@@ -37,7 +37,11 @@ export default function PrintCalculator() {
   const [height, setHeight] = useState(6);
   const [material, setMaterial] = useState("");
 
-  const [postPrint, setPostPrint] = useState<string[]>([]);
+  // Подрезка по периметру — независимая опция (чекбокс).
+  const [trimEnabled, setTrimEnabled] = useState(false);
+  // Проклейка/люверсы — взаимоисключающие варианты (radio).
+  // "" = без проклейки; иначе id из postPrintPerMeter (glue / glue-eyelets / glue-rope-eyelets).
+  const [glueType, setGlueType] = useState<string>("");
 
   useEffect(() => {
     fetch("/data/print-pricing.json")
@@ -81,22 +85,34 @@ export default function PrintCalculator() {
       });
       total += sum;
 
-      if (postPrint.length > 0) {
-        // Проклейка/люверсы возможны только на баннере и сетке — фильтр чтобы
-        // случайно выбранный ранее пункт не считался при переключении материала.
-        const matName = mat.name.toLowerCase();
-        const glueAllowed =
-          matName.includes("баннер") ||
-          matName.includes("сетк") ||
-          matName.includes("mesh");
-        const perimeter = 2 * (width + height);
-        for (const ppId of postPrint) {
-          if (!glueAllowed && ppId.startsWith("glue")) continue;
-          const item = data.postPrintPerMeter.find((p) => p.id === ppId);
-          if (!item) continue;
-          const sum2 = item.price * perimeter;
+      // Постпечатная обработка. Проклейка/люверсы возможны только на баннере
+      // и сетке — guard ниже отбрасывает любой «призрак» state при смене
+      // материала (UI radio-группу скрывает, но state остаётся).
+      const matName = mat.name.toLowerCase();
+      const glueAllowed =
+        matName.includes("баннер") ||
+        matName.includes("сетк") ||
+        matName.includes("mesh");
+      const perimeter = 2 * (width + height);
+
+      if (trimEnabled) {
+        const trim = data.postPrintPerMeter.find((p) => p.id === "trim");
+        if (trim) {
+          const sum2 = trim.price * perimeter;
           breakdown.push({
-            label: `${item.name} (${perimeter.toFixed(1)} м × ${formatRub(item.price)})`,
+            label: `${trim.name} (${perimeter.toFixed(1)} м × ${formatRub(trim.price)})`,
+            value: Math.round(sum2),
+          });
+          total += sum2;
+        }
+      }
+
+      if (glueType && glueAllowed) {
+        const glue = data.postPrintPerMeter.find((p) => p.id === glueType);
+        if (glue) {
+          const sum2 = glue.price * perimeter;
+          breakdown.push({
+            label: `${glue.name} (${perimeter.toFixed(1)} м × ${formatRub(glue.price)})`,
             value: Math.round(sum2),
           });
           total += sum2;
@@ -114,7 +130,7 @@ export default function PrintCalculator() {
     }
 
     return { total, breakdown };
-  }, [data, mode, stdProduct, stdQty, width, height, material, postPrint]);
+  }, [data, mode, stdProduct, stdQty, width, height, material, trimEnabled, glueType]);
 
   if (!data) {
     return (
@@ -124,25 +140,21 @@ export default function PrintCalculator() {
     );
   }
 
-  const togglePostPrint = (id: string, checked: boolean) => {
-    setPostPrint((prev) => (checked ? [...prev, id] : prev.filter((x) => x !== id)));
-  };
-
   const activeMaterials = mode === "solvent" ? data.solventPerM2.materials : data.interiorPerM2.materials;
   const totalDisplay = calc && calc.total > 0 ? formatRub(calc.total) : "—";
 
-  // Постпечатная обработка «проклейка» / «люверсовка» технически возможна
-  // только на баннере и сетке. Для плёнки/бумаги/холста — скрываем эти опции,
-  // оставляя только «trim» (подрезка по периметру).
+  // Проклейка/люверсы технически возможны только на баннере и сетке —
+  // case-insensitive проверка имени материала. Действует на ОБЕ ценовые
+  // вкладки (solvent / interior) одинаково, потому что выбор материала
+  // обрабатывается в общей ветке calc.
   const selectedMaterial = activeMaterials.find((m) => m.id === material);
   const materialName = (selectedMaterial?.name ?? "").toLowerCase();
   const supportsGlueAndEyelets =
     materialName.includes("баннер") ||
     materialName.includes("сетк") ||
     materialName.includes("mesh");
-  const visiblePostPrint = supportsGlueAndEyelets
-    ? data.postPrintPerMeter
-    : data.postPrintPerMeter.filter((pp) => !pp.id.startsWith("glue"));
+  const trimItem = data.postPrintPerMeter.find((p) => p.id === "trim");
+  const glueOptions = data.postPrintPerMeter.filter((p) => p.id.startsWith("glue"));
 
   return (
     <section id="calculator" className="py-12 md:py-20 bg-slate-50">
@@ -257,24 +269,58 @@ export default function PrintCalculator() {
                     <label className="block text-sm font-semibold mb-2">
                       Постпечатная обработка (опционально)
                     </label>
-                    <div className="space-y-2">
-                      {visiblePostPrint.map((pp) => (
-                        <label
-                          key={pp.id}
-                          className="flex items-center gap-2 cursor-pointer text-sm"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={postPrint.includes(pp.id)}
-                            onChange={(e) => togglePostPrint(pp.id, e.target.checked)}
-                          />
-                          <span>
-                            {pp.name}{" "}
-                            <span className="text-slate-500">({pp.price} ₽/пог.м)</span>
-                          </span>
-                        </label>
-                      ))}
-                    </div>
+
+                    {/* Подрезка — независимая опция, доступна на любом материале */}
+                    {trimItem && (
+                      <label className="flex items-center gap-2 cursor-pointer text-sm">
+                        <input
+                          type="checkbox"
+                          checked={trimEnabled}
+                          onChange={(e) => setTrimEnabled(e.target.checked)}
+                        />
+                        <span>
+                          {trimItem.name}{" "}
+                          <span className="text-slate-500">({trimItem.price} ₽/пог.м)</span>
+                        </span>
+                      </label>
+                    )}
+
+                    {/* Проклейка — взаимоисключающий выбор (radio).
+                        Видна ТОЛЬКО для баннера/сетки/mesh. */}
+                    {supportsGlueAndEyelets && (
+                      <div className="mt-4 pt-4 border-t border-slate-200">
+                        <div className="text-sm font-semibold mb-2">Тип проклейки</div>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-2 cursor-pointer text-sm">
+                            <input
+                              type="radio"
+                              name="glueType"
+                              checked={glueType === ""}
+                              onChange={() => setGlueType("")}
+                            />
+                            <span>Без проклейки</span>
+                          </label>
+                          {glueOptions.map((opt) => (
+                            <label
+                              key={opt.id}
+                              className="flex items-center gap-2 cursor-pointer text-sm"
+                            >
+                              <input
+                                type="radio"
+                                name="glueType"
+                                checked={glueType === opt.id}
+                                onChange={() => setGlueType(opt.id)}
+                              />
+                              <span>
+                                {opt.name}{" "}
+                                <span className="text-slate-500">({opt.price} ₽/пог.м)</span>
+                              </span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                     {!supportsGlueAndEyelets && material && (
                       <p className="text-xs text-slate-500 mt-2 leading-relaxed">
                         Проклейка и установка люверсов на плёнке / бумаге / холсте не выполняются —
