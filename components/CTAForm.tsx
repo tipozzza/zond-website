@@ -64,7 +64,7 @@ export default function CTAForm({ accentColor }: Props = {}) {
               <button
                 type="submit"
                 className="btn w-full py-4 text-sm text-white hover:-translate-y-0.5 hover:brightness-90 transition-all"
-                style={{ backgroundColor: accentColor ?? "#550082" }}
+                style={{ backgroundColor: accentColor ?? "#6F395D" }}
               >
                 Отправить заявку →
               </button>

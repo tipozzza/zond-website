@@ -44,7 +44,7 @@ export default function Services() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, index) => {
             const Icon = ICONS[service.id] ?? Megaphone;
-            const accent = ACCENT_COLORS[service.id] ?? "#550082";
+            const accent = ACCENT_COLORS[service.id] ?? "#6F395D";
             return (
               <article
                 key={service.id}

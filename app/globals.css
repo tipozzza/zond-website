@@ -9,17 +9,17 @@
     --color-border: #e8e6f0;
     --color-bg-section: #f6f5fa;
 
-    /* Фирменная палитра ZOND. Единый цвет для всех направлений. */
-    --brand-primary: #550082;
-    --brand-hover: #42006B;
-    --brand-active: #36005A;
-    --brand-light-bg: #F1E6F8;
-    --brand-50: #F1E6F8;
-    --brand-100: #E2CDF1;
-    --brand-200: #C59BE3;
-    --brand-500: #550082;
-    --brand-600: #42006B;
-    --brand-700: #36005A;
+    /* Фирменная палитра ZOND (брендбук). */
+    --brand-primary: #6F395D;
+    --brand-hover: #5E2F4F;
+    --brand-active: #4F2542;
+    --brand-light: #F1E7ED;
+    --brand-50: #F1E7ED;
+    --brand-100: #E3CFDA;
+    --brand-200: #C79FB5;
+    --brand-500: #6F395D;
+    --brand-600: #5E2F4F;
+    --brand-700: #4F2542;
   }
 
   html {
