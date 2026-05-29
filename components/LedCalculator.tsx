@@ -133,7 +133,7 @@ export default function LedCalculator() {
               onClick={() => setMode("screen")}
               className={`py-4 px-4 text-sm md:text-base font-semibold transition ${
                 mode === "screen"
-                  ? "bg-[#6F2E91] text-white"
+                  ? "bg-[#67008F] text-white"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200"
               }`}
             >
@@ -236,7 +236,7 @@ export default function LedCalculator() {
               className={`${
                 mode === "illumination"
                   ? "bg-gradient-to-br from-[#F4C430]/10 to-slate-50"
-                  : "bg-gradient-to-br from-[#6F2E91]/10 to-slate-50"
+                  : "bg-gradient-to-br from-[#67008F]/10 to-slate-50"
               } rounded-2xl p-6`}
             >
               <div className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">
@@ -244,7 +244,7 @@ export default function LedCalculator() {
               </div>
               <div
                 className={`text-4xl md:text-5xl font-bold mb-6 leading-none ${
-                  mode === "illumination" ? "text-amber-600" : "text-[#6F2E91]"
+                  mode === "illumination" ? "text-amber-600" : "text-[#67008F]"
                 }`}
               >
                 {totalDisplay}
@@ -269,7 +269,7 @@ export default function LedCalculator() {
                 className={`w-full disabled:opacity-50 disabled:cursor-not-allowed py-3.5 rounded-xl font-bold transition flex items-center justify-center gap-2 ${
                   mode === "illumination"
                     ? "bg-[#F4C430] hover:bg-[#E8B86E] text-[#0B1E3F]"
-                    : "bg-[#6F2E91] hover:bg-[#5A2576] text-white"
+                    : "bg-[#67008F] hover:bg-[#57007A] text-white"
                 }`}
               >
                 Оформить заявку
