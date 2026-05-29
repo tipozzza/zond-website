@@ -18,8 +18,8 @@ import ImageWithFallback from "@/components/ImageWithFallback";
 const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string }[] = [
   {
     icon: History,
-    stat: "33",
-    title: "года в Томске",
+    stat: "31",
+    title: "год в Томске",
     text: "Первый полноцвет 3×6 в городе напечатан нами в 1995 году.",
   },
   {
