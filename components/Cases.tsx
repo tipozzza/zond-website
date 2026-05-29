@@ -35,7 +35,7 @@ const items: Item[] = [
     desc: "Производство пилонов, LED-экранов, цифровых билбордов. С 2007 года.",
     image: "/images/outdoor-led-night.jpg",
     href: "/led#screens",
-    accent: "#7B1FA2",
+    accent: "#550082",
     cta: "Заказать LED-экран",
   },
   {
@@ -59,7 +59,7 @@ const items: Item[] = [
     desc: "Новогодняя иллюминация, световые фигуры, контурная подсветка фасадов. Бренд Лайтово.",
     image: "/images/led-illumination.jpg",
     href: "/led#illumination",
-    accent: "#7B1FA2",
+    accent: "#550082",
     cta: "Заказать новогоднее оформление",
   },
   {

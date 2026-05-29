@@ -217,7 +217,7 @@ export default function LedPage() {
         <section id="screens" className="py-12 md:py-20 bg-white scroll-mt-24">
           <div className="max-w-[1280px] mx-auto px-6">
             <div className="text-center mb-12">
-              <div className="inline-block bg-[#7B1FA2]/10 text-[#7B1FA2] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+              <div className="inline-block bg-[#550082]/10 text-[#550082] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
                 Производство Зонд с 2007
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -235,10 +235,10 @@ export default function LedPage() {
                 return (
                   <article
                     key={t.id}
-                    className="bg-white rounded-2xl border border-slate-200 hover:border-[#7B1FA2] hover:shadow-lg transition-all p-6 flex flex-col"
+                    className="bg-white rounded-2xl border border-slate-200 hover:border-[#550082] hover:shadow-lg transition-all p-6 flex flex-col"
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-[#7B1FA2]/10 flex items-center justify-center mb-4">
-                      <Icon size={26} className="text-[#7B1FA2]" />
+                    <div className="w-14 h-14 rounded-2xl bg-[#550082]/10 flex items-center justify-center mb-4">
+                      <Icon size={26} className="text-[#550082]" />
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 mb-2 leading-tight">{t.name}</h3>
                     <p className="text-sm text-slate-600 mb-3 leading-relaxed">{t.desc}</p>
@@ -255,7 +255,7 @@ export default function LedPage() {
                     <ul className="text-xs text-slate-600 space-y-0.5 mt-auto pt-2 border-t border-slate-100">
                       {t.applications.map((a) => (
                         <li key={a} className="flex items-start gap-1.5">
-                          <span className="text-[#7B1FA2]">•</span>
+                          <span className="text-[#550082]">•</span>
                           {a}
                         </li>
                       ))}
@@ -287,7 +287,7 @@ export default function LedPage() {
                 />
                 {HISTORY.map((t) => (
                   <div key={t.year} className="relative flex-shrink-0 w-[200px] text-center">
-                    <div className="relative z-10 w-8 h-8 rounded-full bg-[#7B1FA2] border-4 border-white shadow-md mx-auto" />
+                    <div className="relative z-10 w-8 h-8 rounded-full bg-[#550082] border-4 border-white shadow-md mx-auto" />
                     <div className="mt-3 text-2xl font-bold text-slate-900">{t.year}</div>
                     <div className="mt-2 text-sm text-slate-600 leading-relaxed px-2 break-words">
                       {t.event}
