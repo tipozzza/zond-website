@@ -313,7 +313,7 @@ export default function ContactsPage() {
               Офис на карте
             </h2>
             <p className="text-center text-slate-600 mb-10 max-w-2xl mx-auto">
-              Томск, пр. Фрунзе 115 — офис, шоурум и производственный цех в одном здании.
+              Офис и шоурум — пр. Фрунзе 115. Производственный цех — пр. Фрунзе 109 (через дорогу).
             </p>
             <div className="mb-10">
               <OfficeMap />
@@ -340,7 +340,7 @@ export default function ContactsPage() {
               Хотите увидеть, как делаются вывески?
             </h2>
             <p className="text-lg md:text-xl text-white/85 mb-8 max-w-2xl mx-auto">
-              Покажем производственный цех на пр. Фрунзе 115: лазерная резка,
+              Покажем производственный цех на пр. Фрунзе 109: лазерная резка,
               ЧПУ-фрезеровка, УФ-печать, LED-сборка. По предварительной записи.
             </p>
             <div className="flex flex-wrap justify-center items-center gap-4">
