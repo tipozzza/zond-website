@@ -8,6 +8,8 @@ export default function StructuredData() {
         name: "Зонд-Реклама",
         alternateName: "ГК Зонд-Реклама",
         legalName: "ООО «ФОРМАТ СИТИ»",
+        description:
+          "Рекламное агентство в Томске с 1992 года: наружная реклама, широкоформатная печать, производство вывесок и LED-иллюминация. Суббота — по предварительной записи.",
         url: "https://zond-website.vercel.app",
         logo: "https://zond-website.vercel.app/logo-square-purple.png",
         foundingDate: "1992",
