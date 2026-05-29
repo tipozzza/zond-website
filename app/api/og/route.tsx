@@ -2,8 +2,8 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-const BRAND = "#3D2E91";
-const BRAND_DARK = "#1a1543";
+const BRAND = "#550082";
+const BRAND_DARK = "#1F0030";
 const ACCENT = "#F4C430";
 
 async function loadFont(): Promise<ArrayBuffer> {
