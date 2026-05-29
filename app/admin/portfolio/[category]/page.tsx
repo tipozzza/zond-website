@@ -277,6 +277,7 @@ function SortableCard({
               value={yearDraft}
               autoFocus
               disabled={yearSaving}
+              onFocus={(e) => e.currentTarget.select()}
               onChange={(e) => setYearDraft(e.target.value)}
               onBlur={saveYear}
               onKeyDown={(e) => {
@@ -495,6 +496,7 @@ function AddPhotosModal({
                       min={1992}
                       max={2099}
                       value={it.completionYear}
+                      onFocus={(e) => e.currentTarget.select()}
                       onChange={(e) => update(it.id, "completionYear", e.target.value)}
                       placeholder="Год реализации (например 2024)"
                       className="w-full border border-slate-300 rounded px-2 py-1 text-xs mb-1"
@@ -669,6 +671,7 @@ function EditItemModal({
             min={1992}
             max={2099}
             value={completionYear}
+            onFocus={(e) => e.currentTarget.select()}
             onChange={(e) => setCompletionYear(e.target.value)}
             placeholder="2024"
             className="w-full border border-slate-300 rounded-lg px-3 py-2"
