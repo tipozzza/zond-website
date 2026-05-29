@@ -174,7 +174,7 @@ export default function DesignPage() {
           </div>
           <div className="max-w-[1280px] mx-auto px-6 py-20 relative z-10">
             <div className="max-w-2xl text-white">
-              <div className="inline-block bg-[#00AEEF] text-white px-4 py-1.5 rounded-full text-sm font-bold mb-6">
+              <div className="inline-block bg-[#1657BD] text-white px-4 py-1.5 rounded-full text-sm font-bold mb-6">
                 ДИЗАЙН-ЦЕНТР С 1995 ГОДА
               </div>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.05] tracking-tight">
@@ -186,7 +186,7 @@ export default function DesignPage() {
               <div className="flex gap-4 flex-wrap">
                 <a
                   href="#calculator"
-                  className="bg-[#00AEEF] hover:bg-[#0095D6] text-white px-8 py-4 rounded-xl font-bold transition-colors"
+                  className="bg-[#1657BD] hover:bg-[#144DAA] text-white px-8 py-4 rounded-xl font-bold transition-colors"
                 >
                   Рассчитать стоимость
                 </a>
@@ -214,7 +214,7 @@ export default function DesignPage() {
                   key={c.title}
                   id={c.anchor}
                   href="#calculator"
-                  className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#00AEEF] hover:shadow-2xl hover:shadow-[#00AEEF]/20 transition-all duration-500 hover:-translate-y-2 scroll-mt-24"
+                  className="group block rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#1657BD] hover:shadow-2xl hover:shadow-[#1657BD]/20 transition-all duration-500 hover:-translate-y-2 scroll-mt-24"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                     <Image
@@ -225,7 +225,7 @@ export default function DesignPage() {
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#00AEEF]">
+                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#1657BD]">
                       {c.priceBadge}
                     </div>
                   </div>
@@ -255,7 +255,7 @@ export default function DesignPage() {
                   key={s.num}
                   className="bg-white rounded-2xl border border-slate-200 p-5 flex flex-col"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#00AEEF] text-white flex items-center justify-center text-lg font-bold mb-3">
+                  <div className="w-10 h-10 rounded-full bg-[#1657BD] text-white flex items-center justify-center text-lg font-bold mb-3">
                     {s.num}
                   </div>
                   <h3 className="font-bold text-slate-900 mb-1.5 leading-tight">{s.title}</h3>
@@ -277,7 +277,7 @@ export default function DesignPage() {
               {EQUIPMENT.map((e) => (
                 <article
                   key={e.name}
-                  className="bg-white rounded-2xl border border-slate-200 hover:shadow-xl hover:border-[#00AEEF] transition-all overflow-hidden flex flex-col"
+                  className="bg-white rounded-2xl border border-slate-200 hover:shadow-xl hover:border-[#1657BD] transition-all overflow-hidden flex flex-col"
                 >
                   <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
                     <ImageWithFallback
@@ -288,7 +288,7 @@ export default function DesignPage() {
                     />
                   </div>
                   <div className="p-5 flex flex-col flex-1">
-                    <div className="text-xs font-bold text-[#00AEEF] uppercase tracking-wide mb-1">
+                    <div className="text-xs font-bold text-[#1657BD] uppercase tracking-wide mb-1">
                       {e.type}
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 mb-3 leading-tight">{e.name}</h3>
@@ -351,7 +351,7 @@ export default function DesignPage() {
           <PublicPortfolio category="design" />
         </section>
 
-        <CTAForm accentColor="#00AEEF" />
+        <CTAForm accentColor="#1657BD" />
       </main>
       <Footer />
       <PixelBorder />
