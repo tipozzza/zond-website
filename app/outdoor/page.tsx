@@ -146,7 +146,7 @@ const ADVANTAGES: { icon: LucideIcon; stat: string; title: string; text: string 
   },
   {
     icon: History,
-    stat: "33",
+    stat: "34",
     title: "года опыта",
     text: "Работаем в Томске с 1992 года. Знаем что работает в этом городе.",
   },
