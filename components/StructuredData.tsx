@@ -7,7 +7,7 @@ export default function StructuredData() {
         "@id": "https://zond-website.vercel.app/#organization",
         name: "Зонд-Реклама",
         alternateName: "ГК Зонд-Реклама",
-        legalName: "ООО Формат Сити",
+        legalName: "ООО «ФОРМАТ СИТИ»",
         url: "https://zond-website.vercel.app",
         logo: "https://zond-website.vercel.app/logo-square-purple.png",
         foundingDate: "1992",

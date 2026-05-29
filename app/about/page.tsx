@@ -190,7 +190,7 @@ const TEAM = [
 const FAQ_ITEMS = [
   {
     question: "С какого года работает ZOND?",
-    answer: `С 1992 года, юр.лицо — ООО «Формат Сити». ${YEARS_ON_MARKET} лет на рынке рекламы и производства в Томске.`,
+    answer: `С 1992 года, юрлицо — ООО «ФОРМАТ СИТИ». ${YEARS_ON_MARKET} лет на рынке рекламы и производства в Томске.`,
   },
   {
     question: "Чем ZOND отличается от Лайтово?",
@@ -492,7 +492,7 @@ export default function AboutPage() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <LegalCard label="Юр. лицо">
-                <strong className="block text-base">ООО «Формат Сити»</strong>
+                <strong className="block text-base">ООО «ФОРМАТ СИТИ»</strong>
                 <span className="block text-sm text-slate-500 mt-1">
                   Группа компаний «Зонд-Реклама»
                 </span>

@@ -255,7 +255,7 @@ const IMAGE_JSONLD = {
   name: "Паспорт фасада в Томске — пример работ ZOND",
   description:
     "Официальный документ согласования вывески с Комитетом архитектуры Томска",
-  creditText: "ZOND — ООО «Формат Сити», Томск",
+  creditText: "ZOND — ООО «ФОРМАТ СИТИ», Томск",
   acquireLicensePage: "https://zond-website.vercel.app/pasport-fasada",
 };
 

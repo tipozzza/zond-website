@@ -4,7 +4,7 @@
 export const COMPANY = {
   name: "Зонд-Реклама",
   fullName: "ГК «Зонд-Реклама»",
-  legalName: "ООО «Формат Сити»",
+  legalName: "ООО «ФОРМАТ СИТИ»",
   inn: "7017200748",
   founded: 1992,
   phone: "8 (3822) 97-97-05",
