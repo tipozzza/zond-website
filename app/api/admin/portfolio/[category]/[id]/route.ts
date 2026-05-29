@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifySession } from "@/lib/auth";
-import { getFile, putFile, deleteFile } from "@/lib/github-api";
+import { deleteFile, friendlyGithubError, getFile, putFile } from "@/lib/github-api";
 import { isValidCategory, type PortfolioData } from "@/lib/types/portfolio";
 
 const PORTFOLIO_PATH = "data/portfolio.json";
@@ -48,8 +48,8 @@ export async function PUT(
     await putFile(PORTFOLIO_PATH, newContent, `Portfolio: edit ${category}/${id}`, file.sha);
     return NextResponse.json({ ok: true, item });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const { status, message } = friendlyGithubError(err);
+    return NextResponse.json({ error: message }, { status });
   }
 }
 
@@ -95,7 +95,7 @@ export async function DELETE(
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const { status, message } = friendlyGithubError(err);
+    return NextResponse.json({ error: message }, { status });
   }
 }

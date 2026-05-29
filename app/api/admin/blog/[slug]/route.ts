@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifySession } from "@/lib/auth";
-import { getFile, putFile } from "@/lib/github-api";
+import { friendlyGithubError, getFile, putFile } from "@/lib/github-api";
 import {
   computeReadingMinutes,
   isValidCategory,
@@ -32,8 +32,8 @@ export async function PUT(req: Request, { params }: { params: Promise<{ slug: st
     await putFile(BLOG_PATH, newContent, `Update blog post: ${slug}`, file.sha);
     return NextResponse.json({ ok: true });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const { status, message } = friendlyGithubError(err);
+    return NextResponse.json({ error: message }, { status });
   }
 }
 
@@ -52,7 +52,7 @@ export async function DELETE(_req: Request, { params }: { params: Promise<{ slug
     await putFile(BLOG_PATH, newContent, `Delete blog post: ${slug}`, file.sha);
     return NextResponse.json({ ok: true });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const { status, message } = friendlyGithubError(err);
+    return NextResponse.json({ error: message }, { status });
   }
 }

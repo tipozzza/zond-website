@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifySession } from "@/lib/auth";
-import { getFile, putFile } from "@/lib/github-api";
+import { friendlyGithubError, getFile, putFile } from "@/lib/github-api";
 import {
   computeReadingMinutes,
   isValidCategory,
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
     await putFile(BLOG_PATH, newContent, `Add blog post: ${newItem.title}`, file?.sha);
     return NextResponse.json({ ok: true });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const { status, message } = friendlyGithubError(err);
+    return NextResponse.json({ error: message }, { status });
   }
 }

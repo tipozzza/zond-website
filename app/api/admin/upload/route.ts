@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifySession } from "@/lib/auth";
-import { putBinaryFile } from "@/lib/github-api";
+import { ensureDirectory, friendlyGithubError, putBinaryFile } from "@/lib/github-api";
 
 export const runtime = "nodejs";
 
@@ -24,11 +24,12 @@ export async function POST(req: Request) {
     const buffer = Buffer.from(await file.arrayBuffer());
     const base64 = buffer.toString("base64");
 
+    await ensureDirectory("public/images/news");
     await putBinaryFile(path, base64, `Add news image: ${filename}`);
 
     return NextResponse.json({ ok: true, url: `/images/news/${filename}` });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const { status, message } = friendlyGithubError(err);
+    return NextResponse.json({ error: message }, { status });
   }
 }

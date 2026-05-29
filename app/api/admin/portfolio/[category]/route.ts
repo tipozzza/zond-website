@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { verifySession } from "@/lib/auth";
-import { getFile, putFile, putBinaryFile } from "@/lib/github-api";
+import {
+  ensureDirectory,
+  friendlyGithubError,
+  getFile,
+  putBinaryFile,
+  putFile,
+} from "@/lib/github-api";
 import { isValidCategory, type PortfolioData, type PortfolioItem } from "@/lib/types/portfolio";
 
 export const runtime = "nodejs";
@@ -57,7 +63,10 @@ export async function POST(req: Request, { params }: { params: Promise<{ categor
     const buffer = Buffer.from(await file.arrayBuffer());
     const base64 = buffer.toString("base64");
 
-    // 1. Commit the binary image first
+    // 1. Commit the binary image first. ensureDirectory снимает класс ошибок
+    // «404 при первой загрузке в новую категорию» — на существующей папке
+    // это лёгкий no-op (один GET).
+    await ensureDirectory(`public/images/portfolio/${category}`);
     await putBinaryFile(imagePath, base64, `Portfolio: add image ${filename} to ${category}`);
 
     // 2. Update portfolio.json
@@ -89,7 +98,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ categor
 
     return NextResponse.json({ ok: true, item });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const { status, message } = friendlyGithubError(err);
+    return NextResponse.json({ error: message }, { status });
   }
 }
