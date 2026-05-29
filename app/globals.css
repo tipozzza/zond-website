@@ -20,6 +20,14 @@
     --brand-500: #6F395D;
     --brand-600: #5E2F4F;
     --brand-700: #4F2542;
+
+    /* Направленческая палитра (брендбук). */
+    --section-outdoor: #EF6922;
+    --section-print: #FFFF01;
+    --section-production: #85C441;
+    --section-design: #1657BD;
+    --section-exhibition: #00ACEE;
+    --section-led: #67008F;
   }
 
   html {
