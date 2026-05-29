@@ -25,8 +25,8 @@ const ACCENT_COLORS: Record<string, string> = {
   print: "#FFCC00",
   production: "#7CB342",
   exhibition: "#3FA3D9",
-  design: "#550082",
-  led: "#550082",
+  design: "#00AEEF",
+  led: "#6F2E91",
 };
 
 export default function Services() {

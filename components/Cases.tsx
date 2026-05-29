@@ -35,7 +35,7 @@ const items: Item[] = [
     desc: "Производство пилонов, LED-экранов, цифровых билбордов. С 2007 года.",
     image: "/images/outdoor-led-night.jpg",
     href: "/led#screens",
-    accent: "#550082",
+    accent: "#6F2E91",
     cta: "Заказать LED-экран",
   },
   {
@@ -59,7 +59,7 @@ const items: Item[] = [
     desc: "Новогодняя иллюминация, световые фигуры, контурная подсветка фасадов. Бренд Лайтово.",
     image: "/images/led-illumination.jpg",
     href: "/led#illumination",
-    accent: "#550082",
+    accent: "#6F2E91",
     cta: "Заказать новогоднее оформление",
   },
   {
@@ -75,7 +75,7 @@ const items: Item[] = [
     desc: "Баннеры, фирменный стиль, вывески, упаковка, этикетки, 3D-модели и анимация роликов.",
     image: "/images/design/category-outdoor-design.jpg",
     href: "/design#advertising-design",
-    accent: "#550082",
+    accent: "#00AEEF",
     cta: "Создать логотип",
   },
   {
@@ -92,7 +92,7 @@ const items: Item[] = [
     desc: "Визитки, листовки, каталоги, брошюры, плакаты, фирменные конверты.",
     image: "/images/design/category-design-polygraphy.jpg",
     href: "/design#polygraphy",
-    accent: "#550082",
+    accent: "#00AEEF",
     cta: "Заказать полиграфию",
   },
   {
@@ -100,7 +100,7 @@ const items: Item[] = [
     desc: "Кружки, ручки, флешки, ежедневники, одежда с вашим логотипом. От пробной партии до тиража 10 000+ штук.",
     image: "/images/design/category-souvenir.jpg",
     href: "/design#souvenirs",
-    accent: "#550082",
+    accent: "#00AEEF",
     cta: "Заказать сувениры с логотипом",
   },
   {
@@ -116,7 +116,7 @@ const items: Item[] = [
     desc: "Когда нужно всё сразу — от вывески и витрины до бейджа сотрудника. Единый стиль везде.",
     image: "/images/complex.jpg",
     href: "/design#complex",
-    accent: "#550082",
+    accent: "#00AEEF",
     cta: "Обсудить комплексный проект",
   },
 ];
