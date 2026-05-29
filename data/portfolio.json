@@ -175,11 +175,20 @@
         "createdAt": "2026-05-21T07:35:19.326Z"
       },
       {
+        "id": "331d7d1c-da3c-4227-ae2e-58b0f066c1d6",
+        "image": "/images/portfolio/production/331d7d1c-da3c-4227-ae2e-58b0f066c1d6.jpg",
+        "title": "Портфолио",
+        "description": "Тест",
+        "order": 17,
+        "createdAt": "2026-05-29T08:30:08.492Z",
+        "completionYear": 2019
+      },
+      {
         "id": "68ba0e53-16a5-419c-a3d2-24b346c2603e",
         "image": "/images/portfolio-production/portfolio-20-vtb-bankomat.jpeg",
         "title": "Брендирование банкомата — производство в Томске",
         "description": "Заказчик — ВТБ. Производство и монтаж под ключ. Согласование с администрацией города, паспорт фасада, гарантия 12 месяцев на конструкцию.",
-        "order": 17,
+        "order": 18,
         "createdAt": "2026-05-21T07:35:19.326Z"
       },
       {
@@ -187,7 +196,7 @@
         "image": "/images/portfolio-production/portfolio-25-objemnye-svetovye.jpeg",
         "title": "Объёмные световые буквы — производство в Томске",
         "description": "Заказчик — Розничная сеть. Объёмные элементы из стали, нержавейки и пластика. Покраска порошком, светодиодная подсветка, бесплатный замер.",
-        "order": 18,
+        "order": 19,
         "createdAt": "2026-05-21T07:35:19.326Z"
       },
       {
@@ -195,7 +204,7 @@
         "image": "/images/portfolio-production/portfolio-32-dns-tomsk.jpeg",
         "title": "Объёмные буквы DNS — производство в Томске",
         "description": "Заказчик — DNS Томск. Изготовление в собственном цехе ZOND: лазерная резка, ЧПУ-фрезеровка, сборка. Срок 5–15 рабочих дней, монтаж по Томску и области.",
-        "order": 19,
+        "order": 20,
         "createdAt": "2026-05-21T07:35:19.326Z"
       },
       {
@@ -203,17 +212,8 @@
         "image": "/images/portfolio-production/portfolio-33-misc.jpg",
         "title": "Производство — производство в Томске",
         "description": "Заказчик — Цех Зонд-Реклама. Производство и монтаж под ключ. Согласование с администрацией города, паспорт фасада, гарантия 12 месяцев на конструкцию.",
-        "order": 20,
-        "createdAt": "2026-05-21T07:35:19.326Z"
-      },
-      {
-        "id": "331d7d1c-da3c-4227-ae2e-58b0f066c1d6",
-        "image": "/images/portfolio/production/331d7d1c-da3c-4227-ae2e-58b0f066c1d6.jpg",
-        "title": "Портфолио",
-        "description": "Тест",
         "order": 21,
-        "createdAt": "2026-05-29T08:30:08.492Z",
-        "completionYear": 2019
+        "createdAt": "2026-05-21T07:35:19.326Z"
       }
     ]
   },
