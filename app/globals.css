@@ -40,16 +40,17 @@
 }
 
 @layer components {
-  /* LED-пиксельная декоративная полоса */
+  /* LED-пиксельная декоративная полоса.
+     6 направлений в порядке outdoor → print → production → design → exhibition → led. */
   .pixel-border {
     height: 36px;
     background-image: linear-gradient(90deg,
-      #F57C28 0% 16.67%,
-      #FFCC00 16.67% 33.33%,
-      #7CB342 33.33% 50%,
-      #3FA3D9 50% 66.67%,
-      #550082 66.67% 83.33%,
-      #550082 83.33% 100%);
+      #EF6922 0% 16.67%,
+      #FFFF01 16.67% 33.33%,
+      #85C441 33.33% 50%,
+      #1657BD 50% 66.67%,
+      #00ACEE 66.67% 83.33%,
+      #67008F 83.33% 100%);
     position: relative;
     overflow: hidden;
   }
