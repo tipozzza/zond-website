@@ -25,7 +25,7 @@ const ACCENT_COLORS: Record<string, string> = {
   print: "#FFCC00",
   production: "#7CB342",
   exhibition: "#3FA3D9",
-  design: "#3949AB",
+  design: "#550082",
   led: "#7B1FA2",
 };
 
