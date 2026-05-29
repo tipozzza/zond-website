@@ -379,7 +379,7 @@ export default function DesignCalculator() {
                 onClick={() => setCat(c.id)}
                 className={`py-3 px-2 text-xs md:text-sm font-semibold transition text-center border-b border-slate-200 ${
                   cat === c.id
-                    ? "bg-[#550082] text-white"
+                    ? "bg-[#00AEEF] text-white"
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                 }`}
               >
@@ -649,7 +649,7 @@ export default function DesignCalculator() {
                         key={p.id}
                         className={`block p-4 border rounded-xl cursor-pointer transition ${
                           bbPackage === p.id
-                            ? "border-[#550082] bg-[#550082]/5"
+                            ? "border-[#00AEEF] bg-[#00AEEF]/5"
                             : "border-slate-200 hover:border-slate-300"
                         }`}
                       >
@@ -662,7 +662,7 @@ export default function DesignCalculator() {
                             className="sr-only"
                           />
                           <strong>{p.name}</strong>
-                          <span className="text-[#550082] font-bold">{formatRub(p.price)}</span>
+                          <span className="text-[#00AEEF] font-bold">{formatRub(p.price)}</span>
                         </div>
                         <ul className="text-xs text-slate-600 space-y-0.5 mt-2">
                           {p.includes.slice(0, 3).map((it) => (
@@ -679,11 +679,11 @@ export default function DesignCalculator() {
               )}
             </div>
 
-            <div className="bg-gradient-to-br from-[#550082]/10 to-slate-50 rounded-2xl p-6">
+            <div className="bg-gradient-to-br from-[#00AEEF]/10 to-slate-50 rounded-2xl p-6">
               <div className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">
                 Итого
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-[#550082] mb-6 leading-none">
+              <div className="text-4xl md:text-5xl font-bold text-[#00AEEF] mb-6 leading-none">
                 {totalDisplay}
               </div>
 
@@ -712,7 +712,7 @@ export default function DesignCalculator() {
                     .getElementById("contact-form")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="w-full bg-[#550082] hover:bg-[#42006B] disabled:opacity-50 disabled:cursor-not-allowed text-white py-3.5 rounded-xl font-bold transition flex items-center justify-center gap-2"
+                className="w-full bg-[#00AEEF] hover:bg-[#0095D6] disabled:opacity-50 disabled:cursor-not-allowed text-white py-3.5 rounded-xl font-bold transition flex items-center justify-center gap-2"
               >
                 Оформить заявку
                 <ArrowRight size={20} />
