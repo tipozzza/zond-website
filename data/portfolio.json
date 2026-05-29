@@ -214,6 +214,15 @@
         "description": "Заказчик — Цех Зонд-Реклама. Производство и монтаж под ключ. Согласование с администрацией города, паспорт фасада, гарантия 12 месяцев на конструкцию.",
         "order": 21,
         "createdAt": "2026-05-21T07:35:19.326Z"
+      },
+      {
+        "id": "3135fa31-9f6e-49fb-97f0-efafc05346e6",
+        "image": "/images/portfolio/production/3135fa31-9f6e-49fb-97f0-efafc05346e6.jpg",
+        "title": "WhatsApp Image 2023-01-23 at 12.51.26",
+        "description": "",
+        "order": 22,
+        "createdAt": "2026-05-29T08:45:59.351Z",
+        "completionYear": null
       }
     ]
   },
