@@ -50,9 +50,9 @@ public/
 
 ## Брендовые цвета (в Tailwind)
 
-- `bg-brand`, `text-brand` — основной фиолетовый #3D2E91
-- `bg-brand-dark` — тёмный фиолетовый
-- `bg-brand-light` — светлый фиолетовый
+- `bg-brand`, `text-brand` — основной фиолетовый #550082 (из брендбука)
+- `bg-brand-hover` / `bg-brand-active` — состояния кнопок (#42006B / #36005A)
+- `bg-brand-light` — светлый фон под акцент (#F1E6F8)
 - `bg-section-outdoor` — красный (Наружная реклама)
 - `bg-section-print` — оранжевый (Широкоформатная печать)
 - `bg-section-production` — жёлтый (Производство)

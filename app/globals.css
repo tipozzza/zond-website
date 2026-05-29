@@ -8,6 +8,18 @@
     --color-text-muted: #6b7280;
     --color-border: #e8e6f0;
     --color-bg-section: #f6f5fa;
+
+    /* Фирменная палитра ZOND. Единый цвет для всех направлений. */
+    --brand-primary: #550082;
+    --brand-hover: #42006B;
+    --brand-active: #36005A;
+    --brand-light-bg: #F1E6F8;
+    --brand-50: #F1E6F8;
+    --brand-100: #E2CDF1;
+    --brand-200: #C59BE3;
+    --brand-500: #550082;
+    --brand-600: #42006B;
+    --brand-700: #36005A;
   }
 
   html {
