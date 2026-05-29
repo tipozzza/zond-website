@@ -62,7 +62,7 @@ function buildEmailHtml(data: Payload, leadId: string): string {
     </p>
     ${
       data.contact.comment
-        ? `<p style="margin:8px 0;padding:8px 12px;background:#f6f5fa;border-left:3px solid #3D2E91"><em>${escapeHtml(data.contact.comment)}</em></p>`
+        ? `<p style="margin:8px 0;padding:8px 12px;background:#f6f5fa;border-left:3px solid #550082"><em>${escapeHtml(data.contact.comment)}</em></p>`
         : ""
     }
 

@@ -6,7 +6,7 @@ import type { Side } from "@/lib/types";
 
 // Все метки одного брендового цвета. Раньше различались по TYPE_COLORS,
 // но это создавало впечатление "светофора" статусов — убрали.
-const MARKER_COLOR = "#3D2E91";
+const MARKER_COLOR = "#550082";
 
 declare global {
   interface Window {

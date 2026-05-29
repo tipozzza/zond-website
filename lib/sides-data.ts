@@ -39,7 +39,7 @@ export const STATUS_COLORS: Record<string, string> = {
 };
 
 export const TYPE_COLORS: Record<string, string> = {
-  Digital: "#3D2E91",
+  Digital: "#550082",
   "Щит": "#1e40af",
   "Тривижн": "#059669",
   "Сити-формат": "#d97706",
