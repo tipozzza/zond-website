@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 };
 
 const STATS = [
-  { value: "500 000 ₽", label: "макс. штраф для юр.лиц", accent: "text-rose-500" },
+  { value: "500 000 ₽", label: "макс. штраф для юрлиц", accent: "text-rose-500" },
   { value: "7 дней", label: "типовой срок под ключ", accent: "text-brand" },
   { value: `${new Date().getFullYear() - 1992} года`, label: "опыт ZOND", accent: "text-brand" },
   { value: "4", label: "варианта решения", accent: "text-brand" },
@@ -326,7 +326,7 @@ export default function RussifikaciyaPage() {
                 <div className="text-xs uppercase tracking-wider text-brand font-bold mb-3">
                   Кого касается
                 </div>
-                <h3 className="text-lg font-bold mb-2">Юр.лица и ИП</h3>
+                <h3 className="text-lg font-bold mb-2">Юрлица и ИП</h3>
                 <p className="text-slate-700 text-sm leading-relaxed">
                   Все организации в Томске, у которых на фасадах, табло, ценниках встречаются
                   иностранные слова без русского аналога.
@@ -340,7 +340,7 @@ export default function RussifikaciyaPage() {
                 <p className="text-slate-700 text-sm leading-relaxed">
                   Должностные лица: 10-50К ₽.
                   <br />
-                  Юр.лица: 50-500К ₽.
+                  Юрлица: 50-500К ₽.
                   <br />
                   Статья 14.3 КоАП РФ.
                 </p>
