@@ -345,7 +345,7 @@ export default function PrintPage() {
           <div className="max-w-[1280px] mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Наше оборудование</h2>
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              4 печатные машины + станция постпечатной обработки (резак и ламинатор).
+              3 печатные машины (2 сольвентных + 1 интерьерный) + станция постпечатной обработки (резак и ламинатор).
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {EQUIPMENT.map((e) => (
