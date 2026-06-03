@@ -242,6 +242,15 @@
         "order": 22,
         "createdAt": "2026-06-03T06:07:11.762Z",
         "completionYear": null
+      },
+      {
+        "id": "5de0ebed-0da4-4590-bf5d-267b30de03fc",
+        "image": "/images/portfolio/production/5de0ebed-0da4-4590-bf5d-267b30de03fc.jpg",
+        "title": "05DF4502-EE28-4F4A-88F9-F1525461DD79",
+        "description": "",
+        "order": 23,
+        "createdAt": "2026-06-03T06:09:40.899Z",
+        "completionYear": null
       }
     ]
   },
