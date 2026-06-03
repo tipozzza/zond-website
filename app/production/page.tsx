@@ -105,6 +105,18 @@ const CATEGORIES: {
     // ведёт на форму заявки с предзаполненным контекстом.
     customQuote: true,
   },
+  {
+    // TODO: владелец и маркетолог подберут реальное фото брендирования авто
+    // (сейчас placeholder — копия tablichki.jpg).
+    img: "/images/production/auto-branding.jpg",
+    title: "Брендирование авто",
+    priceBadge: "ПО ЗАПРОСУ",
+    secondBadge: "КОРПОРАТИВНЫЙ ТРАНСПОРТ",
+    subtitle: "Корпоративный транспорт",
+    description:
+      "Нанесение фирменного стиля на корпоративные машины: плёнка с полноцветной печатью, контурная резка, монтаж. Оклеиваем легковой и коммерческий транспорт, включая фургоны Газель и микроавтобусы. Согласуем макет по фотопривязке.",
+    customQuote: true,
+  },
 ];
 
 const STEPS = [
@@ -256,7 +268,7 @@ export default function ProductionPage() {
               Что мы производим
             </h2>
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              8 направлений: цены в калькуляторе или индивидуальный расчёт по заявке.
+              9 направлений: цены в калькуляторе или индивидуальный расчёт по заявке.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {CATEGORIES.map((c) => (
