@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Settings, Zap, Wrench } from "lucide-react";
+import { ArrowRight, RefreshCw, Settings, Zap, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -152,6 +152,11 @@ const EQUIPMENT: { icon: LucideIcon; name: string; desc: string }[] = [
     icon: Wrench,
     name: "Металлообработка",
     desc: "Сварка, гибка, покраска. Каркасы коробов и металлоконструкций.",
+  },
+  {
+    icon: RefreshCw,
+    name: "Развитие парка",
+    desc: "Мы постоянно следим за оборудованием и своевременно обновляем парк. Современное оснащение — гарантия качества и сроков.",
   },
 ];
 
