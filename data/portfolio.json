@@ -751,6 +751,15 @@
         "description": "Архитектурное освещение фасадов и колоннад. Расчёт мощности, согласование, монтаж — всё внутри ZOND, без подрядчиков.",
         "order": 30,
         "createdAt": "2026-05-21T07:35:19.323Z"
+      },
+      {
+        "id": "132fae81-64fd-441d-84dc-74ec7da22a4d",
+        "image": "/images/portfolio/led/132fae81-64fd-441d-84dc-74ec7da22a4d.jpg",
+        "title": "photo_16_2024-12-27_18-43-42",
+        "description": "",
+        "order": 31,
+        "createdAt": "2026-06-03T06:12:35.231Z",
+        "completionYear": null
       }
     ]
   }
