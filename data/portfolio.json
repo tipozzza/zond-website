@@ -296,6 +296,15 @@
         "order": 28,
         "createdAt": "2026-06-03T06:13:35.140Z",
         "completionYear": null
+      },
+      {
+        "id": "0b319427-8f6c-44ff-8d61-bb35fd706dd6",
+        "image": "/images/portfolio/production/0b319427-8f6c-44ff-8d61-bb35fd706dd6.jpg",
+        "title": "photo_2025-09-18_16-53-15",
+        "description": "",
+        "order": 29,
+        "createdAt": "2026-06-03T06:14:08.130Z",
+        "completionYear": null
       }
     ]
   },
