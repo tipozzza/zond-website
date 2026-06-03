@@ -314,6 +314,15 @@
         "description": "100+ м² с зонами переговоров и продукции. Под ключ от ZOND: проект → производство → доставка → монтаж на стенде → демонтаж после мероприятия → хранение оборудования до следующей выставки.",
         "order": 9,
         "createdAt": "2026-05-21T07:35:19.325Z"
+      },
+      {
+        "id": "38b9aa6c-1a95-4aaa-a927-a2c0bba6a708",
+        "image": "/images/portfolio/exhibition/38b9aa6c-1a95-4aaa-a927-a2c0bba6a708.jpg",
+        "title": "IMG_2036",
+        "description": "",
+        "order": 10,
+        "createdAt": "2026-06-03T06:06:12.724Z",
+        "completionYear": null
       }
     ]
   },
