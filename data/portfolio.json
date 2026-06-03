@@ -332,6 +332,15 @@
         "order": 10,
         "createdAt": "2026-06-03T06:06:12.724Z",
         "completionYear": null
+      },
+      {
+        "id": "15774e1e-7457-4e24-a2c7-70b9fd05be61",
+        "image": "/images/portfolio/exhibition/15774e1e-7457-4e24-a2c7-70b9fd05be61.jpg",
+        "title": "photo_2025-05-06_15-06-24",
+        "description": "",
+        "order": 11,
+        "createdAt": "2026-06-03T06:08:24.688Z",
+        "completionYear": null
       }
     ]
   },
