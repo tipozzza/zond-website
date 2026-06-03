@@ -314,6 +314,15 @@
         "order": 30,
         "createdAt": "2026-06-03T06:14:18.999Z",
         "completionYear": null
+      },
+      {
+        "id": "23a1c011-6425-418a-aa32-b94d8a6ef815",
+        "image": "/images/portfolio/production/23a1c011-6425-418a-aa32-b94d8a6ef815.jpg",
+        "title": "WhatsApp Image 2025-09-12 at 04.12.50",
+        "description": "",
+        "order": 31,
+        "createdAt": "2026-06-03T06:17:42.113Z",
+        "completionYear": null
       }
     ]
   },
