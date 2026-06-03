@@ -296,6 +296,15 @@
         "order": 8,
         "createdAt": "2026-06-03T06:03:39.540Z",
         "completionYear": null
+      },
+      {
+        "id": "f3c9087f-7dc9-4818-b383-cc4defe28d84",
+        "image": "/images/portfolio/exhibition/f3c9087f-7dc9-4818-b383-cc4defe28d84.jpg",
+        "title": "WhatsApp Image 2025-03-26 at 21.41.53",
+        "description": "Экспозиция для Mask Group на Cyber V",
+        "order": 9,
+        "createdAt": "2026-06-03T06:03:41.973Z",
+        "completionYear": null
       }
     ]
   },
