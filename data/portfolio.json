@@ -250,11 +250,20 @@
         "completionYear": null
       },
       {
+        "id": "f3c9087f-7dc9-4818-b383-cc4defe28d84",
+        "image": "/images/portfolio/exhibition/f3c9087f-7dc9-4818-b383-cc4defe28d84.jpg",
+        "title": "WhatsApp Image 2025-03-26 at 21.41.53",
+        "description": "Экспозиция для Mask Group на Cyber V",
+        "order": 3,
+        "createdAt": "2026-06-03T06:03:41.973Z",
+        "completionYear": null
+      },
+      {
         "id": "ba9071c3-f51b-4bd8-a92e-990acaad5ff5",
         "image": "/images/exhibition/portfolio/case-corporate-booth.jpg",
         "title": "Выставочный стенд — Корпоративный стенд в Томске",
         "description": "Премиум-сегмент для крупного бизнеса. Дизайн концепции стенда, печать панелей, монтаж и демонтаж на выставочной площадке. Опыт работы по всей России с 2006 года.",
-        "order": 3,
+        "order": 4,
         "createdAt": "2026-05-21T07:35:19.325Z"
       },
       {
@@ -262,7 +271,7 @@
         "image": "/images/exhibition/portfolio/case-oil-gas.jpg",
         "title": "Выставочный стенд — Нефтегазовая выставка в Томске",
         "description": "Индустриальные конференции и форумы. Мобильные конструкции MAXIBIT и JUST — официальный дилер MAXIBIT (Швеция) в Сибири с 2006 года. Заказ под клиента, монтаж за 1 день.",
-        "order": 4,
+        "order": 5,
         "createdAt": "2026-05-21T07:35:19.325Z"
       },
       {
@@ -270,7 +279,7 @@
         "image": "/images/exhibition/portfolio/case-it-conference.jpg",
         "title": "Выставочный стенд — IT-конференция «Город IT» в Томске",
         "description": "Современные минималистичные решения. Под ключ от ZOND: проект → производство → доставка → монтаж на стенде → демонтаж после мероприятия → хранение оборудования до следующей выставки.",
-        "order": 5,
+        "order": 6,
         "createdAt": "2026-05-21T07:35:19.325Z"
       },
       {
@@ -278,7 +287,7 @@
         "image": "/images/exhibition/portfolio/case-retail-popup.jpg",
         "title": "Выставочный стенд — Промо в торговом центре в Томске",
         "description": "POS-активации и pop-up зоны. Дизайн концепции стенда, печать панелей, монтаж и демонтаж на выставочной площадке. Опыт работы по всей России с 2006 года.",
-        "order": 6,
+        "order": 7,
         "createdAt": "2026-05-21T07:35:19.325Z"
       },
       {
@@ -286,7 +295,7 @@
         "image": "/images/exhibition/portfolio/case-mobile-event.jpg",
         "title": "Выставочный стенд — Мобильные стенды на event в Томске",
         "description": "Быстрая сборка под разовые события. Мобильные конструкции MAXIBIT и JUST — официальный дилер MAXIBIT (Швеция) в Сибири с 2006 года. Заказ под клиента, монтаж за 1 день.",
-        "order": 7,
+        "order": 8,
         "createdAt": "2026-05-21T07:35:19.325Z"
       },
       {
@@ -294,17 +303,8 @@
         "image": "/images/exhibition/portfolio/case-large-exhibition.jpg",
         "title": "Выставочный стенд — Крупная экспозиция в Томске",
         "description": "100+ м² с зонами переговоров и продукции. Под ключ от ZOND: проект → производство → доставка → монтаж на стенде → демонтаж после мероприятия → хранение оборудования до следующей выставки.",
-        "order": 8,
-        "createdAt": "2026-05-21T07:35:19.325Z"
-      },
-      {
-        "id": "f3c9087f-7dc9-4818-b383-cc4defe28d84",
-        "image": "/images/portfolio/exhibition/f3c9087f-7dc9-4818-b383-cc4defe28d84.jpg",
-        "title": "WhatsApp Image 2025-03-26 at 21.41.53",
-        "description": "Экспозиция для Mask Group на Cyber V",
         "order": 9,
-        "createdAt": "2026-06-03T06:03:41.973Z",
-        "completionYear": null
+        "createdAt": "2026-05-21T07:35:19.325Z"
       }
     ]
   },
