@@ -287,6 +287,15 @@
         "order": 27,
         "createdAt": "2026-06-03T06:12:54.695Z",
         "completionYear": null
+      },
+      {
+        "id": "c5fd0730-3359-42c0-b4f9-0fb6df45e6c8",
+        "image": "/images/portfolio/production/c5fd0730-3359-42c0-b4f9-0fb6df45e6c8.jpg",
+        "title": "photo_2025-07-22_21-10-26",
+        "description": "",
+        "order": 28,
+        "createdAt": "2026-06-03T06:13:35.140Z",
+        "completionYear": null
       }
     ]
   },
