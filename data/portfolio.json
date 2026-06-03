@@ -341,6 +341,15 @@
         "order": 33,
         "createdAt": "2026-06-03T06:22:28.413Z",
         "completionYear": null
+      },
+      {
+        "id": "fb0e7532-a256-495d-8fc9-3087f6cf561a",
+        "image": "/images/portfolio/production/fb0e7532-a256-495d-8fc9-3087f6cf561a.jpg",
+        "title": "0399B0AD-ECAC-4AD2-A966-DF6AE192B227",
+        "description": "",
+        "order": 34,
+        "createdAt": "2026-06-03T06:23:41.462Z",
+        "completionYear": null
       }
     ]
   },
