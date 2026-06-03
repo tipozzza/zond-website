@@ -434,7 +434,7 @@ export default function ProductionPage() {
           <div className="max-w-[1280px] mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Оборудование цеха</h2>
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              Полный цикл «от макета до металла» — без передачи на сторону.
+              Полный цикл «от макета до металла» — основные операции на своём производстве.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {EQUIPMENT.map(({ icon: Icon, name, desc }) => (
