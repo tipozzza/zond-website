@@ -278,6 +278,15 @@
         "order": 26,
         "createdAt": "2026-06-03T06:12:18.406Z",
         "completionYear": null
+      },
+      {
+        "id": "084a0bb1-563f-4e0c-b76b-cb5863ad33c9",
+        "image": "/images/portfolio/production/084a0bb1-563f-4e0c-b76b-cb5863ad33c9.jpg",
+        "title": "0895bf8a-bd35-4036-887d-34ee57407beb",
+        "description": "",
+        "order": 27,
+        "createdAt": "2026-06-03T06:12:54.695Z",
+        "completionYear": null
       }
     ]
   },
