@@ -8,12 +8,14 @@ import Breadcrumb from "@/components/Breadcrumb";
 import FAQ from "@/components/FAQ";
 import CTAForm from "@/components/CTAForm";
 import { buildOgUrl } from "@/lib/og";
+import { pluralizeYears } from "@/lib/pluralize";
 
 const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
+const YEARS_WORD = pluralizeYears(YEARS_ON_MARKET);
 
 export const metadata: Metadata = {
-  title: `О компании ZOND — ${YEARS_ON_MARKET} лет в Томске | История с 1992`,
-  description: `ГК Зонд-Реклама в Томске. ${YEARS_ON_MARKET} лет работы, 50+ специалистов, 226 рекламных конструкций, собственный цех, дилерство MAXIBIT, бренд Лайтово.`,
+  title: `О компании ZOND — ${YEARS_ON_MARKET} ${YEARS_WORD} в Томске | История с 1992`,
+  description: `ГК Зонд-Реклама в Томске. ${YEARS_ON_MARKET} ${YEARS_WORD} работы, 50+ специалистов, 226 рекламных конструкций, собственный цех, дилерство MAXIBIT, бренд Лайтово.`,
   keywords: [
     "Зонд-Реклама",
     "рекламное агентство Томск",
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
   openGraph: {
     title: "О компании ZOND",
-    description: `${YEARS_ON_MARKET} лет на рынке рекламы Томска — с 1992. 226 конструкций, собственный цех, дилерство MAXIBIT, бренд Лайтово.`,
+    description: `${YEARS_ON_MARKET} ${YEARS_WORD} на рынке рекламы Томска — с 1992. 226 конструкций, собственный цех, дилерство MAXIBIT, бренд Лайтово.`,
     url: "https://zond-website.vercel.app/about",
     siteName: "ZOND",
     locale: "ru_RU",
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
       {
         url: buildOgUrl({
           title: "О компании ZOND",
-          subtitle: `${YEARS_ON_MARKET} года на рынке рекламы Томска — с 1992`,
+          subtitle: `${YEARS_ON_MARKET} ${YEARS_WORD} на рынке рекламы Томска — с 1992`,
           category: "О нас",
         }),
         width: 1200,
@@ -43,11 +45,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "О компании ZOND",
-    description: `${YEARS_ON_MARKET} лет на рынке рекламы Томска — с 1992`,
+    description: `${YEARS_ON_MARKET} ${YEARS_WORD} на рынке рекламы Томска — с 1992`,
     images: [
       buildOgUrl({
         title: "О компании ZOND",
-        subtitle: `${YEARS_ON_MARKET} года на рынке рекламы Томска — с 1992`,
+        subtitle: `${YEARS_ON_MARKET} ${YEARS_WORD} на рынке рекламы Томска — с 1992`,
         category: "О нас",
       }),
     ],
@@ -94,7 +96,7 @@ const DIFFERENTIATORS = [
   },
   {
     icon: "🏆",
-    title: `${YEARS_ON_MARKET} года на рынке Томска`,
+    title: `${YEARS_ON_MARKET} ${YEARS_WORD} на рынке Томска`,
     desc: "Старейшее рекламное агентство города — работаем с 1992 года без перерывов и смены профиля.",
   },
   {
@@ -163,7 +165,7 @@ const TIMELINE: Decade[] = [
       {
         year: String(new Date().getFullYear()),
         highlight: true,
-        text: `Сегодня: ${YEARS_ON_MARKET} лет на рынке, 226 конструкций, 751 сторона, собственный цех на пр. Фрунзе 109, 50+ специалистов, новый сайт zondreklama.ru.`,
+        text: `Сегодня: ${YEARS_ON_MARKET} ${YEARS_WORD} на рынке, 226 конструкций, 751 сторона, собственный цех на пр. Фрунзе 109, 50+ специалистов, новый сайт zondreklama.ru.`,
       },
     ],
   },
@@ -190,7 +192,7 @@ const TEAM = [
 const FAQ_ITEMS = [
   {
     question: "С какого года работает ZOND?",
-    answer: `С 1992 года, юрлицо — ООО «ФОРМАТ СИТИ». ${YEARS_ON_MARKET} лет на рынке рекламы и производства в Томске.`,
+    answer: `С 1992 года, юрлицо — ООО «ФОРМАТ СИТИ». ${YEARS_ON_MARKET} ${YEARS_WORD} на рынке рекламы и производства в Томске.`,
   },
   {
     question: "Чем ZOND отличается от Лайтово?",
@@ -252,7 +254,7 @@ export default function AboutPage() {
               О&nbsp;компании ZOND
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] md:drop-shadow-lg">
-              {YEARS_ON_MARKET} года создаём рекламу в&nbsp;Томске — от&nbsp;билбордов
+              {YEARS_ON_MARKET} {YEARS_WORD} создаём рекламу в&nbsp;Томске — от&nbsp;билбордов
               и&nbsp;вывесок до&nbsp;LED-иллюминации фасадов и&nbsp;выставочных стендов.
             </p>
             <div className="flex flex-wrap gap-3 mb-6">
@@ -386,7 +388,7 @@ export default function AboutPage() {
               Достижения в цифрах
             </h2>
             <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
-              Что значит «{YEARS_ON_MARKET} лет на рынке» — конкретные результаты на сегодня.
+              Что значит «{YEARS_ON_MARKET} {YEARS_WORD} на рынке» — конкретные результаты на сегодня.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
               {ACHIEVEMENTS.map((a) => (

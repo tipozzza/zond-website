@@ -14,9 +14,14 @@ import ServiceSchema from "@/components/ServiceSchema";
 import FAQ from "@/components/FAQ";
 import PublicPortfolio from "@/components/PublicPortfolio";
 import { HERO_BLURS } from "@/lib/hero-blurs";
+import { pluralizeYears } from "@/lib/pluralize";
 
 const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
-const BADGES = [`${YEARS_ON_MARKET} лет на рынке`, "751 сторона", "348 цифровых"];
+const BADGES = [
+  `${YEARS_ON_MARKET} ${pluralizeYears(YEARS_ON_MARKET)} на рынке`,
+  "751 сторона",
+  "348 цифровых",
+];
 
 const STATS = [
   { num: "1992", label: "год основания" },

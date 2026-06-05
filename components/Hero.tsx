@@ -1,15 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HERO_BLURS } from "@/lib/hero-blurs";
-
-function pluralizeYears(n: number): string {
-  const lastTwo = n % 100;
-  if (lastTwo >= 11 && lastTwo <= 14) return "лет";
-  const last = n % 10;
-  if (last === 1) return "год";
-  if (last >= 2 && last <= 4) return "года";
-  return "лет";
-}
+import { pluralizeYears } from "@/lib/pluralize";
 
 const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
 const BADGES = [

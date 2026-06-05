@@ -6,8 +6,10 @@ import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import Breadcrumb from "@/components/Breadcrumb";
 import { buildOgUrl } from "@/lib/og";
+import { pluralizeYears } from "@/lib/pluralize";
 
 const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
+const YEARS_WORD = pluralizeYears(YEARS_ON_MARKET);
 
 export const metadata: Metadata = {
   title: "Работа в ZOND — вакансии в Томске | ZOND Реклама",
@@ -176,7 +178,7 @@ export default function VacanciesPage() {
           <ul className="space-y-3 mb-12">
             <li className="flex gap-3 text-slate-800">
               <span className="text-brand text-xl shrink-0">✓</span>
-              <span>Стабильную компанию (на рынке {YEARS_ON_MARKET} года)</span>
+              <span>Стабильную компанию (на рынке {YEARS_ON_MARKET} {YEARS_WORD})</span>
             </li>
             <li className="flex gap-3 text-slate-800">
               <span className="text-brand text-xl shrink-0">✓</span>
