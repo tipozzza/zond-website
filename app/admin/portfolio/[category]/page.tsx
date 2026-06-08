@@ -271,14 +271,17 @@ function SortableCard({
           <span className="text-slate-500">Год:</span>
           {editingYear ? (
             <input
-              type="number"
-              min={1992}
-              max={2099}
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
               value={yearDraft}
               autoFocus
               disabled={yearSaving}
               onFocus={(e) => e.currentTarget.select()}
-              onChange={(e) => setYearDraft(e.target.value)}
+              onChange={(e) => {
+                const v = e.target.value;
+                if (v === "" || /^\d+$/.test(v)) setYearDraft(v);
+              }}
               onBlur={saveYear}
               onKeyDown={(e) => {
                 if (e.key === "Enter") saveYear();
@@ -492,12 +495,15 @@ function AddPhotosModal({
                       className="w-full border border-slate-300 rounded px-2 py-1 text-xs mb-1"
                     />
                     <input
-                      type="number"
-                      min={1992}
-                      max={2099}
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       value={it.completionYear}
                       onFocus={(e) => e.currentTarget.select()}
-                      onChange={(e) => update(it.id, "completionYear", e.target.value)}
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        if (v === "" || /^\d+$/.test(v)) update(it.id, "completionYear", v);
+                      }}
                       placeholder="Год реализации (например 2024)"
                       className="w-full border border-slate-300 rounded px-2 py-1 text-xs mb-1"
                     />
@@ -667,12 +673,15 @@ function EditItemModal({
         <div>
           <label className="block text-sm font-semibold mb-1">Год реализации проекта</label>
           <input
-            type="number"
-            min={1992}
-            max={2099}
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             value={completionYear}
             onFocus={(e) => e.currentTarget.select()}
-            onChange={(e) => setCompletionYear(e.target.value)}
+            onChange={(e) => {
+              const v = e.target.value;
+              if (v === "" || /^\d+$/.test(v)) setCompletionYear(v);
+            }}
             placeholder="2024"
             className="w-full border border-slate-300 rounded-lg px-3 py-2"
           />
