@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { useDecimalInput, useIntegerInput } from "@/lib/numeric-input";
 
 type Mode = "illumination" | "screen";
 
@@ -42,11 +43,11 @@ export default function LedCalculator() {
 
   // illumination state
   const [illId, setIllId] = useState("");
-  const [illQty, setIllQty] = useState(10);
+  const { value: illQty, props: illQtyProps } = useIntegerInput(10, 1);
 
   // screen state
   const [screenType, setScreenType] = useState("");
-  const [screenSize, setScreenSize] = useState(2);
+  const { value: screenSize, props: screenSizeProps } = useDecimalInput(2, 0.1);
 
   useEffect(() => {
     fetch("/data/led-pricing.json")
@@ -180,14 +181,7 @@ export default function LedCalculator() {
                     <label className={labelCls}>
                       Количество ({illuminationItems.find((i) => i.id === illId)?.unit ?? "ед."})
                     </label>
-                    <input
-                      type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                      min={1}
-                      value={illQty}
-                      onChange={(e) => setIllQty(Math.max(1, parseInt(e.target.value) || 1))}
-                      className={inputCls}
-                    />
+                    <input {...illQtyProps} className={inputCls} />
                   </div>
                   <div className="text-xs text-slate-500 leading-relaxed">
                     Цены ориентировочные. Окончательная сумма зависит от объекта и сезона.
@@ -214,15 +208,7 @@ export default function LedCalculator() {
                     <label className={labelCls}>
                       Размер ({screenRange?.perUnit ?? "м²"})
                     </label>
-                    <input
-                      type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                      step="0.1"
-                      min="0.1"
-                      value={screenSize}
-                      onChange={(e) => setScreenSize(Math.max(0, parseFloat(e.target.value) || 0))}
-                      className={inputCls}
-                    />
+                    <input {...screenSizeProps} className={inputCls} />
                   </div>
                   <div className="text-xs text-slate-500 leading-relaxed">
                     Цена в RUB — ориентировочная по курсу 100₽/$. Точную стоимость рассчитает

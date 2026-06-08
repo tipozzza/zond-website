@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { useIntegerInput } from "@/lib/numeric-input";
 
 // Loose types — JSON has heterogeneous shapes between categories.
 type SimpleItem = { id: string; name: string; prices: (number | null)[] };
@@ -90,23 +91,23 @@ export default function DesignCalculator() {
 
   // Полиграфия печать
   const [ppItem, setPpItem] = useState("");
-  const [ppQty, setPpQty] = useState(100);
+  const { value: ppQty, props: ppQtyProps } = useIntegerInput(100, 1);
   const [ppColor, setPpColor] = useState<"4_4" | "4_0">("4_4");
 
   // Листовки
   const [lfFormat, setLfFormat] = useState("");
   const [lfDensity, setLfDensity] = useState("");
   const [lfSide, setLfSide] = useState<"oneSide" | "twoSides">("oneSide");
-  const [lfQty, setLfQty] = useState(100);
+  const { value: lfQty, props: lfQtyProps } = useIntegerInput(100, 1);
 
   // Открытки
   const [okItem, setOkItem] = useState("");
-  const [okQty, setOkQty] = useState(50);
+  const { value: okQty, props: okQtyProps } = useIntegerInput(50, 1);
   const [okColor, setOkColor] = useState<"4_4" | "4_0">("4_4");
 
   // Сувениры
   const [svItem, setSvItem] = useState("");
-  const [svQty, setSvQty] = useState(100);
+  const { value: svQty, props: svQtyProps } = useIntegerInput(100, 1);
   const [svColors, setSvColors] = useState<1 | 2>(1);
 
   // Логотип
@@ -410,14 +411,7 @@ export default function DesignCalculator() {
                   </div>
                   <div>
                     <label className={labelCls}>Тираж (шт)</label>
-                    <input
-                      type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                      min={1}
-                      value={ppQty}
-                      onChange={(e) => setPpQty(Math.max(1, parseInt(e.target.value) || 1))}
-                      className={inputCls}
-                    />
+                    <input {...ppQtyProps} className={inputCls} />
                     {ppItemObj?.minQty && (
                       <p className="text-xs text-slate-500 mt-1.5">
                         Минимальный тираж — {ppItemObj.minQty} шт.
@@ -505,14 +499,7 @@ export default function DesignCalculator() {
                   </div>
                   <div>
                     <label className={labelCls}>Тираж (шт)</label>
-                    <input
-                      type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                      min={1}
-                      value={lfQty}
-                      onChange={(e) => setLfQty(Math.max(1, parseInt(e.target.value) || 1))}
-                      className={inputCls}
-                    />
+                    <input {...lfQtyProps} className={inputCls} />
                     <p className="text-xs text-slate-500 mt-1.5">A4 — от 10, A5 — от 20, A6 — от 40 шт.</p>
                   </div>
                 </>
@@ -531,14 +518,7 @@ export default function DesignCalculator() {
                   </div>
                   <div>
                     <label className={labelCls}>Тираж (шт)</label>
-                    <input
-                      type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                      min={1}
-                      value={okQty}
-                      onChange={(e) => setOkQty(Math.max(1, parseInt(e.target.value) || 1))}
-                      className={inputCls}
-                    />
+                    <input {...okQtyProps} className={inputCls} />
                     {okItemObj?.minQty && (
                       <p className="text-xs text-slate-500 mt-1.5">
                         Минимальный тираж — {okItemObj.minQty} шт.
@@ -579,14 +559,7 @@ export default function DesignCalculator() {
                   </div>
                   <div>
                     <label className={labelCls}>Тираж (шт)</label>
-                    <input
-                      type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                      min={1}
-                      value={svQty}
-                      onChange={(e) => setSvQty(Math.max(1, parseInt(e.target.value) || 1))}
-                      className={inputCls}
-                    />
+                    <input {...svQtyProps} className={inputCls} />
                   </div>
                   <div>
                     <label className={labelCls}>Кол-во цветов в макете</label>

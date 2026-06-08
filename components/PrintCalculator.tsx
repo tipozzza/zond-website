@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { useDecimalInput, useIntegerInput } from "@/lib/numeric-input";
 
 type StandardProduct = { id: string; name: string; size: string; area: number; prices: number[] };
 type MaterialEntry = { id: string; name: string; prices: number[] };
@@ -31,10 +32,10 @@ export default function PrintCalculator() {
   const [mode, setMode] = useState<Mode>("standard");
 
   const [stdProduct, setStdProduct] = useState("");
-  const [stdQty, setStdQty] = useState(1);
+  const { value: stdQty, props: stdQtyProps } = useIntegerInput(1, 1);
 
-  const [width, setWidth] = useState(3);
-  const [height, setHeight] = useState(6);
+  const { value: width, props: widthProps } = useDecimalInput(3, 0.1);
+  const { value: height, props: heightProps } = useDecimalInput(6, 0.1);
   const [material, setMaterial] = useState("");
 
   // Подрезка по периметру — независимая опция (чекбокс).
@@ -205,11 +206,7 @@ export default function PrintCalculator() {
                   <div>
                     <label className="block text-sm font-semibold mb-2">Тираж (шт)</label>
                     <input
-                      type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                      min={1}
-                      value={stdQty}
-                      onChange={(e) => setStdQty(Math.max(1, parseInt(e.target.value) || 1))}
+                      {...stdQtyProps}
                       className="w-full border border-slate-300 rounded-lg px-3 py-2.5"
                     />
                     <p className="text-xs text-slate-500 mt-1.5">
@@ -238,24 +235,14 @@ export default function PrintCalculator() {
                     <div>
                       <label className="block text-sm font-semibold mb-2">Ширина (м)</label>
                       <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        step="0.1"
-                        min="0.1"
-                        value={width}
-                        onChange={(e) => setWidth(Math.max(0, parseFloat(e.target.value) || 0))}
+                        {...widthProps}
                         className="w-full border border-slate-300 rounded-lg px-3 py-2.5"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold mb-2">Высота (м)</label>
                       <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        step="0.1"
-                        min="0.1"
-                        value={height}
-                        onChange={(e) => setHeight(Math.max(0, parseFloat(e.target.value) || 0))}
+                        {...heightProps}
                         className="w-full border border-slate-300 rounded-lg px-3 py-2.5"
                       />
                     </div>

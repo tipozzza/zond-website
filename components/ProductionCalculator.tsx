@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { useDecimalInput, useIntegerInput } from "@/lib/numeric-input";
 
 type Size = { id: string; label: string; minHeight?: number };
 type PricedItem = { id: string; name: string; desc?: string; prices: (number | null)[]; warrantyYears?: number };
@@ -40,30 +41,30 @@ export default function ProductionCalculator() {
   // Таблички
   const [tMaterial, setTMaterial] = useState("");
   const [tSizeIdx, setTSizeIdx] = useState(0);
-  const [tQty, setTQty] = useState(10);
+  const { value: tQty, props: tQtyProps } = useIntegerInput(10, 1);
 
   // Плоские вывески
   const [fMaterial, setFMaterial] = useState("");
   const [fGraphics, setFGraphics] = useState(0);
-  const [fWidth, setFWidth] = useState(2);
-  const [fHeight, setFHeight] = useState(1);
+  const { value: fWidth, props: fWidthProps } = useDecimalInput(2, 0.1);
+  const { value: fHeight, props: fHeightProps } = useDecimalInput(1, 0.1);
 
   // Световые короба
   const [lbStructure, setLbStructure] = useState("");
   const [lbFace, setLbFace] = useState(0);
-  const [lbWidth, setLbWidth] = useState(2);
-  const [lbHeight, setLbHeight] = useState(1);
+  const { value: lbWidth, props: lbWidthProps } = useDecimalInput(2, 0.1);
+  const { value: lbHeight, props: lbHeightProps } = useDecimalInput(1, 0.1);
 
   // Псевдобуквы
   const [pType, setPType] = useState("");
   const [pMaterial, setPMaterial] = useState("");
-  const [pCount, setPCount] = useState(5);
-  const [pHeight, setPHeight] = useState(30);
+  const { value: pCount, props: pCountProps } = useIntegerInput(5, 1);
+  const { value: pHeight, props: pHeightProps } = useIntegerInput(30, 5);
 
   // Объёмные буквы
   const [vType, setVType] = useState("");
-  const [vCount, setVCount] = useState(5);
-  const [vHeight, setVHeight] = useState(60);
+  const { value: vCount, props: vCountProps } = useIntegerInput(5, 1);
+  const { value: vHeight, props: vHeightProps } = useIntegerInput(60, 15);
 
   useEffect(() => {
     fetch("/data/production-pricing.json")
@@ -240,14 +241,7 @@ export default function ProductionCalculator() {
                   </div>
                   <div>
                     <label className={labelCls}>Тираж (шт)</label>
-                    <input
-                      type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                      min={1}
-                      value={tQty}
-                      onChange={(e) => setTQty(Math.max(1, parseInt(e.target.value) || 1))}
-                      className={inputCls}
-                    />
+                    <input {...tQtyProps} className={inputCls} />
                     <p className="text-xs text-slate-500 mt-1.5">
                       Цена за 1 шт при тираже от {data.tablichki.minQty} шт.
                     </p>
@@ -277,27 +271,11 @@ export default function ProductionCalculator() {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className={labelCls}>Ширина, м</label>
-                      <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        step="0.1"
-                        min="0.1"
-                        value={fWidth}
-                        onChange={(e) => setFWidth(Math.max(0, parseFloat(e.target.value) || 0))}
-                        className={inputCls}
-                      />
+                      <input {...fWidthProps} className={inputCls} />
                     </div>
                     <div>
                       <label className={labelCls}>Высота, м</label>
-                      <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        step="0.1"
-                        min="0.1"
-                        value={fHeight}
-                        onChange={(e) => setFHeight(Math.max(0, parseFloat(e.target.value) || 0))}
-                        className={inputCls}
-                      />
+                      <input {...fHeightProps} className={inputCls} />
                     </div>
                   </div>
                   <div className="text-sm text-slate-500">
@@ -328,27 +306,11 @@ export default function ProductionCalculator() {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className={labelCls}>Ширина, м</label>
-                      <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        step="0.1"
-                        min="0.1"
-                        value={lbWidth}
-                        onChange={(e) => setLbWidth(Math.max(0, parseFloat(e.target.value) || 0))}
-                        className={inputCls}
-                      />
+                      <input {...lbWidthProps} className={inputCls} />
                     </div>
                     <div>
                       <label className={labelCls}>Высота, м</label>
-                      <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        step="0.1"
-                        min="0.1"
-                        value={lbHeight}
-                        onChange={(e) => setLbHeight(Math.max(0, parseFloat(e.target.value) || 0))}
-                        className={inputCls}
-                      />
+                      <input {...lbHeightProps} className={inputCls} />
                     </div>
                   </div>
                 </>
@@ -377,25 +339,11 @@ export default function ProductionCalculator() {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className={labelCls}>Кол-во букв</label>
-                      <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        min={1}
-                        value={pCount}
-                        onChange={(e) => setPCount(Math.max(1, parseInt(e.target.value) || 1))}
-                        className={inputCls}
-                      />
+                      <input {...pCountProps} className={inputCls} />
                     </div>
                     <div>
                       <label className={labelCls}>Высота, см</label>
-                      <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        min={5}
-                        value={pHeight}
-                        onChange={(e) => setPHeight(Math.max(5, parseInt(e.target.value) || 5))}
-                        className={inputCls}
-                      />
+                      <input {...pHeightProps} className={inputCls} />
                     </div>
                   </div>
                 </>
@@ -415,25 +363,11 @@ export default function ProductionCalculator() {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className={labelCls}>Кол-во букв</label>
-                      <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        min={1}
-                        value={vCount}
-                        onChange={(e) => setVCount(Math.max(1, parseInt(e.target.value) || 1))}
-                        className={inputCls}
-                      />
+                      <input {...vCountProps} className={inputCls} />
                     </div>
                     <div>
                       <label className={labelCls}>Высота буквы, см</label>
-                      <input
-                        type="number"
-                      onFocus={(e) => e.currentTarget.select()}
-                        min={15}
-                        value={vHeight}
-                        onChange={(e) => setVHeight(Math.max(15, parseInt(e.target.value) || 15))}
-                        className={inputCls}
-                      />
+                      <input {...vHeightProps} className={inputCls} />
                     </div>
                   </div>
                   <p className="text-xs text-slate-500">
