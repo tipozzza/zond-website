@@ -55,10 +55,7 @@ export default function PublicPortfolio({ category, title = "Наши работ
                 />
               </div>
               <div className="p-3">
-                <h3 className="font-semibold text-sm line-clamp-2 mb-1">{item.title}</h3>
-                {item.description && (
-                  <p className="text-xs text-slate-500 line-clamp-2">{item.description}</p>
-                )}
+                <h3 className="font-semibold text-sm line-clamp-2">{item.title}</h3>
               </div>
             </button>
           ))}
