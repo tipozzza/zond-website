@@ -58,8 +58,10 @@ export default function HomePage() {
         <Stats />
         <Services />
         <Reveal from="auto"><Cases /></Reveal>
-        <Reveal from="auto"><Production /></Reveal>
-        <Reveal from="auto"><MapPreview /></Reveal>
+        {/* Production анимирует свои колонки сам (Reveal внутри),
+            MapPreview — через собственный AnimateOnScroll. */}
+        <Production />
+        <MapPreview />
         {/* <Team /> временно скрыто, вернём когда будет реальное фото */}
         <Reveal from="auto"><NewsBlock /></Reveal>
         <Reveal from="auto"><Testimonials /></Reveal>

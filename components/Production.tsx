@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { SERVICES_12 } from "@/lib/services-12";
+import Reveal from "./Reveal";
 
 const INTERVAL_MS = 5000;
 const SWIPE_THRESHOLD = 50;
@@ -57,6 +58,7 @@ export default function Production() {
           onTouchEnd={onTouchEnd}
         >
           {/* Slideshow */}
+          <Reveal from="left">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-slate-200">
             {/* Все слайды лежат стопкой; активный получает opacity-100, остальные — 0.
                 Плавный cross-fade обеспечивается CSS transition-opacity. */}
@@ -116,9 +118,11 @@ export default function Production() {
               ))}
             </div>
           </div>
+          </Reveal>
 
           {/* Synced text — фиксированная min-height чтобы не «прыгало» при смене.
               key={current} перезапускает CSS-анимации при каждом переходе. */}
+          <Reveal from="right">
           <div className="min-h-[420px] sm:min-h-[460px] md:min-h-[500px] flex flex-col justify-center">
             <div key={current} className="animate-fade-up">
               <div className="text-xs sm:text-sm font-semibold text-brand uppercase tracking-wider mb-3">
@@ -146,6 +150,7 @@ export default function Production() {
               </ul>
             </div>
           </div>
+          </Reveal>
         </div>
       </div>
     </section>
