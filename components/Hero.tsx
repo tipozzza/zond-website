@@ -1,6 +1,7 @@
-import Image from "next/image";
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
-import { HERO_BLURS } from "@/lib/hero-blurs";
 import { pluralizeYears } from "@/lib/pluralize";
 
 const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
@@ -11,18 +12,40 @@ const BADGES = [
 ];
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const playVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    try {
+      const p = v.play();
+      if (p) p.catch(() => {});
+    } catch {}
+  };
+
+  const pauseVideo = () => {
+    const v = videoRef.current;
+    if (v) v.pause();
+  };
+
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      <Image
-        src="/images/hero-tomsk.jpg"
-        alt="Томск на закате с фиолетовой LED-подсветкой"
-        fill
-        priority
-        sizes="100vw"
-        placeholder="blur"
-        blurDataURL={HERO_BLURS.home}
-        className="object-cover object-[center_70%]"
-      />
+    <section
+      className="relative min-h-[90vh] flex items-center overflow-hidden"
+      onMouseEnter={playVideo}
+      onMouseLeave={pauseVideo}
+    >
+      <video
+        ref={videoRef}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/images/hero-tomsk-poster.jpg"
+        onClick={playVideo}
+        className="absolute inset-0 w-full h-full object-cover object-[center_70%]"
+      >
+        <source src="/videos/hero-tomsk.mp4" type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-l from-black/80 via-black/40 to-transparent" />
 
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 py-24 flex justify-end">
