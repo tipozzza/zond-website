@@ -16,7 +16,6 @@ import Clients from "@/components/Clients";
 import Timeline from "@/components/Timeline";
 import CTAForm from "@/components/CTAForm";
 import FloatingTG from "@/components/FloatingTG";
-import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Зонд-Реклама — рекламное агентство в Томске с 1992 года",
@@ -57,17 +56,15 @@ export default function HomePage() {
         <Hero />
         <Stats />
         <Services />
-        <Reveal from="auto"><Cases /></Reveal>
-        {/* Production анимирует свои колонки сам (Reveal внутри),
-            MapPreview — через собственный AnimateOnScroll. */}
+        <Cases />
         <Production />
         <MapPreview />
         {/* <Team /> временно скрыто, вернём когда будет реальное фото */}
-        <Reveal from="auto"><NewsBlock /></Reveal>
-        <Reveal from="auto"><Testimonials /></Reveal>
-        <Reveal from="auto"><Clients /></Reveal>
-        <Reveal from="auto"><Timeline /></Reveal>
-        <Reveal from="auto"><CTAForm /></Reveal>
+        <NewsBlock />
+        <Testimonials />
+        <Clients />
+        <Timeline />
+        <CTAForm />
       </main>
       <Footer />
       <FloatingTG />
