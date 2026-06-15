@@ -39,17 +39,44 @@ export default function Reveal({
       }
     }
 
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setShown(true);
-          io.disconnect();
-        }
-      },
-      { threshold: amount, rootMargin: "0px 0px -8% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
+    let io: IntersectionObserver | null = null;
+    let raf1 = 0;
+    let raf2 = 0;
+    let timer = 0;
+
+    const begin = () => {
+      io = new IntersectionObserver(
+        ([e]) => {
+          if (e.isIntersecting) {
+            setShown(true);
+            io && io.disconnect();
+          }
+        },
+        { threshold: amount, rootMargin: "0px 0px -10% 0px" }
+      );
+      io.observe(el);
+    };
+
+    const schedule = () => {
+      raf1 = requestAnimationFrame(() => {
+        raf2 = requestAnimationFrame(begin);
+      });
+    };
+
+    if (document.readyState === "complete") {
+      schedule();
+    } else {
+      window.addEventListener("load", schedule, { once: true });
+      timer = window.setTimeout(begin, 1500);
+    }
+
+    return () => {
+      io && io.disconnect();
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+      clearTimeout(timer);
+      window.removeEventListener("load", schedule);
+    };
   }, [from, amount]);
 
   const hidden = mounted && !shown && !reduce;
