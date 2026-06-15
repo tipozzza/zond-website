@@ -59,7 +59,7 @@ export default function Hero() {
           </span>
 
           <h1
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] drop-shadow-lg animate-fade-up"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-normal leading-[1.05] drop-shadow-lg animate-fade-up"
             style={{ animationDelay: "250ms" }}
           >
             Наружная реклама<br />в Томске
@@ -85,7 +85,7 @@ export default function Hero() {
           >
             <Link
               href="#contact-form"
-              className="inline-flex items-center justify-center bg-brand hover:bg-brand/90 text-white px-8 py-4 rounded-xl font-semibold transition-colors"
+              className="inline-flex items-center justify-center bg-brand hover:bg-brand/80 text-white px-8 py-4 rounded-xl font-semibold transition-colors"
             >
               Получить расчёт
             </Link>
