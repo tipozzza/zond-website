@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SERVICES } from "@/lib/site-data";
+import RevealHeading from "./RevealHeading";
 
 const ICONS: Record<string, LucideIcon> = {
   outdoor: Megaphone,
@@ -33,13 +34,15 @@ export default function Services() {
   return (
     <section id="services" className="py-12 md:py-20 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-          6 направлений <span className="text-brand">под одной крышей</span>
-        </h2>
-        <p className="text-lg text-slate-600 text-center mb-16 max-w-3xl mx-auto">
-          От проектирования до монтажа: наружная реклама, печать, производство конструкций,
-          дизайн, выставочные стенды и LED-решения.
-        </p>
+        <RevealHeading
+          className="text-4xl md:text-5xl font-bold text-center mb-4"
+          segments={[
+            { text: "6 направлений" },
+            { text: "под одной крышей", accent: true },
+          ]}
+          sub="От проектирования до монтажа: наружная реклама, печать, производство конструкций, дизайн, выставочные стенды и LED-решения."
+          subClassName="text-lg text-slate-600 text-center mb-16 max-w-3xl mx-auto"
+        />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, index) => {
