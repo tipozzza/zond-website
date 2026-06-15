@@ -54,7 +54,7 @@ export default function Hero() {
             className="self-start inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold uppercase tracking-wider animate-fade-up"
             style={{ animationDelay: "100ms" }}
           >
-            <span className="w-2 h-2 rounded-full bg-section-outdoor animate-pulse shadow-[0_0_12px_rgba(227,6,19,0.8)]" />
+            <span className="w-2 h-2 rounded-full bg-section-production animate-pulse shadow-[0_0_12px_rgba(133,196,65,0.8)]" />
             Работаем с 1992 года
           </span>
 
@@ -103,15 +103,17 @@ export default function Hero() {
         className="absolute bottom-8 left-0 right-0 z-10 animate-fade-up"
         style={{ animationDelay: "800ms" }}
       >
-        <div className="max-w-[1280px] mx-auto px-6 flex flex-wrap gap-2 md:gap-4 justify-end">
-          {BADGES.map((b) => (
-            <span
-              key={b}
-              className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium text-white"
-            >
-              {b}
-            </span>
-          ))}
+        <div className="max-w-[1280px] mx-auto px-6 flex justify-end">
+          <div className="max-w-xl w-full flex flex-wrap gap-2 md:gap-4 justify-start">
+            {BADGES.map((b) => (
+              <span
+                key={b}
+                className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium text-white"
+              >
+                {b}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
