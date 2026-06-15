@@ -11,6 +11,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { SERVICES } from "@/lib/site-data";
 import RevealHeading from "./RevealHeading";
+import Reveal from "./Reveal";
 
 const ICONS: Record<string, LucideIcon> = {
   outdoor: Megaphone,
@@ -49,8 +50,13 @@ export default function Services() {
             const Icon = ICONS[service.id] ?? Megaphone;
             const accent = ACCENT_COLORS[service.id] ?? "#6F395D";
             return (
-              <article
+              <Reveal
                 key={service.id}
+                delay={index * 80}
+                from="up"
+                className="h-full grid"
+              >
+              <article
                 style={{ "--accent": accent } as React.CSSProperties}
                 className="group bg-white rounded-3xl p-8 relative overflow-hidden border-2 border-slate-200 hover:border-[var(--accent)] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col"
               >
@@ -87,6 +93,7 @@ export default function Services() {
                   />
                 </Link>
               </article>
+              </Reveal>
             );
           })}
         </div>
