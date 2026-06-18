@@ -90,7 +90,7 @@ export default function Hero() {
               Получить расчёт
             </Link>
             <Link
-              href="/outdoor"
+              href="/outdoor#map"
               className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur border border-white/30 text-white px-8 py-4 rounded-xl font-semibold transition-colors"
             >
               Посмотреть конструкции

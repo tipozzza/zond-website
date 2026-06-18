@@ -301,7 +301,7 @@ export default function OutdoorPage() {
         </section>
 
         {/* Карта */}
-        <div id="map">
+        <div id="map" className="scroll-mt-24">
           <OutdoorMapSection />
         </div>
 
