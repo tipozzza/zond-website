@@ -1,55 +1,31 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { promises as fs } from "fs";
-import path from "path";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import sidesJson from "@/public/data/sides.json";
 import type { Side } from "@/lib/types";
 
-async function loadSides(): Promise<Side[]> {
-  const raw = await fs.readFile(path.join(process.cwd(), "public", "data", "sides.json"), "utf-8");
-  const data = JSON.parse(raw);
-  return Array.isArray(data) ? data : (data.sides ?? []);
-}
-// транслит: кириллические А/В (и строчные) -> латинские A/B, плюс trim/upper/decode
+const SIDES = (Array.isArray(sidesJson) ? sidesJson : ((sidesJson as { sides?: Side[] }).sides ?? [])) as Side[];
 const slug = (s: string) =>
   decodeURIComponent(s).trim().toUpperCase().replace(/А/g, "A").replace(/В/g, "B");
-
-export async function generateStaticParams() {
-  const sides = await loadSides();
-  const seen = new Set<string>();
-  const out: { id: string }[] = [];
-  for (const s of sides) {
-    if (!s.id) continue;
-    const id = slug(s.id);
-    if (!seen.has(id)) { seen.add(id); out.push({ id }); }
-  }
-  return out;
-}
-async function findSide(id: string) {
-  const sides = await loadSides();
+function findSide(id: string) {
   const t = slug(id);
-  return sides.find((s) => s.id && slug(s.id) === t);
+  return SIDES.find((s) => s.id && slug(s.id) === t);
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
-  const side = await findSide(id);
+  const side = findSide(id);
   if (!side) return { title: "Конструкция не найдена — Зонд-Реклама", robots: { index: false, follow: false } };
   const title = `Конструкция №${side.construction} сторона ${side.side} — Зонд-Реклама`;
   const img = side.photo_filename ? `/images/constructions/${side.photo_filename}` : undefined;
-  return {
-    title,
-    description: `${side.address}. Формат ${side.format}. Рекламная конструкция в Томске.`,
-    robots: { index: false, follow: false },
-    openGraph: { title, images: img ? [img] : [] },
-  };
+  return { title, description: `${side.address}. Формат ${side.format}. Рекламная конструкция в Томске.`, robots: { index: false, follow: false }, openGraph: { title, images: img ? [img] : [] } };
 }
 
 export default async function ConstructionPhotoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const side = await findSide(id);
+  const side = findSide(id);
   if (!side) notFound();
   const photo = side.photo_filename ? `/images/constructions/${side.photo_filename}` : null;
   return (
