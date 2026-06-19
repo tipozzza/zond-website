@@ -12,19 +12,25 @@ async function loadSides(): Promise<Side[]> {
   const data = JSON.parse(raw);
   return Array.isArray(data) ? data : (data.sides ?? []);
 }
-const norm = (s: string) => decodeURIComponent(s).trim().toUpperCase();
+// транслит: кириллические А/В (и строчные) -> латинские A/B, плюс trim/upper/decode
+const slug = (s: string) =>
+  decodeURIComponent(s).trim().toUpperCase().replace(/А/g, "A").replace(/В/g, "B");
 
 export async function generateStaticParams() {
   const sides = await loadSides();
   const seen = new Set<string>();
   const out: { id: string }[] = [];
-  for (const s of sides) if (s.id && !seen.has(s.id)) { seen.add(s.id); out.push({ id: s.id }); }
+  for (const s of sides) {
+    if (!s.id) continue;
+    const id = slug(s.id);
+    if (!seen.has(id)) { seen.add(id); out.push({ id }); }
+  }
   return out;
 }
 async function findSide(id: string) {
   const sides = await loadSides();
-  const t = norm(id);
-  return sides.find((s) => s.id && norm(s.id) === t);
+  const t = slug(id);
+  return sides.find((s) => s.id && slug(s.id) === t);
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
