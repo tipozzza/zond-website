@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Работа в ZOND",
     description: "Вакансии в Томске. Резюме на hr@zondreklama.ru.",
-    url: "https://zond-website.vercel.app/vacancies",
+    url: "https://zondreklama.ru/vacancies",
     siteName: "ZOND",
     locale: "ru_RU",
     type: "website",
@@ -69,8 +69,8 @@ const JOB_LOGIST_JSONLD = {
   hiringOrganization: {
     "@type": "Organization",
     name: "Зонд-Реклама",
-    sameAs: "https://zond-website.vercel.app",
-    logo: "https://zond-website.vercel.app/logo-square-purple.png",
+    sameAs: "https://zondreklama.ru",
+    logo: "https://zondreklama.ru/logo-square-purple.png",
   },
   jobLocation: {
     "@type": "Place",

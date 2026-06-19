@@ -4,14 +4,14 @@ export default function StructuredData() {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://zond-website.vercel.app/#organization",
+        "@id": "https://zondreklama.ru/#organization",
         name: "Зонд-Реклама",
         alternateName: "ГК Зонд-Реклама",
         legalName: "ООО «ФОРМАТ СИТИ»",
         description:
           "Рекламное агентство в Томске с 1992 года: наружная реклама, широкоформатная печать, производство вывесок и LED-иллюминация. Суббота — по предварительной записи.",
-        url: "https://zond-website.vercel.app",
-        logo: "https://zond-website.vercel.app/logo-square-purple.png",
+        url: "https://zondreklama.ru",
+        logo: "https://zondreklama.ru/logo-square-purple.png",
         foundingDate: "1992",
         sameAs: [
           "https://vk.com/zond.reklama",
@@ -22,12 +22,12 @@ export default function StructuredData() {
       },
       {
         "@type": "LocalBusiness",
-        "@id": "https://zond-website.vercel.app/#localbusiness",
+        "@id": "https://zondreklama.ru/#localbusiness",
         name: "Зонд-Реклама",
-        image: "https://zond-website.vercel.app/og-image.jpg",
+        image: "https://zondreklama.ru/og-image.jpg",
         telephone: "+7-3822-97-97-05",
         email: "office@zondreklama.ru",
-        url: "https://zond-website.vercel.app",
+        url: "https://zondreklama.ru",
         contactPoint: [
           {
             "@type": "ContactPoint",

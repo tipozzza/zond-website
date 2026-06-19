@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: "Новости агентства ZOND",
     description:
       "Реклама, производство, события в Томске. Цифровые билборды, реализованные проекты, акции.",
-    url: "https://zond-website.vercel.app/news",
+    url: "https://zondreklama.ru/news",
     siteName: "ZOND",
     locale: "ru_RU",
     type: "website",

@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     title: "Паспорт фасада в Томске под ключ",
     description:
       "Согласование наружной рекламы и фасадов в Комитете архитектуры Томска. 500+ объектов, 100% согласований, 3-4 недели.",
-    url: "https://zond-website.vercel.app/pasport-fasada",
+    url: "https://zondreklama.ru/pasport-fasada",
     siteName: "ZOND",
     locale: "ru_RU",
     type: "website",
@@ -235,9 +235,9 @@ const SERVICE_JSONLD = {
     "@type": "Organization",
     name: "Зонд-Реклама",
     alternateName: "ZOND",
-    url: "https://zond-website.vercel.app",
+    url: "https://zondreklama.ru",
   },
-  url: "https://zond-website.vercel.app/pasport-fasada",
+  url: "https://zondreklama.ru/pasport-fasada",
   sameAs: [EXTERNAL_SITE_URL],
   offers: {
     "@type": "AggregateOffer",
@@ -250,13 +250,13 @@ const SERVICE_JSONLD = {
 const IMAGE_JSONLD = {
   "@context": "https://schema.org",
   "@type": "ImageObject",
-  contentUrl: "https://zond-website.vercel.app/images/blog/pasport-example.jpg",
-  url: "https://zond-website.vercel.app/images/blog/pasport-example.jpg",
+  contentUrl: "https://zondreklama.ru/images/blog/pasport-example.jpg",
+  url: "https://zondreklama.ru/images/blog/pasport-example.jpg",
   name: "Паспорт фасада в Томске — пример работ ZOND",
   description:
     "Официальный документ согласования вывески с Комитетом архитектуры Томска",
   creditText: "ZOND — ООО «ФОРМАТ СИТИ», Томск",
-  acquireLicensePage: "https://zond-website.vercel.app/pasport-fasada",
+  acquireLicensePage: "https://zondreklama.ru/pasport-fasada",
 };
 
 export default function PasportFasadaPage() {

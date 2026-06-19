@@ -8,7 +8,7 @@ import FloatingTG from "@/components/FloatingTG";
 import { NEWS, type NewsItem } from "@/lib/news-data";
 import { buildOgUrl } from "@/lib/og";
 
-const BASE_URL = "https://zond-website.vercel.app";
+const BASE_URL = "https://zondreklama.ru";
 
 export async function generateStaticParams() {
   return NEWS.map((item) => ({ slug: item.slug }));

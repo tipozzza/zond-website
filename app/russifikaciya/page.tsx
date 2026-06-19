@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Русификация вывесок в Томске — закон с 1 марта 2026",
     description:
       "Перевод, замена или новая вывеска под закон РФ от 1 марта 2026. Бесплатный замер по Томску, согласование с администрацией, гарантия 2 года.",
-    url: "https://zond-website.vercel.app/russifikaciya",
+    url: "https://zondreklama.ru/russifikaciya",
     siteName: "ZOND",
     locale: "ru_RU",
     type: "website",
@@ -208,7 +208,7 @@ const SERVICE_JSONLD = {
   provider: {
     "@type": "Organization",
     name: "Зонд-Реклама",
-    url: "https://zond-website.vercel.app",
+    url: "https://zondreklama.ru",
   },
   offers: {
     "@type": "AggregateOffer",

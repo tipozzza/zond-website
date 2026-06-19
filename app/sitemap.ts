@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { NEWS } from "@/lib/news-data";
 import { BLOG } from "@/lib/blog-data";
 
-const BASE_URL = "https://zond-website.vercel.app";
+const BASE_URL = "https://zondreklama.ru";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [

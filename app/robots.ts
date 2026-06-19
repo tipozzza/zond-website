@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin/", "/api/admin/", "/_next/"],
       },
     ],
-    sitemap: "https://zond-website.vercel.app/sitemap.xml",
-    host: "zond-website.vercel.app",
+    sitemap: "https://zondreklama.ru/sitemap.xml",
+    host: "zondreklama.ru",
   };
 }

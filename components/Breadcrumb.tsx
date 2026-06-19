@@ -8,7 +8,7 @@ export default function Breadcrumb({ items }: { items: Crumb[] }) {
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `https://zond-website.vercel.app${item.url}`,
+      item: `https://zondreklama.ru${item.url}`,
     })),
   };
   return (

@@ -13,7 +13,7 @@ import {
 } from "@/lib/types/blog";
 import { buildOgUrl } from "@/lib/og";
 
-const BASE_URL = "https://zond-website.vercel.app";
+const BASE_URL = "https://zondreklama.ru";
 
 export async function generateStaticParams() {
   return BLOG.map((item) => ({ slug: item.slug }));

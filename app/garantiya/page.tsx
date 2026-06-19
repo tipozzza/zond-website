@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Гарантия на работы — ZOND",
     description:
       "2 года на материалы, 1 год на электронику. Бесплатный сервисный выезд по Томску. С 1992 года.",
-    url: "https://zond-website.vercel.app/garantiya",
+    url: "https://zondreklama.ru/garantiya",
     siteName: "ZOND",
     locale: "ru_RU",
     type: "website",
@@ -210,7 +210,7 @@ const SERVICE_JSONLD = {
     name: "Зонд-Реклама",
     alternateName: "ZOND",
     legalName: "ООО «ФОРМАТ СИТИ»",
-    url: "https://zond-website.vercel.app",
+    url: "https://zondreklama.ru",
     taxID: "7017200748",
   },
   hasOfferCatalog: {

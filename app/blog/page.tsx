@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Блог ZOND — гайды по рекламе",
     description:
       "Цены, согласования, технологии для бизнеса в Томске. Опыт компании с 1992 года.",
-    url: "https://zond-website.vercel.app/blog",
+    url: "https://zondreklama.ru/blog",
     siteName: "ZOND",
     locale: "ru_RU",
     type: "website",

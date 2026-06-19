@@ -13,7 +13,7 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zond-website.vercel.app"),
+  metadataBase: new URL("https://zondreklama.ru"),
   title: {
     default: "Зонд-Реклама — Реклама и производство в Томске с 1992 года",
     template: "%s | Зонд-Реклама",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Зонд-Реклама — Реклама и производство в Томске",
     description:
       "Полный цикл рекламы и производства: наружка, печать, вывески, дизайн, выставки.",
-    url: "https://zond-website.vercel.app",
+    url: "https://zondreklama.ru",
     siteName: "Зонд-Реклама",
     locale: "ru_RU",
     type: "website",

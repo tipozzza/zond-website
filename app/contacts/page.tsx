@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Контакты ZOND",
     description:
       "Томск, пр. Фрунзе 115 — звоните или приезжайте. 8 (3822) 97-97-05, office@zondreklama.ru.",
-    url: "https://zond-website.vercel.app/contacts",
+    url: "https://zondreklama.ru/contacts",
     siteName: "ZOND",
     locale: "ru_RU",
     type: "website",

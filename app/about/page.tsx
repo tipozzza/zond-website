@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "О компании ZOND",
     description: `${YEARS_ON_MARKET} ${YEARS_WORD} на рынке рекламы Томска — с 1992. 226 конструкций, собственный цех, дилерство MAXIBIT, бренд Лайтово.`,
-    url: "https://zond-website.vercel.app/about",
+    url: "https://zondreklama.ru/about",
     siteName: "ZOND",
     locale: "ru_RU",
     type: "website",

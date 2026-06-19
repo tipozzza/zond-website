@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ],
 };
 
-const BASE_URL = "https://zond-website.vercel.app";
+const BASE_URL = "https://zondreklama.ru";
 
 const SERVICES_ITEM_LIST = {
   "@context": "https://schema.org",

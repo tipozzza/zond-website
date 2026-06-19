@@ -17,7 +17,7 @@ export default function ServiceSchema({
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType,
-    provider: { "@id": "https://zond-website.vercel.app/#organization" },
+    provider: { "@id": "https://zondreklama.ru/#organization" },
     areaServed: { "@type": "City", name: "Томск" },
     name,
     description,
