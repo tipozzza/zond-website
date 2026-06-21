@@ -132,6 +132,11 @@ export default function ContactForm() {
         />
       </div>
       {error && <div className="text-red-600 text-sm">{error}</div>}
+      <p className="text-xs text-gray-500 leading-relaxed">
+        Отправляя форму, вы соглашаетесь с{" "}
+        <a href="/privacy" className="text-brand">политикой конфиденциальности</a>{" "}
+        и даёте согласие на обработку персональных данных.
+      </p>
       <button
         type="submit"
         disabled={submitting}

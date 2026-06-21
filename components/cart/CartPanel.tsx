@@ -282,6 +282,11 @@ export default function CartPanel() {
             </section>
 
             <div className="sticky bottom-0 px-6 py-4 bg-white border-t border-slate-200 flex flex-wrap items-center gap-3">
+              <p className="w-full text-xs text-gray-500 leading-relaxed">
+                Отправляя форму, вы соглашаетесь с{" "}
+                <a href="/privacy" className="text-brand">политикой конфиденциальности</a>{" "}
+                и даёте согласие на обработку персональных данных.
+              </p>
               <button
                 type="submit"
                 disabled={submitting || cart.items.length === 0}
