@@ -1,13 +1,8 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/**
- * Временный диагностический маршрут: показывает, доходят ли переменные окружения
- * до рантайма (без раскрытия значений — только наличие и длина).
- * Удалить после отладки.
- */
 export function GET() {
   const val = (k: string) => process.env[k] || "";
   return NextResponse.json({
@@ -21,9 +16,8 @@ export function GET() {
       GITHUB_TOKEN: Boolean(val("GITHUB_TOKEN")),
     },
     lengths: {
-      MAX_CRON_SECRET: val("MAX_CRON_SECRET").length, // ожидаем 32
-      MAX_BOT_TOKEN: val("MAX_BOT_TOKEN").length, // ожидаем ~84
-      MAX_GROUP_ID: val("MAX_GROUP_ID").length,
+      MAX_CRON_SECRET: val("MAX_CRON_SECRET").length,
+      MAX_BOT_TOKEN: val("MAX_BOT_TOKEN").length,
     },
   });
 }
