@@ -13,8 +13,8 @@ export const dynamic = "force-dynamic";
  * URL вебхука берётся из origin запроса (или env SITE_URL).
  */
 export async function GET(req: Request): Promise<Response> {
-  const secret = process.env.MAX_CRON_SECRET;
-  const got = new URL(req.url).searchParams.get("secret");
+  const secret = (process.env.MAX_CRON_SECRET || "").trim();
+  const got = (new URL(req.url).searchParams.get("secret") || "").trim();
   if (!secret || got !== secret) return new NextResponse("forbidden", { status: 403 });
 
   const webhookSecret = process.env.MAX_WEBHOOK_SECRET;

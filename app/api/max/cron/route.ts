@@ -11,8 +11,8 @@ export const dynamic = "force-dynamic";
  *   GET /api/max/cron?secret=MAX_CRON_SECRET
  */
 async function run(req: Request): Promise<Response> {
-  const secret = process.env.MAX_CRON_SECRET;
-  const got = new URL(req.url).searchParams.get("secret");
+  const secret = (process.env.MAX_CRON_SECRET || "").trim();
+  const got = (new URL(req.url).searchParams.get("secret") || "").trim();
   if (!secret || got !== secret) return new NextResponse("forbidden", { status: 403 });
 
   try {
