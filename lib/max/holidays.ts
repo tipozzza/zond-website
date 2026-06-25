@@ -28,14 +28,43 @@ export function holidayMessage(h: Holiday, employees: Employee[]): string {
   return text;
 }
 
-export function birthdayText(e: Employee): string {
-  const who = e.position ? `${e.full_name}, ${e.position}` : e.full_name;
-  return (
+/** Набор шаблонов поздравления с ДР. Бот выбирает случайный, чтобы тексты не приедались. */
+const BIRTHDAY_TEMPLATES: Array<(who: string) => string> = [
+  (who) =>
     "🎂 Сегодня День Рождения! 🎉\n\n" +
     `${who} — поздравляем!\n\n` +
     "Желаем крутых проектов, благодарных клиентов и отличного настроения каждый день.\n\n" +
-    "Команда ZOND ❤️"
-  );
+    "Команда ZOND ❤️",
+  (who) =>
+    "🎉 С Днём Рождения! 🎂\n\n" +
+    `Сегодня свой день отмечает ${who}.\n\n` +
+    "Пусть работа приносит удовольствие, а дома ждёт тепло. Здоровья, сил и поводов для радости!\n\n" +
+    "Команда ZOND 🥳",
+  (who) =>
+    "🎂 Поздравляем с Днём Рождения!\n\n" +
+    `${who}, спасибо, что ты с нами.\n\n` +
+    "Желаем ярких идей, лёгких задач и людей, которые ценят. Пусть год будет щедрым на хорошее!\n\n" +
+    "Команда ZOND ✨",
+  (who) =>
+    "🥳 У нас праздник — День Рождения!\n\n" +
+    `Сегодня поздравляем ${who}.\n\n` +
+    "Пусть будет больше отдыха, меньше суеты и всё складывается как надо. С Днём Рождения!\n\n" +
+    "Команда ZOND 🎈",
+  (who) =>
+    `🎉 С Днём Рождения, ${who}!\n\n` +
+    "Желаем энергии на любые задачи, надёжных коллег рядом и настроения на отлично. Ты делаешь ZOND сильнее — спасибо!\n\n" +
+    "Команда ZOND ❤️",
+  (who) =>
+    "🎂 Сегодня особенный день!\n\n" +
+    `День Рождения у ${who} 🎉\n\n` +
+    "Пусть сбывается задуманное, а впереди ждут отличные проекты и приятные сюрпризы.\n\n" +
+    "С праздником от всей команды ZOND!",
+];
+
+export function birthdayText(e: Employee): string {
+  const who = e.position ? `${e.full_name}, ${e.position}` : e.full_name;
+  const pick = BIRTHDAY_TEMPLATES[Math.floor(Math.random() * BIRTHDAY_TEMPLATES.length)];
+  return pick(who);
 }
 
 function yearsWord(n: number): string {
