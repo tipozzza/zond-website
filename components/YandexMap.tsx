@@ -92,37 +92,57 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
       });
       (window as any).__zondClusterer = clusterer;
 
-      const placemarks = sides
+      // Группируем стороны по конструкции: одна метка на конструкцию с её
+      // НОМЕРОМ (iconContent), а стороны А/Б показываем в балуне по клику.
+      // Кластер из РАЗНЫХ конструкций остаётся со счётчиком и при зуме
+      // распадается на метки-номера.
+      const byConstruction = new Map<string, Side[]>();
+      sides
         .filter((s) => s.lat !== null && s.lng !== null)
-        .map((side) => {
-          const photoHtml = side.photo_filename
-            ? `<img src="/images/constructions/${side.photo_filename}" alt="${side.id}" style="width:100%;max-width:280px;height:auto;border-radius:6px;margin-bottom:8px;display:block;" onerror="this.style.display='none'" />`
-            : "";
-          const price = side.priceFinal ? side.priceFinal.toLocaleString("ru-RU") + " ₽/мес" : "";
-          const button = `
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
-              <button onclick="window.__zondOpenSide('${side.id}'); return false;" style="flex:1;min-width:140px;background:#F57C28;color:white;padding:8px 14px;border-radius:6px;border:none;cursor:pointer;font-weight:600;">Подробнее</button>
-              <button onclick="window.__zondAddSideToCart('${side.id}'); return false;" style="flex:1;min-width:120px;background:white;color:#F57C28;padding:8px 14px;border-radius:6px;border:2px solid #F57C28;cursor:pointer;font-weight:600;">➕ В подбор</button>
-            </div>`;
-          const placemark = new window.ymaps.Placemark(
-            [side.lat, side.lng],
-            {
-              hintContent: `${side.id} — ${side.type} ${side.format}`,
-              balloonContentHeader: `<strong>${side.id}</strong> · ${side.type} ${side.format}`,
-              balloonContentBody: `${photoHtml}${side.address}<br/>${price}`,
-              balloonContentFooter: button,
-            },
-            {
-              preset: "islands#dotIcon",
-              iconColor: MARKER_COLOR,
-            }
-          );
-          placemark.events.add("click", (e: any) => {
-            e.preventDefault();
-            onSideFocusRef.current(side);
-          });
-          return placemark;
+        .forEach((s) => {
+          const group = byConstruction.get(s.construction);
+          if (group) group.push(s);
+          else byConstruction.set(s.construction, [s]);
         });
+
+      const placemarks: any[] = [];
+      byConstruction.forEach((group, construction) => {
+        const rep = group[0]; // координата конструкции — по первой стороне
+        const photoSide = group.find((s) => s.photo_filename);
+        const photoHtml = photoSide
+          ? `<img src="/images/constructions/${photoSide.photo_filename}" alt="Конструкция ${construction}" style="width:100%;max-width:280px;height:auto;border-radius:6px;margin-bottom:8px;display:block;" onerror="this.style.display='none'" />`
+          : "";
+        const sidesHtml = group
+          .map((side) => {
+            const price = side.priceFinal
+              ? side.priceFinal.toLocaleString("ru-RU") + " ₽/мес"
+              : "";
+            return `
+              <div style="border-top:1px solid #eee;padding-top:8px;margin-top:8px;">
+                <div style="font-weight:600;">Сторона ${side.side} · ${side.type} ${side.format}${price ? ` · ${price}` : ""}</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+                  <button onclick="window.__zondOpenSide('${side.id}'); return false;" style="flex:1;min-width:140px;background:#F57C28;color:white;padding:8px 14px;border-radius:6px;border:none;cursor:pointer;font-weight:600;">Подробнее</button>
+                  <button onclick="window.__zondAddSideToCart('${side.id}'); return false;" style="flex:1;min-width:120px;background:white;color:#F57C28;padding:8px 14px;border-radius:6px;border:2px solid #F57C28;cursor:pointer;font-weight:600;">➕ В подбор</button>
+                </div>
+              </div>`;
+          })
+          .join("");
+
+        const placemark = new window.ymaps.Placemark(
+          [rep.lat, rep.lng],
+          {
+            iconContent: construction,
+            hintContent: `Конструкция ${construction} · ${group.length} ${group.length === 1 ? "сторона" : "стор."}`,
+            balloonContentHeader: `<strong>Конструкция №${construction}</strong>`,
+            balloonContentBody: `${photoHtml}<div>${rep.address}</div>${sidesHtml}`,
+          },
+          {
+            preset: "islands#violetStretchyIcon",
+            iconColor: MARKER_COLOR,
+          }
+        );
+        placemarks.push(placemark);
+      });
 
       clusterer.add(placemarks);
       map.geoObjects.add(clusterer);
