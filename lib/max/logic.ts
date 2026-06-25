@@ -264,6 +264,9 @@ async function handleCommand(args: { cmd: string; userId: number; chatId?: numbe
     case "убрать":
     case "remove":
       return void (await cmdRemove(userId, replyTo, args.cmd));
+    case "добавить":
+    case "add":
+      return void (await cmdAdd(userId, replyTo, args.cmd));
     case "добавить_праздник":
     case "addholiday":
       return void (await cmdAddHoliday(userId, replyTo, args.cmd));
@@ -293,6 +296,39 @@ async function cmdList(userId: number, replyTo: number): Promise<void> {
   const lines = [`Зарегистрировано: ${emps.length}`, ""];
   emps.forEach((e, i) => lines.push(`${i + 1}. ${e.full_name} — ${e.position} (ДР ${ddmm(e.birth_day, e.birth_month)})`));
   await sendMessage({ chatId: replyTo, text: lines.join("\n") });
+}
+
+async function cmdAdd(userId: number, replyTo: number, cmd: string): Promise<void> {
+  if (!isAdmin(userId)) return void sendMessage({ chatId: replyTo, text: T.ADMIN_ONLY });
+  const parts = commandArgs(cmd).split("|").map((x) => x.trim());
+  if (parts.length < 3 || !parts[0] || !parts[1] || !parts[2]) {
+    return void sendMessage({
+      chatId: replyTo,
+      text: "Формат: /добавить ФИО | должность | ДД.ММ\nПример: /добавить Иванов Иван Иванович | дизайнер | 14.03\n(дату можно с годом: 14.03.1990)",
+    });
+  }
+  const [fio, position, bday] = parts;
+  const d = parseBirthday(bday);
+  if (!d) return void sendMessage({ chatId: replyTo, text: "Не понял дату. Формат ДД.ММ или ДД.ММ.ГГГГ, например 14.03." });
+  const patr = fio.toLowerCase().split(/\s+/)[2] ?? "";
+  const gender: "male" | "female" | null = /(вна|чна)$/.test(patr) ? "female" : /вич$/.test(patr) ? "male" : null;
+  const { store } = await loadStore();
+  const newId = store.employees.reduce((m, e) => Math.min(m, e.user_id), 0) - 1;
+  await upsertEmployee({
+    user_id: newId,
+    full_name: fio,
+    position,
+    birth_day: d.day,
+    birth_month: d.month,
+    birth_year: d.year ?? null,
+    hired_year: 0,
+    hired_full_date: null,
+    gender,
+    consent_date: new Date().toISOString(),
+    created_at: new Date().toISOString(),
+    active: true,
+  });
+  await sendMessage({ chatId: replyTo, text: `Добавил: ${fio} — ${position} (ДР ${ddmm(d.day, d.month)}).` });
 }
 
 async function cmdRemove(userId: number, replyTo: number, cmd: string): Promise<void> {
