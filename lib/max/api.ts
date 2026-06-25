@@ -1,9 +1,9 @@
 ﻿/**
- * Минимальный клиент MAX Bot API (platform-api.max.ru).
+ * Минимальный клиент MAX Bot API (platform-api2.max.ru).
  * Авторизация — заголовком Authorization: <token> (query access_token отключён).
  */
 
-const BASE = "https://platform-api.max.ru";
+const BASE = "https://platform-api2.max.ru";
 
 function token(): string {
   const t = process.env.MAX_BOT_TOKEN;
@@ -106,3 +106,4 @@ async function safeText(res: Response): Promise<string> {
     return "";
   }
 }
+
