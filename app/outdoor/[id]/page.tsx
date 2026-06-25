@@ -11,7 +11,12 @@ const slug = (s: string) =>
   decodeURIComponent(s).trim().toUpperCase().replace(/А/g, "A").replace(/В/g, "B");
 function findSide(id: string) {
   const t = slug(id);
-  return SIDES.find((s) => s.id && slug(s.id) === t);
+  // 1) Exact match by (now unique) id — enables per-side links like /outdoor/118B.
+  const exact = SIDES.find((s) => s.id && slug(s.id) === t);
+  if (exact) return exact;
+  // 2) Backward-compat fallback for legacy bare links like /outdoor/118:
+  //    match by construction number, returning the first side (side A), as before.
+  return SIDES.find((s) => s.construction && slug(s.construction) === t);
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
