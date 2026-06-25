@@ -15,6 +15,8 @@ import {
   deleteEmployee,
   getEmployee,
   loadStore,
+  mergeImportedDuplicate,
+  setEmployeeActive,
   upsertEmployee,
   type Employee,
 } from "./team";
@@ -207,6 +209,7 @@ async function saveEmployee(userId: number, d: T.DraftData): Promise<boolean> {
       active: true,
     };
     await upsertEmployee(emp);
+    await mergeImportedDuplicate(emp);
     return true;
   } catch (e) {
     console.error("[max/logic] saveEmployee error", e);
@@ -258,6 +261,9 @@ async function handleCommand(args: { cmd: string; userId: number; chatId?: numbe
     case "список":
     case "list":
       return void (await cmdList(userId, replyTo));
+    case "убрать":
+    case "remove":
+      return void (await cmdRemove(userId, replyTo, args.cmd));
     case "добавить_праздник":
     case "addholiday":
       return void (await cmdAddHoliday(userId, replyTo, args.cmd));
@@ -287,6 +293,20 @@ async function cmdList(userId: number, replyTo: number): Promise<void> {
   const lines = [`Зарегистрировано: ${emps.length}`, ""];
   emps.forEach((e, i) => lines.push(`${i + 1}. ${e.full_name} — ${e.position} (ДР ${ddmm(e.birth_day, e.birth_month)})`));
   await sendMessage({ chatId: replyTo, text: lines.join("\n") });
+}
+
+async function cmdRemove(userId: number, replyTo: number, cmd: string): Promise<void> {
+  if (!isAdmin(userId)) return void sendMessage({ chatId: replyTo, text: T.ADMIN_ONLY });
+  const n = parseInt(commandArgs(cmd), 10);
+  if (!n || n < 1) {
+    return void sendMessage({ chatId: replyTo, text: "Формат: /убрать N — номер сотрудника из /список. Сначала вызови /список." });
+  }
+  const { store } = await loadStore();
+  const emps = store.employees.filter((e) => e.active);
+  if (n > emps.length) return void sendMessage({ chatId: replyTo, text: `В списке только ${emps.length} сотрудников.` });
+  const target = emps[n - 1];
+  await setEmployeeActive(target.user_id, false);
+  await sendMessage({ chatId: replyTo, text: `Убрал из поздравлений: ${target.full_name}.` });
 }
 
 async function cmdAddHoliday(userId: number, replyTo: number, cmd: string): Promise<void> {

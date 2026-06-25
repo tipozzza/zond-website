@@ -77,6 +77,37 @@ export async function addCustomHoliday(day: number, month: number, title: string
   await saveStore(store, sha, `team: добавлен праздник ${day}.${month} — ${title}`);
 }
 
+export async function setEmployeeActive(userId: number, active: boolean): Promise<Employee | null> {
+  const { store, sha } = await loadStore();
+  const emp = store.employees.find((e) => e.user_id === userId);
+  if (!emp) return null;
+  emp.active = active;
+  await saveStore(store, sha, `team: ${active ? "активирован" : "деактивирован"} ${emp.full_name}`);
+  return emp;
+}
+
+/**
+ * Склейка дублей: когда сотрудник сам прошёл онбординг, деактивируем
+ * импортированную запись (технический user_id < 0) с тем же ДР и совпадающим
+ * словом в ФИО — чтобы не было двойного поздравления.
+ */
+export async function mergeImportedDuplicate(newEmp: Employee): Promise<string | null> {
+  const { store, sha } = await loadStore();
+  const tokens = newEmp.full_name.toLowerCase().split(/\s+/).filter(Boolean);
+  let merged: string | null = null;
+  for (const e of store.employees) {
+    if (e.user_id < 0 && e.active && e.birth_day === newEmp.birth_day && e.birth_month === newEmp.birth_month) {
+      const impTokens = e.full_name.toLowerCase().split(/\s+/).filter(Boolean);
+      if (impTokens.some((t) => tokens.includes(t))) {
+        e.active = false;
+        merged = e.full_name;
+      }
+    }
+  }
+  if (merged) await saveStore(store, sha, `team: склейка дубля ${merged} -> ${newEmp.full_name}`);
+  return merged;
+}
+
 export async function getEmployee(userId: number): Promise<Employee | null> {
   const { store } = await loadStore();
   return store.employees.find((e) => e.user_id === userId) ?? null;
