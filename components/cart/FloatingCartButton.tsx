@@ -3,7 +3,7 @@
 import { useCart } from "@/lib/cart/CartContext";
 
 export default function FloatingCartButton() {
-  const { items, pricePerMonthTotal, open } = useCart();
+  const { items, open } = useCart();
 
   if (items.length === 0) return null;
 
@@ -22,11 +22,9 @@ export default function FloatingCartButton() {
           В подборе: {items.length}{" "}
           {items.length === 1 ? "конструкция" : items.length < 5 ? "конструкции" : "конструкций"}
         </span>
-        {pricePerMonthTotal > 0 && (
-          <span className="block text-xs sm:text-sm opacity-90 leading-tight mt-0.5">
-            {pricePerMonthTotal.toLocaleString("ru-RU")} ₽/мес → Открыть
-          </span>
-        )}
+        <span className="block text-xs sm:text-sm opacity-90 leading-tight mt-0.5">
+          Открыть →
+        </span>
       </span>
       <span className="text-xl shrink-0" aria-hidden>
         →

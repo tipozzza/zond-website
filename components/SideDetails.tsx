@@ -75,18 +75,6 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
             </div>
           </div>
 
-          {side.priceFinal && (
-            <div className="bg-[#F57C28]/5 p-4 rounded-lg">
-              <div className="text-sm text-slate-500">Стоимость аренды</div>
-              <div className="text-3xl font-bold text-[#F57C28]">{side.priceFinal.toLocaleString("ru-RU")} ₽/мес</div>
-              {side.installCost && (
-                <div className="text-sm text-slate-600 mt-1">
-                  + монтаж: {side.installCost.toLocaleString("ru-RU")} ₽
-                </div>
-              )}
-            </div>
-          )}
-
           <div className="flex flex-col sm:flex-row gap-3 mt-4">
             <button
               onClick={onBook}

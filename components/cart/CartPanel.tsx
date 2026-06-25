@@ -187,10 +187,6 @@ export default function CartPanel() {
                         </div>
                         <div className="text-xs text-slate-500">
                           {it.type} {it.format}
-                          {" · "}
-                          {it.pricePerMonth
-                            ? `${it.pricePerMonth.toLocaleString("ru-RU")} ₽/мес`
-                            : "цена по запросу"}
                         </div>
                       </div>
                       <button
@@ -207,36 +203,12 @@ export default function CartPanel() {
               )}
             </section>
 
-            {/* Расчёт */}
+            {/* Стоимость публично не показываем — рассчитывает менеджер */}
             {cart.items.length > 0 && (
-              <section className="px-6 py-5 border-b border-slate-100 bg-slate-50">
-                <div className="flex justify-between text-sm text-slate-600 mb-1">
-                  <span>За месяц</span>
-                  <span className="font-semibold">
-                    {cart.pricePerMonthTotal.toLocaleString("ru-RU")} ₽
-                  </span>
-                </div>
-                {cart.months > 0 && (
-                  <>
-                    <div className="flex justify-between text-sm text-slate-600 mb-1">
-                      <span>
-                        × {cart.months} мес
-                        {cart.discountPct > 0 && ` − ${Math.round(cart.discountPct * 100)}%`}
-                      </span>
-                      <span className="font-semibold">
-                        {cart.total.toLocaleString("ru-RU")} ₽
-                      </span>
-                    </div>
-                    <div className="flex justify-between text-base font-bold mt-2 pt-2 border-t border-slate-200">
-                      <span>Итого за период</span>
-                      <span className="text-[#F57C28]">
-                        {cart.total.toLocaleString("ru-RU")} ₽
-                      </span>
-                    </div>
-                  </>
-                )}
-                <p className="text-xs text-slate-500 mt-2">
-                  Без учёта печати макета и монтажа. Финальный счёт — менеджер.
+              <section className="px-6 py-4 border-b border-slate-100 bg-slate-50">
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  Стоимость размещения рассчитает менеджер по вашему запросу — с
+                  учётом срока, печати макета и монтажа.
                 </p>
               </section>
             )}
