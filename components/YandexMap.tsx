@@ -27,7 +27,7 @@ type Props = {
 export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
-  const clustererHiddenRef = useRef(false);
+  const constructionLayerHiddenRef = useRef(false);
   const onSideClickRef = useRef(onSideClick);
   const onSideFocusRef = useRef(onSideFocus);
   const [scriptLoaded, setScriptLoaded] = useState(
@@ -82,20 +82,14 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
         map.balloon.close();
       };
 
-      const clusterer = new window.ymaps.Clusterer({
-        preset: "islands#violetClusterIcons",
-        groupByCoordinates: false,
-        clusterDisableClickZoom: false,
-        gridSize: 80,
-        clusterBalloonContentLayout: "cluster#balloonAccordion",
-        clusterBalloonPanelMaxMapArea: 0,
-      });
-      (window as any).__zondClusterer = clusterer;
+      // Без кластеризации: слой конструкций — обычная коллекция меток.
+      // Кружки-счётчики не используем вовсе, чтобы номера были видны на
+      // любом зуме (даже когда метки ложатся плотно — это ожидаемо).
+      const constructionLayer = new window.ymaps.GeoObjectCollection();
+      (window as any).__zondConstructionLayer = constructionLayer;
 
       // Группируем стороны по конструкции: одна метка на конструкцию с её
-      // НОМЕРОМ (iconContent), а стороны А/Б показываем в балуне по клику.
-      // Кластер из РАЗНЫХ конструкций остаётся со счётчиком и при зуме
-      // распадается на метки-номера.
+      // НОМЕРОМ (iconContent), стороны А/Б показываем в балуне по клику.
       const byConstruction = new Map<string, Side[]>();
       sides
         .filter((s) => s.lat !== null && s.lng !== null)
@@ -144,13 +138,13 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
         placemarks.push(placemark);
       });
 
-      clusterer.add(placemarks);
-      map.geoObjects.add(clusterer);
+      placemarks.forEach((p) => constructionLayer.add(p));
+      map.geoObjects.add(constructionLayer);
 
       const highlightLayer = new window.ymaps.GeoObjectCollection();
       map.geoObjects.add(highlightLayer);
       (window as any).__zondHighlightLayer = highlightLayer;
-      clustererHiddenRef.current = false;
+      constructionLayerHiddenRef.current = false;
 
       mapInstance.current = map;
       setMapReady(true);
@@ -168,16 +162,16 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
   useEffect(() => {
     if (!mapReady || !mapInstance.current) return;
     const map = mapInstance.current;
-    const clusterer = (window as any).__zondClusterer;
+    const constructionLayer = (window as any).__zondConstructionLayer;
     const highlightLayer = (window as any).__zondHighlightLayer;
-    if (!clusterer || !highlightLayer) return;
+    if (!constructionLayer || !highlightLayer) return;
 
     highlightLayer.removeAll();
 
     if (focusSide && focusSide.lat != null && focusSide.lng != null) {
-      if (!clustererHiddenRef.current) {
-        map.geoObjects.remove(clusterer);
-        clustererHiddenRef.current = true;
+      if (!constructionLayerHiddenRef.current) {
+        map.geoObjects.remove(constructionLayer);
+        constructionLayerHiddenRef.current = true;
       }
 
       const HighlightLayout = window.ymaps.templateLayoutFactory.createClass(
@@ -210,9 +204,9 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
       const t = setTimeout(() => placemark.balloon.open(), 600);
       return () => clearTimeout(t);
     } else {
-      if (clustererHiddenRef.current) {
-        map.geoObjects.add(clusterer);
-        clustererHiddenRef.current = false;
+      if (constructionLayerHiddenRef.current) {
+        map.geoObjects.add(constructionLayer);
+        constructionLayerHiddenRef.current = false;
       }
     }
   }, [focusSide, mapReady]);
