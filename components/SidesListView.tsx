@@ -16,7 +16,6 @@ const COLUMNS: { k: SortKey; label: string }[] = [
   { k: "address", label: "Адрес" },
   { k: "type", label: "Тип" },
   { k: "format", label: "Формат" },
-  { k: "priceFinal", label: "Цена ₽/мес" },
   { k: "grp", label: "GRP" },
 ];
 
@@ -159,9 +158,6 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
                 <td className="px-3 py-2">{s.address}</td>
                 <td className="px-3 py-2">{s.type}</td>
                 <td className="px-3 py-2">{s.format}</td>
-                <td className="px-3 py-2 font-semibold">
-                  {s.priceFinal ? s.priceFinal.toLocaleString("ru-RU") : "—"}
-                </td>
                 <td className="px-3 py-2">{s.grp ?? "—"}</td>
                 <td className="px-3 py-2">{s.illuminated ? "✓" : "—"}</td>
                 <td className="px-3 py-2">
@@ -185,7 +181,7 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
             ))}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-3 py-8 text-center text-slate-500">
+                <td colSpan={7} className="px-3 py-8 text-center text-slate-500">
                   Ничего не найдено
                 </td>
               </tr>

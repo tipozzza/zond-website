@@ -108,12 +108,9 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
           : "";
         const sidesHtml = group
           .map((side) => {
-            const price = side.priceFinal
-              ? side.priceFinal.toLocaleString("ru-RU") + " ₽/мес"
-              : "";
             return `
               <div style="border-top:1px solid #eee;padding-top:8px;margin-top:8px;">
-                <div style="font-weight:600;">Сторона ${side.side} · ${side.type} ${side.format}${price ? ` · ${price}` : ""}</div>
+                <div style="font-weight:600;">Сторона ${side.side} · ${side.type} ${side.format}</div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
                   <button onclick="window.__zondOpenSide('${side.id}'); return false;" style="flex:1;min-width:140px;background:#F57C28;color:white;padding:8px 14px;border-radius:6px;border:none;cursor:pointer;font-weight:600;">Подробнее</button>
                   <button onclick="window.__zondAddSideToCart('${side.id}'); return false;" style="flex:1;min-width:120px;background:white;color:#F57C28;padding:8px 14px;border-radius:6px;border:2px solid #F57C28;cursor:pointer;font-weight:600;">➕ В подбор</button>
@@ -187,7 +184,7 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
         {
           hintContent: `${focusSide.id} — ${focusSide.type} ${focusSide.format}`,
           balloonContentHeader: `<strong>${focusSide.id}</strong> · ${focusSide.type} ${focusSide.format}`,
-          balloonContentBody: `${focusSide.address}<br/>${focusSide.priceFinal ? focusSide.priceFinal.toLocaleString("ru-RU") + " ₽/мес" : ""}`,
+          balloonContentBody: `${focusSide.address}`,
           balloonContentFooter: `
             <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
               <button onclick="window.__zondOpenSide && window.__zondOpenSide('${focusSide.id}'); return false;" style="flex:1;min-width:140px;background:#F57C28;color:white;padding:8px 14px;border-radius:6px;border:none;cursor:pointer;font-weight:600;">Подробнее</button>
