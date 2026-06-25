@@ -1,8 +1,6 @@
-/**
+﻿/**
  * Минимальный клиент MAX Bot API (platform-api.max.ru).
- *
- * Используется ботом «Команда ZOND», встроенным в сайт как webhook-маршрут.
- * Токен берётся из env MAX_BOT_TOKEN. Никаких секретов в коде.
+ * Авторизация — заголовком Authorization: <token> (query access_token отключён).
  */
 
 const BASE = "https://platform-api.max.ru";
@@ -13,9 +11,12 @@ function token(): string {
   return t;
 }
 
+function authHeaders(): Record<string, string> {
+  return { "Content-Type": "application/json", Authorization: token() };
+}
+
 function url(path: string, params: Record<string, string | number | undefined> = {}): string {
   const u = new URL(BASE + path);
-  u.searchParams.set("access_token", token());
   for (const [k, v] of Object.entries(params)) {
     if (v !== undefined && v !== null) u.searchParams.set(k, String(v));
   }
@@ -24,7 +25,6 @@ function url(path: string, params: Record<string, string | number | undefined> =
 
 export type CallbackBtn = { text: string; payload: string };
 
-/** Собрать вложение-клавиатуру из строк кнопок (каждая строка — массив кнопок). */
 export function inlineKeyboard(rows: CallbackBtn[][]) {
   return {
     type: "inline_keyboard",
@@ -36,20 +36,14 @@ export function inlineKeyboard(rows: CallbackBtn[][]) {
   };
 }
 
-type SendArgs = {
-  chatId?: number;
-  userId?: number;
-  text: string;
-  keyboard?: CallbackBtn[][];
-};
+type SendArgs = { chatId?: number; userId?: number; text: string; keyboard?: CallbackBtn[][] };
 
-/** Отправить сообщение в чат (chatId) или пользователю (userId). */
 export async function sendMessage({ chatId, userId, text, keyboard }: SendArgs): Promise<boolean> {
   try {
     const attachments = keyboard ? [inlineKeyboard(keyboard)] : [];
     const res = await fetch(url("/messages", { chat_id: chatId, user_id: userId }), {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: authHeaders(),
       body: JSON.stringify({ text, attachments }),
     });
     if (!res.ok) {
@@ -63,7 +57,6 @@ export async function sendMessage({ chatId, userId, text, keyboard }: SendArgs):
   }
 }
 
-/** Ответить на нажатие кнопки (всплывашка + опционально заменить текст сообщения). */
 export async function answerCallback(
   callbackId: string,
   opts: { notification?: string; newText?: string } = {},
@@ -74,7 +67,7 @@ export async function answerCallback(
     if (opts.newText) body.message = { text: opts.newText };
     const res = await fetch(url("/answers", { callback_id: callbackId }), {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: authHeaders(),
       body: JSON.stringify(body),
     });
     if (!res.ok) {
@@ -88,11 +81,10 @@ export async function answerCallback(
   }
 }
 
-/** Подписать бота на webhook по указанному URL (с секретом в заголовке). */
 export async function subscribeWebhook(webhookUrl: string, secret: string): Promise<unknown> {
   const res = await fetch(url("/subscriptions"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: authHeaders(),
     body: JSON.stringify({ url: webhookUrl, secret }),
   });
   const data = await res.json().catch(() => ({}));
@@ -100,9 +92,8 @@ export async function subscribeWebhook(webhookUrl: string, secret: string): Prom
   return data;
 }
 
-/** Информация о боте (для проверки токена). */
 export async function getMe(): Promise<unknown> {
-  const res = await fetch(url("/me"), { cache: "no-store" });
+  const res = await fetch(url("/me"), { headers: { Authorization: token() }, cache: "no-store" });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(`getMe ${res.status}: ${JSON.stringify(data)}`);
   return data;
