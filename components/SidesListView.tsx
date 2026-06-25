@@ -9,12 +9,10 @@ type Props = {
   onShowOnMap: (side: Side) => void;
 };
 
-type SortKey = "id" | "address" | "type" | "format" | "priceFinal" | "grp";
-
-const PER_PAGE = 50;
+type SortKey = "construction" | "address" | "type" | "format" | "priceFinal" | "grp";
 
 const COLUMNS: { k: SortKey; label: string }[] = [
-  { k: "id", label: "Номер" },
+  { k: "construction", label: "Номер" },
   { k: "address", label: "Адрес" },
   { k: "type", label: "Тип" },
   { k: "format", label: "Формат" },
@@ -22,42 +20,64 @@ const COLUMNS: { k: SortKey; label: string }[] = [
   { k: "grp", label: "GRP" },
 ];
 
+// `id` в данных НЕ уникален (у конструкций с двумя сторонами A/B обе стороны
+// имеют одинаковый id). Уникальный ключ — construction + side.
+const rowKey = (s: Side) => `${s.construction}|${s.side}`;
+const rowLabel = (s: Side) => `${s.construction}${s.side}`;
+
+// Сортировка по умолчанию: номер конструкции числами (с учётом ведущих нулей),
+// затем сторона натурально (А1 < А2 < А10 < Б1).
+const byConstruction = (a: Side, b: Side) => {
+  const an = parseInt(a.construction, 10);
+  const bn = parseInt(b.construction, 10);
+  if (an !== bn) return an - bn;
+  return a.side.localeCompare(b.side, "ru", { numeric: true });
+};
+
 export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props) {
   const [search, setSearch] = useState("");
-  const [sortKey, setSortKey] = useState<SortKey>("id");
+  const [sortKey, setSortKey] = useState<SortKey>("construction");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
-  const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
-    const q = search.toLowerCase().trim();
-    let result = sides;
-    if (q) {
-      result = sides.filter(
-        (s) =>
-          s.id.toLowerCase().includes(q) ||
-          s.address.toLowerCase().includes(q) ||
-          s.type.toLowerCase().includes(q) ||
-          s.format.toLowerCase().includes(q)
-      );
-    }
-    result = [...result].sort((a, b) => {
-      const av = a[sortKey];
-      const bv = b[sortKey];
-      if (av == null) return 1;
-      if (bv == null) return -1;
-      if (typeof av === "number" && typeof bv === "number") {
-        return sortDir === "asc" ? av - bv : bv - av;
-      }
-      return sortDir === "asc"
-        ? String(av).localeCompare(String(bv), "ru")
-        : String(bv).localeCompare(String(av), "ru");
-    });
-    return result;
-  }, [sides, search, sortKey, sortDir]);
+    const q = search.trim().toLowerCase();
+    const base = q
+      ? sides.filter(
+          (s) =>
+            s.construction.toLowerCase().includes(q) ||
+            s.address.toLowerCase().includes(q) ||
+            s.type.toLowerCase().includes(q)
+        )
+      : sides;
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
-  const safePage = Math.min(page, totalPages);
-  const pageItems = filtered.slice((safePage - 1) * PER_PAGE, safePage * PER_PAGE);
+    const dir = sortDir === "asc" ? 1 : -1;
+    return [...base].sort((a, b) => {
+      let cmp: number;
+      switch (sortKey) {
+        case "construction":
+          cmp = byConstruction(a, b);
+          break;
+        case "priceFinal":
+        case "grp": {
+          const av = a[sortKey];
+          const bv = b[sortKey];
+          if (av == null && bv == null) cmp = byConstruction(a, b);
+          else if (av == null) return 1; // пустые значения всегда внизу
+          else if (bv == null) return -1;
+          else cmp = av - bv;
+          break;
+        }
+        default:
+          cmp = String(a[sortKey] ?? "").localeCompare(
+            String(b[sortKey] ?? ""),
+            "ru",
+            { numeric: true }
+          );
+      }
+      if (cmp === 0) cmp = byConstruction(a, b); // стабильный tiebreak
+      return dir * cmp;
+    });
+  }, [sides, search, sortKey, sortDir]);
 
   const toggleSort = (k: SortKey) => {
     if (sortKey === k) {
@@ -66,7 +86,6 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
       setSortKey(k);
       setSortDir("asc");
     }
-    setPage(1);
   };
 
   return (
@@ -75,15 +94,12 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
         <input
           type="text"
           value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setPage(1);
-          }}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Поиск по адресу, номеру, типу..."
           className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#F57C28] focus:border-transparent"
         />
         <div className="mt-2 text-sm text-slate-500">
-          Показано {pageItems.length} из {filtered.length} (всего {sides.length})
+          Показано {filtered.length} из {filtered.length} (всего {sides.length})
         </div>
       </div>
 
@@ -106,9 +122,9 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
             </tr>
           </thead>
           <tbody>
-            {pageItems.map((s) => (
-              <tr key={s.id} className="border-t border-slate-100 hover:bg-[#F57C28]/5">
-                <td className="px-3 py-2 font-mono font-semibold">{s.id}</td>
+            {filtered.map((s) => (
+              <tr key={rowKey(s)} className="border-t border-slate-100 hover:bg-[#F57C28]/5">
+                <td className="px-3 py-2 font-mono font-semibold">{rowLabel(s)}</td>
                 <td className="px-3 py-2">{s.address}</td>
                 <td className="px-3 py-2">{s.type}</td>
                 <td className="px-3 py-2">{s.format}</td>
@@ -136,7 +152,7 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
                 </td>
               </tr>
             ))}
-            {pageItems.length === 0 && (
+            {filtered.length === 0 && (
               <tr>
                 <td colSpan={8} className="px-3 py-8 text-center text-slate-500">
                   Ничего не найдено
@@ -146,28 +162,6 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
           </tbody>
         </table>
       </div>
-
-      {totalPages > 1 && (
-        <div className="p-4 border-t border-slate-200 flex items-center justify-between text-sm">
-          <button
-            onClick={() => setPage((p) => Math.max(1, p - 1))}
-            disabled={safePage === 1}
-            className="px-3 py-1 rounded border disabled:opacity-50"
-          >
-            ← Назад
-          </button>
-          <span>
-            Страница {safePage} из {totalPages}
-          </span>
-          <button
-            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-            disabled={safePage === totalPages}
-            className="px-3 py-1 rounded border disabled:opacity-50"
-          >
-            Далее →
-          </button>
-        </div>
-      )}
     </div>
   );
 }
