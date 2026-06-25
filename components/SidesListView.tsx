@@ -25,6 +25,18 @@ const COLUMNS: { k: SortKey; label: string }[] = [
 const rowKey = (s: Side) => `${s.construction}|${s.side}`;
 const rowLabel = (s: Side) => `${s.construction}${s.side}`;
 
+// Кир.↔лат. гомоглифы → канонический латинский вид (после lowercase), чтобы
+// "1A" (лат.) и "1А" (кир.) считались одинаковыми независимо от раскладки.
+const HOMOGLYPHS: Record<string, string> = {
+  а: "a", в: "b", с: "c", е: "e", н: "h", к: "k",
+  м: "m", о: "o", р: "p", т: "t", х: "x", у: "y",
+};
+const HOMOGLYPH_RE = new RegExp(`[${Object.keys(HOMOGLYPHS).join("")}]`, "g");
+
+// Нормализация поискового текста: lowercase, убрать пробелы, свести гомоглифы.
+const norm = (s: string) =>
+  s.toLowerCase().replace(/\s+/g, "").replace(HOMOGLYPH_RE, (c) => HOMOGLYPHS[c] ?? c);
+
 // Сортировка по умолчанию: номер конструкции числами (с учётом ведущих нулей),
 // затем сторона натурально (А1 < А2 < А10 < Б1).
 const byConstruction = (a: Side, b: Side) => {
@@ -40,15 +52,34 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
 
   const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    const base = q
-      ? sides.filter(
-          (s) =>
-            s.construction.toLowerCase().includes(q) ||
-            s.address.toLowerCase().includes(q) ||
-            s.type.toLowerCase().includes(q)
-        )
-      : sides;
+    const q = norm(search);
+    let base: Side[];
+    if (!q) {
+      base = sides;
+    } else {
+      // Идентификатор конструкции: цифры + опц. сторона (буква + опц. цифры),
+      // напр. "1", "11", "1А", "118B", "244А1".
+      const idMatch = q.match(/^(\d+)([a-z]\d*)?$/);
+      if (idMatch) {
+        const num = parseInt(idMatch[1], 10);
+        const qSide = idMatch[2]; // напр. "a", "a1" или undefined
+        const qSideHasDigit = qSide ? /\d/.test(qSide) : false;
+        // Поиск ТОЛЬКО по номеру (числовое сравнение) и стороне, не по адресу.
+        base = sides.filter((s) => {
+          if (parseInt(s.construction, 10) !== num) return false;
+          if (!qSide) return true;
+          const ns = norm(s.side);
+          // "244А1" → точное совпадение (не цеплять А10/А11);
+          // "2А" → префикс (любая сторона на А).
+          return qSideHasDigit ? ns === qSide : ns.startsWith(qSide);
+        });
+      } else {
+        // Текстовый запрос ("Кирова", "Digital", "Щит") — по адресу и типу.
+        base = sides.filter(
+          (s) => norm(s.address).includes(q) || norm(s.type).includes(q)
+        );
+      }
+    }
 
     const dir = sortDir === "asc" ? 1 : -1;
     return [...base].sort((a, b) => {
