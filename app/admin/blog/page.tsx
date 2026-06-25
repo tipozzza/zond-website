@@ -10,17 +10,34 @@ export default function AdminBlogDashboard() {
   const router = useRouter();
   const [blog, setBlog] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [warning, setWarning] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/blog");
-    if (res.status === 401) {
-      router.push("/admin/login");
-      return;
+    setError(null);
+    try {
+      const res = await fetch("/api/admin/blog");
+      if (res.status === 401) {
+        router.push("/admin/login");
+        return;
+      }
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data) {
+        setError(data?.error || `Не удалось загрузить список (HTTP ${res.status}).`);
+        return;
+      }
+      setBlog(data.blog || []);
+      setWarning(
+        data.source === "local"
+          ? "GitHub недоступен — список показан из локальной копии. Сохранение может не работать: проверьте GITHUB_TOKEN в настройках Timeweb."
+          : null,
+      );
+    } catch {
+      setError("Сервер не отвечает или нет соединения. Попробуйте обновить страницу.");
+    } finally {
+      setLoading(false);
     }
-    const data = await res.json();
-    setBlog(data.blog || []);
-    setLoading(false);
   }, [router]);
 
   useEffect(() => {
@@ -31,7 +48,7 @@ export default function AdminBlogDashboard() {
     if (!confirm(`Удалить статью "${title}"?`)) return;
     const res = await fetch(`/api/admin/blog/${slug}`, { method: "DELETE" });
     if (res.ok) {
-      alert("Удалено. Vercel передеплоит за 2-3 минуты.");
+      alert("Удалено. Timeweb передеплоит за 2-3 минуты.");
       load();
     } else {
       alert("Ошибка удаления");
@@ -56,13 +73,32 @@ export default function AdminBlogDashboard() {
           <div className="text-center py-12 text-slate-500">Загрузка...</div>
         )}
 
-        {!loading && blog.length === 0 && (
+        {!loading && error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 rounded-2xl p-6">
+            <div className="font-semibold mb-1">Не удалось загрузить список</div>
+            <div className="text-sm mb-4">{error}</div>
+            <button
+              onClick={load}
+              className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700"
+            >
+              Повторить
+            </button>
+          </div>
+        )}
+
+        {!loading && !error && warning && (
+          <div className="mb-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl p-3 text-sm">
+            ⚠️ {warning}
+          </div>
+        )}
+
+        {!loading && !error && blog.length === 0 && (
           <div className="bg-white rounded-2xl p-12 text-center text-slate-500">
             Статей пока нет. Создайте первую через «+ Добавить статью».
           </div>
         )}
 
-        {!loading && blog.length > 0 && (
+        {!loading && !error && blog.length > 0 && (
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
             <table className="w-full">
               <thead className="bg-slate-50">
@@ -119,7 +155,7 @@ export default function AdminBlogDashboard() {
 
         <div className="mt-8 text-sm text-slate-500 bg-white p-4 rounded-xl">
           ℹ️ Изменения публикуются на сайте автоматически через 2-3 минуты после
-          сохранения (Vercel автодеплой).
+          сохранения (Timeweb, автодеплой из main).
         </div>
       </div>
     </div>

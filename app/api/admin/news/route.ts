@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifySession } from "@/lib/auth";
-import { friendlyGithubError, getFile, putFile } from "@/lib/github-api";
+import { friendlyGithubError, getFile, getFileWithFallback, putFile } from "@/lib/github-api";
 
 const NEWS_PATH = "lib/news.json";
 
@@ -18,9 +18,14 @@ type NewsRecord = {
 export async function GET() {
   if (!(await verifySession()))
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const file = await getFile(NEWS_PATH);
-  const news: NewsRecord[] = file ? JSON.parse(file.decoded) : [];
-  return NextResponse.json({ news });
+  try {
+    const file = await getFileWithFallback(NEWS_PATH);
+    const news: NewsRecord[] = file ? JSON.parse(file.decoded) : [];
+    return NextResponse.json({ news, source: file?.source ?? "github" });
+  } catch (err) {
+    const { status, message } = friendlyGithubError(err);
+    return NextResponse.json({ error: message, news: [] }, { status });
+  }
 }
 
 export async function POST(req: Request) {

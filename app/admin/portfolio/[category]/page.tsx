@@ -55,7 +55,7 @@ export default function CategoryAdminPage() {
     if (!confirm(`Удалить «${title}»?`)) return;
     const res = await fetch(`/api/admin/portfolio/${category}/${id}`, { method: "DELETE" });
     if (res.ok) {
-      alert("Удалено. Vercel передеплоит за 2-3 минуты.");
+      alert("Удалено. Timeweb передеплоит за 2-3 минуты.");
       load();
     } else {
       const err = await res.json();

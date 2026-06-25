@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifySession } from "@/lib/auth";
-import { friendlyGithubError, getFile, putFile } from "@/lib/github-api";
+import { friendlyGithubError, getFile, getFileWithFallback, putFile } from "@/lib/github-api";
 import {
   computeReadingMinutes,
   isValidCategory,
@@ -12,9 +12,14 @@ const BLOG_PATH = "lib/blog.json";
 export async function GET() {
   if (!(await verifySession()))
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const file = await getFile(BLOG_PATH);
-  const blog: BlogPost[] = file ? JSON.parse(file.decoded) : [];
-  return NextResponse.json({ blog });
+  try {
+    const file = await getFileWithFallback(BLOG_PATH);
+    const blog: BlogPost[] = file ? JSON.parse(file.decoded) : [];
+    return NextResponse.json({ blog, source: file?.source ?? "github" });
+  } catch (err) {
+    const { status, message } = friendlyGithubError(err);
+    return NextResponse.json({ error: message, blog: [] }, { status });
+  }
 }
 
 export async function POST(req: Request) {

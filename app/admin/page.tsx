@@ -16,17 +16,34 @@ export default function AdminDashboard() {
   const router = useRouter();
   const [news, setNews] = useState<NewsRecord[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [warning, setWarning] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/news");
-    if (res.status === 401) {
-      router.push("/admin/login");
-      return;
+    setError(null);
+    try {
+      const res = await fetch("/api/admin/news");
+      if (res.status === 401) {
+        router.push("/admin/login");
+        return;
+      }
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data) {
+        setError(data?.error || `Не удалось загрузить список (HTTP ${res.status}).`);
+        return;
+      }
+      setNews(data.news || []);
+      setWarning(
+        data.source === "local"
+          ? "GitHub недоступен — список показан из локальной копии. Сохранение может не работать: проверьте GITHUB_TOKEN в настройках Timeweb."
+          : null,
+      );
+    } catch {
+      setError("Сервер не отвечает или нет соединения. Попробуйте обновить страницу.");
+    } finally {
+      setLoading(false);
     }
-    const data = await res.json();
-    setNews(data.news || []);
-    setLoading(false);
   }, [router]);
 
   useEffect(() => {
@@ -37,7 +54,7 @@ export default function AdminDashboard() {
     if (!confirm(`Удалить новость "${title}"?`)) return;
     const res = await fetch(`/api/admin/news/${slug}`, { method: "DELETE" });
     if (res.ok) {
-      alert("Удалено. Vercel передеплоит за 2-3 минуты.");
+      alert("Удалено. Timeweb передеплоит за 2-3 минуты.");
       load();
     } else {
       alert("Ошибка удаления");
@@ -60,7 +77,26 @@ export default function AdminDashboard() {
 
         {loading && <div className="text-center py-12 text-slate-500">Загрузка...</div>}
 
-        {!loading && (
+        {!loading && error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 rounded-2xl p-6">
+            <div className="font-semibold mb-1">Не удалось загрузить список</div>
+            <div className="text-sm mb-4">{error}</div>
+            <button
+              onClick={load}
+              className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700"
+            >
+              Повторить
+            </button>
+          </div>
+        )}
+
+        {!loading && !error && warning && (
+          <div className="mb-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl p-3 text-sm">
+            ⚠️ {warning}
+          </div>
+        )}
+
+        {!loading && !error && (
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
             <table className="w-full">
               <thead className="bg-slate-50">
@@ -99,7 +135,7 @@ export default function AdminDashboard() {
         )}
 
         <div className="mt-8 text-sm text-slate-500 bg-white p-4 rounded-xl">
-          ℹ️ Изменения публикуются на сайте автоматически через 2-3 минуты после сохранения (Vercel автодеплой).
+          ℹ️ Изменения публикуются на сайте автоматически через 2-3 минуты после сохранения (Timeweb, автодеплой из main).
         </div>
       </div>
     </div>

@@ -10,17 +10,34 @@ export default function PortfolioDashboard() {
   const router = useRouter();
   const [data, setData] = useState<PortfolioData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [warning, setWarning] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/portfolio");
-    if (res.status === 401) {
-      router.push("/admin/login");
-      return;
+    setError(null);
+    try {
+      const res = await fetch("/api/admin/portfolio");
+      if (res.status === 401) {
+        router.push("/admin/login");
+        return;
+      }
+      const json = await res.json().catch(() => null);
+      if (!res.ok || !json) {
+        setError(json?.error || `Не удалось загрузить портфолио (HTTP ${res.status}).`);
+        return;
+      }
+      setData(json.portfolio || null);
+      setWarning(
+        json.source === "local"
+          ? "GitHub недоступен — данные показаны из локальной копии. Сохранение может не работать: проверьте GITHUB_TOKEN в настройках Timeweb."
+          : null,
+      );
+    } catch {
+      setError("Сервер не отвечает или нет соединения. Попробуйте обновить страницу.");
+    } finally {
+      setLoading(false);
     }
-    const json = await res.json();
-    setData(json.portfolio || null);
-    setLoading(false);
   }, [router]);
 
   useEffect(() => {
@@ -35,7 +52,26 @@ export default function PortfolioDashboard() {
 
         {loading && <div className="text-center py-12 text-slate-500">Загрузка...</div>}
 
-        {!loading && data && (
+        {!loading && error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 rounded-2xl p-6">
+            <div className="font-semibold mb-1">Не удалось загрузить портфолио</div>
+            <div className="text-sm mb-4">{error}</div>
+            <button
+              onClick={load}
+              className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700"
+            >
+              Повторить
+            </button>
+          </div>
+        )}
+
+        {!loading && !error && warning && (
+          <div className="mb-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl p-3 text-sm">
+            ⚠️ {warning}
+          </div>
+        )}
+
+        {!loading && !error && data && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {Object.values(data).map((cat) => (
               <Link
@@ -59,7 +95,7 @@ export default function PortfolioDashboard() {
         )}
 
         <div className="mt-8 text-sm text-slate-500 bg-white p-4 rounded-xl">
-          ℹ️ Изменения публикуются через 2-3 минуты (Vercel автодеплой).
+          ℹ️ Изменения публикуются через 2-3 минуты (Timeweb, автодеплой из main).
         </div>
       </div>
     </div>
