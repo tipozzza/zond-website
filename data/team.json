@@ -489,6 +489,20 @@
       "consent_date": "2026-06-26T05:39:19.638Z",
       "created_at": "2026-06-26T05:39:19.638Z",
       "active": true
+    },
+    {
+      "user_id": 311151506,
+      "full_name": "Дмитрий Паршуто",
+      "position": "Директор",
+      "birth_day": 17,
+      "birth_month": 6,
+      "birth_year": 1990,
+      "hired_year": 2008,
+      "hired_full_date": null,
+      "gender": "male",
+      "consent_date": "2026-06-26T05:46:44.084Z",
+      "created_at": "2026-06-26T05:46:44.084Z",
+      "active": true
     }
   ],
   "customHolidays": []
