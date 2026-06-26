@@ -115,7 +115,7 @@ const EQUIPMENT: {
       { label: "Ширина", value: "1.6 м" },
       { label: "Разрешение", value: "1440 dpi" },
       { label: "Скорость", value: "до 15 м²/час" },
-      { label: "Особенности", value: "головы EPSON DX-5" },
+      { label: "Особенности", value: "головы Epson i3200" },
     ],
   },
   {
