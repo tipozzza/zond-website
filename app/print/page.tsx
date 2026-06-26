@@ -124,7 +124,6 @@ const EQUIPMENT: {
     name: "KEENCUT Javelin 3 м",
     type: "РЕЗАК",
     specs: [
-      { label: "Тип", value: "лазерная технология" },
       { label: "Ширина", value: "3 м" },
       { label: "Особенности", value: "ровные стыки для составных панелей" },
     ],
