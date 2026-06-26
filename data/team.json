@@ -250,7 +250,7 @@
       "gender": "male",
       "consent_date": "2026-06-25T00:00:00.000Z",
       "created_at": "2026-06-25T00:00:00.000Z",
-      "active": true
+      "active": false
     },
     {
       "user_id": -19,
