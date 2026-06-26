@@ -508,14 +508,14 @@
       "user_id": 308848789,
       "full_name": "Имя Фамилия",
       "position": "Менеджер по продажам",
-      "birth_day": 26,
+      "birth_day": 27,
       "birth_month": 6,
       "birth_year": 2056,
       "hired_year": 2036,
-      "hired_full_date": "2036-06-26",
+      "hired_full_date": "2036-06-27",
       "gender": "female",
-      "consent_date": "2026-06-26T06:06:15.982Z",
-      "created_at": "2026-06-26T06:06:15.982Z",
+      "consent_date": "2026-06-26T06:08:19.184Z",
+      "created_at": "2026-06-26T06:08:19.184Z",
       "active": true
     }
   ],
