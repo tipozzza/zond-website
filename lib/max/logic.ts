@@ -20,7 +20,7 @@ import {
   upsertEmployee,
   type Employee,
 } from "./team";
-import { addQuestion, recordAnswer, runQuiz } from "./quiz";
+import { addQuestion, recordAnswer, runQuiz, showLeaderboard } from "./quiz";
 
 const CONSENT_KB: CallbackBtn[][] = [
   [
@@ -286,6 +286,11 @@ async function handleCommand(args: { cmd: string; userId: number; chatId?: numbe
       if (!isAdmin(userId)) return void sendMessage({ chatId: replyTo, text: T.ADMIN_ONLY });
       await runQuiz();
       return void sendMessage({ chatId: replyTo, text: "Запустил викторину в группе ✅" });
+    case "рейтинг":
+    case "leaderboard":
+      if (!isAdmin(userId)) return void sendMessage({ chatId: replyTo, text: T.ADMIN_ONLY });
+      await showLeaderboard();
+      return void sendMessage({ chatId: replyTo, text: "Опубликовал рейтинг в группе 🏆" });
     case "добавить_вопрос":
     case "addquestion":
       if (!isAdmin(userId)) return void sendMessage({ chatId: replyTo, text: T.ADMIN_ONLY });

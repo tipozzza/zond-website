@@ -1,5 +1,6 @@
 /**
- * Викторина «Знай свой ZOND»: вопросы из data/quiz.json, состояние ответов — в памяти.
+ * Викторина «Знай свой ZOND»: вопросы из data/quiz.json, очки — в data/quiz-scores.json.
+ * Состояние текущего вопроса (кто как ответил) — в памяти процесса.
  * Публикуется в группу (MAX_GROUP_ID). Дёргается cron 2 раза в день.
  */
 
@@ -7,8 +8,10 @@ import { getFile, putFile } from "../github-api";
 import { sendMessage, type CallbackBtn } from "./api";
 
 const QUIZ_PATH = "data/quiz.json";
+const SCORES_PATH = "data/quiz-scores.json";
 
 export type Question = { q: string; options: string[]; correct: number; explain: string };
+type Scores = Record<string, { name: string; points: number }>;
 
 function groupId(): number | undefined {
   const v = process.env.MAX_GROUP_ID;
@@ -26,7 +29,32 @@ async function loadQuestions(): Promise<{ questions: Question[]; sha?: string }>
   }
 }
 
-// --- состояние в памяти (один процесс App Platform) ---
+async function loadScores(): Promise<{ scores: Scores; sha?: string }> {
+  try {
+    const file = await getFile(SCORES_PATH);
+    if (!file) return { scores: {} };
+    return { scores: JSON.parse(file.decoded) as Scores, sha: file.sha };
+  } catch (e) {
+    console.warn("[max/quiz] loadScores error", e);
+    return { scores: {} };
+  }
+}
+
+async function addPoints(winners: Array<{ userId: number; name: string }>): Promise<void> {
+  if (!winners.length) return;
+  try {
+    const { scores, sha } = await loadScores();
+    for (const w of winners) {
+      const cur = scores[w.userId] ?? { name: w.name, points: 0 };
+      scores[w.userId] = { name: w.name, points: cur.points + 1 };
+    }
+    await putFile(SCORES_PATH, JSON.stringify(scores, null, 2) + "\n", "quiz: начислены очки", sha);
+  } catch (e) {
+    console.warn("[max/quiz] addPoints error", e);
+  }
+}
+
+// --- состояние текущего вопроса в памяти ---
 let pointer = 0;
 let open: { question: Question; answers: Map<number, { name: string; opt: number }> } | null = null;
 
@@ -38,18 +66,21 @@ function quizKb(q: Question): CallbackBtn[][] {
   return q.options.map((opt, i) => [{ text: `${letter(i)}. ${opt}`, payload: `quiz:${i}` }]);
 }
 
-/** Разбор текущего вопроса: правильный ответ + пояснение + кто ответил верно. */
+/** Разбор текущего вопроса: правильный ответ + пояснение + кто ответил верно + начисление очков. */
 async function reveal(): Promise<void> {
   const gid = groupId();
   if (!open || !gid) return;
   const q = open.question;
-  const right = [...open.answers.values()].filter((a) => a.opt === q.correct).map((a) => a.name);
+  const rightEntries = [...open.answers.entries()].filter(([, a]) => a.opt === q.correct);
+  const rightNames = rightEntries.map(([, a]) => a.name);
   const total = open.answers.size;
+
+  await addPoints(rightEntries.map(([userId, a]) => ({ userId, name: a.name })));
 
   let text = `✅ Правильный ответ: ${letter(q.correct)}. ${q.options[q.correct]}\n\n${q.explain}`;
   if (total > 0) {
-    text += `\n\nОтветили: ${total}, верно: ${right.length}`;
-    if (right.length) text += ` — ${right.join(", ")} 👏`;
+    text += `\n\nОтветили: ${total}, верно: ${rightNames.length}`;
+    if (rightNames.length) text += ` — ${rightNames.join(", ")} 👏 (+1 балл)`;
   }
   text += `\n\n🔎 Подробнее — на сайте zondreklama.ru`;
   await sendMessage({ chatId: gid, text });
@@ -73,10 +104,36 @@ async function postNext(): Promise<boolean> {
   return true;
 }
 
-/** Дёргается cron 2 раза в день: сначала разбор прошлого вопроса, затем новый. */
+function tomskNow(): Date {
+  return new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tomsk" }));
+}
+
+/** Топ-10 знатоков в группу. */
+export async function showLeaderboard(): Promise<void> {
+  const gid = groupId();
+  if (!gid) return;
+  const { scores } = await loadScores();
+  const top = Object.values(scores).sort((a, b) => b.points - a.points).slice(0, 10);
+  if (!top.length) {
+    await sendMessage({ chatId: gid, text: "🏆 Топ знатоков ZOND\n\nПока никто не набрал очков — впереди вся викторина! 🎯" });
+    return;
+  }
+  const medals = ["🥇", "🥈", "🥉"];
+  const lines = top.map((u, i) => `${medals[i] ?? `${i + 1}.`} ${u.name} — ${u.points}`);
+  await sendMessage({
+    chatId: gid,
+    text: `🏆 Топ знатоков ZOND:\n\n${lines.join("\n")}\n\nОтвечай на вопросы викторины — догоняй лидеров! 😉`,
+  });
+}
+
+/** Дёргается cron 2 раза в день: разбор прошлого вопроса + новый. По пятницам в 15:00 — рейтинг. */
 export async function runQuiz(): Promise<void> {
   await reveal();
   await postNext();
+  const now = tomskNow();
+  if (now.getDay() === 5 && now.getHours() >= 15) {
+    await showLeaderboard();
+  }
 }
 
 /** Тап по варианту. Возвращает текст для всплывающего уведомления участнику. */
