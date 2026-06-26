@@ -510,12 +510,12 @@
       "position": "менеджер по продажам",
       "birth_day": 28,
       "birth_month": 2,
-      "birth_year": 1599,
+      "birth_year": 1596,
       "hired_year": 2026,
-      "hired_full_date": null,
+      "hired_full_date": "2026-07-01",
       "gender": "female",
-      "consent_date": "2026-06-26T05:50:19.621Z",
-      "created_at": "2026-06-26T05:50:19.621Z",
+      "consent_date": "2026-06-26T05:52:06.910Z",
+      "created_at": "2026-06-26T05:52:06.910Z",
       "active": true
     }
   ],
