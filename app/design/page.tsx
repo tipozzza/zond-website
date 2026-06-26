@@ -82,7 +82,7 @@ const EQUIPMENT: {
   },
   {
     image: "/images/design/equipment-oki-es9541.jpg",
-    type: "БЕЛИЛО + ЛАК",
+    type: "БЕЛЫЙ + ЛАК",
     name: "OKI ES9541",
     specs: [
       { label: "Формат", value: "A5–A3+" },
