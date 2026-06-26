@@ -20,6 +20,7 @@ import {
   upsertEmployee,
   type Employee,
 } from "./team";
+import { addQuestion, recordAnswer, runQuiz } from "./quiz";
 
 const CONSENT_KB: CallbackBtn[][] = [
   [
@@ -162,6 +163,13 @@ async function onCallback(u: AnyUpdate): Promise<void> {
   const userId: number | undefined = cb.user?.user_id;
   if (!userId) return;
 
+  if (payload.startsWith("quiz:")) {
+    const opt = parseInt(payload.slice(5), 10);
+    const name = cb.user?.name ?? cb.user?.first_name ?? "Участник";
+    await answerCallback(callbackId, { notification: recordAnswer(userId, name, opt) });
+    return;
+  }
+
   if (payload === "consent:yes") {
     setStep(userId, "name");
     await answerCallback(callbackId, { notification: "Отлично, поехали!" });
@@ -273,6 +281,15 @@ async function handleCommand(args: { cmd: string; userId: number; chatId?: numbe
     case "тест_др":
     case "test":
       return void (await cmdTest(userId, replyTo));
+    case "викторина":
+    case "quiz":
+      if (!isAdmin(userId)) return void sendMessage({ chatId: replyTo, text: T.ADMIN_ONLY });
+      await runQuiz();
+      return void sendMessage({ chatId: replyTo, text: "Запустил викторину в группе ✅" });
+    case "добавить_вопрос":
+    case "addquestion":
+      if (!isAdmin(userId)) return void sendMessage({ chatId: replyTo, text: T.ADMIN_ONLY });
+      return void sendMessage({ chatId: replyTo, text: await addQuestion(commandArgs(args.cmd)) });
     default:
       return;
   }
