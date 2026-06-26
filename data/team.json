@@ -503,6 +503,20 @@
       "consent_date": "2026-06-26T05:46:44.084Z",
       "created_at": "2026-06-26T05:46:44.084Z",
       "active": true
+    },
+    {
+      "user_id": 308848789,
+      "full_name": "Имя Фамилия",
+      "position": "менеджер по продажам",
+      "birth_day": 28,
+      "birth_month": 2,
+      "birth_year": 1599,
+      "hired_year": 2026,
+      "hired_full_date": null,
+      "gender": "female",
+      "consent_date": "2026-06-26T05:50:19.621Z",
+      "created_at": "2026-06-26T05:50:19.621Z",
+      "active": true
     }
   ],
   "customHolidays": []
