@@ -5,7 +5,7 @@
 
 import { answerCallback, sendMessage, type CallbackBtn } from "./api";
 import * as T from "./texts";
-import { anniversaryText, birthdayText, ddmm, HOLIDAYS, holidayMessage } from "./holidays";
+import { anniversaryText, birthdayText, ddmm, HOLIDAYS, holidayMessage, weekdayMessage } from "./holidays";
 import { guessGender, parseBirthday, parseHired } from "./parse";
 import { clearSession, getSession, setStep, updateData } from "./state";
 import {
@@ -417,6 +417,8 @@ export function buildMessages(employees: Employee[], customHolidays: { day: numb
   for (const ch of customHolidays.filter((c) => c.day === today.getDate() && c.month === today.getMonth() + 1)) {
     out.push(`📅 Сегодня — ${ch.title}.\nС праздником, команда ZOND!`);
   }
+  const wd = weekdayMessage(today);
+  if (wd) out.push(wd);
   return out;
 }
 
