@@ -12,7 +12,7 @@ async function run(req: Request): Promise<Response> {
 
   try {
     const me = await getMe();
-    const origin = new URL(req.url).origin;
+    const origin = process.env.SITE_URL || "https://zondreklama.ru";
     const webhookUrl = `${origin}/api/max-client/webhook`;
     const subscription = await subscribeWebhook(webhookUrl, (process.env.MAX_CLIENT_WEBHOOK_SECRET || "").trim());
     return NextResponse.json({ ok: true, webhookUrl, me, subscription });
