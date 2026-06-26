@@ -1,40 +1,71 @@
 /**
  * Хранилище обращений клиентов — в памяти процесса (App Platform = один Node-процесс).
- * НЕ коммитим в GitHub, чтобы не плодить пересборки. Минус: при редеплое открытые
- * обращения теряются (менеджер уже получил пересылку, теряются только напоминания).
+ * Одна запись на КЛИЕНТА (ключ — его MAX id), а не на каждое сообщение.
+ * НЕ коммитим в GitHub. Минус: при редеплое открытые обращения и режим ответа теряются.
  */
 
 export type Lead = {
-  id: string;
-  userId: number; // MAX id клиента
+  clientId: number; // MAX id клиента
   name: string;
-  text: string;
-  createdAt: number; // ms
+  username: string | null;
+  lastText: string; // последнее сообщение клиента
+  createdAt: number; // ms, время последнего обращения
+  open: boolean;
   firstReminded: boolean;
   lastReminderDay: string | null; // YYYY-MM-DD по Томску
 };
 
-const leads = new Map<string, Lead>();
+const leads = new Map<number, Lead>();
+// какой клиент сейчас «активен» для менеджера: managerId -> clientId
+const active = new Map<number, number>();
 
-export function addLead(l: Lead): void {
-  leads.set(l.id, l);
-  // не даём расти бесконечно
-  if (leads.size > 1000) {
+export function upsertLead(args: {
+  clientId: number;
+  name: string;
+  username: string | null;
+  text: string;
+}): { lead: Lead; isNew: boolean } {
+  const now = Date.now();
+  const existing = leads.get(args.clientId);
+  const isNew = !existing || !existing.open;
+  const lead: Lead = {
+    clientId: args.clientId,
+    name: args.name,
+    username: args.username,
+    lastText: args.text,
+    createdAt: now,
+    open: true,
+    firstReminded: false,
+    lastReminderDay: existing ? existing.lastReminderDay : null,
+  };
+  leads.set(args.clientId, lead);
+  if (leads.size > 2000) {
     const oldest = [...leads.values()].sort((a, b) => a.createdAt - b.createdAt)[0];
-    if (oldest) leads.delete(oldest.id);
+    if (oldest) leads.delete(oldest.clientId);
   }
+  return { lead, isNew };
 }
 
-export function closeLead(id: string): Lead | undefined {
-  const l = leads.get(id);
-  if (l) leads.delete(id);
+export function getLead(clientId: number): Lead | undefined {
+  return leads.get(clientId);
+}
+
+export function closeLead(clientId: number): Lead | undefined {
+  const l = leads.get(clientId);
+  if (l) l.open = false;
   return l;
 }
 
 export function openLeads(): Lead[] {
-  return [...leads.values()];
+  return [...leads.values()].filter((l) => l.open);
 }
 
-export function newId(): string {
-  return `c-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+export function setActive(managerId: number, clientId: number): void {
+  active.set(managerId, clientId);
+}
+export function getActive(managerId: number): number | undefined {
+  return active.get(managerId);
+}
+export function clearActive(managerId: number): void {
+  active.delete(managerId);
 }
