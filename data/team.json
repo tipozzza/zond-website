@@ -507,15 +507,15 @@
     {
       "user_id": 308848789,
       "full_name": "Имя Фамилия",
-      "position": "менеджер по продажам",
-      "birth_day": 28,
-      "birth_month": 2,
-      "birth_year": 1596,
-      "hired_year": 2026,
-      "hired_full_date": "2026-07-01",
+      "position": "Менеджер по продажам",
+      "birth_day": 26,
+      "birth_month": 6,
+      "birth_year": 2056,
+      "hired_year": 2006,
+      "hired_full_date": "2006-06-26",
       "gender": "female",
-      "consent_date": "2026-06-26T05:52:06.910Z",
-      "created_at": "2026-06-26T05:52:06.910Z",
+      "consent_date": "2026-06-26T05:58:43.018Z",
+      "created_at": "2026-06-26T05:58:43.018Z",
       "active": true
     }
   ],
