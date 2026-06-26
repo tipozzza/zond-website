@@ -108,8 +108,7 @@ const EQUIPMENT: {
     ],
   },
   {
-    // TODO: пришлёт Дмитрий фото Arc Jet — заменить /images/print/printer-mustang.jpg
-    image: "/images/print/printer-mustang.jpg",
+    image: "/images/print/printer-arcjet.jpg",
     name: "Arc Jet",
     type: "ЭКО-СОЛЬВЕНТ",
     specs: [
