@@ -4,6 +4,8 @@
  * текст уходит клиенту. «Закрыть» — отмечает обращение обработанным и гасит напоминания.
  */
 
+import { Resend } from "resend";
+
 import { answerCallback, sendMessage, type CallbackBtn } from "./api";
 import { clearActive, closeLead, getActive, getLead, openLeads, setActive, upsertLead } from "./store";
 
@@ -26,6 +28,41 @@ const MANAGER_HELLO =
 function salesId(): number | undefined {
   const v = process.env.MAX_SALES_ID || process.env.MAX_ADMIN_USER_ID;
   return v ? Number(v) : undefined;
+}
+
+/** Владелец/админ — ему дублируем обращения для обзора (только просмотр, без кнопок). */
+function adminId(): number | undefined {
+  const v = process.env.MAX_ADMIN_USER_ID;
+  return v ? Number(v) : undefined;
+}
+
+function escHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+/** Постоянный журнал: каждое обращение уходит письмом (Resend). Тихо пропускается, если не настроено. */
+async function emailLead(name: string, username: string | null, text: string, isNew: boolean): Promise<void> {
+  const key = process.env.RESEND_API_KEY;
+  const to = process.env.SALES_EMAIL;
+  if (!key || !to) return;
+  try {
+    const resend = new Resend(key);
+    const when = new Date().toLocaleString("ru-RU", { timeZone: "Asia/Tomsk" });
+    const uname = username ? ` (@${escHtml(username)})` : "";
+    await resend.emails.send({
+      from: "ZOND MAX-бот <onboarding@resend.dev>",
+      to,
+      subject: `${isNew ? "Новое обращение" : "Сообщение"} в MAX: ${name}`,
+      html:
+        `<h2>${isNew ? "Новое обращение" : "Новое сообщение"} — MAX-бот «Центр заказов»</h2>` +
+        `<p><b>От:</b> ${escHtml(name)}${uname}</p>` +
+        `<p><b>Когда:</b> ${escHtml(when)} (Томск)</p>` +
+        `<p><b>Сообщение:</b></p>` +
+        `<blockquote style="border-left:3px solid #6F395D;padding-left:12px;color:#333">${escHtml(text)}</blockquote>`,
+    });
+  } catch (e) {
+    console.warn("[max-client] emailLead error", e);
+  }
 }
 
 function leadKb(clientId: number): CallbackBtn[][] {
@@ -85,15 +122,26 @@ async function onMessage(u: AnyUpdate): Promise<void> {
 
   await sendMessage({ userId, text: isNew ? CLIENT_RECEIVED : "Передал менеджеру 👌" });
 
+  const uname = username ? ` (@${username})` : "";
+  const head = isNew ? "🔔 Новое обращение клиента" : "↩️ Новое сообщение от клиента";
+
+  // менеджеру — с кнопками «Ответить/Закрыть»
   if (sales) {
-    const uname = username ? ` (@${username})` : "";
-    const head = isNew ? "🔔 Новое обращение клиента" : "↩️ Новое сообщение от клиента";
     await sendMessage({
       userId: sales,
       text: `${head}\nОт: ${name}${uname}\n\n«${text}»`,
       keyboard: leadKb(userId),
     });
   }
+
+  // владельцу — копия для обзора, без кнопок (чтобы не вмешиваться в режим ответа менеджера)
+  const admin = adminId();
+  if (admin && admin !== sales) {
+    await sendMessage({ userId: admin, text: `📋 ${head}\nОт: ${name}${uname}\n\n«${text}»` });
+  }
+
+  // постоянный журнал на почту
+  await emailLead(name, username, text, isNew);
 }
 
 async function onManagerMessage(sales: number, text: string): Promise<void> {
