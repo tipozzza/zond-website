@@ -516,7 +516,7 @@
       "gender": "female",
       "consent_date": "2026-06-26T06:08:19.184Z",
       "created_at": "2026-06-26T06:08:19.184Z",
-      "active": true
+      "active": false
     },
     {
       "user_id": 226305146,
