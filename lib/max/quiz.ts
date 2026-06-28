@@ -54,9 +54,20 @@ async function addPoints(winners: Array<{ userId: number; name: string }>): Prom
   }
 }
 
-// --- состояние текущего вопроса в памяти ---
-let pointer = 0;
+// --- состояние «открытого» вопроса в памяти; сам номер вопроса считается от даты ---
 let open: { question: Question; answers: Map<number, { name: string; opt: number }> } | null = null;
+
+/**
+ * Детерминированный номер вопроса: зависит только от даты и слота (утро/день),
+ * а не от счётчика в памяти. Поэтому пересборки больше не сбрасывают викторину на 1-й вопрос.
+ */
+function quizIndex(now: Date, total: number): number {
+  const epoch = Date.UTC(2026, 0, 1); // отсчёт от 1 января 2026
+  const dayUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = Math.floor((dayUTC - epoch) / 86_400_000);
+  const slot = now.getHours() < 13 ? 0 : 1; // утренний (10:00) / дневной (15:00) вопрос
+  return (((days * 2 + slot) % total) + total) % total;
+}
 
 function letter(i: number): string {
   return ["А", "Б", "В", "Г", "Д"][i] ?? String(i + 1);
@@ -93,8 +104,7 @@ async function postNext(): Promise<boolean> {
   if (!gid) return false;
   const { questions } = await loadQuestions();
   if (!questions.length) return false;
-  const q = questions[pointer % questions.length];
-  pointer = (pointer + 1) % questions.length;
+  const q = questions[quizIndex(tomskNow(), questions.length)];
   open = { question: q, answers: new Map() };
   await sendMessage({
     chatId: gid,
