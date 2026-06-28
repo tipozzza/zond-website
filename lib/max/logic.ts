@@ -166,7 +166,7 @@ async function onCallback(u: AnyUpdate): Promise<void> {
   if (payload.startsWith("quiz:")) {
     const opt = parseInt(payload.slice(5), 10);
     const name = cb.user?.name ?? cb.user?.first_name ?? "Участник";
-    await answerCallback(callbackId, { notification: recordAnswer(userId, name, opt) });
+    await answerCallback(callbackId, { notification: await recordAnswer(userId, name, opt) });
     return;
   }
 

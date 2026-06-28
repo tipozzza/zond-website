@@ -1,7 +1,12 @@
 /**
- * Викторина «Знай свой ZOND»: вопросы из data/quiz.json, очки — в data/quiz-scores.json.
- * Состояние текущего вопроса (кто как ответил) — в памяти процесса.
- * Публикуется в группу (MAX_GROUP_ID). Дёргается cron 2 раза в день.
+ * Викторина «Знай свой ZOND».
+ * Вопросы — data/quiz.json, очки — data/quiz-scores.json, прогресс — data/quiz-state.json.
+ *
+ * Прогресс (какой вопрос сейчас открыт + какие уже задавали) хранится в файле, поэтому
+ * пересборки приложения не сбрасывают викторину и не теряют активный вопрос —
+ * нажатия на варианты продолжают засчитываться.
+ * Каждый вопрос задаётся ровно один раз; когда пройдены все — викторина завершается.
+ * Публикуется в группу (MAX_GROUP_ID). Дёргается внешним cron 2 раза в день.
  */
 
 import { getFile, putFile } from "../github-api";
@@ -9,9 +14,11 @@ import { sendMessage, type CallbackBtn } from "./api";
 
 const QUIZ_PATH = "data/quiz.json";
 const SCORES_PATH = "data/quiz-scores.json";
+const STATE_PATH = "data/quiz-state.json";
 
 export type Question = { q: string; options: string[]; correct: number; explain: string };
 type Scores = Record<string, { name: string; points: number }>;
+type State = { currentQ: number | null; asked: number[] };
 
 function groupId(): number | undefined {
   const v = process.env.MAX_GROUP_ID;
@@ -40,6 +47,26 @@ async function loadScores(): Promise<{ scores: Scores; sha?: string }> {
   }
 }
 
+async function loadState(): Promise<{ state: State; sha?: string }> {
+  try {
+    const file = await getFile(STATE_PATH);
+    if (!file) return { state: { currentQ: null, asked: [] } };
+    const p = JSON.parse(file.decoded) as Partial<State>;
+    return { state: { currentQ: p.currentQ ?? null, asked: Array.isArray(p.asked) ? p.asked : [] }, sha: file.sha };
+  } catch (e) {
+    console.warn("[max/quiz] loadState error", e);
+    return { state: { currentQ: null, asked: [] } };
+  }
+}
+
+async function saveState(state: State, sha?: string): Promise<void> {
+  try {
+    await putFile(STATE_PATH, JSON.stringify(state, null, 2) + "\n", "quiz: прогресс викторины", sha);
+  } catch (e) {
+    console.warn("[max/quiz] saveState error", e);
+  }
+}
+
 async function addPoints(winners: Array<{ userId: number; name: string }>): Promise<void> {
   if (!winners.length) return;
   try {
@@ -54,19 +81,15 @@ async function addPoints(winners: Array<{ userId: number; name: string }>): Prom
   }
 }
 
-// --- состояние «открытого» вопроса в памяти; сам номер вопроса считается от даты ---
-let open: { question: Question; answers: Map<number, { name: string; opt: number }> } | null = null;
+// --- активный вопрос: ответы держим в памяти, номер открытого вопроса — в файле состояния ---
+let mem: { qIndex: number; answers: Map<number, { name: string; opt: number }> } | null = null;
 
-/**
- * Детерминированный номер вопроса: зависит только от даты и слота (утро/день),
- * а не от счётчика в памяти. Поэтому пересборки больше не сбрасывают викторину на 1-й вопрос.
- */
-function quizIndex(now: Date, total: number): number {
-  const epoch = Date.UTC(2026, 0, 1); // отсчёт от 1 января 2026
-  const dayUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-  const days = Math.floor((dayUTC - epoch) / 86_400_000);
-  const slot = now.getHours() < 13 ? 0 : 1; // утренний (10:00) / дневной (15:00) вопрос
-  return (((days * 2 + slot) % total) + total) % total;
+/** Восстанавливает активный вопрос из файла состояния, если память пуста (после пересборки). */
+async function ensureCurrent(): Promise<{ qIndex: number; answers: Map<number, { name: string; opt: number }> } | null> {
+  if (mem) return mem;
+  const { state } = await loadState();
+  if (state.currentQ !== null) mem = { qIndex: state.currentQ, answers: new Map() };
+  return mem;
 }
 
 function letter(i: number): string {
@@ -77,14 +100,15 @@ function quizKb(q: Question): CallbackBtn[][] {
   return q.options.map((opt, i) => [{ text: `${letter(i)}. ${opt}`, payload: `quiz:${i}` }]);
 }
 
-/** Разбор текущего вопроса: правильный ответ + пояснение + кто ответил верно + начисление очков. */
-async function reveal(): Promise<void> {
+/** Разбор вопроса: правильный ответ + пояснение + кто ответил верно + начисление очков. */
+async function revealQuestion(q: Question, qIndex: number): Promise<void> {
   const gid = groupId();
-  if (!open || !gid) return;
-  const q = open.question;
-  const rightEntries = [...open.answers.entries()].filter(([, a]) => a.opt === q.correct);
+  if (!gid) return;
+  const m = await ensureCurrent();
+  const answers = m && m.qIndex === qIndex ? m.answers : new Map<number, { name: string; opt: number }>();
+  const rightEntries = [...answers.entries()].filter(([, a]) => a.opt === q.correct);
   const rightNames = rightEntries.map(([, a]) => a.name);
-  const total = open.answers.size;
+  const total = answers.size;
 
   await addPoints(rightEntries.map(([userId, a]) => ({ userId, name: a.name })));
 
@@ -95,23 +119,16 @@ async function reveal(): Promise<void> {
   }
   text += `\n\n🔎 Подробнее — на сайте zondreklama.ru`;
   await sendMessage({ chatId: gid, text });
-  open = null;
 }
 
-/** Опубликовать следующий вопрос в группу. */
-async function postNext(): Promise<boolean> {
+async function postQuestion(q: Question): Promise<void> {
   const gid = groupId();
-  if (!gid) return false;
-  const { questions } = await loadQuestions();
-  if (!questions.length) return false;
-  const q = questions[quizIndex(tomskNow(), questions.length)];
-  open = { question: q, answers: new Map() };
+  if (!gid) return;
   await sendMessage({
     chatId: gid,
     text: `🎯 Викторина «Знай свой ZOND»\n\n${q.q}\n\nЖми вариант — правильный ответ узнаешь при разборе. Подсказки есть на zondreklama.ru 😉`,
     keyboard: quizKb(q),
   });
-  return true;
 }
 
 function tomskNow(): Date {
@@ -136,20 +153,51 @@ export async function showLeaderboard(): Promise<void> {
   });
 }
 
-/** Дёргается cron 2 раза в день: разбор прошлого вопроса + новый. По пятницам в 15:00 — рейтинг. */
+/**
+ * Дёргается cron 2 раза в день: разбор прошлого вопроса + новый невыданный.
+ * Когда все вопросы пройдены — викторина завершается (заново не начинает).
+ * По пятницам в 15:00 — ещё и рейтинг.
+ */
 export async function runQuiz(): Promise<void> {
-  await reveal();
-  await postNext();
-  const now = tomskNow();
-  if (now.getDay() === 5 && now.getHours() >= 15) {
-    await showLeaderboard();
+  const gid = groupId();
+  if (!gid) return;
+  const { questions } = await loadQuestions();
+  if (!questions.length) return;
+  const { state, sha } = await loadState();
+  const asked = [...state.asked];
+
+  // 1) разбор текущего вопроса (если был открыт)
+  if (state.currentQ !== null && state.currentQ >= 0 && state.currentQ < questions.length) {
+    await revealQuestion(questions[state.currentQ], state.currentQ);
+    if (!asked.includes(state.currentQ)) asked.push(state.currentQ);
   }
+
+  // 2) следующий ещё не заданный вопрос
+  const remaining = questions.map((_, i) => i).filter((i) => !asked.includes(i));
+  if (remaining.length === 0) {
+    mem = null;
+    await saveState({ currentQ: null, asked }, sha);
+    await sendMessage({
+      chatId: gid,
+      text: "🏁 Викторина «Знай свой ZOND» пройдена — все вопросы разобраны. Спасибо за участие!\nИтоги — по команде /рейтинг 🏆",
+    });
+    return;
+  }
+
+  const nextIdx = remaining[0];
+  mem = { qIndex: nextIdx, answers: new Map() };
+  await saveState({ currentQ: nextIdx, asked }, sha);
+  await postQuestion(questions[nextIdx]);
+
+  const now = tomskNow();
+  if (now.getDay() === 5 && now.getHours() >= 15) await showLeaderboard();
 }
 
-/** Тап по варианту. Возвращает текст для всплывающего уведомления участнику. */
-export function recordAnswer(userId: number, name: string, opt: number): string {
-  if (!open) return "Этот вопрос уже закрыт 🙂";
-  open.answers.set(userId, { name, opt });
+/** Тап по варианту. Возвращает текст всплывающего уведомления участнику. */
+export async function recordAnswer(userId: number, name: string, opt: number): Promise<string> {
+  const m = await ensureCurrent();
+  if (!m) return "Сейчас активного вопроса нет 🙂";
+  m.answers.set(userId, { name, opt });
   return "Ответ принят ✅ Узнаешь при разборе.";
 }
 
