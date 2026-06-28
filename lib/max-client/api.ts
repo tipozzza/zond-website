@@ -61,7 +61,8 @@ export async function answerCallback(
   try {
     const body: Record<string, unknown> = {};
     if (opts.notification) body.notification = opts.notification;
-    if (opts.newText) body.message = { text: opts.newText };
+    // attachments: [] — очищает клавиатуру (кнопку), чтобы заявку нельзя было взять повторно
+    if (opts.newText) body.message = { text: opts.newText, attachments: [] };
     const res = await fetch(url("/answers", { callback_id: callbackId }), {
       method: "POST",
       headers: authHeaders(),
