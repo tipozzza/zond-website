@@ -97,9 +97,11 @@ async function onMessage(u: AnyUpdate): Promise<void> {
   const text: string = (msg.body?.text ?? "").trim();
   if (!text) return;
 
-  // /chatid — узнать id чата (нужно для настройки группы менеджеров)
+  // /chatid — узнать id чата (нужно для настройки группы менеджеров).
+  // Отвечаем ТОЛЬКО в этот чат (один адресат — иначе MAX отклоняет запрос).
   if (text.toLowerCase().startsWith("/chatid")) {
-    await sendMessage({ chatId, userId, text: `ID этого чата: ${chatId ?? userId}` });
+    const target = chatId ?? userId;
+    if (target !== undefined) await sendMessage({ chatId: target, text: `ID этого чата: ${target}` });
     return;
   }
 
