@@ -50,6 +50,21 @@ function takeKb(clientId: number): CallbackBtn[][] {
   return [[{ text: "Беру ✅", payload: `take:${clientId}` }]];
 }
 
+/** Преобразует входящие вложения (фото/видео/файл/стикер) в формат для пересылки. */
+function forwardAttachments(atts: unknown): unknown[] {
+  if (!Array.isArray(atts)) return [];
+  const out: unknown[] = [];
+  for (const a of atts as Array<{ type?: string; payload?: { token?: string; code?: string; url?: string } }>) {
+    const t = a?.type;
+    const p = a?.payload ?? {};
+    if (!t || t === "inline_keyboard") continue;
+    if (t === "sticker" && p.code) out.push({ type: "sticker", payload: { code: p.code } });
+    else if (p.token) out.push({ type: t, payload: { token: p.token } });
+    else if (p.url) out.push({ type: t, payload: { url: p.url } });
+  }
+  return out;
+}
+
 function escHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
@@ -110,7 +125,8 @@ async function onMessage(u: AnyUpdate): Promise<void> {
   const userId: number | undefined = msg.sender?.user_id;
   const chatType: string = msg.recipient?.chat_type ?? "dialog";
   const text: string = (msg.body?.text ?? "").trim();
-  if (!text) return;
+  const media = forwardAttachments(msg.body?.attachments);
+  if (!text && media.length === 0) return;
 
   // /chatid — узнать id чата (ответ только в этот чат)
   if (text.toLowerCase().startsWith("/chatid")) {
@@ -123,21 +139,22 @@ async function onMessage(u: AnyUpdate): Promise<void> {
 
   // менеджер в активном диалоге — это его ответ клиенту
   if (active.has(userId)) {
-    return await onManagerReply(userId, text);
+    return await onManagerReply(userId, text, media);
   }
 
   // ----- сообщение клиента -----
   const name: string = msg.sender?.name ?? msg.sender?.first_name ?? `id ${userId}`;
   const username: string | null = msg.sender?.username ?? null;
   const existing = leads.get(userId);
+  const shown = text || "(вложение)";
 
-  // закреплённый клиент пишет повторно → его менеджеру
+  // закреплённый клиент пишет повторно → его менеджеру (с вложением)
   if (existing && existing.managerId) {
-    existing.lastText = text;
+    existing.lastText = shown;
     existing.name = name;
     existing.username = username;
     await sendMessage({ userId, text: "Передал менеджеру 👌" });
-    await sendMessage({ userId: existing.managerId, text: `💬 Клиент ${name}:\n${text}` });
+    await sendMessage({ userId: existing.managerId, text: `💬 Клиент ${name}:${text ? "\n" + text : ""}`, media });
     return;
   }
 
@@ -146,25 +163,25 @@ async function onMessage(u: AnyUpdate): Promise<void> {
     clientId: userId,
     name,
     username,
-    lastText: text,
+    lastText: shown,
     managerId: existing?.managerId ?? null,
     managerName: existing?.managerName ?? null,
   });
   await sendMessage({ userId, text: CLIENT_RECEIVED });
 
   const uname = username ? ` (@${username})` : "";
-  const card = `🔔 Новое обращение\nОт: ${name}${uname}\n\n«${text}»`;
+  const card = `🔔 Новое обращение\nОт: ${name}${uname}\n\n«${shown}»`;
   const gid = salesGroupId();
   if (gid) {
-    await sendMessage({ chatId: gid, text: card, keyboard: takeKb(userId) });
+    await sendMessage({ chatId: gid, text: card, keyboard: takeKb(userId), media });
   } else {
     const admin = adminId();
-    if (admin) await sendMessage({ userId: admin, text: `📋 ${card}` });
+    if (admin) await sendMessage({ userId: admin, text: `📋 ${card}`, media });
   }
-  await emailLead(name, username, text);
+  await emailLead(name, username, shown);
 }
 
-async function onManagerReply(managerId: number, text: string): Promise<void> {
+async function onManagerReply(managerId: number, text: string, media: unknown[] = []): Promise<void> {
   const low = text.toLowerCase();
   if (low === "/стоп" || low === "/stop") {
     active.delete(managerId);
@@ -173,7 +190,7 @@ async function onManagerReply(managerId: number, text: string): Promise<void> {
   }
   const clientId = active.get(managerId)!;
   const lead = leads.get(clientId);
-  const ok = await sendMessage({ userId: clientId, text: `💬 Менеджер ZOND:\n${text}` });
+  const ok = await sendMessage({ userId: clientId, text: `💬 Менеджер ZOND:${text ? "\n" + text : ""}`, media });
   await sendMessage({
     userId: managerId,
     text: ok

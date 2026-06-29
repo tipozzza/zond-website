@@ -33,15 +33,23 @@ export function inlineKeyboard(rows: CallbackBtn[][]) {
   };
 }
 
-type SendArgs = { chatId?: number; userId?: number; text: string; keyboard?: CallbackBtn[][] };
+type SendArgs = {
+  chatId?: number;
+  userId?: number;
+  text?: string;
+  keyboard?: CallbackBtn[][];
+  media?: unknown[]; // готовые вложения для пересылки (фото/файлы по токену)
+};
 
-export async function sendMessage({ chatId, userId, text, keyboard }: SendArgs): Promise<boolean> {
+export async function sendMessage({ chatId, userId, text, keyboard, media }: SendArgs): Promise<boolean> {
   try {
-    const attachments = keyboard ? [inlineKeyboard(keyboard)] : [];
+    const attachments = [...(media ?? []), ...(keyboard ? [inlineKeyboard(keyboard)] : [])];
+    const body: Record<string, unknown> = { attachments };
+    if (text) body.text = text; // пустой текст не отправляем (сообщение только с вложением)
     const res = await fetch(url("/messages", { chat_id: chatId, user_id: userId }), {
       method: "POST",
       headers: authHeaders(),
-      body: JSON.stringify({ text, attachments }),
+      body: JSON.stringify(body),
     });
     if (!res.ok) {
       console.warn("[max-client/api] sendMessage", res.status, await safeText(res));
