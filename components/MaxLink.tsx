@@ -1,7 +1,8 @@
 /**
- * Ссылка на MAX-мессенджер — ведёт в общий чат отдела продаж ZOND
- * (ссылка-приглашение `https://max.ru/join/...`). Клиент вступает в чат и пишет
- * напрямую — отвечают менеджеры. Без бота-посредника.
+ * Ссылка на MAX-мессенджер — ведёт в профиль компании ZOND
+ * (формат `https://max.ru/u/<id>`). Клиент пишет напрямую 1:1, без бота.
+ * Группу как публичную кнопку MAX не поддерживает (по join-ссылке с улицы
+ * в чат не пускает), поэтому используем профиль — он открывается надёжно.
  * Если MAX установлен — система откроет приложение; если нет — веб-версию.
  *
  * Это Server Component (без onClick) — браузер просто делает GET по URL,
@@ -11,7 +12,7 @@
  */
 
 const MAX_TEL_DISPLAY = "+7 923 400-97-05";
-const MAX_LINK = "https://max.ru/join/fS8UraZMML08Ha7ANiUUTfTaf7j920yxcbmlY6iITN0";
+const MAX_LINK = "https://max.ru/u/f9LHodD0cOLpPZKaezQOnH4bvNYa-RRXQaz3r_eygqquQr0kWE5PyafLClI";
 
 type Props = {
   className?: string;
