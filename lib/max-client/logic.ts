@@ -137,6 +137,31 @@ async function onMessage(u: AnyUpdate): Promise<void> {
 
   if (chatType !== "dialog" || !userId) return;
 
+  // /w (или /написать) <id> текст — владелец пишет клиенту напрямую по id.
+  // Страховка: работает всегда, без кнопок и привязок (переживает пересборки).
+  if (userId === adminId() && /^\/(w|написать)\s/i.test(text)) {
+    const rest = text.replace(/^\/(w|написать)\s+/i, "");
+    const m = rest.match(/^(-?\d+)\s+([\s\S]+)$/);
+    if (!m) {
+      await sendMessage({ userId, text: "Формат: /w <id_клиента> текст" });
+      return;
+    }
+    const cid = Number(m[1]);
+    const ok = await sendMessage({ userId: cid, text: `💬 Менеджер ZOND:\n${m[2]}`, media });
+    const lead = leads.get(cid) ?? { clientId: cid, name: "клиент", username: null, lastText: "", managerId: null, managerName: null };
+    lead.managerId = userId;
+    lead.managerName = "владелец";
+    leads.set(cid, lead);
+    active.set(userId, cid);
+    await sendMessage({
+      userId,
+      text: ok
+        ? `✅ Отправлено клиенту ${cid}. Дальше просто пишите сюда — уйдёт ему. /стоп — завершить.`
+        : "⚠️ Не удалось отправить — возможно, клиент не открывал бота.",
+    });
+    return;
+  }
+
   // менеджер в активном диалоге — это его ответ клиенту
   if (active.has(userId)) {
     return await onManagerReply(userId, text, media);
