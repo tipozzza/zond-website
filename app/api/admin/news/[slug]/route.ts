@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { verifySession } from "@/lib/auth";
-import { friendlyGithubError, getFile, putFile } from "@/lib/github-api";
-
-const NEWS_PATH = "lib/news.json";
+import { friendlyGithubError, getFile } from "@/lib/github-api";
+import { NEWS_LIB_PATH as NEWS_PATH, writeNewsBoth } from "@/lib/news-store";
 
 type NewsRecord = {
   slug: string;
@@ -13,6 +12,7 @@ type NewsRecord = {
   content: string;
   image: string;
   externalUrl?: string;
+  gallery?: string[];
 };
 
 export async function PUT(req: Request, { params }: { params: Promise<{ slug: string }> }) {
@@ -28,8 +28,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ slug: st
     if (idx === -1) return NextResponse.json({ error: "Новость не найдена" }, { status: 404 });
     news[idx] = { ...news[idx], ...updated, slug };
     news.sort((a, b) => b.date.localeCompare(a.date));
-    const newContent = JSON.stringify(news, null, 2);
-    await putFile(NEWS_PATH, newContent, `Update news: ${slug}`, file.sha);
+    await writeNewsBoth(news, `Update news: ${slug}`, file.sha);
     return NextResponse.json({ ok: true });
   } catch (err) {
     const { status, message } = friendlyGithubError(err);
@@ -48,8 +47,7 @@ export async function DELETE(_req: Request, { params }: { params: Promise<{ slug
     const filtered = news.filter((n) => n.slug !== slug);
     if (filtered.length === news.length)
       return NextResponse.json({ error: "Новость не найдена" }, { status: 404 });
-    const newContent = JSON.stringify(filtered, null, 2);
-    await putFile(NEWS_PATH, newContent, `Delete news: ${slug}`, file.sha);
+    await writeNewsBoth(filtered, `Delete news: ${slug}`, file.sha);
     return NextResponse.json({ ok: true });
   } catch (err) {
     const { status, message } = friendlyGithubError(err);

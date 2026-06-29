@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import imageCompression from "browser-image-compression";
 
 type NewsRecord = {
   slug: string;
@@ -12,6 +13,7 @@ type NewsRecord = {
   content: string;
   image: string;
   externalUrl?: string;
+  gallery?: string[];
 };
 
 type Props = {
@@ -102,9 +104,62 @@ export default function NewsForm({ initial, mode }: Props) {
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [gallery, setGallery] = useState<string[]>(initial?.gallery ?? []);
+  const [galleryBusy, setGalleryBusy] = useState(false);
 
   const update = (field: keyof typeof data, value: string) =>
     setData((prev) => ({ ...prev, [field]: value }));
+
+  // Галерея: несколько фото. Сжимаем на клиенте (как в портфолио), затем
+  // грузим каждое отдельным запросом с unique=1 (уникальное имя файла), пути
+  // складываем в массив gallery, который сохранится вместе с новостью.
+  const handleGalleryAdd = async (files: FileList) => {
+    setGalleryBusy(true);
+    setError("");
+    try {
+      const arr = Array.from(files).filter((f) => f.type.startsWith("image/"));
+      for (const f of arr) {
+        let upload: File = f;
+        try {
+          const compressed = await imageCompression(f, {
+            maxSizeMB: 0.5,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true,
+            fileType: "image/jpeg",
+          });
+          upload = new File([compressed], "gallery.jpg", { type: "image/jpeg" });
+        } catch {
+          // fallback: исходный файл
+        }
+        const fd = new FormData();
+        fd.append("file", upload);
+        fd.append("slug", data.slug || transliterate(data.title));
+        fd.append("date", data.date);
+        fd.append("unique", "1");
+        const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+        const r = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          setError(r.error || "Ошибка загрузки фото галереи");
+          break;
+        }
+        setGallery((prev) => [...prev, r.url]);
+      }
+    } finally {
+      setGalleryBusy(false);
+    }
+  };
+
+  const removeGalleryItem = (i: number) =>
+    setGallery((prev) => prev.filter((_, idx) => idx !== i));
+
+  const moveGalleryItem = (i: number, dir: -1 | 1) =>
+    setGallery((prev) => {
+      const j = i + dir;
+      if (j < 0 || j >= prev.length) return prev;
+      const next = [...prev];
+      [next[i], next[j]] = [next[j], next[i]];
+      return next;
+    });
 
   const handleImageUpload = async () => {
     if (!imageFile) return;
@@ -140,6 +195,7 @@ export default function NewsForm({ initial, mode }: Props) {
       ...data,
       slug: data.slug || transliterate(data.title),
       dateLabel: data.dateLabel || autoDateLabel(data.date),
+      gallery,
     };
 
     try {
@@ -267,6 +323,69 @@ export default function NewsForm({ initial, mode }: Props) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={data.image} alt="" className="max-h-32 rounded" />
             <p className="text-xs text-slate-500 mt-1">{data.image}</p>
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label className="block text-sm font-semibold mb-1">
+          Галерея фото {gallery.length > 0 && `(${gallery.length})`}
+        </label>
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          disabled={galleryBusy}
+          onChange={(e) => {
+            if (e.target.files?.length) handleGalleryAdd(e.target.files);
+            e.target.value = "";
+          }}
+          className="w-full text-sm"
+        />
+        <p className="text-xs text-slate-500 mt-1">
+          {galleryBusy
+            ? "Загрузка и сжатие…"
+            : "Можно выбрать несколько файлов. Сжимаются автоматически. Порядок — стрелками."}
+        </p>
+        {gallery.length > 0 && (
+          <div className="mt-3 grid grid-cols-3 sm:grid-cols-4 gap-2">
+            {gallery.map((url, i) => (
+              <div
+                key={url}
+                className="relative group rounded-lg overflow-hidden border border-slate-200 bg-slate-100"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={url} alt="" className="w-full h-24 object-cover" />
+                <button
+                  type="button"
+                  onClick={() => removeGalleryItem(i)}
+                  aria-label="Удалить из галереи"
+                  className="absolute top-1 right-1 bg-black/60 text-white w-6 h-6 rounded-full text-sm leading-none"
+                >
+                  ✕
+                </button>
+                <div className="absolute bottom-1 left-1 right-1 flex justify-between">
+                  <button
+                    type="button"
+                    onClick={() => moveGalleryItem(i, -1)}
+                    disabled={i === 0}
+                    aria-label="Левее"
+                    className="bg-black/60 text-white w-6 h-6 rounded-full text-sm leading-none disabled:opacity-30"
+                  >
+                    ◀
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => moveGalleryItem(i, 1)}
+                    disabled={i === gallery.length - 1}
+                    aria-label="Правее"
+                    className="bg-black/60 text-white w-6 h-6 rounded-full text-sm leading-none disabled:opacity-30"
+                  >
+                    ▶
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>

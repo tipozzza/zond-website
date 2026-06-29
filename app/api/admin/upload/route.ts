@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { randomUUID } from "crypto";
 import { verifySession } from "@/lib/auth";
 import { ensureDirectory, friendlyGithubError, putBinaryFile } from "@/lib/github-api";
 
@@ -18,7 +19,12 @@ export async function POST(req: Request) {
     const slug = rawSlug.toLowerCase().replace(/[^a-z0-9-]/g, "-");
     const date = (formData.get("date") as string) || new Date().toISOString().slice(0, 10);
     const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
-    const filename = `news-${date}-${slug}.${ext}`;
+    // Галерея грузит несколько файлов под одним slug+date — добавляем
+    // уникальный суффикс, чтобы они не перетирали друг друга и обложку.
+    // Обложка (без unique) остаётся с детерминированным именем — заменяема.
+    const unique = formData.get("unique");
+    const suffix = unique ? `-${randomUUID().slice(0, 8)}` : "";
+    const filename = `news-${date}-${slug}${suffix}.${ext}`;
     const path = `public/images/news/${filename}`;
 
     const buffer = Buffer.from(await file.arrayBuffer());

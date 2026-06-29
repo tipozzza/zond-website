@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
+import NewsGallery from "@/components/NewsGallery";
 import { NEWS, type NewsItem } from "@/lib/news-data";
 import { buildOgUrl } from "@/lib/og";
 
@@ -190,6 +191,8 @@ export default async function NewsDetailPage({
           />
 
           <NewsBody content={news.content} />
+
+          <NewsGallery images={news.gallery ?? []} title={news.title} />
 
           <div className="mt-12 pt-8 border-t border-slate-200">
             <Link href="/news" className="text-brand hover:underline">

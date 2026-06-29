@@ -14,6 +14,7 @@ type NewsRecord = {
   content: string;
   image: string;
   externalUrl?: string;
+  gallery?: string[];
 };
 
 export default function EditNewsPage() {

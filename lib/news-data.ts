@@ -9,6 +9,7 @@ export type NewsItem = {
   content: string;
   image: string;
   externalUrl?: string;
+  gallery?: string[];
 };
 
 export const NEWS: NewsItem[] = newsJson as NewsItem[];

@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { verifySession } from "@/lib/auth";
-import { friendlyGithubError, getFile, getFileWithFallback, putFile } from "@/lib/github-api";
-
-const NEWS_PATH = "lib/news.json";
+import { friendlyGithubError, getFile, getFileWithFallback } from "@/lib/github-api";
+import { NEWS_LIB_PATH as NEWS_PATH, writeNewsBoth } from "@/lib/news-store";
 
 type NewsRecord = {
   slug: string;
@@ -13,6 +12,7 @@ type NewsRecord = {
   content: string;
   image: string;
   externalUrl?: string;
+  gallery?: string[];
 };
 
 export async function GET() {
@@ -44,10 +44,10 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
+    newItem.gallery = Array.isArray(newItem.gallery) ? newItem.gallery : [];
     news.unshift(newItem);
     news.sort((a, b) => b.date.localeCompare(a.date));
-    const newContent = JSON.stringify(news, null, 2);
-    await putFile(NEWS_PATH, newContent, `Add news: ${newItem.title}`, file?.sha);
+    await writeNewsBoth(news, `Add news: ${newItem.title}`, file?.sha);
     return NextResponse.json({ ok: true });
   } catch (err) {
     const { status, message } = friendlyGithubError(err);
