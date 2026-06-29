@@ -98,7 +98,8 @@ export default function LeadModalProvider({ children }: { children: React.ReactN
             </button>
             <ContactForm
               title="Оставить заявку"
-              description="Заполните форму — менеджер свяжется в течение рабочего дня."
+              description="Заполните форму — менеджер свяжется в ближайшее время."
+              requireConsent
             />
           </div>
         </div>

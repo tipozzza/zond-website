@@ -13,12 +13,14 @@ const DEPARTMENTS = [
 export default function ContactForm({
   title,
   description,
-}: { title?: string; description?: string } = {}) {
+  requireConsent = false,
+}: { title?: string; description?: string; requireConsent?: boolean } = {}) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [department, setDepartment] = useState("");
   const [message, setMessage] = useState("");
+  const [consent, setConsent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -29,6 +31,7 @@ export default function ContactForm({
     setEmail("");
     setDepartment("");
     setMessage("");
+    setConsent(false);
     setError("");
     setSuccess(false);
   };
@@ -38,6 +41,10 @@ export default function ContactForm({
     setError("");
     if (!name || !phone || !message) {
       setError("Заполните имя, телефон и сообщение");
+      return;
+    }
+    if (requireConsent && !consent) {
+      setError("Подтвердите согласие на обработку персональных данных");
       return;
     }
     setSubmitting(true);
@@ -141,15 +148,33 @@ export default function ContactForm({
         />
       </div>
       {error && <div className="text-red-600 text-sm">{error}</div>}
-      <p className="text-xs text-gray-500 leading-relaxed">
-        Отправляя форму, вы соглашаетесь с{" "}
-        <a href="/privacy" className="text-brand">политикой конфиденциальности</a>{" "}
-        и даёте согласие на обработку персональных данных.
-      </p>
+      {requireConsent ? (
+        <div className="flex items-start gap-2 text-xs text-gray-500 leading-relaxed">
+          <input
+            type="checkbox"
+            checked={consent}
+            onChange={(e) => setConsent(e.target.checked)}
+            aria-label="Согласие на обработку персональных данных"
+            className="mt-0.5 w-4 h-4 accent-brand shrink-0"
+          />
+          <span>
+            Отправляя форму, вы соглашаетесь с{" "}
+            <a href="/privacy" className="text-brand">политикой конфиденциальности</a>{" "}
+            и даёте согласие на обработку персональных данных.
+          </span>
+        </div>
+      ) : (
+        <p className="text-xs text-gray-500 leading-relaxed">
+          Отправляя форму, вы соглашаетесь с{" "}
+          <a href="/privacy" className="text-brand">политикой конфиденциальности</a>{" "}
+          и даёте согласие на обработку персональных данных.
+        </p>
+      )}
       <button
         type="submit"
-        disabled={submitting}
-        className="w-full md:w-auto bg-brand hover:bg-brand/90 text-white px-8 py-3 rounded-lg font-semibold disabled:opacity-50 transition-colors"
+        disabled={submitting || (requireConsent && !consent)}
+        title={requireConsent && !consent ? "Подтвердите согласие на обработку персональных данных" : undefined}
+        className="w-full md:w-auto bg-brand hover:bg-brand/90 text-white px-8 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
         {submitting ? "Отправляем..." : "Отправить"}
       </button>
