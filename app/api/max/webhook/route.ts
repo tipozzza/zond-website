@@ -24,6 +24,14 @@ export async function POST(req: Request): Promise<Response> {
     return NextResponse.json({ ok: true });
   }
 
+  // диагностика: видим тип апдейта и payload callback в логах приложения
+  try {
+    const u = update as { update_type?: string; callback?: { payload?: string } };
+    console.log("[max/webhook] update", u?.update_type, u?.callback?.payload ?? "");
+  } catch {
+    /* ignore */
+  }
+
   try {
     await handleUpdate(update as Record<string, unknown>);
   } catch (e) {

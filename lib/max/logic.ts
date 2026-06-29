@@ -166,7 +166,10 @@ async function onCallback(u: AnyUpdate): Promise<void> {
   if (payload.startsWith("quiz:")) {
     const opt = parseInt(payload.slice(5), 10);
     const name = cb.user?.name ?? cb.user?.first_name ?? "Участник";
-    await answerCallback(callbackId, { notification: await recordAnswer(userId, name, opt) });
+    // отвечаем сразу (быстрый тост), запись в GitHub — после, чтобы не упереться в окно ответа MAX
+    const okAns = await answerCallback(callbackId, { notification: "Ответ принят ✅ Узнаешь при разборе." });
+    const note = await recordAnswer(userId, name, opt);
+    console.log("[max/quiz] tap", { userId, opt, okAns, note });
     return;
   }
 
