@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, Phone, X } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "@/lib/site-data";
+import { useLeadModal } from "@/components/LeadModalProvider";
 
 const SERVICES_MAIN = [
   { label: "Наружная реклама", href: "/outdoor" },
@@ -22,6 +23,7 @@ const SERVICES_ADDITIONAL = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { open: openLeadModal } = useLeadModal();
 
   useEffect(() => {
     if (mobileOpen) {
@@ -119,9 +121,9 @@ export default function Header() {
             <a href={`tel:${COMPANY.phoneRaw}`} className="font-semibold text-brand">
               {COMPANY.phone}
             </a>
-            <a href="#contact-form" className="btn btn-primary">
+            <button type="button" onClick={openLeadModal} className="btn btn-primary">
               Оставить заявку
-            </a>
+            </button>
           </div>
 
           <button
@@ -211,13 +213,16 @@ export default function Header() {
                 <Phone size={22} />
                 {COMPANY.phone}
               </a>
-              <a
-                href="#contact-form"
-                onClick={close}
+              <button
+                type="button"
+                onClick={() => {
+                  close();
+                  openLeadModal();
+                }}
                 className="block w-full bg-brand hover:bg-brand/90 text-white text-center px-6 py-4 rounded-xl font-bold text-lg transition-colors"
               >
                 Оставить заявку
-              </a>
+              </button>
             </div>
           </div>
         </div>

@@ -10,7 +10,10 @@ const DEPARTMENTS = [
   { value: "accounting", label: "Бухгалтерия" },
 ];
 
-export default function ContactForm() {
+export default function ContactForm({
+  title,
+  description,
+}: { title?: string; description?: string } = {}) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -76,6 +79,12 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
       className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 space-y-4"
     >
+      {(title || description) && (
+        <div className="mb-1">
+          {title && <h2 className="text-2xl font-bold">{title}</h2>}
+          {description && <p className="text-sm text-gray-500 mt-1">{description}</p>}
+        </div>
+      )}
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium mb-1.5">Имя *</label>

@@ -4,6 +4,7 @@ import "./globals.css";
 import YandexMetrika from "@/components/YandexMetrika";
 import StructuredData from "@/components/StructuredData";
 import CookieBanner from "@/components/CookieBanner";
+import LeadModalProvider from "@/components/LeadModalProvider";
 
 const rubik = Rubik({
   subsets: ["latin", "cyrillic"],
@@ -83,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <StructuredData />
         <YandexMetrika />
-        {children}
+        <LeadModalProvider>{children}</LeadModalProvider>
         <CookieBanner />
       </body>
     </html>
