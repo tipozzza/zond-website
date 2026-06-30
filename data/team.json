@@ -506,11 +506,16 @@
     },
     {
       "user_id": 308848789,
-      "birth_year": null,
-      "hired_full_date": null,
-      "gender": null,
-      "consent_date": "2026-06-30T06:10:36.874Z",
-      "created_at": "2026-06-30T06:10:36.874Z",
+      "full_name": "Роман Сеченов",
+      "position": "менеджер по продажам",
+      "birth_day": 2,
+      "birth_month": 1,
+      "birth_year": 1988,
+      "hired_year": 2026,
+      "hired_full_date": "2026-06-01",
+      "gender": "male",
+      "consent_date": "2026-06-30T06:11:38.596Z",
+      "created_at": "2026-06-30T06:11:38.596Z",
       "active": true
     },
     {
