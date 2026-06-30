@@ -1,14 +1,20 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 const BRAND = "#6F395D";
 const BRAND_DARK = "#1F0E18";
 const ACCENT = "#F4C430";
 
-async function loadFont(): Promise<ArrayBuffer> {
-  const res = await fetch(new URL("./Rubik.ttf", import.meta.url));
-  return await res.arrayBuffer();
+async function loadFont(): Promise<Buffer | null> {
+  try {
+    return await readFile(join(process.cwd(), "app/api/og/Rubik.ttf"));
+  } catch (e) {
+    console.warn("[api/og] не удалось прочитать шрифт, рендерим дефолтным:", e);
+    return null;
+  }
 }
 
 export async function GET(request: Request) {
@@ -18,6 +24,9 @@ export async function GET(request: Request) {
   const category = (searchParams.get("category") || "").slice(0, 60);
 
   const fontData = await loadFont();
+  const fonts = fontData
+    ? [{ name: "Rubik", data: fontData, weight: 700 as const, style: "normal" as const }]
+    : undefined;
 
   return new ImageResponse(
     (
@@ -118,14 +127,7 @@ export async function GET(request: Request) {
     {
       width: 1200,
       height: 630,
-      fonts: [
-        {
-          name: "Rubik",
-          data: fontData,
-          weight: 700,
-          style: "normal",
-        },
-      ],
+      fonts,
     },
   );
 }
