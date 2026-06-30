@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,44 +11,72 @@ const SIDES = (Array.isArray(sidesJson) ? sidesJson : ((sidesJson as { sides?: S
 const foldSide = (s: string) =>
   decodeURIComponent(s).trim().toUpperCase().replace(/А/g, "A").replace(/В/g, "B");
 
+// Канонический ref стороны — единый источник правды для URL:
+// {число без ведущих нулей}{латинская буква}(+под-индекс если есть).
+// Сторона A констр.28 → "28A", сторона B → "28B"; под-панель А1 → "28A1".
+const canonicalRef = (s: Side) => `${parseInt(s.construction, 10)}${foldSide(s.side)}`;
+
 // Разбор ссылки на число (без ведущих нулей) + суффикс стороны.
-// "028А1"→{28,"A1"}, "009"→{9,""}, "28"→{28,""}, "118B"→{118,"B"}.
+// "028А1"→{28,"A1"}, "009"→{9,""}, "28"→{28,""}, "118B"→{118,"B"}, "28A"→{28,"A"}.
 function parseRef(raw: string): { num: number; side: string } | null {
   const m = foldSide(raw).match(/^0*(\d+)(.*)$/);
   if (!m) return null;
   return { num: parseInt(m[1], 10), side: m[2] };
 }
 
-// Поиск стороны по номеру конструкции (числом — ведущие нули несущественны)
-// и стороне. Старые ссылки со стороной (028А1, 009А2) и без (028, 9) работают.
+// Поиск стороны по ЛЮБОМУ варианту ссылки (028, 28, 028А, 028А1, 28B, любой
+// регистр). Голый номер без буквы и «буква без под-индекса» (28A) → первая
+// сторона на эту букву (натуральный порядок), сторона A по умолчанию.
+const firstByLetter = (cands: Side[], letter: string) =>
+  cands
+    .filter((s) => foldSide(s.side).startsWith(letter))
+    .sort((a, b) => a.side.localeCompare(b.side, "ru", { numeric: true }))[0];
+
 function findSide(raw: string) {
   const ref = parseRef(raw);
   if (!ref) return undefined;
   const cands = SIDES.filter((s) => parseInt(s.construction, 10) === ref.num);
   if (cands.length === 0) return undefined;
   if (ref.side) {
-    return cands.find((s) => foldSide(s.side) === ref.side);
+    const exact = cands.find((s) => foldSide(s.side) === ref.side);
+    if (exact) return exact;
+    // "28A" (буква без под-индекса) → первая сторона на эту букву.
+    if (/^[A-Z]$/.test(ref.side)) return firstByLetter(cands, ref.side);
+    return undefined;
   }
-  // Номер без стороны → отдаём сторону A (первую по натуральному порядку).
-  const aSides = cands
-    .filter((s) => foldSide(s.side).startsWith("A"))
-    .sort((a, b) => a.side.localeCompare(b.side, "ru", { numeric: true }));
-  return aSides[0] ?? cands[0];
+  // Номер без стороны → сторона A (первая), иначе первая доступная.
+  return firstByLetter(cands, "A") ?? cands[0];
+}
+
+export const dynamicParams = true; // неканонические варианты резолвятся и редиректят
+
+export function generateStaticParams() {
+  return SIDES.map((s) => ({ id: canonicalRef(s) }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const side = findSide(id);
   if (!side) return { title: "Конструкция не найдена — Зонд-Реклама", robots: { index: false, follow: false } };
+  const canonical = canonicalRef(side);
   const title = `Конструкция №${side.construction} сторона ${side.side} — Зонд-Реклама`;
   const img = side.photo_filename ? `/images/constructions/${side.photo_filename}` : undefined;
-  return { title, description: `${side.address}. Формат ${side.format}. Рекламная конструкция в Томске.`, robots: { index: false, follow: false }, openGraph: { title, images: img ? [img] : [] } };
+  return {
+    title,
+    description: `${side.address}. Формат ${side.format}. Рекламная конструкция в Томске.`,
+    robots: { index: false, follow: false },
+    alternates: { canonical: `/outdoor/${canonical}` },
+    openGraph: { title, images: img ? [img] : [] },
+  };
 }
 
 export default async function ConstructionPhotoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const side = findSide(id);
   if (!side) notFound();
+  // Все варианты → единый канонический URL (постоянный 308-редирект).
+  const canonical = canonicalRef(side);
+  if (decodeURIComponent(id).trim() !== canonical) permanentRedirect(`/outdoor/${canonical}`);
   const photo = side.photo_filename ? `/images/constructions/${side.photo_filename}` : null;
   return (
     <>
