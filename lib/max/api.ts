@@ -23,14 +23,18 @@ function url(path: string, params: Record<string, string | number | undefined> =
   return u.toString();
 }
 
-export type CallbackBtn = { text: string; payload: string };
+export type CallbackBtn = { text: string; payload?: string; kind?: "callback" | "message" };
 
 export function inlineKeyboard(rows: CallbackBtn[][]) {
   return {
     type: "inline_keyboard",
     payload: {
       buttons: rows.map((row) =>
-        row.map((b) => ({ type: "callback", text: b.text, payload: b.payload, intent: "default" })),
+        row.map((b) =>
+          b.kind === "message"
+            ? { type: "message", text: b.text }
+            : { type: "callback", text: b.text, payload: b.payload, intent: "default" },
+        ),
       ),
     },
   };

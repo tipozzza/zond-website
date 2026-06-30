@@ -20,7 +20,7 @@ import {
   upsertEmployee,
   type Employee,
 } from "./team";
-import { addQuestion, recordAnswer, runQuiz, showLeaderboard } from "./quiz";
+import { addQuestion, recordAnswer, recordAnswerByText, runQuiz, showLeaderboard } from "./quiz";
 
 const CONSENT_KB: CallbackBtn[][] = [
   [
@@ -103,6 +103,12 @@ async function onMessage(u: AnyUpdate): Promise<void> {
   if (text.startsWith("/")) {
     await handleCommand({ cmd: text, userId, chatId, isPrivate });
     return;
+  }
+
+  // Ответ на викторину кнопкой-message (в группе приходит как обычное сообщение)
+  if (!isPrivate && text) {
+    const name = msg.sender?.name ?? msg.sender?.first_name ?? "Участник";
+    if (await recordAnswerByText(userId, name, text)) return;
   }
 
   const session = getSession(userId);

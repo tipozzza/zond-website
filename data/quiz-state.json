@@ -1,10 +1,4 @@
 {
-  "currentQ": 5,
-  "asked": [
-    0,
-    1,
-    2,
-    3,
-    4
-  ]
+  "currentQ": null,
+  "asked": []
 }

@@ -97,7 +97,7 @@ function letter(i: number): string {
 }
 
 function quizKb(q: Question): CallbackBtn[][] {
-  return q.options.map((opt, i) => [{ text: `${letter(i)}. ${opt}`, payload: `quiz:${i}` }]);
+  return q.options.map((opt, i) => [{ text: `${letter(i)}. ${opt}`, kind: "message" }]);
 }
 
 /** Разбор вопроса: правильный ответ + пояснение + кто ответил верно + начисление очков. */
@@ -199,6 +199,20 @@ export async function recordAnswer(userId: number, name: string, opt: number): P
   if (!m) return "Сейчас активного вопроса нет 🙂";
   m.answers.set(userId, { name, opt });
   return "Ответ принят ✅ Узнаешь при разборе.";
+}
+
+/** Ответ через кнопку-message: в группу приходит обычное сообщение с подписью варианта. */
+export async function recordAnswerByText(userId: number, name: string, text: string): Promise<boolean> {
+  const m = await ensureCurrent();
+  if (!m) return false;
+  const { questions } = await loadQuestions();
+  const q = questions[m.qIndex];
+  if (!q) return false;
+  const t = text.trim();
+  const idx = q.options.findIndex((opt, i) => `${letter(i)}. ${opt}` === t);
+  if (idx < 0) return false;
+  m.answers.set(userId, { name, opt: idx });
+  return true;
 }
 
 /** Добавить вопрос (админ). Формат: Вопрос | Вар1 | Вар2 | Вар3 | НомерПравильного(1-3) | Пояснение */
