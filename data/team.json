@@ -531,6 +531,20 @@
       "consent_date": "2026-06-26T06:16:48.732Z",
       "created_at": "2026-06-26T06:16:48.732Z",
       "active": true
+    },
+    {
+      "user_id": 47163161,
+      "full_name": "Елена Харитонова",
+      "position": "Менеджер по проектам",
+      "birth_day": 1,
+      "birth_month": 2,
+      "birth_year": 1985,
+      "hired_year": 2010,
+      "hired_full_date": null,
+      "gender": "female",
+      "consent_date": "2026-06-30T06:13:06.591Z",
+      "created_at": "2026-06-30T06:13:06.591Z",
+      "active": true
     }
   ],
   "customHolidays": []
