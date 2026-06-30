@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Side } from "@/lib/types";
+import { buildCanonicalMap } from "@/lib/side-url";
 
 type Props = {
   sides: Side[];
@@ -22,7 +23,6 @@ const COLUMNS: { k: SortKey; label: string }[] = [
 // `id` в данных НЕ уникален (у конструкций с двумя сторонами A/B обе стороны
 // имеют одинаковый id). Уникальный ключ — construction + side.
 const rowKey = (s: Side) => `${s.construction}|${s.side}`;
-const rowLabel = (s: Side) => `${s.construction}${s.side}`;
 
 // Кир.↔лат. гомоглифы → канонический латинский вид (после lowercase), чтобы
 // "1A" (лат.) и "1А" (кир.) считались одинаковыми независимо от раскладки.
@@ -49,6 +49,10 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
   const [search, setSearch] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("construction");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+
+  // id → canonical (под-панели с одним фото схлопнуты в одну букву, напр. 28A).
+  const canon = useMemo(() => buildCanonicalMap(sides), [sides]);
+  const refOf = (s: Side) => canon.get(s.id) ?? rowKey(s);
 
   const filtered = useMemo(() => {
     const q = norm(search);
@@ -81,7 +85,7 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
     }
 
     const dir = sortDir === "asc" ? 1 : -1;
-    return [...base].sort((a, b) => {
+    const sorted = [...base].sort((a, b) => {
       let cmp: number;
       switch (sortKey) {
         case "construction":
@@ -107,7 +111,15 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
       if (cmp === 0) cmp = byConstruction(a, b); // стабильный tiebreak
       return dir * cmp;
     });
-  }, [sides, search, sortKey, sortDir]);
+    // Дедуп: одна карточка на canonical (схлопнутые под-панели — один URL).
+    const seen = new Set<string>();
+    return sorted.filter((s) => {
+      const r = canon.get(s.id) ?? rowKey(s);
+      if (seen.has(r)) return false;
+      seen.add(r);
+      return true;
+    });
+  }, [sides, search, sortKey, sortDir, canon]);
 
   const toggleSort = (k: SortKey) => {
     if (sortKey === k) {
@@ -129,7 +141,7 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
           className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#F57C28] focus:border-transparent"
         />
         <div className="mt-2 text-sm text-slate-500">
-          Показано {filtered.length} из {filtered.length} (всего {sides.length})
+          Показано {filtered.length} из {new Set(canon.values()).size}
         </div>
       </div>
 
@@ -153,8 +165,8 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
           </thead>
           <tbody>
             {filtered.map((s) => (
-              <tr key={rowKey(s)} className="border-t border-slate-100 hover:bg-[#F57C28]/5">
-                <td className="px-3 py-2 font-mono font-semibold">{rowLabel(s)}</td>
+              <tr key={refOf(s)} className="border-t border-slate-100 hover:bg-[#F57C28]/5">
+                <td className="px-3 py-2 font-mono font-semibold">{refOf(s)}</td>
                 <td className="px-3 py-2">{s.address}</td>
                 <td className="px-3 py-2">{s.type}</td>
                 <td className="px-3 py-2">{s.format}</td>

@@ -5,16 +5,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import sidesJson from "@/public/data/sides.json";
 import type { Side } from "@/lib/types";
+import { buildCanonicalMap, foldSide } from "@/lib/side-url";
 
 const SIDES = (Array.isArray(sidesJson) ? sidesJson : ((sidesJson as { sides?: Side[] }).sides ?? [])) as Side[];
-// Сворачиваем кириллические двойники сторон к латинице (А→A, В→B) для сравнения.
-const foldSide = (s: string) =>
-  decodeURIComponent(s).trim().toUpperCase().replace(/А/g, "A").replace(/В/g, "B");
-
-// Канонический ref стороны — единый источник правды для URL:
-// {число без ведущих нулей}{латинская буква}(+под-индекс если есть).
-// Сторона A констр.28 → "28A", сторона B → "28B"; под-панель А1 → "28A1".
-const canonicalRef = (s: Side) => `${parseInt(s.construction, 10)}${foldSide(s.side)}`;
+// Карта id → canonical (под-панели с одинаковым фото схлопнуты в одну букву).
+const CANON = buildCanonicalMap(SIDES);
+const canonicalRef = (s: Side) => CANON.get(s.id) ?? `${parseInt(s.construction, 10)}${foldSide(s.side)}`;
 
 // Разбор ссылки на число (без ведущих нулей) + суффикс стороны.
 // "028А1"→{28,"A1"}, "009"→{9,""}, "28"→{28,""}, "118B"→{118,"B"}, "28A"→{28,"A"}.
@@ -51,7 +47,8 @@ function findSide(raw: string) {
 export const dynamicParams = true; // неканонические варианты резолвятся и редиректят
 
 export function generateStaticParams() {
-  return SIDES.map((s) => ({ id: canonicalRef(s) }));
+  // Только уникальные канонические ref (схлопнутые группы дают один URL).
+  return [...new Set(SIDES.map((s) => canonicalRef(s)))].map((id) => ({ id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
