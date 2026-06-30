@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "mkdir -p .next/cache/images && chmod -R 777 .next/cache",
     "start": "next start",
     "lint": "next lint"
   },
