@@ -506,17 +506,12 @@
     },
     {
       "user_id": 308848789,
-      "full_name": "Имя Фамилия",
-      "position": "Менеджер по продажам",
-      "birth_day": 27,
-      "birth_month": 6,
-      "birth_year": 2056,
-      "hired_year": 2036,
-      "hired_full_date": "2036-06-27",
-      "gender": "female",
-      "consent_date": "2026-06-26T06:08:19.184Z",
-      "created_at": "2026-06-26T06:08:19.184Z",
-      "active": false
+      "birth_year": null,
+      "hired_full_date": null,
+      "gender": null,
+      "consent_date": "2026-06-30T06:10:36.874Z",
+      "created_at": "2026-06-30T06:10:36.874Z",
+      "active": true
     },
     {
       "user_id": 226305146,
