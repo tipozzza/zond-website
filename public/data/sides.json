@@ -1,9 +1,9 @@
 [
   {
-    "id": "007А1",
-    "construction": "007",
+    "id": "7А1",
+    "construction": "7",
     "side": "А1",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -33,10 +33,10 @@
     }
   },
   {
-    "id": "007А10",
-    "construction": "007",
+    "id": "7А10",
+    "construction": "7",
     "side": "А10",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -66,10 +66,10 @@
     }
   },
   {
-    "id": "007А11",
-    "construction": "007",
+    "id": "7А11",
+    "construction": "7",
     "side": "А11",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -99,10 +99,10 @@
     }
   },
   {
-    "id": "007А12",
-    "construction": "007",
+    "id": "7А12",
+    "construction": "7",
     "side": "А12",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -132,10 +132,10 @@
     }
   },
   {
-    "id": "007А2",
-    "construction": "007",
+    "id": "7А2",
+    "construction": "7",
     "side": "А2",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -165,10 +165,10 @@
     }
   },
   {
-    "id": "007А3",
-    "construction": "007",
+    "id": "7А3",
+    "construction": "7",
     "side": "А3",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -198,10 +198,10 @@
     }
   },
   {
-    "id": "007А4",
-    "construction": "007",
+    "id": "7А4",
+    "construction": "7",
     "side": "А4",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -231,10 +231,10 @@
     }
   },
   {
-    "id": "007А5",
-    "construction": "007",
+    "id": "7А5",
+    "construction": "7",
     "side": "А5",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -264,10 +264,10 @@
     }
   },
   {
-    "id": "007А6",
-    "construction": "007",
+    "id": "7А6",
+    "construction": "7",
     "side": "А6",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -297,10 +297,10 @@
     }
   },
   {
-    "id": "007А7",
-    "construction": "007",
+    "id": "7А7",
+    "construction": "7",
     "side": "А7",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -330,10 +330,10 @@
     }
   },
   {
-    "id": "007А8",
-    "construction": "007",
+    "id": "7А8",
+    "construction": "7",
     "side": "А8",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -363,10 +363,10 @@
     }
   },
   {
-    "id": "007А9",
-    "construction": "007",
+    "id": "7А9",
+    "construction": "7",
     "side": "А9",
-    "address": "Digital Нахимова ул, 46 (Макдональдс)",
+    "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -396,8 +396,8 @@
     }
   },
   {
-    "id": "011А1",
-    "construction": "011",
+    "id": "11А1",
+    "construction": "11",
     "side": "А1",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -429,8 +429,8 @@
     }
   },
   {
-    "id": "011А10",
-    "construction": "011",
+    "id": "11А10",
+    "construction": "11",
     "side": "А10",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -462,8 +462,8 @@
     }
   },
   {
-    "id": "011А11",
-    "construction": "011",
+    "id": "11А11",
+    "construction": "11",
     "side": "А11",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -495,8 +495,8 @@
     }
   },
   {
-    "id": "011А12",
-    "construction": "011",
+    "id": "11А12",
+    "construction": "11",
     "side": "А12",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -528,8 +528,8 @@
     }
   },
   {
-    "id": "011А2",
-    "construction": "011",
+    "id": "11А2",
+    "construction": "11",
     "side": "А2",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -561,8 +561,8 @@
     }
   },
   {
-    "id": "011А3",
-    "construction": "011",
+    "id": "11А3",
+    "construction": "11",
     "side": "А3",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -594,8 +594,8 @@
     }
   },
   {
-    "id": "011А4",
-    "construction": "011",
+    "id": "11А4",
+    "construction": "11",
     "side": "А4",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -627,8 +627,8 @@
     }
   },
   {
-    "id": "011А5",
-    "construction": "011",
+    "id": "11А5",
+    "construction": "11",
     "side": "А5",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -660,8 +660,8 @@
     }
   },
   {
-    "id": "011А6",
-    "construction": "011",
+    "id": "11А6",
+    "construction": "11",
     "side": "А6",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -693,8 +693,8 @@
     }
   },
   {
-    "id": "011А7",
-    "construction": "011",
+    "id": "11А7",
+    "construction": "11",
     "side": "А7",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -726,8 +726,8 @@
     }
   },
   {
-    "id": "011А8",
-    "construction": "011",
+    "id": "11А8",
+    "construction": "11",
     "side": "А8",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -759,8 +759,8 @@
     }
   },
   {
-    "id": "011А9",
-    "construction": "011",
+    "id": "11А9",
+    "construction": "11",
     "side": "А9",
     "address": "Нахимова ул (Московский тракт, 111а)",
     "type": "Digital",
@@ -792,10 +792,10 @@
     }
   },
   {
-    "id": "012А1",
-    "construction": "012",
+    "id": "12А1",
+    "construction": "12",
     "side": "А1",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -825,10 +825,10 @@
     }
   },
   {
-    "id": "012А10",
-    "construction": "012",
+    "id": "12А10",
+    "construction": "12",
     "side": "А10",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -858,10 +858,10 @@
     }
   },
   {
-    "id": "012А11",
-    "construction": "012",
+    "id": "12А11",
+    "construction": "12",
     "side": "А11",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -891,10 +891,10 @@
     }
   },
   {
-    "id": "012А12",
-    "construction": "012",
+    "id": "12А12",
+    "construction": "12",
     "side": "А12",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -924,10 +924,10 @@
     }
   },
   {
-    "id": "012А2",
-    "construction": "012",
+    "id": "12А2",
+    "construction": "12",
     "side": "А2",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -957,10 +957,10 @@
     }
   },
   {
-    "id": "012А3",
-    "construction": "012",
+    "id": "12А3",
+    "construction": "12",
     "side": "А3",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -990,10 +990,10 @@
     }
   },
   {
-    "id": "012А4",
-    "construction": "012",
+    "id": "12А4",
+    "construction": "12",
     "side": "А4",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1023,10 +1023,10 @@
     }
   },
   {
-    "id": "012А5",
-    "construction": "012",
+    "id": "12А5",
+    "construction": "12",
     "side": "А5",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1056,10 +1056,10 @@
     }
   },
   {
-    "id": "012А6",
-    "construction": "012",
+    "id": "12А6",
+    "construction": "12",
     "side": "А6",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1089,10 +1089,10 @@
     }
   },
   {
-    "id": "012А7",
-    "construction": "012",
+    "id": "12А7",
+    "construction": "12",
     "side": "А7",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1122,10 +1122,10 @@
     }
   },
   {
-    "id": "012А8",
-    "construction": "012",
+    "id": "12А8",
+    "construction": "12",
     "side": "А8",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1155,10 +1155,10 @@
     }
   },
   {
-    "id": "012А9",
-    "construction": "012",
+    "id": "12А9",
+    "construction": "12",
     "side": "А9",
-    "address": "Digital Красноармейская 135 ул / ( пл. Транспортная)",
+    "address": "Красноармейская 135 ул (пл. Транспортная)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1188,10 +1188,10 @@
     }
   },
   {
-    "id": "014А1",
-    "construction": "014",
+    "id": "14А1",
+    "construction": "14",
     "side": "А1",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1221,10 +1221,10 @@
     }
   },
   {
-    "id": "014А10",
-    "construction": "014",
+    "id": "14А10",
+    "construction": "14",
     "side": "А10",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1254,10 +1254,10 @@
     }
   },
   {
-    "id": "014А11",
-    "construction": "014",
+    "id": "14А11",
+    "construction": "14",
     "side": "А11",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1287,10 +1287,10 @@
     }
   },
   {
-    "id": "014А12",
-    "construction": "014",
+    "id": "14А12",
+    "construction": "14",
     "side": "А12",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1320,10 +1320,10 @@
     }
   },
   {
-    "id": "014А2",
-    "construction": "014",
+    "id": "14А2",
+    "construction": "14",
     "side": "А2",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1353,10 +1353,10 @@
     }
   },
   {
-    "id": "014А3",
-    "construction": "014",
+    "id": "14А3",
+    "construction": "14",
     "side": "А3",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1386,10 +1386,10 @@
     }
   },
   {
-    "id": "014А4",
-    "construction": "014",
+    "id": "14А4",
+    "construction": "14",
     "side": "А4",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1419,10 +1419,10 @@
     }
   },
   {
-    "id": "014А5",
-    "construction": "014",
+    "id": "14А5",
+    "construction": "14",
     "side": "А5",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1452,10 +1452,10 @@
     }
   },
   {
-    "id": "014А6",
-    "construction": "014",
+    "id": "14А6",
+    "construction": "14",
     "side": "А6",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1485,10 +1485,10 @@
     }
   },
   {
-    "id": "014А7",
-    "construction": "014",
+    "id": "14А7",
+    "construction": "14",
     "side": "А7",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1518,10 +1518,10 @@
     }
   },
   {
-    "id": "014А8",
-    "construction": "014",
+    "id": "14А8",
+    "construction": "14",
     "side": "А8",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1551,10 +1551,10 @@
     }
   },
   {
-    "id": "014А9",
-    "construction": "014",
+    "id": "14А9",
+    "construction": "14",
     "side": "А9",
-    "address": "Digital Северск, пр. Коммунистический, 167 (парк Победы)",
+    "address": "Северск, пр. Коммунистический, 167 (парк Победы)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1584,10 +1584,10 @@
     }
   },
   {
-    "id": "029В1",
-    "construction": "029",
+    "id": "29В1",
+    "construction": "29",
     "side": "В1",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1617,10 +1617,10 @@
     }
   },
   {
-    "id": "029В10",
-    "construction": "029",
+    "id": "29В10",
+    "construction": "29",
     "side": "В10",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1650,10 +1650,10 @@
     }
   },
   {
-    "id": "029В11",
-    "construction": "029",
+    "id": "29В11",
+    "construction": "29",
     "side": "В11",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1683,10 +1683,10 @@
     }
   },
   {
-    "id": "029В12",
-    "construction": "029",
+    "id": "29В12",
+    "construction": "29",
     "side": "В12",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1716,10 +1716,10 @@
     }
   },
   {
-    "id": "029В2",
-    "construction": "029",
+    "id": "29В2",
+    "construction": "29",
     "side": "В2",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1749,10 +1749,10 @@
     }
   },
   {
-    "id": "029В3",
-    "construction": "029",
+    "id": "29В3",
+    "construction": "29",
     "side": "В3",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1782,10 +1782,10 @@
     }
   },
   {
-    "id": "029В4",
-    "construction": "029",
+    "id": "29В4",
+    "construction": "29",
     "side": "В4",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1815,10 +1815,10 @@
     }
   },
   {
-    "id": "029В5",
-    "construction": "029",
+    "id": "29В5",
+    "construction": "29",
     "side": "В5",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1848,10 +1848,10 @@
     }
   },
   {
-    "id": "029В6",
-    "construction": "029",
+    "id": "29В6",
+    "construction": "29",
     "side": "В6",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1881,10 +1881,10 @@
     }
   },
   {
-    "id": "029В7",
-    "construction": "029",
+    "id": "29В7",
+    "construction": "29",
     "side": "В7",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1914,10 +1914,10 @@
     }
   },
   {
-    "id": "029В8",
-    "construction": "029",
+    "id": "29В8",
+    "construction": "29",
     "side": "В8",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1947,10 +1947,10 @@
     }
   },
   {
-    "id": "029В9",
-    "construction": "029",
+    "id": "29В9",
+    "construction": "29",
     "side": "В9",
-    "address": "Digital Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
+    "address": "Комсомольский пр, 49 / Фрунзе пр (маг. \"Лама\")",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -1980,10 +1980,10 @@
     }
   },
   {
-    "id": "051А1",
-    "construction": "051",
+    "id": "51А1",
+    "construction": "51",
     "side": "А1",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2013,10 +2013,10 @@
     }
   },
   {
-    "id": "051А10",
-    "construction": "051",
+    "id": "51А10",
+    "construction": "51",
     "side": "А10",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2046,10 +2046,10 @@
     }
   },
   {
-    "id": "051А11",
-    "construction": "051",
+    "id": "51А11",
+    "construction": "51",
     "side": "А11",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2079,10 +2079,10 @@
     }
   },
   {
-    "id": "051А12",
-    "construction": "051",
+    "id": "51А12",
+    "construction": "51",
     "side": "А12",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2112,10 +2112,10 @@
     }
   },
   {
-    "id": "051А2",
-    "construction": "051",
+    "id": "51А2",
+    "construction": "51",
     "side": "А2",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2145,10 +2145,10 @@
     }
   },
   {
-    "id": "051А3",
-    "construction": "051",
+    "id": "51А3",
+    "construction": "51",
     "side": "А3",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2178,10 +2178,10 @@
     }
   },
   {
-    "id": "051А4",
-    "construction": "051",
+    "id": "51А4",
+    "construction": "51",
     "side": "А4",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2211,10 +2211,10 @@
     }
   },
   {
-    "id": "051А5",
-    "construction": "051",
+    "id": "51А5",
+    "construction": "51",
     "side": "А5",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2244,10 +2244,10 @@
     }
   },
   {
-    "id": "051А6",
-    "construction": "051",
+    "id": "51А6",
+    "construction": "51",
     "side": "А6",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2277,10 +2277,10 @@
     }
   },
   {
-    "id": "051А7",
-    "construction": "051",
+    "id": "51А7",
+    "construction": "51",
     "side": "А7",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2310,10 +2310,10 @@
     }
   },
   {
-    "id": "051А8",
-    "construction": "051",
+    "id": "51А8",
+    "construction": "51",
     "side": "А8",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2343,10 +2343,10 @@
     }
   },
   {
-    "id": "051А9",
-    "construction": "051",
+    "id": "51А9",
+    "construction": "51",
     "side": "А9",
-    "address": "Digital Ленина пл, 4 (Собор)",
+    "address": "Ленина пл, 4 (Собор)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2376,10 +2376,10 @@
     }
   },
   {
-    "id": "052В1",
-    "construction": "052",
+    "id": "52В1",
+    "construction": "52",
     "side": "В1",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2409,10 +2409,10 @@
     }
   },
   {
-    "id": "052В10",
-    "construction": "052",
+    "id": "52В10",
+    "construction": "52",
     "side": "В10",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2442,10 +2442,10 @@
     }
   },
   {
-    "id": "052В11",
-    "construction": "052",
+    "id": "52В11",
+    "construction": "52",
     "side": "В11",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2475,10 +2475,10 @@
     }
   },
   {
-    "id": "052В12",
-    "construction": "052",
+    "id": "52В12",
+    "construction": "52",
     "side": "В12",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2508,10 +2508,10 @@
     }
   },
   {
-    "id": "052В2",
-    "construction": "052",
+    "id": "52В2",
+    "construction": "52",
     "side": "В2",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2541,10 +2541,10 @@
     }
   },
   {
-    "id": "052В3",
-    "construction": "052",
+    "id": "52В3",
+    "construction": "52",
     "side": "В3",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2574,10 +2574,10 @@
     }
   },
   {
-    "id": "052В4",
-    "construction": "052",
+    "id": "52В4",
+    "construction": "52",
     "side": "В4",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2607,10 +2607,10 @@
     }
   },
   {
-    "id": "052В5",
-    "construction": "052",
+    "id": "52В5",
+    "construction": "52",
     "side": "В5",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2640,10 +2640,10 @@
     }
   },
   {
-    "id": "052В6",
-    "construction": "052",
+    "id": "52B6",
+    "construction": "52",
     "side": "B6",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2673,10 +2673,10 @@
     }
   },
   {
-    "id": "052В7",
-    "construction": "052",
+    "id": "52В7",
+    "construction": "52",
     "side": "В7",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2706,10 +2706,10 @@
     }
   },
   {
-    "id": "052В8",
-    "construction": "052",
+    "id": "52В8",
+    "construction": "52",
     "side": "В8",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2739,10 +2739,10 @@
     }
   },
   {
-    "id": "052В9",
-    "construction": "052",
+    "id": "52В9",
+    "construction": "52",
     "side": "В9",
-    "address": "Digital Ленина пл, 8",
+    "address": "Ленина пл, 8",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2772,10 +2772,10 @@
     }
   },
   {
-    "id": "057В1",
-    "construction": "057",
+    "id": "57В1",
+    "construction": "57",
     "side": "В1",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2805,10 +2805,10 @@
     }
   },
   {
-    "id": "057В10",
-    "construction": "057",
+    "id": "57В10",
+    "construction": "57",
     "side": "В10",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2838,10 +2838,10 @@
     }
   },
   {
-    "id": "057В11",
-    "construction": "057",
+    "id": "57В11",
+    "construction": "57",
     "side": "В11",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2871,10 +2871,10 @@
     }
   },
   {
-    "id": "057В12",
-    "construction": "057",
+    "id": "57В12",
+    "construction": "57",
     "side": "В12",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2904,10 +2904,10 @@
     }
   },
   {
-    "id": "057В2",
-    "construction": "057",
+    "id": "57В2",
+    "construction": "57",
     "side": "В2",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2937,10 +2937,10 @@
     }
   },
   {
-    "id": "057В3",
-    "construction": "057",
+    "id": "57В3",
+    "construction": "57",
     "side": "В3",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -2970,10 +2970,10 @@
     }
   },
   {
-    "id": "057В4",
-    "construction": "057",
+    "id": "57В4",
+    "construction": "57",
     "side": "В4",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3003,10 +3003,10 @@
     }
   },
   {
-    "id": "057В5",
-    "construction": "057",
+    "id": "57В5",
+    "construction": "57",
     "side": "В5",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3036,10 +3036,10 @@
     }
   },
   {
-    "id": "057В6",
-    "construction": "057",
+    "id": "57В6",
+    "construction": "57",
     "side": "В6",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3069,10 +3069,10 @@
     }
   },
   {
-    "id": "057В7",
-    "construction": "057",
+    "id": "57В7",
+    "construction": "57",
     "side": "В7",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3102,10 +3102,10 @@
     }
   },
   {
-    "id": "057В8",
-    "construction": "057",
+    "id": "57В8",
+    "construction": "57",
     "side": "В8",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3135,10 +3135,10 @@
     }
   },
   {
-    "id": "057В9",
-    "construction": "057",
+    "id": "57В9",
+    "construction": "57",
     "side": "В9",
-    "address": "Digital Ленина пр, 123/1 (ЦУМ)",
+    "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3168,10 +3168,10 @@
     }
   },
   {
-    "id": "082А1",
-    "construction": "082",
+    "id": "82А1",
+    "construction": "82",
     "side": "А1",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3201,10 +3201,10 @@
     }
   },
   {
-    "id": "082А10",
-    "construction": "082",
+    "id": "82А10",
+    "construction": "82",
     "side": "А10",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3234,10 +3234,10 @@
     }
   },
   {
-    "id": "082А11",
-    "construction": "082",
+    "id": "82А11",
+    "construction": "82",
     "side": "А11",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3267,10 +3267,10 @@
     }
   },
   {
-    "id": "082А12",
-    "construction": "082",
+    "id": "82А12",
+    "construction": "82",
     "side": "А12",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3300,10 +3300,10 @@
     }
   },
   {
-    "id": "082А2",
-    "construction": "082",
+    "id": "82А2",
+    "construction": "82",
     "side": "А2",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3333,10 +3333,10 @@
     }
   },
   {
-    "id": "082А3",
-    "construction": "082",
+    "id": "82А3",
+    "construction": "82",
     "side": "А3",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3366,10 +3366,10 @@
     }
   },
   {
-    "id": "082А4",
-    "construction": "082",
+    "id": "82А4",
+    "construction": "82",
     "side": "А4",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3399,10 +3399,10 @@
     }
   },
   {
-    "id": "082А5",
-    "construction": "082",
+    "id": "82А5",
+    "construction": "82",
     "side": "А5",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3432,10 +3432,10 @@
     }
   },
   {
-    "id": "082А6",
-    "construction": "082",
+    "id": "82А6",
+    "construction": "82",
     "side": "А6",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3465,10 +3465,10 @@
     }
   },
   {
-    "id": "082А7",
-    "construction": "082",
+    "id": "82А7",
+    "construction": "82",
     "side": "А7",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3498,10 +3498,10 @@
     }
   },
   {
-    "id": "082А8",
-    "construction": "082",
+    "id": "82А8",
+    "construction": "82",
     "side": "А8",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3531,10 +3531,10 @@
     }
   },
   {
-    "id": "082А9",
-    "construction": "082",
+    "id": "82А9",
+    "construction": "82",
     "side": "А9",
-    "address": "Digital Красноармейская ул., 35",
+    "address": "Красноармейская ул., 35",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3564,10 +3564,10 @@
     }
   },
   {
-    "id": "093А1",
-    "construction": "093",
+    "id": "93А1",
+    "construction": "93",
     "side": "А1",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3597,10 +3597,10 @@
     }
   },
   {
-    "id": "093А10",
-    "construction": "093",
+    "id": "93А10",
+    "construction": "93",
     "side": "А10",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3630,10 +3630,10 @@
     }
   },
   {
-    "id": "093А11",
-    "construction": "093",
+    "id": "93А11",
+    "construction": "93",
     "side": "А11",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3663,10 +3663,10 @@
     }
   },
   {
-    "id": "093А12",
-    "construction": "093",
+    "id": "93А12",
+    "construction": "93",
     "side": "А12",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3696,10 +3696,10 @@
     }
   },
   {
-    "id": "093А2",
-    "construction": "093",
+    "id": "93А2",
+    "construction": "93",
     "side": "А2",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3729,10 +3729,10 @@
     }
   },
   {
-    "id": "093А3",
-    "construction": "093",
+    "id": "93А3",
+    "construction": "93",
     "side": "А3",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3762,10 +3762,10 @@
     }
   },
   {
-    "id": "093А4",
-    "construction": "093",
+    "id": "93А4",
+    "construction": "93",
     "side": "А4",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3795,10 +3795,10 @@
     }
   },
   {
-    "id": "093А5",
-    "construction": "093",
+    "id": "93А5",
+    "construction": "93",
     "side": "А5",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3828,10 +3828,10 @@
     }
   },
   {
-    "id": "093А6",
-    "construction": "093",
+    "id": "93А6",
+    "construction": "93",
     "side": "А6",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3861,10 +3861,10 @@
     }
   },
   {
-    "id": "093А7",
-    "construction": "093",
+    "id": "93А7",
+    "construction": "93",
     "side": "А7",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3894,10 +3894,10 @@
     }
   },
   {
-    "id": "093А8",
-    "construction": "093",
+    "id": "93А8",
+    "construction": "93",
     "side": "А8",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3927,10 +3927,10 @@
     }
   },
   {
-    "id": "093А9",
-    "construction": "093",
+    "id": "93А9",
+    "construction": "93",
     "side": "А9",
-    "address": "Digital Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3960,10 +3960,10 @@
     }
   },
   {
-    "id": "094А1",
-    "construction": "094",
+    "id": "94А1",
+    "construction": "94",
     "side": "А1",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -3993,10 +3993,10 @@
     }
   },
   {
-    "id": "094А10",
-    "construction": "094",
+    "id": "94А10",
+    "construction": "94",
     "side": "А10",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4026,10 +4026,10 @@
     }
   },
   {
-    "id": "094А11",
-    "construction": "094",
+    "id": "94А11",
+    "construction": "94",
     "side": "А11",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4059,10 +4059,10 @@
     }
   },
   {
-    "id": "094А12",
-    "construction": "094",
+    "id": "94А12",
+    "construction": "94",
     "side": "А12",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4092,10 +4092,10 @@
     }
   },
   {
-    "id": "094А2",
-    "construction": "094",
+    "id": "94А2",
+    "construction": "94",
     "side": "А2",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4125,10 +4125,10 @@
     }
   },
   {
-    "id": "094А3",
-    "construction": "094",
+    "id": "94А3",
+    "construction": "94",
     "side": "А3",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4158,10 +4158,10 @@
     }
   },
   {
-    "id": "094А4",
-    "construction": "094",
+    "id": "94А4",
+    "construction": "94",
     "side": "А4",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4191,10 +4191,10 @@
     }
   },
   {
-    "id": "094А5",
-    "construction": "094",
+    "id": "94А5",
+    "construction": "94",
     "side": "А5",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4224,10 +4224,10 @@
     }
   },
   {
-    "id": "094А6",
-    "construction": "094",
+    "id": "94А6",
+    "construction": "94",
     "side": "А6",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4257,10 +4257,10 @@
     }
   },
   {
-    "id": "094А7",
-    "construction": "094",
+    "id": "94А7",
+    "construction": "94",
     "side": "А7",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4290,10 +4290,10 @@
     }
   },
   {
-    "id": "094А8",
-    "construction": "094",
+    "id": "94А8",
+    "construction": "94",
     "side": "А8",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -4323,10 +4323,10 @@
     }
   },
   {
-    "id": "094А9",
-    "construction": "094",
+    "id": "94А9",
+    "construction": "94",
     "side": "А9",
-    "address": "Digital Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
+    "address": "Фрунзе пр, 86 / Красноармейская ул. (Диагональный)",
     "type": "Digital",
     "format": "3х6",
     "material": "Ролик по ТТ",
@@ -11022,8 +11022,8 @@
     }
   },
   {
-    "id": "007В1",
-    "construction": "007",
+    "id": "7В1",
+    "construction": "7",
     "side": "В1",
     "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Тривижн",
@@ -11055,8 +11055,8 @@
     }
   },
   {
-    "id": "007В2",
-    "construction": "007",
+    "id": "7В2",
+    "construction": "7",
     "side": "В2",
     "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Тривижн",
@@ -11088,8 +11088,8 @@
     }
   },
   {
-    "id": "007В3",
-    "construction": "007",
+    "id": "7В3",
+    "construction": "7",
     "side": "В3",
     "address": "Нахимова ул, 46 (Макдональдс)",
     "type": "Тривижн",
@@ -11121,8 +11121,8 @@
     }
   },
   {
-    "id": "009А1",
-    "construction": "009",
+    "id": "9А1",
+    "construction": "9",
     "side": "А1",
     "address": "Нахимова ул, 1/ Ленина пр (Лагерный сад)",
     "type": "Тривижн",
@@ -11154,8 +11154,8 @@
     }
   },
   {
-    "id": "009А2",
-    "construction": "009",
+    "id": "9А2",
+    "construction": "9",
     "side": "А2",
     "address": "Нахимова ул, 1/ Ленина пр (Лагерный сад)",
     "type": "Тривижн",
@@ -11187,8 +11187,8 @@
     }
   },
   {
-    "id": "009А3",
-    "construction": "009",
+    "id": "9А3",
+    "construction": "9",
     "side": "А3",
     "address": "Нахимова ул, 1/ Ленина пр (Лагерный сад)",
     "type": "Тривижн",
@@ -11220,8 +11220,8 @@
     }
   },
   {
-    "id": "015А1",
-    "construction": "015",
+    "id": "15А1",
+    "construction": "15",
     "side": "А1",
     "address": "Красноармейская 126 ул / Дв.Спорта №3",
     "type": "Тривижн",
@@ -11253,8 +11253,8 @@
     }
   },
   {
-    "id": "015А2",
-    "construction": "015",
+    "id": "15А2",
+    "construction": "15",
     "side": "А2",
     "address": "Красноармейская 126 ул / Дв.Спорта №3",
     "type": "Тривижн",
@@ -11286,8 +11286,8 @@
     }
   },
   {
-    "id": "015А3",
-    "construction": "015",
+    "id": "15А3",
+    "construction": "15",
     "side": "А3",
     "address": "Красноармейская 126 ул / Дв.Спорта №3",
     "type": "Тривижн",
@@ -11319,10 +11319,10 @@
     }
   },
   {
-    "id": "020А1",
-    "construction": "020",
+    "id": "20А1",
+    "construction": "20",
     "side": "А1",
-    "address": "Елизаровых 041 / маг. Юбилейный",
+    "address": "Елизаровых ул, 41 (маг. Юбилейный)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -11352,10 +11352,10 @@
     }
   },
   {
-    "id": "020А2",
-    "construction": "020",
+    "id": "20А2",
+    "construction": "20",
     "side": "А2",
-    "address": "Елизаровых 041 / маг. Юбилейный",
+    "address": "Елизаровых ул, 41 (маг. Юбилейный)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -11385,10 +11385,10 @@
     }
   },
   {
-    "id": "020А3",
-    "construction": "020",
+    "id": "20А3",
+    "construction": "20",
     "side": "А3",
-    "address": "Елизаровых 041 / маг. Юбилейный",
+    "address": "Елизаровых ул, 41 (маг. Юбилейный)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -11418,8 +11418,8 @@
     }
   },
   {
-    "id": "027А1",
-    "construction": "027",
+    "id": "27А1",
+    "construction": "27",
     "side": "А1",
     "address": "Комсомольский пр, 77 / Кирова пл (Альфа -банк)",
     "type": "Тривижн",
@@ -11451,8 +11451,8 @@
     }
   },
   {
-    "id": "027А2",
-    "construction": "027",
+    "id": "27А2",
+    "construction": "27",
     "side": "А2",
     "address": "Комсомольский пр, 77 / Кирова пл (Альфа -банк)",
     "type": "Тривижн",
@@ -11484,8 +11484,8 @@
     }
   },
   {
-    "id": "027А3",
-    "construction": "027",
+    "id": "27А3",
+    "construction": "27",
     "side": "А3",
     "address": "Комсомольский пр, 77 / Кирова пл (Альфа -банк)",
     "type": "Тривижн",
@@ -11517,10 +11517,10 @@
     }
   },
   {
-    "id": "028А1",
-    "construction": "028",
+    "id": "28А1",
+    "construction": "28",
     "side": "А1",
-    "address": "Комсомольский  062 пр / Енисейская ул",
+    "address": "Комсомольский 062 пр / Енисейская ул",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -11550,10 +11550,10 @@
     }
   },
   {
-    "id": "028А2",
-    "construction": "028",
+    "id": "28А2",
+    "construction": "28",
     "side": "А2",
-    "address": "Комсомольский  062 пр / Енисейская ул",
+    "address": "Комсомольский 062 пр / Енисейская ул",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -11583,10 +11583,10 @@
     }
   },
   {
-    "id": "028А3",
-    "construction": "028",
+    "id": "28А3",
+    "construction": "28",
     "side": "А3",
-    "address": "Комсомольский  062 пр / Енисейская ул",
+    "address": "Комсомольский 062 пр / Енисейская ул",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -11616,8 +11616,8 @@
     }
   },
   {
-    "id": "044А1",
-    "construction": "044",
+    "id": "44А1",
+    "construction": "44",
     "side": "А1",
     "address": "Пушкина ул 61 стр1 (напротив)",
     "type": "Тривижн",
@@ -11649,8 +11649,8 @@
     }
   },
   {
-    "id": "044А2",
-    "construction": "044",
+    "id": "44А2",
+    "construction": "44",
     "side": "А2",
     "address": "Пушкина ул 61 стр1 (напротив)",
     "type": "Тривижн",
@@ -11682,8 +11682,8 @@
     }
   },
   {
-    "id": "044А3",
-    "construction": "044",
+    "id": "44А3",
+    "construction": "44",
     "side": "А3",
     "address": "Пушкина ул 61 стр1 (напротив)",
     "type": "Тривижн",
@@ -11715,8 +11715,8 @@
     }
   },
   {
-    "id": "052А1",
-    "construction": "052",
+    "id": "52А1",
+    "construction": "52",
     "side": "А1",
     "address": "Ленина пл, 8",
     "type": "Тривижн",
@@ -11748,8 +11748,8 @@
     }
   },
   {
-    "id": "052А2",
-    "construction": "052",
+    "id": "52А2",
+    "construction": "52",
     "side": "А2",
     "address": "Ленина пл, 8",
     "type": "Тривижн",
@@ -11781,8 +11781,8 @@
     }
   },
   {
-    "id": "052А3",
-    "construction": "052",
+    "id": "52А3",
+    "construction": "52",
     "side": "А3",
     "address": "Ленина пл, 8",
     "type": "Тривижн",
@@ -11814,10 +11814,10 @@
     }
   },
   {
-    "id": "053А1",
-    "construction": "053",
+    "id": "53А1",
+    "construction": "53",
     "side": "А1",
-    "address": "Иркутский тракт 10а (путепровод)",
+    "address": "Иркутский тракт, 10а (Путепровод)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -11847,8 +11847,8 @@
     }
   },
   {
-    "id": "053А2",
-    "construction": "053",
+    "id": "53А2",
+    "construction": "53",
     "side": "А2",
     "address": "Иркутский тракт, 10а (Путепровод)",
     "type": "Тривижн",
@@ -11880,10 +11880,10 @@
     }
   },
   {
-    "id": "053А3",
-    "construction": "053",
+    "id": "53А3",
+    "construction": "53",
     "side": "А3",
-    "address": "Иркутский тракт 10а (путепровод)",
+    "address": "Иркутский тракт, 10а (Путепровод)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -11913,8 +11913,8 @@
     }
   },
   {
-    "id": "057A1",
-    "construction": "057",
+    "id": "57А1",
+    "construction": "57",
     "side": "А1",
     "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Тривижн",
@@ -11946,8 +11946,8 @@
     }
   },
   {
-    "id": "057A2",
-    "construction": "057",
+    "id": "57А2",
+    "construction": "57",
     "side": "А2",
     "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Тривижн",
@@ -11979,8 +11979,8 @@
     }
   },
   {
-    "id": "057A3",
-    "construction": "057",
+    "id": "57А3",
+    "construction": "57",
     "side": "А3",
     "address": "Ленина пр, 123/1 (ЦУМ)",
     "type": "Тривижн",
@@ -12012,8 +12012,8 @@
     }
   },
   {
-    "id": "077А1",
-    "construction": "077",
+    "id": "77А1",
+    "construction": "77",
     "side": "А1",
     "address": "79 Гв. Дивизии 009 ул. (кольцо)",
     "type": "Тривижн",
@@ -12045,8 +12045,8 @@
     }
   },
   {
-    "id": "077А2",
-    "construction": "077",
+    "id": "77А2",
+    "construction": "77",
     "side": "А2",
     "address": "79 Гв. Дивизии 009 ул. (кольцо)",
     "type": "Тривижн",
@@ -12078,8 +12078,8 @@
     }
   },
   {
-    "id": "077А3",
-    "construction": "077",
+    "id": "77А3",
+    "construction": "77",
     "side": "А3",
     "address": "79 Гв. Дивизии 009 ул. (кольцо)",
     "type": "Тривижн",
@@ -12111,10 +12111,10 @@
     }
   },
   {
-    "id": "079А1",
-    "construction": "079",
+    "id": "79А1",
+    "construction": "79",
     "side": "А1",
-    "address": "Иркутский тракт 102 / Обл. ГИБДД",
+    "address": "Иркутский тракт 102 (Обл. ГИБДД)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -12144,10 +12144,10 @@
     }
   },
   {
-    "id": "079А2",
-    "construction": "079",
+    "id": "79А2",
+    "construction": "79",
     "side": "А2",
-    "address": "Иркутский тракт 102 / Обл. ГИБДД",
+    "address": "Иркутский тракт 102 (Обл. ГИБДД)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -12177,10 +12177,10 @@
     }
   },
   {
-    "id": "079А3",
-    "construction": "079",
+    "id": "79А3",
+    "construction": "79",
     "side": "А3",
-    "address": "Иркутский тракт 102 / Обл. ГИБДД",
+    "address": "Иркутский тракт 102 (Обл. ГИБДД)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -12210,10 +12210,10 @@
     }
   },
   {
-    "id": "090А1",
-    "construction": "090",
+    "id": "90А1",
+    "construction": "90",
     "side": "А1",
-    "address": "Ленина пр / (маг. 1000 мелочей, №1, левый)",
+    "address": "Ленина пр (маг. 1000 мелочей, №1, левый)",
     "type": "Тривижн",
     "format": "3х12 м",
     "material": "Пленка",
@@ -12243,10 +12243,10 @@
     }
   },
   {
-    "id": "091А1",
-    "construction": "091",
+    "id": "91А1",
+    "construction": "91",
     "side": "А1",
-    "address": "Ленина пр / (маг.1000 мелочей, №2, правый)",
+    "address": "Ленина пр (маг.1000 мелочей, №2, правый)",
     "type": "Тривижн",
     "format": "3х12 м",
     "material": "Пленка",
@@ -12276,10 +12276,10 @@
     }
   },
   {
-    "id": "092А1",
-    "construction": "092",
+    "id": "92А1",
+    "construction": "92",
     "side": "А1",
-    "address": "Южная пл / (кольцо, Аэропорт)",
+    "address": "Южная пл (кольцо, Аэропорт)",
     "type": "Тривижн",
     "format": "3х12 м",
     "material": "Пленка",
@@ -12309,10 +12309,10 @@
     }
   },
   {
-    "id": "093В1",
-    "construction": "093",
+    "id": "93В1",
+    "construction": "93",
     "side": "В1",
-    "address": "Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -12342,10 +12342,10 @@
     }
   },
   {
-    "id": "093В2",
-    "construction": "093",
+    "id": "93В2",
+    "construction": "93",
     "side": "В2",
-    "address": "Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -12375,10 +12375,10 @@
     }
   },
   {
-    "id": "093В3",
-    "construction": "093",
+    "id": "93В3",
+    "construction": "93",
     "side": "В3",
-    "address": "Ленина 038 пр / (СГМУ)",
+    "address": "Ленина 038 пр (СГМУ)",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -12408,8 +12408,8 @@
     }
   },
   {
-    "id": "095А1",
-    "construction": "095",
+    "id": "95А1",
+    "construction": "95",
     "side": "А1",
     "address": "Фрунзе 046 пр / Красноармейская ул(маг.Глобус)",
     "type": "Тривижн",
@@ -12441,8 +12441,8 @@
     }
   },
   {
-    "id": "095А2",
-    "construction": "095",
+    "id": "95А2",
+    "construction": "95",
     "side": "А2",
     "address": "Фрунзе 046 пр / Красноармейская ул(маг.Глобус)",
     "type": "Тривижн",
@@ -12474,8 +12474,8 @@
     }
   },
   {
-    "id": "095А3",
-    "construction": "095",
+    "id": "95А3",
+    "construction": "95",
     "side": "А3",
     "address": "Фрунзе 046 пр / Красноармейская ул(маг.Глобус)",
     "type": "Тривижн",
@@ -12507,10 +12507,10 @@
     }
   },
   {
-    "id": "098А1",
-    "construction": "098",
+    "id": "98А1",
+    "construction": "98",
     "side": "А1",
-    "address": "Красноармейская ул.,44/Фрунзе пр.",
+    "address": "Красноармейская ул., 44/Фрунзе пр.",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -12540,10 +12540,10 @@
     }
   },
   {
-    "id": "098А2",
-    "construction": "098",
+    "id": "98А2",
+    "construction": "98",
     "side": "А2",
-    "address": "Красноармейская ул.,44/Фрунзе пр.",
+    "address": "Красноармейская ул., 44/Фрунзе пр.",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -12573,10 +12573,10 @@
     }
   },
   {
-    "id": "098А3",
-    "construction": "098",
+    "id": "98А3",
+    "construction": "98",
     "side": "А3",
-    "address": "Красноармейская ул.,44/Фрунзе пр.",
+    "address": "Красноармейская ул., 44/Фрунзе пр.",
     "type": "Тривижн",
     "format": "3х6",
     "material": "Пленка",
@@ -13695,7 +13695,7 @@
     }
   },
   {
-    "id": "9",
+    "id": "9B",
     "construction": "9",
     "side": "B",
     "address": "Нахимова ул, 1/ Ленина пр (Лагерный сад)",
@@ -13794,7 +13794,7 @@
     }
   },
   {
-    "id": "11",
+    "id": "11B",
     "construction": "11",
     "side": "B",
     "address": "Нахимова ул (Московский тракт, 111а)",
@@ -13827,7 +13827,7 @@
     }
   },
   {
-    "id": "12",
+    "id": "12B",
     "construction": "12",
     "side": "B",
     "address": "Красноармейская 135 ул (пл. Транспортная)",
@@ -13926,10 +13926,10 @@
     }
   },
   {
-    "id": "15",
+    "id": "15B",
     "construction": "15",
     "side": "B",
-    "address": "Красноармейская ул, 126",
+    "address": "Красноармейская 126 ул / Дв.Спорта №3",
     "type": "Щит",
     "format": "3х6",
     "material": "Баннер",
@@ -14223,7 +14223,7 @@
     }
   },
   {
-    "id": "20",
+    "id": "20B",
     "construction": "20",
     "side": "B",
     "address": "Елизаровых ул, 41 (маг. Юбилейный)",
@@ -14652,7 +14652,7 @@
     }
   },
   {
-    "id": "27",
+    "id": "27B",
     "construction": "27",
     "side": "B",
     "address": "Комсомольский пр, 77 / Кирова пл (Альфа -банк)",
@@ -14685,10 +14685,10 @@
     }
   },
   {
-    "id": "28",
+    "id": "28B",
     "construction": "28",
     "side": "B",
-    "address": "Комсомольский  062 пр / Енисейская ул",
+    "address": "Комсомольский 062 пр / Енисейская ул",
     "type": "Щит",
     "format": "3х6",
     "material": "Баннер",
@@ -15411,7 +15411,7 @@
     }
   },
   {
-    "id": "44",
+    "id": "44B",
     "construction": "44",
     "side": "B",
     "address": "Пушкина ул 61 стр1 (напротив)",
@@ -15774,7 +15774,7 @@
     }
   },
   {
-    "id": "51",
+    "id": "51B",
     "construction": "51",
     "side": "B",
     "address": "Ленина пл, 4 (Собор)",
@@ -15807,10 +15807,10 @@
     }
   },
   {
-    "id": "53",
+    "id": "53B",
     "construction": "53",
     "side": "B",
-    "address": "Иркутский тракт, 10а",
+    "address": "Иркутский тракт, 10а (Путепровод)",
     "type": "Щит",
     "format": "3х6",
     "material": "Баннер",
@@ -16929,7 +16929,7 @@
     }
   },
   {
-    "id": "77",
+    "id": "77B",
     "construction": "77",
     "side": "B",
     "address": "79 Гв. Дивизии 009 ул. (кольцо)",
@@ -16995,10 +16995,10 @@
     }
   },
   {
-    "id": "79",
+    "id": "79B",
     "construction": "79",
     "side": "B",
-    "address": "Иркутский тракт 102 / (Обл. ГИБДД)",
+    "address": "Иркутский тракт 102 (Обл. ГИБДД)",
     "type": "Щит",
     "format": "3х6",
     "material": "Баннер",
@@ -17160,7 +17160,7 @@
     }
   },
   {
-    "id": "82",
+    "id": "82B",
     "construction": "82",
     "side": "B",
     "address": "Красноармейская ул., 35",
@@ -17523,10 +17523,10 @@
     }
   },
   {
-    "id": "95",
+    "id": "95B",
     "construction": "95",
     "side": "B",
-    "address": "Фрунзе пр, 46 / Красноармейская ул(маг.Глобус)",
+    "address": "Фрунзе 046 пр / Красноармейская ул(маг.Глобус)",
     "type": "Щит",
     "format": "3х6",
     "material": "Баннер",
@@ -17622,7 +17622,7 @@
     }
   },
   {
-    "id": "98",
+    "id": "98B",
     "construction": "98",
     "side": "B",
     "address": "Красноармейская ул., 44/Фрунзе пр.",

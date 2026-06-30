@@ -7,16 +7,33 @@ import sidesJson from "@/public/data/sides.json";
 import type { Side } from "@/lib/types";
 
 const SIDES = (Array.isArray(sidesJson) ? sidesJson : ((sidesJson as { sides?: Side[] }).sides ?? [])) as Side[];
-const slug = (s: string) =>
+// Сворачиваем кириллические двойники сторон к латинице (А→A, В→B) для сравнения.
+const foldSide = (s: string) =>
   decodeURIComponent(s).trim().toUpperCase().replace(/А/g, "A").replace(/В/g, "B");
-function findSide(id: string) {
-  const t = slug(id);
-  // 1) Exact match by (now unique) id — enables per-side links like /outdoor/118B.
-  const exact = SIDES.find((s) => s.id && slug(s.id) === t);
-  if (exact) return exact;
-  // 2) Backward-compat fallback for legacy bare links like /outdoor/118:
-  //    match by construction number, returning the first side (side A), as before.
-  return SIDES.find((s) => s.construction && slug(s.construction) === t);
+
+// Разбор ссылки на число (без ведущих нулей) + суффикс стороны.
+// "028А1"→{28,"A1"}, "009"→{9,""}, "28"→{28,""}, "118B"→{118,"B"}.
+function parseRef(raw: string): { num: number; side: string } | null {
+  const m = foldSide(raw).match(/^0*(\d+)(.*)$/);
+  if (!m) return null;
+  return { num: parseInt(m[1], 10), side: m[2] };
+}
+
+// Поиск стороны по номеру конструкции (числом — ведущие нули несущественны)
+// и стороне. Старые ссылки со стороной (028А1, 009А2) и без (028, 9) работают.
+function findSide(raw: string) {
+  const ref = parseRef(raw);
+  if (!ref) return undefined;
+  const cands = SIDES.filter((s) => parseInt(s.construction, 10) === ref.num);
+  if (cands.length === 0) return undefined;
+  if (ref.side) {
+    return cands.find((s) => foldSide(s.side) === ref.side);
+  }
+  // Номер без стороны → отдаём сторону A (первую по натуральному порядку).
+  const aSides = cands
+    .filter((s) => foldSide(s.side).startsWith("A"))
+    .sort((a, b) => a.side.localeCompare(b.side, "ru", { numeric: true }));
+  return aSides[0] ?? cands[0];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
