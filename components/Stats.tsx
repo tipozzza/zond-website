@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { SIDES_COUNT } from "@/lib/site-data";
 
 const STATS = [
-  { num: 751, label: "рекламных сторон" },
+  { num: SIDES_COUNT, label: "рекламных сторон" },
   { num: 348, label: "цифровых сторон" },
   { num: 27, label: "цифровых LED-экранов" },
   { num: 226, label: "конструкций" },

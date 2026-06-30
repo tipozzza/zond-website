@@ -111,15 +111,9 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
       if (cmp === 0) cmp = byConstruction(a, b); // стабильный tiebreak
       return dir * cmp;
     });
-    // Дедуп: одна карточка на canonical (схлопнутые под-панели — один URL).
-    const seen = new Set<string>();
-    return sorted.filter((s) => {
-      const r = canon.get(s.id) ?? rowKey(s);
-      if (seen.has(r)) return false;
-      seen.add(r);
-      return true;
-    });
-  }, [sides, search, sortKey, sortDir, canon]);
+    // Без дедупа: A1/A2/A3 — отдельные стороны, каждая своя карточка.
+    return sorted;
+  }, [sides, search, sortKey, sortDir]);
 
   const toggleSort = (k: SortKey) => {
     if (sortKey === k) {
@@ -141,7 +135,7 @@ export default function SidesListView({ sides, onSideClick, onShowOnMap }: Props
           className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#F57C28] focus:border-transparent"
         />
         <div className="mt-2 text-sm text-slate-500">
-          Показано {filtered.length} из {new Set(canon.values()).size}
+          Показано {filtered.length} из {sides.length}
         </div>
       </div>
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AnimateOnScroll from "./AnimateOnScroll";
+import { SIDES_COUNT } from "@/lib/site-data";
 
 export default function MapPreview() {
   return (
@@ -14,13 +15,13 @@ export default function MapPreview() {
               Найдите подходящую конструкцию за 30 секунд
             </h2>
             <p className="text-lg text-white/80 mb-8">
-              Все 751 рекламная сторона по Томску на одной карте. Фильтры по типу, формату и доступности.
+              Все {SIDES_COUNT} рекламных сторон по Томску на одной карте. Фильтры по типу, формату и доступности.
               Кликаете на метку — видите фото, цену и статус по месяцам. Бронирование онлайн прямо с карты.
             </p>
 
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
-                <div className="text-4xl font-bold">751</div>
+                <div className="text-4xl font-bold">{SIDES_COUNT}</div>
                 <div className="text-sm text-white/80">рекламных сторон</div>
               </div>
               <div className="bg-white/10 backdrop-blur p-4 rounded-xl">

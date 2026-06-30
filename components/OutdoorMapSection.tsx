@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Side } from "@/lib/types";
 import { fetchSides } from "@/lib/sides-data";
+import { SIDES_COUNT } from "@/lib/site-data";
 import YandexMap from "./YandexMap";
 import SideFilters, { EMPTY_FILTERS, type FilterState } from "./SideFilters";
 import SideDetails from "./SideDetails";
@@ -58,7 +59,7 @@ export default function OutdoorMapSection() {
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold mb-2">Карта конструкций</h2>
           <p className="text-slate-600">
-            751 рекламная сторона по Томску · выберите площадку и забронируйте онлайн
+            {SIDES_COUNT} рекламных сторон по Томску · выберите площадку и забронируйте онлайн
           </p>
         </div>
 

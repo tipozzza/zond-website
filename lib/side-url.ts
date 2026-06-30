@@ -3,13 +3,14 @@ import type { Side } from "@/lib/types";
 /**
  * Единый источник правды для URL детальной страницы стороны наружки.
  *
- * Канонический ref = {номер конструкции без ведущих нулей}{латинская буква}.
- * Под-индекс (28A1) сохраняется ТОЛЬКО если у панелей одной стороны
- * (группа construction × буква) РАЗНЫЕ photo_filename. Если фото одинаковые —
- * панели схлопываются в одну букву (/outdoor/28A), т.к. это одно и то же фото.
- *
- * Карта строится из массива сторон (id → canonical), потому что решение
- * «схлопывать или нет» зависит от всей группы, а не от одной строки.
+ * Канонический ref = {номер конструкции без ведущих нулей}{латинская буква A/B}
+ * {под-индекс, если на этой (конструкция × буква) больше одной стороны}.
+ *   - Тривижн/диджитл 28 (A1,A2,A3,B) → 28A1, 28A2, 28A3, 28B.
+ *   - Простая 118 (одна A + одна B) → 118A, 118B.
+ *   - Односторонняя → {номер}{буква}.
+ * Под-индекс НЕ зависит от фото: A1/A2/A3 — это ОТДЕЛЬНЫЕ стороны (у каждой
+ * свой адрес), их не объединяют. Карта строится из всей группы, т.к. наличие
+ * под-индекса зависит от числа сторон на букву.
  */
 export const foldSide = (s: string) =>
   decodeURIComponent(s).trim().toUpperCase().replace(/А/g, "A").replace(/В/g, "B");
@@ -25,9 +26,9 @@ export function buildCanonicalMap(sides: Side[]): Map<string, string> {
   const map = new Map<string, string>();
   for (const [key, members] of groups) {
     const [num, letter] = key.split("|");
-    const collapse = new Set(members.map((m) => m.photo_filename ?? "")).size === 1;
+    const multi = members.length > 1;
     for (const s of members) {
-      map.set(s.id, collapse ? `${num}${letter}` : `${num}${foldSide(s.side)}`);
+      map.set(s.id, multi ? `${num}${foldSide(s.side)}` : `${num}${letter}`);
     }
   }
   return map;

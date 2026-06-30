@@ -9,6 +9,7 @@ import FAQ from "@/components/FAQ";
 import CTAForm from "@/components/CTAForm";
 import { buildOgUrl } from "@/lib/og";
 import { pluralizeYears } from "@/lib/pluralize";
+import { SIDES_COUNT } from "@/lib/site-data";
 
 const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
 const YEARS_WORD = pluralizeYears(YEARS_ON_MARKET);
@@ -165,14 +166,14 @@ const TIMELINE: Decade[] = [
       {
         year: String(new Date().getFullYear()),
         highlight: true,
-        text: `Сегодня: ${YEARS_ON_MARKET} ${YEARS_WORD} на рынке, 226 конструкций, 751 сторона, собственный цех на пр. Фрунзе 109, 50+ специалистов, новый сайт zondreklama.ru.`,
+        text: `Сегодня: ${YEARS_ON_MARKET} ${YEARS_WORD} на рынке, 226 конструкций, ${SIDES_COUNT} сторон, собственный цех на пр. Фрунзе 109, 50+ специалистов, новый сайт zondreklama.ru.`,
       },
     ],
   },
 ];
 
 const ACHIEVEMENTS = [
-  { icon: "📺", value: "226", label: "рекламных конструкций / 751 сторона в Томске" },
+  { icon: "📺", value: "226", label: `рекламных конструкций / ${SIDES_COUNT} сторон в Томске` },
   { icon: "📡", value: "348", label: "цифровых LED-экранов и тривижн" },
   { icon: "🖨️", value: "50 000 м²", label: "печати в год — собственный цех" },
   { icon: "🤝", value: "1000+", label: "выполненных проектов" },

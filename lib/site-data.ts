@@ -15,8 +15,12 @@ export const COMPANY = {
   vk: "https://vk.com/zond.reklama",
 };
 
+// Единый источник числа сторон наружки = число записей в public/data/sides.json.
+// Обновлять при изменении данных (сейчас 726). Грамматику даёт pluralizeSides.
+export const SIDES_COUNT = 726;
+
 export const STATS = {
-  surfaces: 751,
+  surfaces: SIDES_COUNT,
   constructions: 226,
   digital: 348,
   digitalScreens: 27,
@@ -30,9 +34,9 @@ export const SERVICES = [
     title: "Наружная реклама",
     icon: "📺",
     color: "outdoor",
-    description: "Билборды 6×3 м, цифровые LED-экраны и тривижн в Томске — 751 рекламная сторона и 348 цифровых конструкций. Онлайн-бронирование, скидки от 3 месяцев.",
+    description: `Билборды 6×3 м, цифровые LED-экраны и тривижн в Томске — ${SIDES_COUNT} рекламных сторон и 348 цифровых конструкций. Онлайн-бронирование, скидки от 3 месяцев.`,
     features: [
-      "226 конструкций, 751 сторона",
+      `226 конструкций, ${SIDES_COUNT} сторон`,
       "Единственная digital-сеть города",
       "Размещение от 1 дня",
     ],

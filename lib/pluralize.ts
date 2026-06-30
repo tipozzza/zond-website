@@ -13,3 +13,13 @@ export function pluralizeYears(n: number): string {
   if (last >= 2 && last <= 4) return "года";
   return "лет";
 }
+
+/** Склонение «сторона / стороны / сторон» по числу (726 → «сторон»). */
+export function pluralizeSides(n: number): string {
+  const lastTwo = n % 100;
+  if (lastTwo >= 11 && lastTwo <= 14) return "сторон";
+  const last = n % 10;
+  if (last === 1) return "сторона";
+  if (last >= 2 && last <= 4) return "стороны";
+  return "сторон";
+}

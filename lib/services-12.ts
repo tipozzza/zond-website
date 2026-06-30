@@ -1,3 +1,5 @@
+import { SIDES_COUNT } from "@/lib/site-data";
+
 // Данные для Production-слайдера на главной (12 услуг).
 // Дублирует Cases.tsx по смыслу, но с расширенными полями (badge + features).
 // Cases.tsx умышленно не трогаем — там Server Component с fs-резолвом фото
@@ -19,7 +21,7 @@ export const SERVICES_12: ServiceSlide[] = [
   {
     id: "outdoor",
     badge: "НАРУЖНАЯ РЕКЛАМА",
-    title: "751 рекламная сторона в Томске",
+    title: `${SIDES_COUNT} рекламных сторон в Томске`,
     description:
       "Цифровые экраны, билборды, сити-форматы, суперсайты, призматроны — единственная городская сеть на 226 конструкциях. Карта с фото и онлайн-бронирование.",
     features: [

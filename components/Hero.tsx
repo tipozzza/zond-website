@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { pluralizeYears } from "@/lib/pluralize";
+import { SIDES_COUNT } from "@/lib/site-data";
 
 const YEARS_ON_MARKET = new Date().getFullYear() - 1992;
 const BADGES = [
@@ -69,7 +70,7 @@ export default function Hero() {
             className="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow animate-fade-up"
             style={{ animationDelay: "400ms" }}
           >
-            751 рекламная сторона на 226 конструкциях.{" "}
+            {SIDES_COUNT} рекламных сторон на 226 конструкциях.{" "}
             <Link
               href="/production"
               className="text-accent-yellow underline decoration-accent-yellow/60 hover:text-amber-300 hover:decoration-amber-300 transition-colors"

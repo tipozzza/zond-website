@@ -5,6 +5,7 @@ import YandexMetrika from "@/components/YandexMetrika";
 import StructuredData from "@/components/StructuredData";
 import CookieBanner from "@/components/CookieBanner";
 import LeadModalProvider from "@/components/LeadModalProvider";
+import { SIDES_COUNT } from "@/lib/site-data";
 
 const rubik = Rubik({
   subsets: ["latin", "cyrillic"],
@@ -19,8 +20,7 @@ export const metadata: Metadata = {
     default: "Зонд-Реклама — Реклама и производство в Томске с 1992 года",
     template: "%s | Зонд-Реклама",
   },
-  description:
-    "Наружная реклама, широкоформатная печать, производство вывесок, дизайн и полиграфия в Томске. 751 рекламная сторона, собственный цех. Звоните: 8 (3822) 97-97-05",
+  description: `Наружная реклама, широкоформатная печать, производство вывесок, дизайн и полиграфия в Томске. ${SIDES_COUNT} рекламных сторон, собственный цех. Звоните: 8 (3822) 97-97-05`,
   keywords: [
     "реклама Томск",
     "наружная реклама Томск",
