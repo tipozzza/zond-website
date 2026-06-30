@@ -28,8 +28,7 @@ export async function GET(request: Request) {
     ? [{ name: "Rubik", data: fontData, weight: 700 as const, style: "normal" as const }]
     : undefined;
 
-  return new ImageResponse(
-    (
+  const tree = (
       <div
         style={{
           background: `linear-gradient(135deg, ${BRAND} 0%, ${BRAND_DARK} 100%)`,
@@ -123,11 +122,25 @@ export async function GET(request: Request) {
           </div>
         </div>
       </div>
-    ),
-    {
-      width: 1200,
-      height: 630,
-      fonts,
-    },
   );
+
+  // Рендерим в буфер, чтобы поймать ошибку Satori (битый/вариативный шрифт и пр.):
+  // при сбое со шрифтом отдаём картинку без кастомного fonts, а не 502.
+  const toPng = async (f: typeof fonts) => {
+    const res = new ImageResponse(tree, { width: 1200, height: 630, fonts: f });
+    return new Response(await res.arrayBuffer(), {
+      status: 200,
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=31536000, immutable",
+      },
+    });
+  };
+
+  try {
+    return await toPng(fonts);
+  } catch (e) {
+    console.warn("[api/og] рендер со шрифтом упал, fallback без шрифта:", e);
+    return await toPng(undefined);
+  }
 }
