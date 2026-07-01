@@ -286,7 +286,7 @@ export default function GarantiyaPage() {
               </a>
             </div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/85">
-              <span>✓ 34 года репутации</span>
+              <span>✓ Более 30 лет репутации</span>
               <span>✓ Своё производство</span>
               <span>✓ ООО «ФОРМАТ СИТИ»</span>
             </div>
