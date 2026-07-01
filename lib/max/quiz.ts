@@ -211,6 +211,7 @@ export async function recordAnswerByText(userId: number, name: string, text: str
   const t = text.trim();
   const idx = q.options.findIndex((opt, i) => `${letter(i)}. ${opt}` === t);
   if (idx < 0) return false;
+  if (m.answers.has(userId)) return true; // уже ответил — фиксируем первый, второй игнорируем
   m.answers.set(userId, { name, opt: idx });
   return true;
 }

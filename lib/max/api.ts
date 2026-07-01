@@ -85,6 +85,23 @@ export async function answerCallback(
   }
 }
 
+export async function deleteMessage(messageId: string): Promise<boolean> {
+  try {
+    const res = await fetch(url("/messages", { message_id: messageId }), {
+      method: "DELETE",
+      headers: authHeaders(),
+    });
+    if (!res.ok) {
+      console.warn("[max/api] deleteMessage", res.status, await safeText(res));
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.warn("[max/api] deleteMessage error", e);
+    return false;
+  }
+}
+
 export async function subscribeWebhook(webhookUrl: string, secret: string): Promise<unknown> {
   const res = await fetch(url("/subscriptions"), {
     method: "POST",

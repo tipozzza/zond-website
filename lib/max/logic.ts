@@ -3,7 +3,7 @@
  * Не зависит от транспорта — вызывается из webhook-маршрута и cron-маршрута.
  */
 
-import { answerCallback, sendMessage, type CallbackBtn } from "./api";
+import { answerCallback, deleteMessage, sendMessage, type CallbackBtn } from "./api";
 import * as T from "./texts";
 import { anniversaryText, birthdayText, ddmm, HOLIDAYS, holidayMessage, weekdayMessage } from "./holidays";
 import { guessGender, parseBirthday, parseHired } from "./parse";
@@ -108,7 +108,11 @@ async function onMessage(u: AnyUpdate): Promise<void> {
   // Ответ на викторину кнопкой-message (в группе приходит как обычное сообщение)
   if (!isPrivate && text) {
     const name = msg.sender?.name ?? msg.sender?.first_name ?? "Участник";
-    if (await recordAnswerByText(userId, name, text)) return;
+    if (await recordAnswerByText(userId, name, text)) {
+      const mid = msg.body?.mid;
+      if (mid) await deleteMessage(mid);
+      return;
+    }
   }
 
   const session = getSession(userId);
