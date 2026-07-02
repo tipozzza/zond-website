@@ -31,13 +31,17 @@ export async function POST(req: Request) {
       <p>${notes || "—"}</p>
     `;
 
-    await resend.emails.send({
-      from: "Zond Website <onboarding@resend.dev>",
+    const { error } = await resend.emails.send({
+      from: "Зонд-Реклама <noreply@send.zondreklama.ru>",
       to: process.env.SALES_EMAIL!,
       subject: `Бронь стороны ${side.id} — ${name}`,
       html,
       replyTo: email || undefined,
     });
+    if (error) {
+      console.error("[form] Resend error:", error);
+      return NextResponse.json({ error: "send_failed" }, { status: 502 });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

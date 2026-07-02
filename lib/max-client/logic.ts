@@ -78,8 +78,8 @@ async function emailLead(name: string, username: string | null, text: string): P
     const resend = new Resend(key);
     const when = new Date().toLocaleString("ru-RU", { timeZone: "Asia/Tomsk" });
     const uname = username ? ` (@${escHtml(username)})` : "";
-    await resend.emails.send({
-      from: "ZOND MAX-бот <onboarding@resend.dev>",
+    const { error } = await resend.emails.send({
+      from: "Зонд-Реклама <noreply@send.zondreklama.ru>",
       to,
       subject: `Новое обращение в MAX: ${name}`,
       html:
@@ -89,6 +89,7 @@ async function emailLead(name: string, username: string | null, text: string): P
         `<p><b>Сообщение:</b></p>` +
         `<blockquote style="border-left:3px solid #6F395D;padding-left:12px;color:#333">${escHtml(text)}</blockquote>`,
     });
+    if (error) console.error("[form] Resend error:", error);
   } catch (e) {
     console.warn("[max-client] emailLead error", e);
   }

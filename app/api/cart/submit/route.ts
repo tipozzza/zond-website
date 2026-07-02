@@ -132,13 +132,17 @@ async function sendEmail(payload: Payload, leadId: string): Promise<boolean> {
   }
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
-    await resend.emails.send({
-      from: "Zond Website <onboarding@resend.dev>",
+    const { error } = await resend.emails.send({
+      from: "Зонд-Реклама <noreply@send.zondreklama.ru>",
       to: process.env.SALES_EMAIL,
       subject: `🎯 Подбор конструкций — ${payload.contact.name} (${payload.contact.phone})`,
       html: buildEmailHtml(payload, leadId),
       replyTo: payload.contact.email || undefined,
     });
+    if (error) {
+      console.error("[form] Resend error:", error);
+      return false;
+    }
     return true;
   } catch (err) {
     console.error("[cart/submit] Email send failed:", err);
