@@ -1,7 +1,8 @@
 {
-  "currentQ": 2,
+  "currentQ": 3,
   "asked": [
     0,
-    1
+    1,
+    2
   ]
 }
