@@ -58,6 +58,10 @@ const manualRedirects: RedirectRule[] = [
 
   // Корень раздела новостей старого сайта
   { source: "/about/news", destination: "/news", permanent: true },
+  // Легаси-новости старого сайта (даты, вложенные и битые пути) — все на /news
+  { source: "/about/news/:path*", destination: "/news", permanent: true },
+  // Легаси-страница оборудования печати → секция «Оборудование» на /print
+  { source: "/print/equipment", destination: "/print#equipment", permanent: true },
 
   // Свёрнутые в карточки на /production (раньше были отдельными страницами).
   // Якорь сохраняем — браузер прокрутит к нужной карточке.

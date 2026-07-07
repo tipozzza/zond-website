@@ -73,7 +73,7 @@ const CONSTRUCTIONS: {
   },
   {
     img: "/images/outdoor-types/type-digital-4x6.jpg?v=3",
-    alt: "Цифровой LED 4×6 на Новособорной площади в Томске — единственный формат, ZOND",
+    alt: "Цифровой LED 4×6 на Новособорной площади в Томске — крупный формат, ZOND",
     name: "Цифровой 4×6",
     priceBadge: "ОТ 60 000 ₽/МЕС",
     typeBadge: "ЭКСКЛЮЗИВ · ЕДИНСТВЕННЫЙ",
