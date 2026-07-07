@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     "Зонд-Реклама",
   ],
   alternates: { canonical: "/" },
+  verification: { yandex: "621f004090f0540c" },
   openGraph: {
     title: "Зонд-Реклама — Реклама и производство в Томске",
     description:
