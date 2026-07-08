@@ -48,6 +48,7 @@ export type BlogPost = {
   content: string;
   readingMinutes: number;
   author?: string;
+  faq?: { question: string; answer: string }[];
 };
 
 export function computeReadingMinutes(content: string): number {

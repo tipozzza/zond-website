@@ -149,6 +149,18 @@ function BlogBody({ content }: { content: string }) {
             </h3>
           );
         }
+        const lines = trimmed.split("\n");
+        if (lines.length > 0 && lines.every((l) => l.trim().startsWith("- "))) {
+          return (
+            <ul key={i} className="list-disc pl-6 mb-4 space-y-1.5 text-slate-800">
+              {lines.map((l, j) => (
+                <li key={j} className="leading-relaxed">
+                  {renderInline(parseInline(l.trim().replace(/^-\s+/, "")))}
+                </li>
+              ))}
+            </ul>
+          );
+        }
         return (
           <p key={i} className="mb-4 leading-relaxed text-slate-800">
             {renderInline(parseInline(block))}
@@ -197,6 +209,47 @@ function PostingSchema({ post }: { post: BlogPost }) {
   );
 }
 
+function BreadcrumbSchema({ post }: { post: BlogPost }) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "Блог", item: `${BASE_URL}/blog` },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${BASE_URL}/blog/${post.slug}`,
+      },
+    ],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+function FaqSchema({ faq }: { faq: NonNullable<BlogPost["faq"]> }) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 export default async function BlogDetailPage({
   params,
 }: {
@@ -221,6 +274,8 @@ export default async function BlogDetailPage({
       <PixelBorder />
       <Header />
       <PostingSchema post={post} />
+      <BreadcrumbSchema post={post} />
+      {post.faq && post.faq.length > 0 && <FaqSchema faq={post.faq} />}
       <main className="min-h-screen bg-white py-12">
         <article className="container mx-auto px-4 max-w-3xl">
           <Link
@@ -251,6 +306,24 @@ export default async function BlogDetailPage({
           />
 
           <BlogBody content={post.content} />
+
+          {post.faq && post.faq.length > 0 && (
+            <section className="mt-14">
+              <h2 className="text-2xl md:text-3xl font-bold mb-5 text-slate-900">
+                Частые вопросы
+              </h2>
+              <div className="space-y-5">
+                {post.faq.map((f, i) => (
+                  <div key={i}>
+                    <h3 className="text-lg font-bold text-slate-900 mb-1.5">
+                      {f.question}
+                    </h3>
+                    <p className="text-slate-800 leading-relaxed">{f.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           <div className="mt-12 p-6 bg-brand/5 border border-brand/20 rounded-2xl">
             <p className="text-slate-800 mb-3">
