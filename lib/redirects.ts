@@ -60,6 +60,12 @@ const manualRedirects: RedirectRule[] = [
   { source: "/about/news", destination: "/news", permanent: true },
   // Легаси-новости старого сайта (даты, вложенные и битые пути) — все на /news
   { source: "/about/news/:path*", destination: "/news", permanent: true },
+  // Легаси-контакты старого сайта
+  { source: "/about/contacts", destination: "/contacts", permanent: true },
+  // Catch-all для остальных старых под-путей /about/* (в т.ч. битые %EF%BF%BD) → /about.
+  // :path+ (одна и более), а не :path*, чтобы НЕ поймать саму /about (иначе редирект-петля).
+  // ВАЖНО: специфичные правила /about/* выше по списку срабатывают раньше.
+  { source: "/about/:path+", destination: "/about", permanent: true },
   // Легаси-страница оборудования печати → секция «Оборудование» на /print
   { source: "/print/equipment", destination: "/print#equipment", permanent: true },
 
