@@ -3,6 +3,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
+import RelatedArticles from "@/components/RelatedArticles";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import DesignCalculator from "@/components/DesignCalculator";
@@ -351,6 +352,16 @@ export default function DesignPage() {
           <PublicPortfolio category="design" />
         </section>
 
+        <RelatedArticles
+          category="design"
+          also={["general", "print"]}
+          title="Полезное о дизайне и рекламе"
+          className="bg-slate-50"
+          relatedServices={[
+            { href: "/production", label: "Изготовление вывесок" },
+            { href: "/print", label: "Широкоформатная печать" },
+          ]}
+        />
         <CTAForm accentColor="#1657BD" />
       </main>
       <Footer />

@@ -6,6 +6,7 @@ import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
+import RelatedArticles from "@/components/RelatedArticles";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import ProductionCalculator from "@/components/ProductionCalculator";
@@ -546,6 +547,16 @@ export default function ProductionPage() {
           <PublicPortfolio category="production" />
         </section>
 
+        <RelatedArticles
+          category="production"
+          title="Полезное о вывесках"
+          className="bg-slate-50"
+          relatedServices={[
+            { href: "/design", label: "Дизайн и логотип" },
+            { href: "/print", label: "Широкоформатная печать" },
+            { href: "/outdoor", label: "Наружная реклама" },
+          ]}
+        />
         <CTAForm accentColor="#7CB342" />
       </main>
       <Footer />

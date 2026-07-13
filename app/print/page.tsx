@@ -5,6 +5,7 @@ import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
+import RelatedArticles from "@/components/RelatedArticles";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import PrintCalculator from "@/components/PrintCalculator";
@@ -454,6 +455,17 @@ export default function PrintPage() {
 
         <PublicPortfolio category="print" />
 
+        <RelatedArticles
+          category="print"
+          also={["outdoor"]}
+          title="Полезное о печати и рекламе"
+          className="bg-slate-50"
+          relatedServices={[
+            { href: "/outdoor", label: "Наружная реклама" },
+            { href: "/production", label: "Изготовление вывесок" },
+            { href: "/design", label: "Дизайн и макет" },
+          ]}
+        />
         <CTAForm accentColor="#FFCC00" />
       </main>
       <Footer />

@@ -6,6 +6,7 @@ import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
+import RelatedArticles from "@/components/RelatedArticles";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import OutdoorMapSection from "@/components/OutdoorMapSection";
@@ -432,6 +433,16 @@ export default function OutdoorPage() {
 
         <PublicPortfolio category="outdoor" />
 
+        <RelatedArticles
+          category="outdoor"
+          also={["print"]}
+          title="Полезное о наружной рекламе"
+          className="bg-slate-50"
+          relatedServices={[
+            { href: "/print", label: "Широкоформатная печать" },
+            { href: "/production", label: "Изготовление вывесок" },
+          ]}
+        />
         <CTAForm accentColor="#F57C28" />
       </main>
       <Footer />

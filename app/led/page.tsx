@@ -5,6 +5,7 @@ import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTAForm from "@/components/CTAForm";
+import RelatedArticles from "@/components/RelatedArticles";
 import PixelBorder from "@/components/PixelBorder";
 import FloatingTG from "@/components/FloatingTG";
 import LedCalculator from "@/components/LedCalculator";
@@ -336,6 +337,16 @@ export default function LedPage() {
 
         <PublicPortfolio category="led" />
 
+        <RelatedArticles
+          category="led"
+          also={["production"]}
+          title="Полезное об оформлении"
+          className="bg-slate-50"
+          relatedServices={[
+            { href: "/production", label: "Изготовление вывесок" },
+            { href: "/design", label: "Дизайн и логотип" },
+          ]}
+        />
         <CTAForm accentColor="#F4C430" />
       </main>
       <Footer />
