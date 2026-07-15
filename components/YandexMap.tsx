@@ -51,7 +51,10 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
       const map = new window.ymaps.Map(mapRef.current!, {
         center: [56.4847, 84.9482],
         zoom: 12,
-        controls: ["zoomControl", "geolocationControl", "fullscreenControl", "searchControl"],
+        // Свой поиск по адресу и номеру конструкции (ConstructionSearch) вместо
+        // встроенного searchControl: тот бил в геокодер Яндекса ("Сервер не смог
+        // обработать запрос") и не умел искать по номерам конструкций.
+        controls: ["zoomControl", "geolocationControl", "fullscreenControl"],
       });
 
       window.__zondSides = {};

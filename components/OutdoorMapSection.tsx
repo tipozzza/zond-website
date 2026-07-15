@@ -5,6 +5,7 @@ import type { Side } from "@/lib/types";
 import { fetchSides } from "@/lib/sides-data";
 import { SIDES_COUNT } from "@/lib/site-data";
 import YandexMap from "./YandexMap";
+import ConstructionSearch from "./ConstructionSearch";
 import SideFilters, { EMPTY_FILTERS, type FilterState } from "./SideFilters";
 import SideDetails from "./SideDetails";
 import BookingForm from "./BookingForm";
@@ -109,6 +110,11 @@ export default function OutdoorMapSection() {
                   onSideClick={setSelectedSide}
                   onSideFocus={setFocusSide}
                   focusSide={focusSide}
+                />
+                <ConstructionSearch
+                  sides={allSides}
+                  onFound={(side) => setFocusSide(side)}
+                  className="absolute top-3 left-1/2 -translate-x-1/2 z-20"
                 />
                 {focusSide && (
                   <div className="absolute top-4 right-4 z-10 bg-white shadow-lg rounded-full pl-4 pr-2 py-1 flex items-center gap-2">
