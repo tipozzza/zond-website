@@ -1,5 +1,6 @@
 import { readFile } from "fs/promises";
 import path from "path";
+import { scheduleDeploy } from "./timeweb-deploy";
 
 const API_BASE = "https://api.github.com";
 const REQUEST_TIMEOUT_MS = 8000;
@@ -113,6 +114,7 @@ export async function putFile(
   if (sha) body.sha = sha;
   const res = await ghFetch(url, { method: "PUT", headers: headers(), body: JSON.stringify(body) });
   if (!res.ok) throw new GitHubApiError("putFile", path, res.status, await res.text());
+  scheduleDeploy(path); // авто-пересборка сайта, если это контентный файл
 }
 
 export async function putBinaryFile(
@@ -126,6 +128,7 @@ export async function putBinaryFile(
   if (sha) body.sha = sha;
   const res = await ghFetch(url, { method: "PUT", headers: headers(), body: JSON.stringify(body) });
   if (!res.ok) throw new GitHubApiError("putBinaryFile", path, res.status, await res.text());
+  scheduleDeploy(path); // авто-пересборка сайта (загруженные картинки)
 }
 
 export async function deleteFile(path: string, message: string, sha: string): Promise<void> {
@@ -133,6 +136,7 @@ export async function deleteFile(path: string, message: string, sha: string): Pr
   const body = { message, sha, branch: BRANCH };
   const res = await ghFetch(url, { method: "DELETE", headers: headers(), body: JSON.stringify(body) });
   if (!res.ok) throw new GitHubApiError("deleteFile", path, res.status, await res.text());
+  scheduleDeploy(path); // авто-пересборка сайта, если удалён контентный файл
 }
 
 /**
