@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 /**
  * Галерея фотографий новости: сетка превью + лайтбокс по клику.
@@ -24,15 +25,15 @@ export default function NewsGallery({ images, title }: { images: string[]; title
           <button
             key={src}
             onClick={() => setIndex(i)}
-            className="group aspect-[4/3] bg-slate-100 rounded-xl overflow-hidden"
+            className="group relative aspect-[4/3] bg-slate-100 rounded-xl overflow-hidden"
             aria-label={`Открыть фото ${i + 1}`}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={src}
               alt={`${title} — фото ${i + 1}`}
-              loading="lazy"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              fill
+              sizes="(max-width: 640px) 50vw, 33vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </button>
         ))}

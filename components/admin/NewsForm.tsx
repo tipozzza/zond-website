@@ -166,8 +166,22 @@ export default function NewsForm({ initial, mode }: Props) {
     setUploading(true);
     setError("");
     try {
+      // Сжимаем обложку на клиенте, как и фото галереи, — иначе тяжёлый
+      // оригинал (несколько МБ) грузится на странице новостей медленно, «полосами».
+      let upload: File = imageFile;
+      try {
+        const compressed = await imageCompression(imageFile, {
+          maxSizeMB: 0.5,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+          fileType: "image/jpeg",
+        });
+        upload = new File([compressed], "cover.jpg", { type: "image/jpeg" });
+      } catch {
+        // fallback: исходный файл
+      }
       const formData = new FormData();
-      formData.append("file", imageFile);
+      formData.append("file", upload);
       formData.append("slug", data.slug || transliterate(data.title));
       formData.append("date", data.date);
       const res = await fetch("/api/admin/upload", { method: "POST", body: formData });

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
@@ -67,7 +68,7 @@ export default function NewsPage() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-3">Новости</h1>
-            <p className="text-slate-600">Что происходит в Зонд-Реклама</p>
+            <p className="text-slate-600">События в ГК «Зонд-реклама»</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -78,12 +79,12 @@ export default function NewsPage() {
                 className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 flex flex-col"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="p-5 flex-1 flex flex-col">

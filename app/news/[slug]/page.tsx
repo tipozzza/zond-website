@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
@@ -183,11 +184,14 @@ export default async function NewsDetailPage({
           <time className="text-sm text-slate-500 block mb-3">{news.dateLabel}</time>
           <h1 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">{news.title}</h1>
 
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={news.image}
             alt={`${news.title} — Зонд-Реклама, Томск`}
-            className="w-full rounded-2xl mb-8"
+            width={1600}
+            height={900}
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="w-full h-auto rounded-2xl mb-8"
+            priority
           />
 
           <NewsBody content={news.content} />
