@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { SERVICES_12 } from "@/lib/services-12";
 
@@ -61,13 +62,14 @@ export default function Production() {
             {/* Все слайды лежат стопкой; активный получает opacity-100, остальные — 0.
                 Плавный cross-fade обеспечивается CSS transition-opacity. */}
             {SERVICES_12.map((s, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <Image
                 key={s.id}
                 src={s.image}
                 alt={s.imageAlt}
-                loading={i === 0 ? "eager" : "lazy"}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority={i === 0}
+                className={`object-cover transition-opacity duration-700 ${
                   i === current ? "opacity-100" : "opacity-0"
                 }`}
               />

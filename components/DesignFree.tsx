@@ -1,14 +1,17 @@
+import Image from "next/image";
+
 export default function DesignFree() {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden text-white shadow-2xl">
           {/* Фоновое фото */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/led/service-design-free.jpg"
             alt=""
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="object-cover"
           />
           {/* Затемнение, чтобы текст оставался читаемым */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E3F]/95 via-[#0B1E3F]/85 to-[#0B1E3F]/40" />

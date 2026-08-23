@@ -425,24 +425,24 @@ export default function RussifikaciyaPage() {
                 >
                   <div className="grid grid-cols-2 relative">
                     <div className="relative aspect-[4/3] bg-slate-100">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={p.before}
                         alt={`До: ${p.caption}`}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        className="object-cover"
                       />
                       <span className="absolute top-2 left-2 bg-rose-500 text-white text-xs font-bold px-2 py-1 rounded">
                         ДО
                       </span>
                     </div>
                     <div className="relative aspect-[4/3] bg-slate-100">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={p.after}
                         alt={`После: ${p.caption}`}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        className="object-cover"
                       />
                       <span className="absolute top-2 right-2 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded">
                         ПОСЛЕ

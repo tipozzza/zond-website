@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
 
@@ -141,12 +142,12 @@ export default function Cases() {
               style={{ "--accent": item.accent } as CSSProperties}
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 flex-shrink-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={item.image}
                   alt={item.imageAlt ?? `${item.title} — Зонд-Реклама, Томск`}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
                 <h3 className="absolute bottom-3 left-4 right-4 text-white font-bold text-lg drop-shadow-lg leading-tight">

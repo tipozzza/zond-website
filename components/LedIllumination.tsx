@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 type Item = {
   id: string;
@@ -76,13 +77,13 @@ function ItemCard({ item, imgPrefix, theme }: { item: Item; imgPrefix: string; t
             <div className="text-xs font-semibold mt-2 opacity-70">Фото скоро</div>
           </div>
         ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={src}
             alt={item.name}
-            loading="lazy"
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             onError={() => setFailed(true)}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
         )}
       </div>

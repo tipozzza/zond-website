@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { Side } from "@/lib/types";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 
@@ -28,11 +29,12 @@ export default function SideDetails({ side, onClose, onBook }: Props) {
 
         {side.photo_filename ? (
           <div className="relative w-full aspect-[4/3] mb-4 rounded-xl overflow-hidden bg-slate-100">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={`/images/constructions/${side.photo_filename}`}
               alt={`Конструкция ${side.id} — ${side.address}`}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 400px"
+              className="object-cover"
               onError={(e) => {
                 const target = e.currentTarget as HTMLImageElement;
                 target.style.display = "none";

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const PRODUCTS = [
   {
     name: "Гирлянда Нить",
@@ -66,13 +68,13 @@ export default function LightovoProducts() {
               key={i}
               className="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-all"
             >
-              <div className="aspect-square rounded-xl overflow-hidden bg-slate-900 mb-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative aspect-square rounded-xl overflow-hidden bg-slate-900 mb-4">
+                <Image
                   src={product.image}
                   alt={product.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover"
                 />
               </div>
               <h3 className="text-lg font-bold text-center mb-1">{product.name}</h3>

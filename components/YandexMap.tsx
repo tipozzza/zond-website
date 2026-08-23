@@ -106,8 +106,11 @@ export default function YandexMap({ sides, onSideClick, onSideFocus, focusSide }
       byConstruction.forEach((group, construction) => {
         const rep = group[0]; // координата конструкции — по первой стороне
         const photoSide = group.find((s) => s.photo_filename);
+        // Балун Яндекс.Карт принимает только строку HTML, поэтому next/image
+        // здесь неприменим. Дёргаем оптимизатор Next напрямую по URL: он отдаёт
+        // WebP/AVIF шириной 640px вместо оригинала (~430 КБ → ~36 КБ).
         const photoHtml = photoSide
-          ? `<img src="/images/constructions/${photoSide.photo_filename}" alt="Конструкция ${construction}" style="width:100%;max-width:280px;height:auto;border-radius:6px;margin-bottom:8px;display:block;" onerror="this.style.display='none'" />`
+          ? `<img src="/_next/image?url=${encodeURIComponent(`/images/constructions/${photoSide.photo_filename}`)}&w=640&q=75" alt="Конструкция ${construction}" loading="lazy" style="width:100%;max-width:280px;height:auto;border-radius:6px;margin-bottom:8px;display:block;" onerror="this.style.display='none'" />`
           : "";
         const sidesHtml = group
           .map((side) => {

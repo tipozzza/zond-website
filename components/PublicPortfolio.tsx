@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import portfolioData from "@/data/portfolio.json";
 import type { CategorySlug, PortfolioItem } from "@/lib/types/portfolio";
 
@@ -45,13 +46,13 @@ export default function PublicPortfolio({ category, title = "Наши работ
               onClick={() => setLightbox(item)}
               className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all text-left"
             >
-              <div className="aspect-[4/3] bg-slate-100 overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+                <Image
                   src={item.image}
                   alt={item.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-3">

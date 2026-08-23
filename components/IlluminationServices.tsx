@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const SERVICES = [
   {
     title: "Новогодняя подсветка фасадов",
@@ -63,13 +65,13 @@ export default function IlluminationServices() {
               className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
             >
               <div className="p-4 pb-0">
-                <div className="aspect-square rounded-xl overflow-hidden bg-slate-100">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="relative aspect-square rounded-xl overflow-hidden bg-slate-100">
+                  <Image
                     src={service.image}
                     alt={service.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover"
                   />
                 </div>
               </div>

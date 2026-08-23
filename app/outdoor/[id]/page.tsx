@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import sidesJson from "@/public/data/sides.json";
@@ -82,7 +83,15 @@ export default async function ConstructionPhotoPage({ params }: { params: Promis
         <Link href="/outdoor#map" className="text-brand text-sm font-semibold">← Все конструкции на карте</Link>
         <h1 className="text-2xl md:text-3xl font-bold mt-3 mb-5">Конструкция №{side.construction} · сторона {side.side}</h1>
         {photo ? (
-          <img src={photo} alt={`Рекламная конструкция №${side.construction} ${side.side} в Томске — ZOND`} className="w-full rounded-2xl shadow-lg mb-6" />
+          <Image
+            src={photo}
+            alt={`Рекламная конструкция №${side.construction} ${side.side} в Томске — ZOND`}
+            width={1600}
+            height={1200}
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="w-full h-auto rounded-2xl shadow-lg mb-6"
+            priority
+          />
         ) : <p className="text-slate-500 mb-6">Фото не загружено.</p>}
         <dl className="grid sm:grid-cols-2 gap-4 text-sm">
           <div><dt className="text-slate-500">Адрес</dt><dd className="font-medium">{side.address}</dd></div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
@@ -119,13 +120,14 @@ function BlogBody({ content }: { content: string }) {
         if (img) {
           const [, alt, src] = img;
           return (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               key={i}
               src={src}
               alt={alt}
-              loading="lazy"
-              className="w-full rounded-2xl my-8"
+              width={1600}
+              height={900}
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="w-full h-auto rounded-2xl my-8"
             />
           );
         }
@@ -298,11 +300,14 @@ export default async function BlogDetailPage({
             {post.title}
           </h1>
 
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={post.image}
             alt={`${post.title} — Зонд-Реклама, Томск`}
-            className="w-full rounded-2xl mb-8"
+            width={1600}
+            height={900}
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="w-full h-auto rounded-2xl mb-8"
+            priority
           />
 
           <BlogBody content={post.content} />
@@ -369,13 +374,15 @@ export default async function BlogDetailPage({
                     href={`/blog/${r.slug}`}
                     className="group block bg-slate-50 rounded-xl overflow-hidden border border-slate-200 hover:border-brand transition"
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={r.image}
-                      alt={r.title}
-                      loading="lazy"
-                      className="w-full aspect-[4/3] object-cover"
-                    />
+                    <div className="relative w-full aspect-[4/3]">
+                      <Image
+                        src={r.image}
+                        alt={r.title}
+                        fill
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        className="object-cover"
+                      />
+                    </div>
                     <div className="p-4">
                       <h3 className="text-sm font-bold line-clamp-2 group-hover:text-brand transition">
                         {r.title}

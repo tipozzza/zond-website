@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useCart } from "@/lib/cart/CartContext";
 
 export default function CartPanel() {
@@ -171,13 +172,14 @@ export default function CartPanel() {
                       key={it.sideId}
                       className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200"
                     >
-                      <div className="w-16 h-12 sm:w-20 sm:h-14 rounded bg-slate-200 overflow-hidden shrink-0">
+                      <div className="relative w-16 h-12 sm:w-20 sm:h-14 rounded bg-slate-200 overflow-hidden shrink-0">
                         {it.photo ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
+                          <Image
                             src={it.photo}
                             alt=""
-                            className="w-full h-full object-cover"
+                            fill
+                            sizes="80px"
+                            className="object-cover"
                           />
                         ) : null}
                       </div>

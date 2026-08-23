@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type Props = {
   src: string;
@@ -35,12 +36,15 @@ export default function ImageWithFallback({
     );
   }
 
+  // fill + sizes: отдаём картинку через оптимизатор Next (WebP/AVIF нужного
+  // размера) вместо тяжёлого оригинала. Все места вызова оборачивают компонент
+  // в контейнер с `relative` и фиксированной пропорцией, поэтому fill безопасен.
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       src={src}
       alt={alt}
-      loading="lazy"
+      fill
+      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
       onError={() => setFailed(true)}
       className={className}
     />
