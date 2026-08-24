@@ -1,1 +1,45 @@
-[]
+[
+  {
+    "id": "cart-mt6mqm2x-w92oe0",
+    "createdAt": "2026-08-24T02:41:28.137Z",
+    "status": "new",
+    "items": [
+      {
+        "sideId": "194А1",
+        "address": "Digital Красноармейская ул.,114  (ТЦ \"Садко\")",
+        "type": "Digital",
+        "format": "3х6",
+        "pricePerMonth": 45000,
+        "photo": "/images/constructions/194a_l_d.jpg"
+      },
+      {
+        "sideId": "15А1",
+        "address": "Красноармейская 126 ул / Дв.Спорта №3",
+        "type": "Тривижн",
+        "format": "3х6",
+        "pricePerMonth": 35000,
+        "photo": "/images/constructions/015a_l_d.jpg"
+      },
+      {
+        "sideId": "241A",
+        "address": "Красноармейская ул, 126",
+        "type": "Щит",
+        "format": "3х6",
+        "pricePerMonth": 35000,
+        "photo": "/images/constructions/241a_l_d.jpg"
+      }
+    ],
+    "dateFrom": null,
+    "dateTo": null,
+    "months": 0,
+    "discountPct": 0,
+    "pricePerMonthTotal": 115000,
+    "total": 0,
+    "contact": {
+      "name": "Артем",
+      "phone": "+79138743332",
+      "email": "moskalenko_as@mail.ru",
+      "comment": "Доброе утро. Интересует размещение рекламы в районе Садко. "
+    }
+  }
+]
