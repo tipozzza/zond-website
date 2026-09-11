@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import imageCompression from "browser-image-compression";
 import {
   BLOG_CATEGORIES,
   BLOG_CATEGORY_LABELS,
@@ -87,8 +88,25 @@ export default function BlogForm({ initial, mode }: Props) {
     setUploading(true);
     setError("");
     try {
+      // Сжимаем в браузере до отправки: конвертация на сервере отключена
+      // (next.config.ts → images.unoptimized), поэтому в репозиторий должен
+      // попадать уже готовый к раздаче файл, а не оригинал с телефона.
+      // 1280 px / 0,35 МБ — тот же порог, что у остальных картинок сайта.
+      let upload: File = imageFile;
+      try {
+        const compressed = await imageCompression(imageFile, {
+          maxSizeMB: 0.35,
+          maxWidthOrHeight: 1280,
+          useWebWorker: true,
+          fileType: "image/jpeg",
+        });
+        upload = new File([compressed], "cover.jpg", { type: "image/jpeg" });
+      } catch {
+        /* не вышло сжать — отправляем исходник, лучше так, чем потерять загрузку */
+      }
+
       const formData = new FormData();
-      formData.append("file", imageFile);
+      formData.append("file", upload);
       formData.append("slug", data.slug || transliterate(data.title));
       formData.append("date", data.date);
       const res = await fetch("/api/admin/blog/upload", {

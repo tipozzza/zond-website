@@ -358,8 +358,8 @@ function AddPhotosModal({
       let compressedKB: number | undefined;
       try {
         const compressed = await imageCompression(f, {
-          maxSizeMB: 0.5,
-          maxWidthOrHeight: 1920,
+          maxSizeMB: 0.35,
+          maxWidthOrHeight: 1280,
           useWebWorker: true,
           fileType: "image/jpeg",
         });

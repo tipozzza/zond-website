@@ -122,8 +122,8 @@ export default function NewsForm({ initial, mode }: Props) {
         let upload: File = f;
         try {
           const compressed = await imageCompression(f, {
-            maxSizeMB: 0.5,
-            maxWidthOrHeight: 1920,
+            maxSizeMB: 0.35,
+            maxWidthOrHeight: 1280,
             useWebWorker: true,
             fileType: "image/jpeg",
           });
@@ -171,8 +171,8 @@ export default function NewsForm({ initial, mode }: Props) {
       let upload: File = imageFile;
       try {
         const compressed = await imageCompression(imageFile, {
-          maxSizeMB: 0.5,
-          maxWidthOrHeight: 1920,
+          maxSizeMB: 0.35,
+          maxWidthOrHeight: 1280,
           useWebWorker: true,
           fileType: "image/jpeg",
         });
