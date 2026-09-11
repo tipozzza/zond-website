@@ -54,6 +54,26 @@ const QUALITY = Number(args.find((a) => a.startsWith("--q="))?.slice(4) || 80);
 // чём спотыкается антивирус. Скорость тут не важна, скрипт разовый.
 const JOBS = Number(args.find((a) => a.startsWith("--jobs="))?.slice(7) || 1);
 
+// Картинки, которые вёрстка растягивает на всю ширину экрана (sizes="100vw").
+// Им 1280 мало: на мониторе 1920 браузер растягивает файл и картинка мылит —
+// замер SSIM против оригинала даёт 0,88–0,91 вместо 0,95–0,97, которые отдавал
+// оптимизатор. В 1920 те же файлы дают 0,99. Доплата за все десять — 1,2 МБ,
+// поэтому держим их крупными. Остальное показывается в колонке не шире ~1280.
+const FULL_WIDTH = new Set([
+  "public/images/hero-tomsk.jpg",
+  "public/images/hero-tomsk-poster.jpg",
+  "public/images/outdoor-mix.jpg",
+  "public/images/production-workshop.jpg",
+  "public/images/production.jpg",
+  "public/images/exhibition.jpg",
+  "public/images/design-portfolio.jpg",
+  "public/images/led/hero-led-tomsk.jpg",
+  "public/images/blog/russifikaciya-hero.jpg",
+  "public/images/blog/vyveski-soglasovanie.jpg",
+]);
+const maxWidthFor = (file) =>
+  FULL_WIDTH.has(file.split(path.sep).join("/")) ? Math.max(MAX, 1920) : MAX;
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /** Повторяет файловую операцию: временные сбои ФС на Windows — не приговор. */
@@ -86,9 +106,10 @@ async function process1(file) {
   const input = await retry("чтение", () => fs.readFileSync(file));
   const before = input.length;
   const isPng = /\.png$/i.test(file);
+  const max = maxWidthFor(file);
   let pipeline = sharp(input)
     .rotate() // выправить ориентацию по EXIF до ресайза (фото с телефонов)
-    .resize({ width: MAX, height: MAX, fit: "inside", withoutEnlargement: true });
+    .resize({ width: max, height: max, fit: "inside", withoutEnlargement: true });
 
   // PNG жмём без палитры: квантование до 256 цветов давало на наших файлах
   // выигрыш в 1–2 % и при этом полосило градиенты. Фотографии, ошибочно
