@@ -1,4 +1,5 @@
-import { COMPANY, SERVICES } from "@/lib/site-data";
+import { COMPANY } from "@/lib/site-data";
+import CTALeadForm from "@/components/CTALeadForm";
 
 type Props = {
   accentColor?: string;
@@ -31,44 +32,11 @@ export default function CTAForm({ accentColor }: Props = {}) {
             </div>
           </div>
 
-          {/* Правая часть — форма */}
-          <div className="bg-white text-[#1f2530] rounded-2xl p-10">
+          {/* Правая часть — форма (клиентский компонент: отправка в /api/contact без перезагрузки) */}
+          <div className="bg-white text-[#1f2530] rounded-2xl p-10 relative">
             <h3 className="text-2xl font-bold mb-2">Оставить заявку</h3>
             <p className="text-sm text-gray-500 mb-7">Заполните форму — менеджер свяжется в течение часа.</p>
-            <form className="space-y-4">
-              <Field label="Имя *" type="text" placeholder="Как к вам обращаться" />
-              <div className="grid grid-cols-2 gap-3">
-                <Field label="Телефон *" type="tel" placeholder="+7 (___) ___-__-__" />
-                <Field label="Email" type="email" placeholder="email@example.ru" />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-1.5">Какая задача?</label>
-                <select className="w-full py-3.5 px-4 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:bg-white focus:border-brand focus:outline-none transition-colors">
-                  <option>Выберите направление…</option>
-                  {SERVICES.map((s) => <option key={s.id}>{s.title}</option>)}
-                  <option>Не определился — нужна консультация</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-1.5">Комментарий</label>
-                <textarea
-                  placeholder="Расскажите про задачу, бюджет, сроки"
-                  className="w-full py-3.5 px-4 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:bg-white focus:border-brand focus:outline-none transition-colors min-h-[80px] resize-y"
-                />
-              </div>
-              <p className="text-xs text-gray-500 leading-relaxed">
-                Нажимая «Отправить», вы соглашаетесь с{" "}
-                <a href="/privacy" className="text-brand">политикой конфиденциальности</a>{" "}
-                и даёте согласие на обработку персональных данных.
-              </p>
-              <button
-                type="submit"
-                className="btn w-full py-4 text-sm text-white hover:-translate-y-0.5 hover:brightness-90 transition-all"
-                style={{ backgroundColor: accentColor ?? "#6F395D" }}
-              >
-                Отправить заявку →
-              </button>
-            </form>
+            <CTALeadForm accentColor={accentColor} />
           </div>
         </div>
       </div>
@@ -86,19 +54,6 @@ function Channel({ icon, title, subtitle }: { icon: string; title: string; subti
         <strong className="block text-base mb-0.5">{title}</strong>
         <span className="text-white/85 text-xs">{subtitle}</span>
       </div>
-    </div>
-  );
-}
-
-function Field({ label, type, placeholder }: { label: string; type: string; placeholder: string }) {
-  return (
-    <div>
-      <label className="block text-sm font-semibold mb-1.5">{label}</label>
-      <input
-        type={type}
-        placeholder={placeholder}
-        className="w-full py-3.5 px-4 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:bg-white focus:border-brand focus:outline-none transition-colors"
-      />
     </div>
   );
 }
