@@ -23971,7 +23971,7 @@
     "grp": 7.58,
     "lat": 56.45672829977753,
     "lng": 84.95093409174204,
-    "illuminated": false,
+    "illuminated": true,
     "photo_filename": "d31019f2-45cb-4bdf-a2e6-9372c747e9d9.jpg",
     "status": {
       "jan": "free",
