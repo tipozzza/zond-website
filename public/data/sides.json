@@ -24080,5 +24080,36 @@
       "nov": "free",
       "dec": "free"
     }
+  },
+  {
+    "id": "244В8",
+    "construction": "244",
+    "side": "В8",
+    "address": "Ленина 002 пр / ТПУ (10 корпус)",
+    "type": "Digital",
+    "format": "3х6",
+    "material": "",
+    "direction": "",
+    "installCost": null,
+    "priceFinal": 45000,
+    "grp": 7.58,
+    "lat": 56.45672829977753,
+    "lng": 84.95093409174204,
+    "illuminated": true,
+    "photo_filename": null,
+    "status": {
+      "jan": "free",
+      "feb": "free",
+      "mar": "free",
+      "apr": "free",
+      "may": "free",
+      "june": "free",
+      "july": "free",
+      "aug": "free",
+      "sep": "free",
+      "oct": "free",
+      "nov": "free",
+      "dec": "free"
+    }
   }
 ]
