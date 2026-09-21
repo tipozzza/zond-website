@@ -6,7 +6,14 @@ import imageCompression from "browser-image-compression";
 import AdminNav from "@/components/admin/AdminNav";
 import type { Side, SideStatus } from "@/lib/types";
 import { MONTH_KEYS, MONTH_LABELS, STATUS_LABELS, getCurrentMonthKey } from "@/lib/sides-data";
-import { PHOTO_URL_PREFIX, SIDE_STATUSES, SIDE_TYPES } from "@/lib/outdoor-admin";
+import {
+  MAX_BULK_SIDES,
+  PHOTO_URL_PREFIX,
+  SIDE_STATUSES,
+  SIDE_TYPES,
+  parseSideLabel,
+  slugId,
+} from "@/lib/outdoor-admin";
 
 // Нормализация поиска: lowercase + кир.↔лат. гомоглифы (как в публичном списке).
 const HOMO: Record<string, string> = {
@@ -25,6 +32,25 @@ const byConstruction = (a: Side, b: Side) => {
 
 const photoUrl = (s: Side) => (s.photo_filename ? `${PHOTO_URL_PREFIX}/${s.photo_filename}` : null);
 
+/**
+ * Следующий свободный номер слота для той же конструкции и той же буквы:
+ * дублируем А1, когда уже есть А1…А5 — подставляем А6. Букву сравниваем через
+ * slugId, потому что в данных соседствуют кириллические А/В и латинские A/B.
+ */
+function suggestNextSide(sides: Side[], construction: string, sourceSide: string): string {
+  const { prefix, num } = parseSideLabel(sourceSide);
+  if (num == null) return "";
+  const key = slugId(prefix);
+  let max = num;
+  for (const s of sides) {
+    if (s.construction !== construction) continue;
+    const p = parseSideLabel(s.side);
+    if (p.num == null || slugId(p.prefix) !== key) continue;
+    if (p.num > max) max = p.num;
+  }
+  return prefix + (max + 1);
+}
+
 type Group = { construction: string; address: string; list: Side[] };
 
 export default function AdminOutdoorPage() {
@@ -37,6 +63,8 @@ export default function AdminOutdoorPage() {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [editing, setEditing] = useState<Side | null>(null);
   const [creating, setCreating] = useState<{ construction: string; locked: boolean } | null>(null);
+  const [duplicating, setDuplicating] = useState<Side | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -181,6 +209,19 @@ export default function AdminOutdoorPage() {
 
         {!loading && !error && (
           <>
+            {notice && (
+              <div className="mb-3 text-sm text-green-800 bg-green-50 border border-green-200 rounded-xl p-3 flex items-start gap-2">
+                <span>✓</span>
+                <span className="flex-1">{notice}</span>
+                <button
+                  onClick={() => setNotice(null)}
+                  className="text-green-700 hover:text-green-900"
+                  aria-label="Скрыть"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
             <div className="text-sm text-slate-500 mb-3">
               Конструкций: {groups.length} · сторон: {groups.reduce((n, g) => n + g.list.length, 0)}
             </div>
@@ -255,8 +296,16 @@ export default function AdminOutdoorPage() {
                               <button
                                 onClick={() => setEditing(s)}
                                 className="text-brand text-sm font-semibold shrink-0 hover:underline"
+                                title="Редактировать"
                               >
                                 ✏️
+                              </button>
+                              <button
+                                onClick={() => setDuplicating(s)}
+                                className="text-brand text-sm font-semibold shrink-0 hover:underline"
+                                title="Дублировать — копия всех полей и фото, меняете только номер"
+                              >
+                                ⧉
                               </button>
                               <button
                                 onClick={() => deleteSide(s)}
@@ -291,6 +340,7 @@ export default function AdminOutdoorPage() {
         <SideFormModal
           mode="edit"
           initial={editing}
+          allSides={sides}
           onClose={() => setEditing(null)}
           onSaved={() => {
             setEditing(null);
@@ -302,10 +352,26 @@ export default function AdminOutdoorPage() {
         <SideFormModal
           mode="create"
           initial={null}
+          allSides={sides}
           lockedConstruction={creating.locked ? creating.construction : undefined}
           onClose={() => setCreating(null)}
-          onSaved={() => {
+          onSaved={(msg) => {
             setCreating(null);
+            setNotice(msg ?? null);
+            load();
+          }}
+        />
+      )}
+      {duplicating && (
+        <SideFormModal
+          mode="duplicate"
+          initial={duplicating}
+          allSides={sides}
+          lockedConstruction={duplicating.construction}
+          onClose={() => setDuplicating(null)}
+          onSaved={(msg) => {
+            setDuplicating(null);
+            setNotice(msg ?? null);
             load();
           }}
         />
@@ -335,6 +401,18 @@ type FormState = {
 
 const numStr = (v: number | null | undefined) => (v == null ? "" : String(v));
 
+/** Результат разбора диапазона слотов: либо понятная ошибка, либо что создавать. */
+type BulkPlan = { error: string } | { fresh: string[]; exists: string[] };
+
+/** «1 сторону», «3 стороны», «11 сторон» — иначе кнопка выглядит безграмотно. */
+function pluralSides(n: number): string {
+  const d = n % 10;
+  const h = n % 100;
+  if (d === 1 && h !== 11) return "сторону";
+  if (d >= 2 && d <= 4 && (h < 12 || h > 14)) return "стороны";
+  return "сторон";
+}
+
 function toFormState(s: Side | null, lockedConstruction?: string): FormState {
   const status: Record<string, SideStatus> = {};
   MONTH_KEYS.forEach((m) => {
@@ -361,23 +439,42 @@ function toFormState(s: Side | null, lockedConstruction?: string): FormState {
 function SideFormModal({
   mode,
   initial,
+  allSides,
   lockedConstruction,
   onClose,
   onSaved,
 }: {
-  mode: "create" | "edit";
+  mode: "create" | "edit" | "duplicate";
   initial: Side | null;
+  allSides: Side[];
   lockedConstruction?: string;
   onClose: () => void;
-  onSaved: () => void;
+  onSaved: (message?: string) => void;
 }) {
-  const [f, setF] = useState<FormState>(() => toFormState(initial, lockedConstruction));
+  // Дублирование — это создание: поля берём из образца, но сторону подставляем
+  // следующую свободную, чтобы не ловить «уже существует» на ровном месте.
+  const isCreate = mode !== "edit";
+  const [f, setF] = useState<FormState>(() => {
+    const base = toFormState(initial, lockedConstruction);
+    if (mode === "duplicate" && initial) {
+      base.side = suggestNextSide(allSides, initial.construction, initial.side);
+    }
+    return base;
+  });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [photo, setPhoto] = useState<string | null>(
     initial?.photo_filename ? `${PHOTO_URL_PREFIX}/${initial.photo_filename}` : null,
   );
   const [photoBusy, setPhotoBusy] = useState(false);
+
+  // Пакетное создание слотов (только при создании и только если у стороны есть
+  // числовой хвост: у щитов сторона «A»/«B», нумеровать нечего).
+  const parsed = parseSideLabel(f.side);
+  const canBulk = isCreate && parsed.num != null;
+  const [bulk, setBulk] = useState(false);
+  const [bulkFrom, setBulkFrom] = useState("");
+  const [bulkTo, setBulkTo] = useState("");
 
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setF((p) => ({ ...p, [k]: v }));
@@ -387,17 +484,49 @@ function SideFormModal({
     initial != null &&
     (f.construction.trim() !== initial.construction || f.side.trim() !== initial.side);
 
+  // Что реально создастся при включённом пакетном режиме.
+  const taken = useMemo(() => new Set(allSides.map((s) => slugId(s.id))), [allSides]);
+  const bulkPlan = useMemo<BulkPlan | null>(() => {
+    if (!bulk || !canBulk) return null;
+    const from = parseInt(bulkFrom, 10);
+    const to = parseInt(bulkTo, 10);
+    if (!Number.isFinite(from) || !Number.isFinite(to)) return { error: "Укажите диапазон" };
+    if (to < from) return { error: "«По» меньше, чем «с»" };
+    if (to - from + 1 > MAX_BULK_SIDES)
+      return { error: `Не больше ${MAX_BULK_SIDES} слотов за раз` };
+    const construction = f.construction.trim();
+    const fresh: string[] = [];
+    const exists: string[] = [];
+    for (let n = from; n <= to; n++) {
+      const label = parsed.prefix + n;
+      (taken.has(slugId(construction + label)) ? exists : fresh).push(label);
+    }
+    return { fresh, exists };
+  }, [bulk, canBulk, bulkFrom, bulkTo, parsed.prefix, f.construction, taken]);
+
+  // Диапазон задан неверно или создавать нечего — сохранять нельзя.
+  const bulkBlocked =
+    bulkPlan != null && ("error" in bulkPlan || bulkPlan.fresh.length === 0);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!f.construction.trim() || !f.side.trim()) {
       setError("Заполните номер конструкции и сторону");
       return;
     }
+    if (bulkPlan && "error" in bulkPlan) {
+      setError(bulkPlan.error);
+      return;
+    }
+    if (bulkPlan && bulkPlan.fresh.length === 0) {
+      setError("Все слоты из диапазона уже существуют");
+      return;
+    }
     setSaving(true);
     setError("");
     const payload = {
       construction: f.construction.trim(),
-      side: f.side.trim(),
+      ...(bulkPlan ? { sides: bulkPlan.fresh } : { side: f.side.trim() }),
       address: f.address,
       type: f.type,
       format: f.format,
@@ -410,10 +539,13 @@ function SideFormModal({
       lng: f.lng,
       illuminated: f.illuminated,
       status: f.status,
+      // При дублировании переносим фото образца: у всех слотов одной
+      // конструкции оно одно и то же, перезаливать его незачем.
+      ...(mode === "duplicate" ? { photo_filename: initial?.photo_filename ?? null } : {}),
     };
     try {
       const res =
-        mode === "create"
+        isCreate
           ? await fetch("/api/admin/outdoor", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -430,7 +562,12 @@ function SideFormModal({
         setSaving(false);
         return;
       }
-      onSaved();
+      const made: string[] = Array.isArray(data?.created) ? data.created : [];
+      onSaved(
+        made.length > 1
+          ? `Создано сторон: ${made.length} (${made.join(", ")}). Сайт обновится через 2–3 минуты.`
+          : undefined,
+      );
     } catch {
       setError("Сеть недоступна. Попробуйте ещё раз.");
       setSaving(false);
@@ -487,8 +624,18 @@ function SideFormModal({
         className="bg-white rounded-2xl p-5 sm:p-6 max-w-2xl w-full my-4 space-y-4"
       >
         <h2 className="text-xl font-bold">
-          {mode === "create" ? "Новая сторона" : `Сторона ${initial?.id}`}
+          {mode === "create"
+            ? "Новая сторона"
+            : mode === "duplicate"
+              ? `Копия стороны ${initial?.id}`
+              : `Сторона ${initial?.id}`}
         </h2>
+        {mode === "duplicate" && (
+          <p className="text-xs text-slate-500 -mt-2">
+            Все поля скопированы из {initial?.id}. Поменяйте номер слота — или создайте сразу
+            диапазон.
+          </p>
+        )}
 
         {/* Фото (только в режиме редактирования — нужен существующий id) */}
         {mode === "edit" ? (
@@ -520,6 +667,24 @@ function SideFormModal({
                 {photoBusy ? "Загрузка…" : "Файл сожмётся и заменит текущее фото на сайте"}
               </span>
             </label>
+          </div>
+        ) : mode === "duplicate" ? (
+          <div className="flex items-center gap-4">
+            <div className="w-28 h-20 rounded-lg bg-slate-100 overflow-hidden shrink-0">
+              {photo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={photo} alt="" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-xs text-slate-400">
+                  нет фото
+                </div>
+              )}
+            </div>
+            <p className="text-xs text-slate-500">
+              {photo
+                ? "Фото перенесётся на новые стороны — загружать заново не нужно."
+                : "У образца нет фото. Его можно добавить потом, открыв сторону на редактирование."}
+            </p>
           </div>
         ) : (
           <p className="text-xs text-slate-500">
@@ -555,6 +720,73 @@ function SideFormModal({
             ⚠️ Меняется номер/сторона — ссылка /outdoor/{initial?.id} станет /outdoor/
             {f.construction.trim()}
             {f.side.trim()}.
+          </div>
+        )}
+
+        {canBulk && (
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+            <label className="flex items-center gap-2 text-sm font-semibold">
+              <input
+                type="checkbox"
+                checked={bulk}
+                onChange={(e) => {
+                  setBulk(e.target.checked);
+                  if (e.target.checked) {
+                    // По умолчанию — от текущего номера до 12: у диджитала
+                    // ровно 12 слотов, это самый частый случай.
+                    setBulkFrom(String(parsed.num ?? 1));
+                    setBulkTo(String(Math.max(parsed.num ?? 1, 12)));
+                  }
+                }}
+                className="w-4 h-4"
+              />
+              Создать сразу несколько слотов
+            </label>
+            {bulk && (
+              <>
+                <div className="flex items-end gap-2 mt-3">
+                  <span className="text-sm text-slate-500 pb-2">{parsed.prefix}</span>
+                  <label className="text-sm">
+                    <span className="block text-xs text-slate-500 mb-1">с</span>
+                    <input
+                      inputMode="numeric"
+                      value={bulkFrom}
+                      onChange={(e) => setBulkFrom(e.target.value)}
+                      className="w-20 border border-slate-300 rounded-lg px-3 py-2 text-sm"
+                    />
+                  </label>
+                  <label className="text-sm">
+                    <span className="block text-xs text-slate-500 mb-1">по</span>
+                    <input
+                      inputMode="numeric"
+                      value={bulkTo}
+                      onChange={(e) => setBulkTo(e.target.value)}
+                      className="w-20 border border-slate-300 rounded-lg px-3 py-2 text-sm"
+                    />
+                  </label>
+                </div>
+                <div className="text-xs mt-2 leading-relaxed">
+                  {bulkPlan && "error" in bulkPlan ? (
+                    <span className="text-red-600">{bulkPlan.error}</span>
+                  ) : bulkPlan ? (
+                    <>
+                      <div className="text-slate-700">
+                        <b>Создадим {bulkPlan.fresh.length}:</b>{" "}
+                        {bulkPlan.fresh.length ? bulkPlan.fresh.join(", ") : "— нечего"}
+                      </div>
+                      {bulkPlan.exists.length > 0 && (
+                        <div className="text-slate-500 mt-0.5">
+                          Уже есть, пропустим: {bulkPlan.exists.join(", ")}
+                        </div>
+                      )}
+                      <div className="text-slate-500 mt-1">
+                        Всё уйдёт одним сохранением — сайт пересоберётся один раз.
+                      </div>
+                    </>
+                  ) : null}
+                </div>
+              </>
+            )}
           </div>
         )}
 
@@ -662,10 +894,14 @@ function SideFormModal({
         <div className="flex gap-3 pt-1">
           <button
             type="submit"
-            disabled={saving || photoBusy}
+            disabled={saving || photoBusy || bulkBlocked}
             className="bg-brand text-white px-6 py-2 rounded-lg font-semibold disabled:opacity-50"
           >
-            {saving ? "Сохранение..." : "Сохранить"}
+            {saving
+              ? "Сохранение..."
+              : bulkPlan && !("error" in bulkPlan) && bulkPlan.fresh.length > 1
+                ? `Создать ${bulkPlan.fresh.length} ${pluralSides(bulkPlan.fresh.length)}`
+                : "Сохранить"}
           </button>
           <button
             type="button"

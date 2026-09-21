@@ -8,10 +8,12 @@ import {
 } from "@/lib/github-api";
 import type { Side } from "@/lib/types";
 import {
+  MAX_BULK_SIDES,
   SIDES_REPO_PATH,
   blankStatus,
   isSideStatus,
   makeSide,
+  sanitizePhotoFilename,
   slugId,
   toNullableNumber,
 } from "@/lib/outdoor-admin";
@@ -33,26 +35,59 @@ export async function GET() {
   }
 }
 
-// Создание новой стороны (в т.ч. первой стороны новой конструкции).
+// Создание стороны. Принимает либо одну сторону (side), либо сразу набор
+// (sides: ["А1","А2",…]) — у диджитал-конструкции 12 слотов, и создавать их
+// по одному значило бы 12 коммитов и 12 пересборок сайта. Пакет уходит одним
+// коммитом. photo_filename копируется из образца: все слоты одной
+// конструкции показывают одно и то же фото, заново его грузить не нужно.
 export async function POST(req: Request) {
   if (!(await verifySession()))
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
     const body = await req.json();
     const construction = String(body.construction ?? "").trim();
-    const side = String(body.side ?? "").trim();
-    if (!construction || !side)
+
+    // Список сторон к созданию: sides[] (пакет) или одиночный side.
+    const rawList: unknown[] = Array.isArray(body.sides)
+      ? body.sides
+      : body.side != null
+        ? [body.side]
+        : [];
+    const requested: string[] = [];
+    for (const v of rawList) {
+      const label = String(v ?? "").trim();
+      if (!label) continue;
+      // Дубли внутри самого запроса игнорируем, сравнивая по тем же правилам,
+      // что и уникальность id (кир. А/В ≡ лат. A/B).
+      if (!requested.some((x) => slugId(x) === slugId(label))) requested.push(label);
+    }
+
+    if (!construction || requested.length === 0)
       return NextResponse.json(
         { error: "Укажите номер конструкции и сторону" },
         { status: 400 },
       );
+    if (requested.length > MAX_BULK_SIDES)
+      return NextResponse.json(
+        { error: `За раз можно создать не больше ${MAX_BULK_SIDES} сторон` },
+        { status: 400 },
+      );
 
-    const id = construction + side;
     const file = await getFile(SIDES_REPO_PATH);
     const sides: Side[] = file ? JSON.parse(file.decoded) : [];
-    if (sides.some((s) => s.id === id || slugId(s.id) === slugId(id)))
+    const taken = new Set(sides.map((s) => slugId(s.id)));
+
+    const toCreate = requested.filter((label) => !taken.has(slugId(construction + label)));
+    const skipped = requested.filter((label) => taken.has(slugId(construction + label)));
+
+    if (toCreate.length === 0)
       return NextResponse.json(
-        { error: `Сторона ${id} уже существует` },
+        {
+          error:
+            skipped.length === 1
+              ? `Сторона ${construction}${skipped[0]} уже существует`
+              : `Все указанные стороны уже существуют: ${skipped.join(", ")}`,
+        },
         { status: 400 },
       );
 
@@ -63,7 +98,7 @@ export async function POST(req: Request) {
         if (m in status && isSideStatus(v)) (status as Record<string, unknown>)[m] = v;
       }
     }
-    const newSide = makeSide(construction, side, {
+    const shared = {
       address: str(body.address),
       type: str(body.type) || undefined,
       format: str(body.format),
@@ -75,12 +110,27 @@ export async function POST(req: Request) {
       installCost: toNullableNumber(body.installCost),
       lat: toNullableNumber(body.lat),
       lng: toNullableNumber(body.lng),
-      status,
-    });
-    sides.push(newSide);
+      photo_filename: sanitizePhotoFilename(body.photo_filename),
+    };
 
-    await putFile(SIDES_REPO_PATH, serialize(sides), `Outdoor: add side ${id}`, file?.sha);
-    return NextResponse.json({ ok: true, side: newSide });
+    const created: Side[] = toCreate.map((label) =>
+      // Копия статусов на каждую сторону: общий объект нельзя — он один на всех
+      // и правка одного слота меняла бы остальные.
+      makeSide(construction, label, { ...shared, status: { ...status } }),
+    );
+    sides.push(...created);
+
+    const message =
+      created.length === 1
+        ? `Outdoor: add side ${created[0].id}`
+        : `Outdoor: add ${created.length} sides to construction ${construction}`;
+    await putFile(SIDES_REPO_PATH, serialize(sides), message, file?.sha);
+    return NextResponse.json({
+      ok: true,
+      side: created[0],
+      created: created.map((s) => s.id),
+      skipped: skipped.map((label) => construction + label),
+    });
   } catch (err) {
     const { status, message } = friendlyGithubError(err);
     return NextResponse.json({ error: message }, { status });

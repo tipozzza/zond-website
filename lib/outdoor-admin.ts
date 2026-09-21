@@ -61,6 +61,35 @@ export function isSideStatus(v: unknown): v is SideStatus {
   return v === "free" || v === "busy" || v === "partial" || v === "reserved";
 }
 
+/**
+ * Имя файла фото из запроса. Принимаем только «голое» имя файла картинки:
+ * никаких путей и переходов вверх — значение уходит в sides.json и потом
+ * подставляется в URL /images/constructions/<...>.
+ */
+export function sanitizePhotoFilename(raw: unknown): string | null {
+  if (typeof raw !== "string") return null;
+  const name = raw.trim().split(/[\\/]/).pop() ?? "";
+  return /^[A-Za-z0-9._-]+\.(jpe?g|png|webp)$/i.test(name) ? name : null;
+}
+
+/**
+ * Разбор обозначения стороны на буквенный префикс и номер слота: «А12» →
+ * { prefix: "А", num: 12 }. У щитов и сити-форматов номера нет («A», «B») —
+ * тогда num === null и пакетное создание слотов недоступно.
+ *
+ * Префикс возвращаем как есть, не нормализуя: в данных соседствуют кириллица
+ * (А, В) и латиница (A, B), и новые слоты должны повторять букву оригинала.
+ */
+export function parseSideLabel(side: string): { prefix: string; num: number | null } {
+  const m = side.trim().match(/^(\D*)(\d+)$/);
+  if (!m) return { prefix: side.trim(), num: null };
+  return { prefix: m[1], num: Number(m[2]) };
+}
+
+/** Максимум слотов за одно пакетное создание — страховка от опечатки в диапазоне. */
+export const MAX_BULK_SIDES = 60;
+
+
 /** Безопасное число из формы: "" / null → null, иначе Number или null при NaN. */
 export function toNullableNumber(raw: unknown): number | null {
   if (raw == null || raw === "") return null;
