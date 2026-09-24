@@ -1,5 +1,32 @@
 [
   {
+    "id": "cart-muf3j11i-099zrt",
+    "createdAt": "2026-09-24T05:33:19.494Z",
+    "status": "new",
+    "items": [
+      {
+        "sideId": "157",
+        "address": "Дальнеключевская ул.,3 / Ленина пр.",
+        "type": "Щит",
+        "format": "3х6",
+        "pricePerMonth": 29000,
+        "photo": "/images/constructions/157a_l_d.jpg"
+      }
+    ],
+    "dateFrom": "2026-12-01",
+    "dateTo": "2027-01-01",
+    "months": 1,
+    "discountPct": 0,
+    "pricePerMonthTotal": 29000,
+    "total": 29000,
+    "contact": {
+      "name": "Ольга ",
+      "phone": "89234190257",
+      "email": "dolgalevaolga19@gmail.com",
+      "comment": "срочно"
+    }
+  },
+  {
     "id": "cart-mt6mqm2x-w92oe0",
     "createdAt": "2026-08-24T02:41:28.137Z",
     "status": "new",
