@@ -24235,5 +24235,36 @@
       "nov": "free",
       "dec": "free"
     }
+  },
+  {
+    "id": "135А",
+    "construction": "135",
+    "side": "А",
+    "address": "Площадь в Аэропорту №1 / (левая)",
+    "type": "Щит",
+    "format": "3х6",
+    "material": "Баннер",
+    "direction": "В центр",
+    "installCost": 5000,
+    "priceFinal": 32000,
+    "grp": null,
+    "lat": 85.207947,
+    "lng": 56.388692,
+    "illuminated": false,
+    "photo_filename": null,
+    "status": {
+      "jan": "free",
+      "feb": "free",
+      "mar": "free",
+      "apr": "free",
+      "may": "free",
+      "june": "free",
+      "july": "free",
+      "aug": "free",
+      "sep": "free",
+      "oct": "free",
+      "nov": "free",
+      "dec": "free"
+    }
   }
 ]
