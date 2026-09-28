@@ -24248,8 +24248,8 @@
     "installCost": 5000,
     "priceFinal": 32000,
     "grp": null,
-    "lat": 85.207947,
-    "lng": 56.388692,
+    "lat": 56.388692,
+    "lng": 85.207947,
     "illuminated": false,
     "photo_filename": null,
     "status": {
