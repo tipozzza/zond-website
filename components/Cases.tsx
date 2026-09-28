@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
+import { accentText } from "@/lib/accent-text";
 
 type Item = {
   title: string;
@@ -139,7 +140,7 @@ export default function Cases() {
               key={item.title}
               href={item.href}
               className="group rounded-2xl overflow-hidden bg-white border border-slate-200 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl h-full flex flex-col"
-              style={{ "--accent": item.accent } as CSSProperties}
+              style={{ "--accent": item.accent, "--accent-text": accentText(item.accent) } as CSSProperties}
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 flex-shrink-0">
                 <Image
@@ -158,7 +159,7 @@ export default function Cases() {
                 <p className="text-sm text-slate-600 leading-relaxed mb-3 flex-1">{item.desc}</p>
                 <span
                   className="text-sm font-semibold flex items-center gap-1 mt-auto"
-                  style={{ color: "var(--accent)" }}
+                  style={{ color: "var(--accent-text)" }}
                 >
                   {item.cta ?? "Подробнее"}
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

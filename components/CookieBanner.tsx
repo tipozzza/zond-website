@@ -41,39 +41,30 @@ export default function CookieBanner() {
 
   if (!visible) return null;
 
+  // Компактная плашка. Раньше большая карточка в правом нижнем углу
+  // закрывала кнопки первого экрана главной («Посмотреть конструкции»).
+  // Телефон/планшет — узкая полоса у нижнего края; с 1024 px — слева внизу,
+  // где на первом экране только фон (текст и кнопки hero — справа),
+  // и не пересекается с плавающими кнопками Telegram/MAX справа.
   return (
-    <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-50 bg-white border border-slate-200 shadow-2xl rounded-2xl p-4 sm:p-5">
-      <div className="flex items-start gap-3">
-        <div className="text-2xl" aria-hidden>
-          🍪
-        </div>
-        <div className="flex-1">
-          <h3 className="font-bold text-slate-900 mb-1 text-sm sm:text-base">
-            Cookies на сайте
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-600 mb-3 leading-relaxed">
-            Мы используем cookies для аналитики и улучшения сайта. Продолжая использовать сайт, вы соглашаетесь на их использование.{" "}
-            <Link href="/privacy" className="underline hover:text-brand">
-              Подробнее в Политике конфиденциальности
-            </Link>
-            .
-          </p>
-          <div className="flex gap-2">
-            <button
-              onClick={accept}
-              className="px-4 py-2 bg-brand text-white text-sm font-medium rounded-lg hover:opacity-90 transition"
-            >
-              Принимаю
-            </button>
-            <Link
-              href="/privacy"
-              className="px-4 py-2 border border-slate-300 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-50 transition"
-            >
-              Подробнее
-            </Link>
-          </div>
-        </div>
-      </div>
+    <div
+      role="region"
+      aria-label="Уведомление о cookies"
+      className="fixed z-50 inset-x-3 bottom-3 lg:inset-x-auto lg:left-6 lg:bottom-6 lg:max-w-[440px] bg-white border border-slate-200 shadow-2xl rounded-xl px-4 py-3 flex items-center gap-3"
+    >
+      <p className="flex-1 text-xs text-slate-600 leading-snug">
+        Мы используем cookies для аналитики и улучшения сайта. Продолжая
+        использовать сайт, вы соглашаетесь на их использование.{" "}
+        <Link href="/privacy" className="underline hover:text-brand">
+          Подробнее
+        </Link>
+      </p>
+      <button
+        onClick={accept}
+        className="shrink-0 px-4 py-2 bg-brand text-white text-sm font-medium rounded-lg hover:opacity-90 transition"
+      >
+        Принимаю
+      </button>
     </div>
   );
 }

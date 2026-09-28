@@ -11,6 +11,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { SERVICES } from "@/lib/site-data";
 import RevealHeading from "./RevealHeading";
+import { accentText } from "@/lib/accent-text";
 
 const ICONS: Record<string, LucideIcon> = {
   outdoor: Megaphone,
@@ -28,6 +29,17 @@ const ACCENT_COLORS: Record<string, string> = {
   exhibition: "#3FA3D9",
   design: "#1657BD",
   led: "#67008F",
+};
+
+// Подпись ссылки в предложном падеже. Раньше собиралась из названия
+// («Подробнее о наружная реклама») — по-русски так нельзя.
+const MORE_LABELS: Record<string, string> = {
+  outdoor: "Подробнее о наружной рекламе",
+  print: "Подробнее о широкоформатной печати",
+  production: "Подробнее о производстве",
+  exhibition: "Подробнее о выставочных экспозициях",
+  design: "Подробнее о дизайне и полиграфии",
+  led: "Подробнее о светодиодной продукции",
 };
 
 export default function Services() {
@@ -77,10 +89,10 @@ export default function Services() {
 
                 <Link
                   href={service.href}
-                  style={{ color: accent }}
+                  style={{ color: accentText(accent) }}
                   className="inline-flex items-center gap-2 font-semibold group/link relative z-10 self-start transition-colors"
                 >
-                  <span>Подробнее о {service.title.toLowerCase()}</span>
+                  <span>{MORE_LABELS[service.id] ?? `Подробнее: ${service.title}`}</span>
                   <ArrowRight
                     size={18}
                     className="group-hover/link:translate-x-1 transition-transform duration-300"
