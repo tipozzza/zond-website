@@ -312,6 +312,12 @@ export default function NewsForm({ initial, mode }: Props) {
           placeholder="Абзацы разделяйте пустой строкой (двойной Enter)"
           className="w-full border border-slate-300 rounded-lg px-3 py-2"
         />
+        <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+          Ссылка: <code>[текст ссылки](/led)</code>. Адрес сайта в тексте
+          (zondreklama.ru/led) станет ссылкой сам. Файл для скачивания —
+          отдельным абзацем: <code>[Скачать каталог (PDF)](/files/имя-файла.pdf)</code>,
+          на странице он превратится в кнопку.
+        </p>
       </div>
 
       <div>

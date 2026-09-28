@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { Download } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
@@ -52,9 +53,35 @@ export async function generateMetadata({
 type Segment =
   | { kind: "text"; value: string }
   | { kind: "internal"; href: string; label: string }
-  | { kind: "external"; href: string; label: string };
+  | { kind: "external"; href: string; label: string }
+  | { kind: "file"; href: string; label: string };
 
 const LINK_RE = /\[([^\]]+)\]\((\/[^\s)]+|https?:\/\/[^\s)]+)\)/g;
+
+// Ссылка на файл (каталог, прайс) — обычный <a download>, не next/link:
+// Link стал бы префетчить файл целиком (PDF каталога ~17 МБ) при каждом
+// показе новости и пытаться открыть его как страницу сайта.
+const FILE_RE = /\.(pdf|docx?|xlsx?|pptx?|zip)$/i;
+
+// Адрес сайта, написанный в тексте без разметки («zondreklama.ru/led»),
+// превращаем во внутреннюю ссылку. Точка в конце предложения в ссылку
+// не попадает: в пути допускаем только буквы, цифры, «-», «_» и «/».
+// Почту (office@zondreklama.ru) и поддомены не трогаем — см. lookbehind.
+const SITE_RE = /(?<![@\w.\/-])(?:https?:\/\/)?(?:www\.)?zondreklama\.ru(\/[A-Za-z0-9\-_/]*)?/g;
+
+function linkify(text: string): Segment[] {
+  const out: Segment[] = [];
+  let lastIdx = 0;
+  let match: RegExpExecArray | null;
+  SITE_RE.lastIndex = 0;
+  while ((match = SITE_RE.exec(text)) !== null) {
+    if (match.index > lastIdx) out.push({ kind: "text", value: text.slice(lastIdx, match.index) });
+    out.push({ kind: "internal", href: match[1] || "/", label: match[0] });
+    lastIdx = match.index + match[0].length;
+  }
+  if (lastIdx < text.length) out.push({ kind: "text", value: text.slice(lastIdx) });
+  return out;
+}
 
 function parseInline(line: string): Segment[] {
   const out: Segment[] = [];
@@ -63,18 +90,19 @@ function parseInline(line: string): Segment[] {
   LINK_RE.lastIndex = 0;
   while ((match = LINK_RE.exec(line)) !== null) {
     if (match.index > lastIdx) {
-      out.push({ kind: "text", value: line.slice(lastIdx, match.index) });
+      out.push(...linkify(line.slice(lastIdx, match.index)));
     }
     const [, label, href] = match;
+    const path = href.split(/[?#]/)[0];
     out.push({
-      kind: href.startsWith("/") ? "internal" : "external",
+      kind: FILE_RE.test(path) ? "file" : href.startsWith("/") ? "internal" : "external",
       href,
       label,
     });
     lastIdx = match.index + match[0].length;
   }
   if (lastIdx < line.length) {
-    out.push({ kind: "text", value: line.slice(lastIdx) });
+    out.push(...linkify(line.slice(lastIdx)));
   }
   return out;
 }
@@ -82,6 +110,13 @@ function parseInline(line: string): Segment[] {
 function renderInline(segments: Segment[]) {
   return segments.map((seg, i) => {
     if (seg.kind === "text") return <span key={i}>{seg.value}</span>;
+    if (seg.kind === "file") {
+      return (
+        <a key={i} href={seg.href} download className="text-brand hover:underline">
+          {seg.label}
+        </a>
+      );
+    }
     if (seg.kind === "internal") {
       return (
         <Link key={i} href={seg.href} className="text-brand hover:underline">
@@ -115,9 +150,27 @@ function NewsBody({ content }: { content: string }) {
             </h2>
           );
         }
+        const segments = parseInline(block.trim());
+        // Абзац из одной ссылки на файл — показываем кнопкой «скачать»,
+        // чтобы каталог было видно сразу, а не искать ссылку в тексте.
+        if (segments.length === 1 && segments[0].kind === "file") {
+          const file = segments[0];
+          return (
+            <p key={i} className="my-6 not-prose">
+              <a
+                href={file.href}
+                download
+                className="btn btn-primary gap-2 whitespace-normal text-center no-underline"
+              >
+                <Download className="h-5 w-5 shrink-0" aria-hidden="true" />
+                {file.label}
+              </a>
+            </p>
+          );
+        }
         return (
           <p key={i} className="mb-4 leading-relaxed text-slate-800">
-            {renderInline(parseInline(block))}
+            {renderInline(segments)}
           </p>
         );
       })}
