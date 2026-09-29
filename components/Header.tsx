@@ -47,9 +47,9 @@ export default function Header() {
             <Image
               src="/logo-horizontal-purple.png"
               alt={COMPANY.fullName}
-              width={180}
-              height={48}
-              className="h-12 w-auto"
+              width={148}
+              height={40}
+              className="h-10 w-auto"
               priority
             />
           </Link>
@@ -121,7 +121,7 @@ export default function Header() {
             <a href={`tel:${COMPANY.phoneRaw}`} className="font-semibold text-brand">
               {COMPANY.phone}
             </a>
-            <button type="button" onClick={openLeadModal} className="btn btn-primary">
+            <button type="button" onClick={openLeadModal} className="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors">
               Оставить заявку
             </button>
           </div>

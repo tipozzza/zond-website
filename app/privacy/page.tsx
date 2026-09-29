@@ -132,7 +132,7 @@ export default function PrivacyPage() {
                 </a>{" "}
                 или по телефону{" "}
                 <a href="tel:+73822979705" className="text-brand hover:underline">
-                  8 (3822) 97-97-05
+                  +7 (3822) 97-97-05
                 </a>
                 .
               </p>

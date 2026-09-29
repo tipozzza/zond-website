@@ -14,7 +14,7 @@ import { buildOgUrl } from "@/lib/og";
 export const metadata: Metadata = {
   title: "Контакты ZOND в Томске — пр. Фрунзе, 115",
   description:
-    "Адрес: 634021, г. Томск, пр. Фрунзе, 115. Телефон 8 (3822) 97-97-05, email office@zondreklama.ru. Режим работы: Пн-Пт 9-18, Сб 10-15. Отвечаем за час.",
+    "Адрес: 634021, г. Томск, пр. Фрунзе, 115. Телефон +7 (3822) 97-97-05, email office@zondreklama.ru. Режим работы: Пн-Пт 9-18, Сб 10-15. Отвечаем за час.",
   keywords: [
     "ZOND контакты",
     "Зонд-Реклама контакты",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Контакты ZOND",
     description:
-      "Томск, пр. Фрунзе 115 — звоните или приезжайте. 8 (3822) 97-97-05, office@zondreklama.ru.",
+      "Томск, пр. Фрунзе 115 — звоните или приезжайте. +7 (3822) 97-97-05, office@zondreklama.ru.",
     url: "https://zondreklama.ru/contacts",
     siteName: "ZOND",
     locale: "ru_RU",
@@ -67,7 +67,7 @@ const CHANNELS = [
   {
     icon: "📞",
     title: "Телефон",
-    value: "8 (3822) 97-97-05",
+    value: "+7 (3822) 97-97-05",
     desc: "Городской, Томск. Пн-Пт 9-18, Сб 10-15 (по записи).",
     href: "tel:+73822979705",
   },
@@ -213,7 +213,7 @@ export default function ContactsPage() {
                 href="tel:+73822979705"
                 className="inline-flex items-center gap-2 bg-accent-yellow text-slate-900 px-7 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:brightness-95 transition"
               >
-                📞 8 (3822) 97-97-05
+                📞 +7 (3822) 97-97-05
               </a>
               <a
                 href="https://t.me/zond_reklama"
@@ -354,7 +354,7 @@ export default function ContactsPage() {
                 href="tel:+73822979705"
                 className="inline-flex items-center gap-2 text-white text-lg font-semibold hover:underline"
               >
-                ☎ 8 (3822) 97-97-05
+                ☎ +7 (3822) 97-97-05
               </a>
             </div>
           </div>

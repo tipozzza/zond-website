@@ -7,7 +7,7 @@ export const COMPANY = {
   legalName: "ООО «ФОРМАТ СИТИ»",
   inn: "7017200748",
   founded: 1992,
-  phone: "8 (3822) 97-97-05",
+  phone: "+7 (3822) 97-97-05",
   phoneRaw: "+73822979705",
   email: "office@zondreklama.ru",
   address: "634021, г. Томск, пр. Фрунзе, 115",
@@ -188,7 +188,6 @@ export const MAP_TYPES = [
 export const NAV_LINKS: { label: string; href: string; hasDropdown?: boolean }[] = [
   { label: "Услуги", href: "/#services", hasDropdown: true },
   { label: "Карта", href: "/outdoor#map" },
-  { label: "Кейсы", href: "/#cases" },
   { label: "Новости", href: "/news" },
   { label: "Блог", href: "/blog" },
   { label: "О компании", href: "/about" },

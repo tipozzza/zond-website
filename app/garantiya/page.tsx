@@ -458,7 +458,7 @@ export default function GarantiyaPage() {
                 href="tel:+73822979705"
                 className="inline-flex items-center gap-2 bg-accent-yellow text-slate-900 px-8 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:brightness-95 transition"
               >
-                📞 8 (3822) 97-97-05
+                📞 +7 (3822) 97-97-05
               </a>
               <a
                 href="https://t.me/zond_reklama"

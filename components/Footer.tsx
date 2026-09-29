@@ -25,7 +25,6 @@ const SECTIONS = [
     title: "Компания",
     links: [
       { label: "О нас", href: "/about" },
-      { label: "Кейсы", href: "/#cases" },
       { label: "Гарантия", href: "/garantiya" },
       { label: "Вакансии", href: "/vacancies" },
       { label: "Контакты", href: "/contacts" },

@@ -271,7 +271,7 @@ export default function RussifikaciyaPage() {
                 href="tel:+73822979705"
                 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/30 text-white px-7 py-4 rounded-xl font-semibold text-base hover:bg-white/20 transition"
               >
-                ☎ 8 (3822) 97-97-05
+                ☎ +7 (3822) 97-97-05
               </a>
             </div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/85">
@@ -484,7 +484,7 @@ export default function RussifikaciyaPage() {
                 href="tel:+73822979705"
                 className="inline-flex items-center gap-2 text-white text-lg font-semibold hover:underline"
               >
-                ☎ 8 (3822) 97-97-05
+                ☎ +7 (3822) 97-97-05
               </a>
             </div>
           </div>

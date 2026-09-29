@@ -54,7 +54,7 @@ export default function CartPanel() {
       });
       const data = await res.json();
       if (!res.ok || !data.success) {
-        setError(data.error || "Не удалось отправить заявку. Попробуйте позже или позвоните 8 (3822) 97-97-05.");
+        setError(data.error || "Не удалось отправить заявку. Попробуйте позже или позвоните +7 (3822) 97-97-05.");
         return;
       }
       setSubmittedOk(true);

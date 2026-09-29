@@ -251,7 +251,7 @@ export async function POST(req: Request) {
         {
           success: false,
           error:
-            "Не удалось отправить заявку. Позвоните 8 (3822) 97-97-05 или напишите office@zondreklama.ru.",
+            "Не удалось отправить заявку. Позвоните +7 (3822) 97-97-05 или напишите office@zondreklama.ru.",
         },
         { status: 500 },
       );
