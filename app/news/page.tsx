@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import NewsCover from "@/components/NewsCover";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelBorder from "@/components/PixelBorder";
@@ -78,13 +78,11 @@ export default function NewsPage() {
                 href={`/news/${item.slug}`}
                 className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 flex flex-col"
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                  <Image
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                  <NewsCover
                     src={item.image}
                     alt={item.title}
-                    fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="p-5 flex-1 flex flex-col">

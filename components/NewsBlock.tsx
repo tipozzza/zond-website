@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import NewsCover from "./NewsCover";
 import { ArrowRight } from "lucide-react";
 import { NEWS } from "@/lib/news-data";
 
@@ -33,15 +33,10 @@ export default function NewsBlock() {
               className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                <Image
+                <NewsCover
                   src={item.image}
                   alt={`${item.title} — новость Зонд-Реклама, Томск`}
-                  fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
                 />
               </div>
               <div className="p-5">

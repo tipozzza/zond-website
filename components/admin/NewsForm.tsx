@@ -322,6 +322,10 @@ export default function NewsForm({ initial, mode }: Props) {
 
       <div>
         <label className="block text-sm font-semibold mb-1">Фото</label>
+        <p className="text-xs text-slate-500 mb-2">
+          Лучше всего 1600 × 1000 px (пропорции 16:10) — тогда обложка заполнит карточку
+          целиком. Надписи и логотип держите ближе к центру.
+        </p>
         <div className="flex items-center gap-3">
           <input
             type="file"
