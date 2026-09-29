@@ -32,7 +32,7 @@ const CATEGORIES: { img: string; title: string; priceBadge: string; description:
     img: "/images/design/category-souvenir.jpg",
     title: "Сувенирная продукция",
     priceBadge: "ОТ 5 ₽/ШТ",
-    description: "Тампонная печать на ручках, кружках, флешках, от 50 шт.",
+    description: "Тампонная печать от 50 шт и полноцветная УФ-печать: термокружки, ежедневники, ручки, флешки, пауэрбанки.",
     anchor: "souvenirs",
   },
   {
@@ -54,6 +54,13 @@ const CATEGORIES: { img: string; title: string; priceBadge: string; description:
     priceBadge: "ОТ 20 000 ₽",
     description: "Индивидуальный / Оптимальный / Комплекс с офис- и интерьерным стилем.",
   },
+];
+
+// Из КП «Корпоративный мерч · УФ-печать», октябрь 2026.
+const UV_OPTIONS = [
+  { title: "Цвет", price: "базовая цена", text: "Полноцвет на светлом: керамика, бумага, светлый пластик." },
+  { title: "Цвет + белый", price: "+20 % к печати", text: "Белая подложка — на тёмном дереве, коже, чёрном пластике, металле." },
+  { title: "Цвет + лак", price: "+50 % к печати", text: "Объём и глянец на ощупь, дополнительная защита." },
 ];
 
 const STEPS = [
@@ -90,6 +97,28 @@ const EQUIPMENT: {
       { label: "Плотность", value: "до 360 г/м²" },
       { label: "Скорость", value: "25 стр/мин" },
       { label: "Цветность", value: "CMYK + белый + лак (уникально для Томска)" },
+    ],
+  },
+  {
+    image: "/images/design/equipment-uv-nc-a3max.jpg",
+    type: "УФ-ПЕЧАТЬ НА ИЗДЕЛИЯХ",
+    name: "Universal UV NC-A3max",
+    specs: [
+      { label: "Поле печати", value: "до 30 × 42 см (A3)" },
+      { label: "Высота предмета", value: "до 9 см, цилиндры без ручек" },
+      { label: "Краски", value: "CMYK + белый + лак" },
+      { label: "Материалы", value: "дерево, металл, пластик, стекло, кожа, камень, керамика" },
+    ],
+  },
+  {
+    image: "/images/design/equipment-sunfung-sf460e.jpg",
+    type: "РЕЗКА ТИРАЖЕЙ",
+    name: "Sunfung SF-460E",
+    specs: [
+      { label: "Тип", value: "электрический гильотинный резак" },
+      { label: "Ширина реза", value: "460 мм" },
+      { label: "Высота стопы", value: "до 80 мм" },
+      { label: "Применение", value: "визитки, листовки, открытки, буклеты" },
     ],
   },
   {
@@ -240,6 +269,56 @@ export default function DesignPage() {
           </div>
         </section>
 
+        {/* УФ-печать на сувенирах */}
+        <section id="uv-print" className="py-12 md:py-20 bg-slate-50 scroll-mt-24">
+          <div className="max-w-[1280px] mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center">
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-slate-100 order-last lg:order-first">
+              <Image
+                src="/images/design/uv-merch.jpg"
+                alt="Термокружка, ежедневник, ручка, флешка и пауэрбанк с логотипом — УФ-печать ZOND"
+                fill
+                loading="lazy"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <div className="text-xs font-bold text-[#1657BD] uppercase tracking-wide mb-2">
+                Новое оборудование · 2026
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+                Мерч с логотипом: УФ-печать за 1–2 дня
+              </h2>
+              <p className="text-slate-700 mb-5 leading-relaxed">
+                Полноцветная печать прямо на изделии — на своём УФ-принтере в Томске. Термокружки,
+                ежедневники, ручки, флешки, пауэрбанки, бейджи: подберём по каталогу поставщика
+                или напечатаем на ваших предметах. Макет и цена — в день обращения.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-3 mb-5">
+                {UV_OPTIONS.map((o) => (
+                  <div key={o.title} className="bg-white rounded-xl border border-slate-200 p-4">
+                    <div className="font-bold text-slate-900">{o.title}</div>
+                    <div className="text-sm font-semibold text-[#1657BD] mb-1">{o.price}</div>
+                    <div className="text-xs text-slate-600 leading-snug">{o.text}</div>
+                  </div>
+                ))}
+              </div>
+              <ul className="text-sm text-slate-700 space-y-1.5 mb-6">
+                <li>• Логотип 5 × 5 см на вашем изделии — от 50 ₽, термокружка с логотипом — от 120 ₽ (тираж от 50 шт)</li>
+                <li>• Плоские предметы до 30 × 42 см и высотой до 9 см, цилиндры без ручек</li>
+                <li>• Дерево, кожа, металл, стекло, керамика, пластик, камень, бумага</li>
+                <li>• Первый экземпляр — на согласование до тиража; образцы можно посмотреть в шоу-руме на Фрунзе, 115</li>
+              </ul>
+              <a
+                href="#contact-form"
+                className="inline-block bg-brand hover:bg-brand/90 text-white px-6 py-3 rounded-lg font-semibold"
+              >
+                Рассчитать мерч
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Калькулятор */}
         <DesignCalculator />
 
@@ -344,6 +423,7 @@ export default function DesignPage() {
             { question: "Передаёте ли вы исходные файлы (AI, PSD)?", answer: "Да, по завершении работы передаём все исходники (AI, PSD, SVG, EPS) + руководство по использованию (минимальные размеры, охранное поле, неправильное применение)." },
             { question: "Можете напечатать то, что разработали?", answer: "Да, мы — полный цикл от макета до металла на своём производстве: дизайн → печать → монтаж. Для клиентов дизайна — скидка 10% на печать в том же заказе. Это удобно: не нужно бегать между дизайнером и типографией." },
             { question: "Делаете ли вы дизайн для соцсетей (VK, Telegram)?", answer: "Да: шапки, посты, сторис, обложки. От 500 руб за пост, пакет 20 постов — от 8 000 руб. Учитываем брендбук вашей компании, если он есть." },
+            { question: "Можно напечатать логотип на термокружках и ежедневниках?", answer: "Да, на своём УФ-принтере: полноцветная печать прямо на изделии, в том числе белым и лаком. Логотип 5 × 5 см на вашем изделии — от 50 ₽, термокружка с логотипом — от 120 ₽ при тираже от 50 шт. Изделия подбираем по каталогу поставщика или печатаем на ваших. Срок — 1–2 дня после поставки изделий. Для больших тиражей ручек и кружек есть тампонная печать." },
             { question: "Что входит в дизайн упаковки?", answer: "Концепт, разработка макета с учётом полиграфических требований, технические разрешения (вырубка, проклейка), 3D-визуализация, передача в типографию. От 6 000 руб за единицу SKU." },
           ]}
         />

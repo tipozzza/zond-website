@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Award, Zap, History, Activity, Printer, Image as ImageIcon, Scissors, FileText } from "lucide-react";
+import { Award, Zap, History, Activity, Printer, Image as ImageIcon, Scissors, FileText, Flag } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -71,6 +71,15 @@ const PRINT_TYPES: {
     anchor: "interior",
   },
   {
+    icon: Flag,
+    image: "/images/print/type-textile.jpg",
+    badge: "ПОЛОТНО ДО 2,2 М",
+    title: "Печать на ткани",
+    description: "Флаги, виндеры, настольные флажки, скатерти, шторы, тканевые баннеры. Сублимация: краска уходит внутрь волокна — не выцветает на улице и не смывается при стирке. Срок 2–3 дня.",
+    items: "Флажная сетка, атлас, таффета, габардин, блэкаут. Принтер Audley D2200-4, пошив в своём цехе.",
+    anchor: "textile",
+  },
+  {
     icon: Scissors,
     image: "/images/print/type-postprint.jpg",
     badge: "ОТ 20 ₽/М",
@@ -78,6 +87,14 @@ const PRINT_TYPES: {
     description: "Превращаем отпечаток в готовое изделие. Резка, проклейка, ламинирование, люверсы.",
     items: "Подрезка по периметру, проклейка края, установка люверсов, ламинирование 30–250 мкм.",
   },
+];
+
+// Цены — из КП «Флаги и текстиль», октябрь 2026.
+const FLAG_FABRICS = ["Сетка", "Атлас", "Таффета"];
+const FLAG_PRICES: { item: string; min: string; prices: string[] }[] = [
+  { item: "Уличный флаг 70 × 105 см", min: "от 5 шт", prices: ["от 1 700 ₽", "от 1 810 ₽", "от 1 650 ₽"] },
+  { item: "Флаг-виндер 50 × 150 см", min: "от 5 шт", prices: ["от 1 850 ₽", "—", "—"] },
+  { item: "Настольный флажок 12 × 18 см", min: "от 10 шт", prices: ["от 380 ₽", "от 420 ₽", "от 360 ₽"] },
 ];
 
 const EQUIPMENT: {
@@ -117,6 +134,16 @@ const EQUIPMENT: {
       { label: "Разрешение", value: "1440 dpi" },
       { label: "Скорость", value: "до 15 м²/час" },
       { label: "Особенности", value: "головы Epson i3200" },
+    ],
+  },
+  {
+    image: "/images/print/printer-audley-d2200.jpg",
+    name: "Audley D2200-4",
+    type: "ТЕКСТИЛЬ · СУБЛИМАЦИЯ",
+    specs: [
+      { label: "Ширина полотна", value: "до 2,2 м" },
+      { label: "Ткани", value: "флажная сетка, атлас, таффета, габардин, блэкаут" },
+      { label: "Применение", value: "флаги, виндеры, скатерти, шторы, тканевые баннеры" },
     ],
   },
   {
@@ -301,9 +328,9 @@ export default function PrintPage() {
           <div className="max-w-[1280px] mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Виды печати</h2>
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              Три направления закрывают любую задачу — от уличной рекламы до финального оформления изделия.
+              Четыре направления закрывают любую задачу — от уличной рекламы и флагов до финального оформления изделия.
             </p>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {PRINT_TYPES.map(({ icon: Icon, image, badge, title, description, items, anchor }) => (
                 <article
                   key={title}
@@ -339,12 +366,57 @@ export default function PrintPage() {
           </div>
         </section>
 
+        {/* Флаги и текстиль: цены */}
+        <section id="flagi" className="py-12 md:py-20 bg-white scroll-mt-24">
+          <div className="max-w-[1280px] mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Флаги с логотипом — цены</h2>
+            <p className="text-lg text-slate-600 text-center mb-10 max-w-2xl mx-auto">
+              Печатаем на ткани полотном до 2,2 м и шьём в своём цехе в Томске. Цена за штуку с печатью,
+              пошивом и люверсами или карманом под древко.
+            </p>
+            <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-slate-200 overflow-x-auto shadow-sm">
+              <table className="w-full text-sm min-w-[560px]">
+                <thead className="bg-slate-50">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-slate-700">Изделие</th>
+                    {FLAG_FABRICS.map((f) => (
+                      <th key={f} className="px-4 py-3 text-right font-semibold text-slate-700">{f}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {FLAG_PRICES.map((row) => (
+                    <tr key={row.item} className="border-t border-slate-100">
+                      <td className="px-4 py-3 text-slate-800">
+                        {row.item}
+                        <span className="block text-xs text-slate-500">{row.min}</span>
+                      </td>
+                      {row.prices.map((p, i) => (
+                        <td key={i} className="px-4 py-3 text-right font-semibold text-slate-900 whitespace-nowrap">{p}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="max-w-4xl mx-auto grid sm:grid-cols-3 gap-4 mt-6 text-sm text-slate-600">
+              <p><strong className="text-slate-800">Сетка</strong> — улица: ветер проходит сквозь полотно, рисунок виден с двух сторон.</p>
+              <p><strong className="text-slate-800">Атлас</strong> — интерьер и подарки: плотный, с блеском, самые сочные цвета.</p>
+              <p><strong className="text-slate-800">Таффета</strong> — праздники и большие тиражи: тонкая, матовая, самая доступная.</p>
+            </div>
+            <p className="max-w-4xl mx-auto text-xs text-slate-500 mt-6">
+              Древко, флагшток, кронштейны и монтаж — отдельно. Скатерти, шторы, фотопанели и флаги нестандартного
+              размера считаем по квадратному метру. Цены не являются офертой — точный расчёт по макету за час.
+            </p>
+          </div>
+        </section>
+
         {/* Оборудование */}
         <section id="equipment" className="py-12 md:py-20 bg-slate-50">
           <div className="max-w-[1280px] mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Наше оборудование</h2>
             <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              3 печатные машины (2 сольвентных + 1 интерьерный) + станция постпечатной обработки (резак и ламинатор).
+              4 печатные машины (2 сольвентных, интерьерный и текстильный) + станция постпечатной обработки (резак и ламинатор).
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {EQUIPMENT.map((e) => (
@@ -448,6 +520,7 @@ export default function PrintPage() {
             { question: "Какой минимальный заказ для широкоформатной печати?", answer: "Минимального заказа нет — печатаем и 1 м² баннера. На большие объёмы (от 100 м²) действует скидка 10-20%. Срочную печать выполняем в день обращения." },
             { question: "На каких материалах вы печатаете?", answer: "Литой баннер 440-510 г/м², ламинированный 280-340 г/м², баннерная сетка, плёнка для машин и витрин, бумага, текстиль, холст для интерьерной печати. Полный список — в калькуляторе на странице." },
             { question: "Сколько занимает изготовление баннера в Томске?", answer: "Стандартный срок — 1-3 рабочих дня с момента согласования макета. Срочные заказы — в день обращения (с наценкой 30%). При сложной постпечатной обработке (люверсы, проклейка, ламинирование) — до 5 дней." },
+            { question: "Печатаете флаги с логотипом?", answer: "Да, на своём текстильном принтере полотном до 2,2 м, пошив тоже у нас. Уличный флаг 70 × 105 см — от 1 650 ₽ за штуку при тираже от 5 шт, флаг-виндер 50 × 150 см — от 1 850 ₽, настольный флажок — от 360 ₽ при тираже от 10 шт. Срок 2–3 дня. Древко, флагшток и монтаж — отдельно." },
             { question: "Делаете ли вы дизайн или нужен готовый макет?", answer: "Можем работать и так, и так. Если макет готов в подходящем формате (PDF/TIFF/AI, 100 dpi, CMYK) — печатаем. Если нужна разработка — наш отдел дизайна сделает за 1-3 дня от 3 000 руб." },
             { question: "Доставляете ли по Томску и области?", answer: "Да, доставка по Томску бесплатно при заказе от 5 000 руб., по области — по тарифам транспортных компаний. Самовывоз с пр. Фрунзе 115 всегда бесплатно." },
           ]}
