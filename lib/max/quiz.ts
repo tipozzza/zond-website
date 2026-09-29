@@ -173,6 +173,14 @@ export async function runQuiz(): Promise<void> {
   const { state, sha } = await loadState();
   const asked = [...state.asked];
 
+  // Викторина пройдена и новых вопросов нет — ничего не делаем и, главное, ничего
+  // не пишем в репозиторий. Раньше здесь каждый вызов cron (2 раза в день)
+  // сохранял то же самое состояние новым коммитом «quiz: прогресс викторины»,
+  // а каждый коммит в main запускает пересборку сайта (~30 минут) и прерывает
+  // идущий деплой. Если в data/quiz.json добавят вопросы, викторина продолжится.
+  const hasUnasked = questions.some((_, i) => !asked.includes(i));
+  if (state.done && state.currentQ === null && !hasUnasked) return;
+
   // 1) разбор текущего вопроса (если был открыт)
   if (state.currentQ !== null && state.currentQ >= 0 && state.currentQ < questions.length) {
     await revealQuestion(questions[state.currentQ], state.currentQ);
